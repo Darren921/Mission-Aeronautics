@@ -9,9 +9,9 @@ public class InputManager : MonoBehaviour
     public static void InitM(Player _player1, Player _player2)
     {
         _controls = new Controls();
-        PlayerAssigment PlayerAssigment1 = GameObject.Find("PlayerAssigment").GetComponent<PlayerAssigment>();
-        _player1 = PlayerAssigment1._players[0];
-        _player2 = PlayerAssigment1._players[1];
+        PlayerAssigment PlayerAssigmentM = GameObject.Find("PlayerAssigment").GetComponent<PlayerAssigment>();
+        _player1 = PlayerAssigmentM._players[0];
+        _player2 = PlayerAssigmentM._players[1];
 
         //setting up Player 1's movement 
         _controls.InGame.Player1Movement.performed += _ =>
@@ -29,17 +29,19 @@ public class InputManager : MonoBehaviour
 
     public static void InitS(Player _player1)
     {
-        PlayerAssigment PlayerAssigment1 = GameObject.Find("Player Controller").GetComponent<PlayerAssigment>();
-        _player1 = PlayerAssigment1._players[0];
+        _controls = new Controls();
+        PlayerAssigment PlayerAssigmentS = GameObject.Find("PlayerAssigment").GetComponent<PlayerAssigment>();
+        _player1 = PlayerAssigmentS._players[0];
         
-
         //setting up Player 1's movement 
         _controls.InGame.Player1Movement.performed += _ =>
         {
-
             _player1.SetMoveDirection(_.ReadValue<Vector2>());
         };
-
+        _controls.InGame.Player1Attack.performed += _ =>
+        {
+            _player1.Attacking();
+        };
     }
 
     //Activating the Controls

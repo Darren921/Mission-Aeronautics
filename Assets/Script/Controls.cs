@@ -37,6 +37,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Player1Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ae4048c-0dd4-46ee-8528-7f3e4f3435b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Player2Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""32b4ca53-fa64-41ed-a785-d6207d4ee586"",
@@ -103,6 +112,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""22d1273e-5bdc-439c-ad5e-09ca7993ecc3"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""2D Vector"",
                     ""id"": ""40190f56-b161-4a99-9094-16462b0d8814"",
                     ""path"": ""2DVector"",
@@ -165,6 +185,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // InGame
         m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
         m_InGame_Player1Movement = m_InGame.FindAction("Player1Movement", throwIfNotFound: true);
+        m_InGame_Player1Attack = m_InGame.FindAction("Player1Attack", throwIfNotFound: true);
         m_InGame_Player2Movement = m_InGame.FindAction("Player2Movement", throwIfNotFound: true);
     }
 
@@ -228,12 +249,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InGame;
     private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
     private readonly InputAction m_InGame_Player1Movement;
+    private readonly InputAction m_InGame_Player1Attack;
     private readonly InputAction m_InGame_Player2Movement;
     public struct InGameActions
     {
         private @Controls m_Wrapper;
         public InGameActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Player1Movement => m_Wrapper.m_InGame_Player1Movement;
+        public InputAction @Player1Attack => m_Wrapper.m_InGame_Player1Attack;
         public InputAction @Player2Movement => m_Wrapper.m_InGame_Player2Movement;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
@@ -247,6 +270,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1Movement.started += instance.OnPlayer1Movement;
             @Player1Movement.performed += instance.OnPlayer1Movement;
             @Player1Movement.canceled += instance.OnPlayer1Movement;
+            @Player1Attack.started += instance.OnPlayer1Attack;
+            @Player1Attack.performed += instance.OnPlayer1Attack;
+            @Player1Attack.canceled += instance.OnPlayer1Attack;
             @Player2Movement.started += instance.OnPlayer2Movement;
             @Player2Movement.performed += instance.OnPlayer2Movement;
             @Player2Movement.canceled += instance.OnPlayer2Movement;
@@ -257,6 +283,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1Movement.started -= instance.OnPlayer1Movement;
             @Player1Movement.performed -= instance.OnPlayer1Movement;
             @Player1Movement.canceled -= instance.OnPlayer1Movement;
+            @Player1Attack.started -= instance.OnPlayer1Attack;
+            @Player1Attack.performed -= instance.OnPlayer1Attack;
+            @Player1Attack.canceled -= instance.OnPlayer1Attack;
             @Player2Movement.started -= instance.OnPlayer2Movement;
             @Player2Movement.performed -= instance.OnPlayer2Movement;
             @Player2Movement.canceled -= instance.OnPlayer2Movement;
@@ -280,6 +309,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IInGameActions
     {
         void OnPlayer1Movement(InputAction.CallbackContext context);
+        void OnPlayer1Attack(InputAction.CallbackContext context);
         void OnPlayer2Movement(InputAction.CallbackContext context);
     }
 }

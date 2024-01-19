@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Player1Attack",
+                    "type": "Button",
+                    "id": "0ae4048c-0dd4-46ee-8528-7f3e4f3435b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Player2Movement",
                     "type": "PassThrough",
                     "id": "32b4ca53-fa64-41ed-a785-d6207d4ee586",
@@ -79,6 +88,17 @@
                     "action": "Player1Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "22d1273e-5bdc-439c-ad5e-09ca7993ecc3",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player1Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "2D Vector",
