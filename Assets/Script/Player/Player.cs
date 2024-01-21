@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private Sprite[] playerSprites;
     private Vector3 EndPos;
+
+
+    public static bool performed;
+    public static bool isColliding;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +57,8 @@ public class Player : MonoBehaviour
 
    
     IEnumerator AttackCheck()
-    { 
+    {
+        performed = true;
         _isAttacking = true;
 
 
@@ -70,10 +76,40 @@ public class Player : MonoBehaviour
                 break;
         }
         _isAttacking = false;
+        performed = false;
 
         this.GetComponent<SpriteRenderer>().sprite = playerSprites[0];
         StopCoroutine(AttackCheck());
 
 
     }
+
+    public bool performing()
+    {
+        return performed;
+    }
+
+    public bool colliding()
+    {
+        return isColliding;
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            isColliding = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            isColliding = false;
+        }
+    }
+
+
 }
