@@ -61,17 +61,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += (Vector3)(_moveSpeed * Time.fixedDeltaTime * _moveDir); 
-     
-    }
-    private void FixedUpdate()
-    {
-
+        transform.position += (Vector3)(_moveSpeed * Time.fixedDeltaTime * _moveDir);
         if (_isAttacking == true)
         {
             transform.position = Vector3.Lerp(transform.position, EndPos, 2);
         }
+
+
     }
+
+
+
     public void SetMoveDirection(Vector2 newDir)
     {
         _moveDir = newDir;
@@ -98,12 +98,12 @@ public class Player : MonoBehaviour
         { 
             case 0:
                 spriteRenderer.sprite = playerSprites[1];
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.55f);
                 moveNumber = 1;
                 break; 
             case 1:
                 spriteRenderer.sprite = playerSprites[2];
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.55f);
                 moveNumber = 0;
                 break;
         }
