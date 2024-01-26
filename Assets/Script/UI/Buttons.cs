@@ -7,15 +7,18 @@ using UnityEngine.UI;
 public class Buttons : MonoBehaviour
 {
     public static int CharacterChossen;
-    void Start()
+
+
+    public void BackToTitle()
     {
-        
+        SceneManager.LoadScene("TitleScreen");
     }
 
-    void Update()
+    public void BackToSelection() 
     {
-        
+        SceneManager.LoadScene("ChooseCharacter");
     }
+
 
     public void loadSinglePlayer()
     {
