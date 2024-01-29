@@ -46,6 +46,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Player1Boost"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe54aa6d-4f95-4012-9f0c-b04e840d6ea8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Player2Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""32b4ca53-fa64-41ed-a785-d6207d4ee586"",
@@ -57,8 +66,19 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
+                    ""name"": """",
+                    ""id"": ""22d1273e-5bdc-439c-ad5e-09ca7993ecc3"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""2D Vector"",
-                    ""id"": ""69f7d72e-70bd-45bd-b299-f7a83c5d0b80"",
+                    ""id"": ""233bb69d-7eff-452a-a978-b1f4ddf6c223"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -69,8 +89,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""96fc4d40-1d49-4484-8baa-4bc32b708119"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""id"": ""b8ec45fa-9e99-44b3-a770-ef69ff428215"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -80,8 +100,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""17293dd4-3fca-462f-985d-fe7a631cc42f"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""id"": ""4a244544-feb1-4b31-8cfc-eb7cd528c9af"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -91,7 +111,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""0624161b-ff76-4c6e-9ead-ca40e102cf77"",
+                    ""id"": ""7c0202b5-e94f-44da-a59c-faeb4de1ca19"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -102,7 +122,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""cb664a1c-8953-49b2-81cf-ddf270453632"",
+                    ""id"": ""df2d501c-6848-4268-ae0f-fda9a74e9f1a"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -113,12 +133,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""22d1273e-5bdc-439c-ad5e-09ca7993ecc3"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""id"": ""58239aae-1b11-41eb-aa9e-8ff0c2fae1ed"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player1Attack"",
+                    ""action"": ""Player1Boost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -186,6 +206,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
         m_InGame_Player1Movement = m_InGame.FindAction("Player1Movement", throwIfNotFound: true);
         m_InGame_Player1Attack = m_InGame.FindAction("Player1Attack", throwIfNotFound: true);
+        m_InGame_Player1Boost = m_InGame.FindAction("Player1Boost", throwIfNotFound: true);
         m_InGame_Player2Movement = m_InGame.FindAction("Player2Movement", throwIfNotFound: true);
     }
 
@@ -250,6 +271,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
     private readonly InputAction m_InGame_Player1Movement;
     private readonly InputAction m_InGame_Player1Attack;
+    private readonly InputAction m_InGame_Player1Boost;
     private readonly InputAction m_InGame_Player2Movement;
     public struct InGameActions
     {
@@ -257,6 +279,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InGameActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Player1Movement => m_Wrapper.m_InGame_Player1Movement;
         public InputAction @Player1Attack => m_Wrapper.m_InGame_Player1Attack;
+        public InputAction @Player1Boost => m_Wrapper.m_InGame_Player1Boost;
         public InputAction @Player2Movement => m_Wrapper.m_InGame_Player2Movement;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
@@ -273,6 +296,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1Attack.started += instance.OnPlayer1Attack;
             @Player1Attack.performed += instance.OnPlayer1Attack;
             @Player1Attack.canceled += instance.OnPlayer1Attack;
+            @Player1Boost.started += instance.OnPlayer1Boost;
+            @Player1Boost.performed += instance.OnPlayer1Boost;
+            @Player1Boost.canceled += instance.OnPlayer1Boost;
             @Player2Movement.started += instance.OnPlayer2Movement;
             @Player2Movement.performed += instance.OnPlayer2Movement;
             @Player2Movement.canceled += instance.OnPlayer2Movement;
@@ -286,6 +312,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1Attack.started -= instance.OnPlayer1Attack;
             @Player1Attack.performed -= instance.OnPlayer1Attack;
             @Player1Attack.canceled -= instance.OnPlayer1Attack;
+            @Player1Boost.started -= instance.OnPlayer1Boost;
+            @Player1Boost.performed -= instance.OnPlayer1Boost;
+            @Player1Boost.canceled -= instance.OnPlayer1Boost;
             @Player2Movement.started -= instance.OnPlayer2Movement;
             @Player2Movement.performed -= instance.OnPlayer2Movement;
             @Player2Movement.canceled -= instance.OnPlayer2Movement;
@@ -310,6 +339,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnPlayer1Movement(InputAction.CallbackContext context);
         void OnPlayer1Attack(InputAction.CallbackContext context);
+        void OnPlayer1Boost(InputAction.CallbackContext context);
         void OnPlayer2Movement(InputAction.CallbackContext context);
     }
 }

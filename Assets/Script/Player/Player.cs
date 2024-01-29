@@ -6,14 +6,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Buttons UIButtons = new();
     private Vector2 _moveDir;
     private int moveNumber;
     private static bool _isAttacking;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private Sprite[] playerSprites;
-    private Vector3 EndPos;
+    private Vector3 EndPosA;
+    private Vector3 EndPosBoost;
     SpriteRenderer spriteRenderer;
+
+    private bool GravActive;
+    private bool isMoved;
 
     public static bool performed;
     public static bool isColliding;
@@ -21,6 +24,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GravActive = true;
         PlayerAssigment playerAssigment = GameObject.Find("PlayerAssigment").GetComponent<PlayerAssigment>();
         spriteRenderer  = GetComponent<SpriteRenderer>();
 
@@ -61,11 +65,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += (Vector3)(_moveSpeed * Time.fixedDeltaTime * _moveDir);
-        if (_isAttacking == true)
+        if (isMoved == true)
         {
-            transform.position = Vector3.Lerp(transform.position, EndPos, 2);
+            isMoved = true;
         }
+        if (isMoved == true)
+        {
+            Gravity();
+        }
+        transform.position += (Vector3)(_moveSpeed * Time.fixedDeltaTime * _moveDir);
+        
+     
 
 
     }
@@ -75,16 +85,16 @@ public class Player : MonoBehaviour
     public void SetMoveDirection(Vector2 newDir)
     {
         _moveDir = newDir;
+        isMoved = true;
     }
     public void Attacking()
     {
+        isMoved = true;
         if (_isAttacking == true)
         {
             return;
         }
         StartCoroutine(AttackCheck());
-        EndPos = transform.position + new Vector3(0.2f, 0, 0);
-        StopCoroutine(AttackCheck());
     }
 
    
@@ -92,18 +102,24 @@ public class Player : MonoBehaviour
     {
         performed = true;
         _isAttacking = true;
-
+     
+         
+        
 
         switch (moveNumber) 
         { 
             case 0:
                 spriteRenderer.sprite = playerSprites[1];
-                yield return new WaitForSeconds(0.55f);
+                EndPosA = transform.position + new Vector3(0.2f, 0, 0);
+                transform.position = Vector3.Lerp(transform.position, EndPosA, 0);
+                yield return new WaitForSeconds(0.6f);
                 moveNumber = 1;
                 break; 
             case 1:
                 spriteRenderer.sprite = playerSprites[2];
-                yield return new WaitForSeconds(0.55f);
+                EndPosA = transform.position + new Vector3(0.2f, 0, 0);
+                transform.position = Vector3.Lerp(transform.position, EndPosA, 0);
+                yield return new WaitForSeconds(0.6f);
                 moveNumber = 0;
                 break;
         }
@@ -126,7 +142,31 @@ public class Player : MonoBehaviour
         return isColliding;
     }
 
+    public void Gravity ()
+    {
+        if (GravActive == true)
+        {
+            this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 0.009f);
+        }
+        else return;
+    }
 
+    public void Boost()
+    {
+        isMoved = true;
+        StartCoroutine(Boosting());
+    } 
+
+    IEnumerator Boosting()
+    {
+        GravActive = false;
+        yield return null;
+        EndPosBoost = transform.position + new Vector3(0, 3f, 0);
+        transform.position = Vector3.Lerp(transform.position, EndPosBoost, 2);
+        yield return new WaitForSeconds(0.5f);
+        GravActive = true;
+        StopCoroutine(Boosting());
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")

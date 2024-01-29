@@ -44,6 +44,12 @@ public class InputManager : MonoBehaviour
         {
             _player1.Attacking();
         };
+        _controls.InGame.Player1Boost.performed += _ =>
+        {
+            _player1.Boost();
+
+
+        };
     }
 
     //Activating the Controls
