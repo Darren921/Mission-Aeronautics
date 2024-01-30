@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tabor
+  m_Controller: {fileID: 9100000, guid: ba2d07d622fe8e14d9f9dada3decc5f4, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4fabaa199b6dc62489cebe7079025cc6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: beb8d4c674d705d4da82c2d38ba4b19b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e65759fc030259f49ac7d389130c92b1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8c6e11719b9243846b33e826a6cb7dc3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: abbecff26604d0a439d5ea6121261513, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c6925daf5056d88478f4df64f74752f6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5234d09253888364b8ac766db7bf0949, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c6925daf5056d88478f4df64f74752f6, type: 2}

@@ -6,7 +6,6 @@ public class PlayerAssigment : MonoBehaviour
 {
     //Assignment for two players 
     [SerializeField] public Player[] _players;
-    [SerializeField] public Sprite[] _defaultSprites;
 
 
 

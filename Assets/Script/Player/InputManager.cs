@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public class InputManager : MonoBehaviour
 {
     private static Controls _controls;
+   /*
     public static void InitM(Player _player1, Player _player2)
     {
         _controls = new Controls();
@@ -25,7 +27,9 @@ public class InputManager : MonoBehaviour
             _player2.SetMoveDirection(_.ReadValue<Vector2>());
         };
 
+
     }
+   */
 
     public static void InitS(Player _player1)
     {
@@ -37,8 +41,7 @@ public class InputManager : MonoBehaviour
         _controls.InGame.Player1Movement.performed += _ =>
         {
             _player1.SetMoveDirection(_.ReadValue<Vector2>());
-
-
+            
         };
         _controls.InGame.Player1Attack.performed += _ =>
         {

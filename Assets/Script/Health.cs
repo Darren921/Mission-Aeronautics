@@ -28,9 +28,9 @@ public class Health : MonoBehaviour
     void Update()
     {
 
-        if (player.performing())
+        if (player.Performing())
         {
-            if (player.colliding())
+            if (player.Colliding())
             {
                 Debug.Log("Colliding");
                 if (canAttack)

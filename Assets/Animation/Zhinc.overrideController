@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Zhinc
+  m_Controller: {fileID: 9100000, guid: ba2d07d622fe8e14d9f9dada3decc5f4, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4fabaa199b6dc62489cebe7079025cc6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5862ad63f26f79945af1a5c3e0253386, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e65759fc030259f49ac7d389130c92b1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0ca38b3ba5a176b49aaff379304f9a70, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5234d09253888364b8ac766db7bf0949, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cfc5b232e2ec9494f8975df87d19e97e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: abbecff26604d0a439d5ea6121261513, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cfc5b232e2ec9494f8975df87d19e97e, type: 2}

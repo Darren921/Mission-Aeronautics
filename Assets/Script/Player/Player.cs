@@ -6,48 +6,41 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
     private Vector2 _moveDir;
     private int moveNumber;
     private static bool _isAttacking;
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private Sprite[] playerSprites;
     private Vector3 EndPosA;
     private Vector3 EndPosBoost;
-    SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     private bool GravActive;
-    private bool isMoved;
+    private bool FirstMove;
 
     public static bool performed;
     public static bool isColliding;
+    [SerializeField]private AnimatorOverrideController[] animatorOverrideControllers;
 
     // Start is called before the first frame update
     void Start()
     {
+
         GravActive = true;
         PlayerAssigment playerAssigment = GameObject.Find("PlayerAssigment").GetComponent<PlayerAssigment>();
-        spriteRenderer  = GetComponent<SpriteRenderer>();
-
-        switch (Buttons.CharacterChossen) 
+        animator = GetComponent<Animator>();
+        switch (Buttons.CharacterChossen)
         {
             case 1:
-                spriteRenderer.sprite = playerAssigment._defaultSprites[0];
-                playerSprites = Resources.LoadAll<Sprite>("Characters Sprites/Zhinc");
+                animator.runtimeAnimatorController = animatorOverrideControllers[0];
                 break;
             case 2:
-                
-                spriteRenderer.sprite = playerAssigment._defaultSprites[1];
-                playerSprites = Resources.LoadAll<Sprite>("Characters Sprites/Bilal");
+                animator.runtimeAnimatorController = animatorOverrideControllers[1];
                 break;
             case 3:
-                spriteRenderer.sprite = playerAssigment._defaultSprites[2];
-                playerSprites = Resources.LoadAll<Sprite>("Characters Sprites/Ali");
+                animator.runtimeAnimatorController = animatorOverrideControllers[2];
                 break;
             case 4:
-               
-                spriteRenderer.sprite = playerAssigment._defaultSprites[3];
-                playerSprites = Resources.LoadAll<Sprite>("Characters Sprites/Hammer 1");
-
                 break;
 
         }
@@ -65,17 +58,25 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMoved == true)
+        if (FirstMove == true)
         {
-            isMoved = true;
+            FirstMove = true;
         }
-        if (isMoved == true)
+        if (FirstMove == true)
         {
             Gravity();
         }
-        transform.position += (Vector3)(_moveSpeed * Time.fixedDeltaTime * _moveDir);
-        
-     
+        transform.position += (Vector3)(_moveSpeed * Time.deltaTime * _moveDir);
+        if (_moveDir == new Vector2(0, 0))
+        {
+            animator.SetBool("IsMoving", false);
+        }
+        if(transform.position.y < -15.8)
+        {
+            Destroy(this);
+            animator.enabled = false;
+        }
+
 
 
     }
@@ -85,13 +86,17 @@ public class Player : MonoBehaviour
     public void SetMoveDirection(Vector2 newDir)
     {
         _moveDir = newDir;
-        isMoved = true;
+        animator.SetBool("IsMoving", true);
+        FirstMove = true;
     }
     public void Attacking()
     {
-        isMoved = true;
-        if (_isAttacking == true)
+        FirstMove = true;
+        animator.SetBool("IsAttacking", true);
+
+        if ( _isAttacking == true)
         {
+            animator.SetBool("IsAttacking", false);
             return;
         }
         StartCoroutine(AttackCheck());
@@ -102,42 +107,43 @@ public class Player : MonoBehaviour
     {
         performed = true;
         _isAttacking = true;
-     
-         
-        
 
-        switch (moveNumber) 
+        animator.SetBool("IsAttacking", true);
+
+
+
+        switch (animator.GetInteger("MoveNumber")) 
         { 
             case 0:
-                spriteRenderer.sprite = playerSprites[1];
                 EndPosA = transform.position + new Vector3(0.2f, 0, 0);
-                transform.position = Vector3.Lerp(transform.position, EndPosA, 0);
+                transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
                 yield return new WaitForSeconds(0.6f);
-                moveNumber = 1;
+                animator.SetInteger("MoveNumber", 1);
                 break; 
             case 1:
-                spriteRenderer.sprite = playerSprites[2];
                 EndPosA = transform.position + new Vector3(0.2f, 0, 0);
-                transform.position = Vector3.Lerp(transform.position, EndPosA, 0);
+                transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
                 yield return new WaitForSeconds(0.6f);
-                moveNumber = 0;
+                animator.SetInteger("MoveNumber", 0);
+
                 break;
         }
         _isAttacking = false;
+        animator.SetBool("IsAttacking", false);
         performed = false;
 
-        spriteRenderer.sprite = playerSprites[0];
+       
         StopCoroutine(AttackCheck());
 
 
     }
 
-    public bool performing()
+    public bool Performing()
     {
         return performed;
     }
 
-    public bool colliding()
+    public bool Colliding()
     {
         return isColliding;
     }
@@ -146,14 +152,14 @@ public class Player : MonoBehaviour
     {
         if (GravActive == true)
         {
-            this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 0.009f);
+            this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 0.010f);
         }
         else return;
     }
 
     public void Boost()
     {
-        isMoved = true;
+        FirstMove = true;
         StartCoroutine(Boosting());
     } 
 
@@ -169,7 +175,7 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             isColliding = true;
         }
@@ -177,7 +183,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             isColliding = false;
         }

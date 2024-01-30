@@ -20,7 +20,7 @@ public class Buttons : MonoBehaviour
     }
 
 
-    public void loadSinglePlayer()
+    public void LoadSinglePlayer()
     {
         SceneManager.LoadScene("ChooseCharacter");
     }
@@ -50,7 +50,7 @@ public class Buttons : MonoBehaviour
     /*
     public void loadMultiPlayer()
     {
-        SceneManager.LoadScene("LoadingScreen");
+        SceneManager.LoadScene("ChooseCharacter");
     }
     */
 }
