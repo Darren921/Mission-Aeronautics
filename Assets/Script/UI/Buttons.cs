@@ -12,6 +12,7 @@ public class Buttons : MonoBehaviour
     public void BackToTitle()
     {
         SceneManager.LoadScene("TitleScreen");
+        Time.timeScale = 1.0f;
     }
 
     public void BackToSelection() 
@@ -46,10 +47,6 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("MainGame");
     }
 
-    public void OpenPauseMenu()
-    {
-
-    }
 
 
     /*
