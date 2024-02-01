@@ -634,7 +634,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 63003983}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: loadSinglePlayer
+        m_MethodName: LoadSinglePlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

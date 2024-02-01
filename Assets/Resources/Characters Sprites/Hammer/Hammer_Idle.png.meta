@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0cbe49289f1abb9458c633c19d345881
+guid: 057cf884e71f7f44bbb190b8d91966b9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hammer_Default_0
+      name: Hammer_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c99654e0ac0530c449ffbd73f27687fa
-      internalID: 2037210909
+      spriteID: f942d02684409d24b89c2a7b3e02044f
+      internalID: 917651431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hammer_Default_1
+      name: Hammer_Idle_1
       rect:
         serializedVersion: 2
         x: 0
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52feff625676aec4292e4d743ab41fe8
-      internalID: 2115336141
+      spriteID: 9e512483e1026664b8d40c43307bf4d1
+      internalID: -1081783817
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hammer_Default_2
+      name: Hammer_Idle_2
       rect:
         serializedVersion: 2
         x: 0
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e21aa1003529864283a1d48da96ebe1
-      internalID: 1395864301
+      spriteID: 2cc50430c8c6d47459817aca416c9c5d
+      internalID: 1677226459
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hammer_Default_0: 2037210909
-      Hammer_Default_1: 2115336141
-      Hammer_Default_2: 1395864301
+      Hammer_Idle_0: 917651431
+      Hammer_Idle_1: -1081783817
+      Hammer_Idle_2: 1677226459
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

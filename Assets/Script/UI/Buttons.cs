@@ -46,6 +46,11 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("MainGame");
     }
 
+    public void OpenPauseMenu()
+    {
+
+    }
+
 
     /*
     public void loadMultiPlayer()

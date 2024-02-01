@@ -127,48 +127,6 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 4497
-        width: 2000
-        height: 1499
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf6f8882133b06b4f90b48d6ce1b971f
-      internalID: 299142114
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ali_Attack1_1
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 4497
-        width: 2000
-        height: 1499
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 16027988485ff2749bf9c9883384b53c
-      internalID: -1673021233
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ali_Attack1_2
-      rect:
-        serializedVersion: 2
-        x: 0
         y: 2998
         width: 2000
         height: 1499
@@ -179,18 +137,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6c8654297424064ab2a0ec87af824c0
-      internalID: 1754763544
+      spriteID: 40e92676fe45a0547a5e6943ce57b031
+      internalID: 492362036
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ali_Attack1_3
+      name: Ali_Attack1_1
       rect:
         serializedVersion: 2
         x: 2000
-        y: 3007
+        y: 2998
         width: 2000
         height: 1499
       alignment: 0
@@ -200,14 +158,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c7997876a10c7a4daab5eea3784eed7
-      internalID: -734790231
+      spriteID: c38b550e0e8b7ca44b82d3aa7a6f58ff
+      internalID: -505945329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ali_Attack1_4
+      name: Ali_Attack1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1499
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e38251c494afdb4c99581cad5977597
+      internalID: -1866601551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ali_Attack1_3
       rect:
         serializedVersion: 2
         x: 2000
@@ -221,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6923ac7664b55874babdb97abf1397e7
-      internalID: 1029728588
+      spriteID: 04ae711fb8d502046b338d3f8173bdf8
+      internalID: 1286258621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ali_Attack1_5
+      name: Ali_Attack1_4
       rect:
         serializedVersion: 2
         x: 0
@@ -242,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41ad45c31534fee4087621def3188186
-      internalID: -1783816542
+      spriteID: 81f288da78ac6784cb406719662f9bfe
+      internalID: -201008731
       vertices: []
       indices: 
       edges: []
@@ -259,12 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ali_Attack1_0: 299142114
-      Ali_Attack1_1: -1673021233
-      Ali_Attack1_2: 1754763544
-      Ali_Attack1_3: -734790231
-      Ali_Attack1_4: 1029728588
-      Ali_Attack1_5: -1783816542
+      Ali_Attack1_0: 492362036
+      Ali_Attack1_1: -505945329
+      Ali_Attack1_2: -1866601551
+      Ali_Attack1_3: 1286258621
+      Ali_Attack1_4: -201008731
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
