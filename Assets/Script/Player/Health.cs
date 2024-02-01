@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,11 @@ public class Health : MonoBehaviour
     [SerializeField] private Slider enemyHealthBarSlider;
     public float playerHealth;
     public float enemyHealth;
+
+    [SerializeField] private TextMeshProUGUI comboCounter;
+    private int combo = 0;
+
+    
 
     [SerializeField] private GameObject playerChar;
     [SerializeField] private GameObject enemyChar;
@@ -27,14 +33,15 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        comboCounter.text = "Combo: " + combo.ToString();
 
         if (player.Performing())
         {
             if (player.Colliding())
             {
-                Debug.Log("Colliding");
                 if (canAttack)
                 {
+                    combo += 1;
                     enemyHealth -= 10;
                     canAttack = false;
                 }
