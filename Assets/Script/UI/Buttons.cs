@@ -13,6 +13,7 @@ public class Buttons : MonoBehaviour
     {
         SceneManager.LoadScene("TitleScreen");
         Time.timeScale = 1.0f;
+
     }
 
     public void BackToSelection() 
