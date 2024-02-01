@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
     {
         if (GravActive == true)
         {
-            this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 0.010f);
+            this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 0.001f);
         }
         else return;
     }
