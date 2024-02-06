@@ -30,22 +30,22 @@ public class Buttons : MonoBehaviour
     public void ChoosenCharacter1()
     {
         CharacterChossen = 1;
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("Levels");
     }
     public void ChoosenCharacter2()
     {
         CharacterChossen = 2;
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("Levels");
     }
     public void ChoosenCharacter3()
     {
         CharacterChossen = 3;
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("Levels");
     }
     public void ChoosenCharacter4()
     {
         CharacterChossen = 4;
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("Levels");
     }
 
 
