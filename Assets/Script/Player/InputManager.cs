@@ -41,7 +41,6 @@ public class InputManager : MonoBehaviour
         _controls.InGame.Player1Movement.performed += _ =>
         {
             _player1.SetMoveDirection(_.ReadValue<Vector2>());
-            
         };
         _controls.InGame.Player1Attack.performed += _ =>
         {

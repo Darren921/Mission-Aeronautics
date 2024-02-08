@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     private Vector2 _moveDir;
     private int moveNumber;
     private static bool _isAttacking;
@@ -14,7 +13,7 @@ public class Player : MonoBehaviour
     private Vector3 EndPosA;
     private Vector3 EndPosBoost;
     private Animator animator;
-
+    private Rigidbody2D rb;
     private bool GravActive;
     private bool FirstMove;
 
@@ -25,7 +24,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
         GravActive = true;
         PlayerAssigment playerAssigment = GameObject.Find("PlayerAssigment").GetComponent<PlayerAssigment>();
         animator = GetComponent<Animator>();
@@ -66,7 +65,6 @@ public class Player : MonoBehaviour
         {
             Gravity();
         }
-        transform.position += (Vector3)(_moveSpeed * Time.deltaTime * _moveDir);
         if (_moveDir == new Vector2(0, 0))
         {
             animator.SetBool("IsMoving", false);
@@ -77,10 +75,11 @@ public class Player : MonoBehaviour
             animator.enabled = false;
         }
 
-
-
     }
-
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2 (_moveDir.x * _moveSpeed ,_moveDir.y);
+    }
 
 
     public void SetMoveDirection(Vector2 newDir)
@@ -152,7 +151,7 @@ public class Player : MonoBehaviour
     {
         if (GravActive == true)
         {
-            this.transform.position = new Vector2(this.transform.position.x, this.transform.position.y - 0.001f);
+            this.transform.position = new Vector2(transform.position.x, transform.position.y - 0.010f);
         }
         else return;
     }
