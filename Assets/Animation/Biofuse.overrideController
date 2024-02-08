@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ali
+  m_Name: Biofuse
   m_Controller: {fileID: 9100000, guid: ba2d07d622fe8e14d9f9dada3decc5f4, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 4fabaa199b6dc62489cebe7079025cc6, type: 2}

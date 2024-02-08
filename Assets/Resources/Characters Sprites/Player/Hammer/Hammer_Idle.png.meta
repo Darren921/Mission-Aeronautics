@@ -137,14 +137,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f942d02684409d24b89c2a7b3e02044f
-      internalID: 917651431
+      spriteID: d448110021f11d742b546238c94aee26
+      internalID: 1184115637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: Hammer_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2998
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd4b914f4129e814b9f5a54f33d8f53a
+      internalID: 2022070681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hammer_Idle_2
       rect:
         serializedVersion: 2
         x: 0
@@ -158,14 +179,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e512483e1026664b8d40c43307bf4d1
-      internalID: -1081783817
+      spriteID: a2158ae366bcaca4f9e534d5df02f4ef
+      internalID: -1835999086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hammer_Idle_2
+      name: Hammer_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1499
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b74a0e9741915364fb465c5bbf7fe029
+      internalID: 120642731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hammer_Idle_4
       rect:
         serializedVersion: 2
         x: 0
@@ -179,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cc50430c8c6d47459817aca416c9c5d
-      internalID: 1677226459
+      spriteID: ece9dea8868c2bc43a9566a1a54dd7ca
+      internalID: -893338821
       vertices: []
       indices: 
       edges: []
@@ -196,9 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hammer_Idle_0: 917651431
-      Hammer_Idle_1: -1081783817
-      Hammer_Idle_2: 1677226459
+      Hammer_Idle_0: 1184115637
+      Hammer_Idle_1: 2022070681
+      Hammer_Idle_2: -1835999086
+      Hammer_Idle_3: 120642731
+      Hammer_Idle_4: -893338821
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

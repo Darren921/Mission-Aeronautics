@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f4b6543a5e591a14fb0661824d73ed88
+guid: 54347464d29e18e44876457c0b17284c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -137,14 +137,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 965e17dd07ee48b4aaa235484ea0266e
-      internalID: -1762532181
+      spriteID: 69baf4cdaed57134986fd3e08854d430
+      internalID: 1622054273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: zhinc_idle_1
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2998
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26d7f91e4b2315c479ddad13ba94ca07
+      internalID: -419721018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zhinc_idle_2
       rect:
         serializedVersion: 2
         x: 0
@@ -158,14 +179,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a4d4ba88c13bbb46b17a46b413dcf20
-      internalID: -985930894
+      spriteID: 50f44e7a4ae084847b67224822e3f35e
+      internalID: 148844092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zhinc_idle_2
+      name: zhinc_idle_3
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1499
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a09a7b4cbe6fbe946a921bc851fe6128
+      internalID: 1392819266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zhinc_idle_4
       rect:
         serializedVersion: 2
         x: 0
@@ -179,8 +221,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c6bef74871e8b745a1df10cdb6e65bd
-      internalID: 2022711820
+      spriteID: 5a9a6b4975bceee48bdd9094db6f9b09
+      internalID: -864892557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zhinc_idle_5
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18f589eebb34f214cbbc74cc6317f377
+      internalID: -2025144404
       vertices: []
       indices: 
       edges: []
@@ -196,9 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      zhinc_idle_0: -1762532181
-      zhinc_idle_1: -985930894
-      zhinc_idle_2: 2022711820
+      zhinc_idle_0: 1622054273
+      zhinc_idle_1: -419721018
+      zhinc_idle_2: 148844092
+      zhinc_idle_3: 1392819266
+      zhinc_idle_4: -864892557
+      zhinc_idle_5: -2025144404
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

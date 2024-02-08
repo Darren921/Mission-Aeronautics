@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bccc329af0348154ebbd6cd0814d2f7d
+guid: 1b0ade246dda76e44a2541cf7d710698
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ali_Default_1_0
+      name: Biofuse Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec5a981e47d61e94b93d6e3f5383d20c
-      internalID: -1397636296
+      spriteID: cb4b91f3bd565f04482c13727cf6e408
+      internalID: -567793180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ali_Default_1_1
+      name: Biofuse Idle_1
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2998
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bf9ae7aaeb7bb145a7de95e47cf1953
+      internalID: -216969449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Biofuse Idle_2
       rect:
         serializedVersion: 2
         x: 0
@@ -158,14 +179,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28390bea6ee12544a96914af875be509
-      internalID: 156249766
+      spriteID: 4f7283074b7dae140869a2aac5aac29f
+      internalID: -1743597428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ali_Default_1_2
+      name: Biofuse Idle_3
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1499
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ee4ffcca16467f4ba8c60c3f208c874
+      internalID: 1917726806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Biofuse Idle_4
       rect:
         serializedVersion: 2
         x: 0
@@ -179,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf90e80e58fc5a14da11b886b8a99232
-      internalID: -475003597
+      spriteID: 08e749249da6b28469a4e088a76a65a1
+      internalID: -479941747
       vertices: []
       indices: 
       edges: []
@@ -196,9 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ali_Default_1_0: -1397636296
-      Ali_Default_1_1: 156249766
-      Ali_Default_1_2: -475003597
+      Biofuse Idle_0: -567793180
+      Biofuse Idle_1: -216969449
+      Biofuse Idle_2: -1743597428
+      Biofuse Idle_3: 1917726806
+      Biofuse Idle_4: -479941747
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

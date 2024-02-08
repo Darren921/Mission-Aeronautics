@@ -137,14 +137,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1de1e23e36cc934a9a13e4c0f72d3fd
-      internalID: -1122538117
+      spriteID: 3648aff7b2d753e4eb263ac6a8faf619
+      internalID: -1600875376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: bilal_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2998
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3671b7dad2a0bd1428491ef3bedb8259
+      internalID: -1229210805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bilal_Idle_2
       rect:
         serializedVersion: 2
         x: 0
@@ -158,14 +179,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb87a5a905595f3478b7fd5d917d8039
-      internalID: 1838581389
+      spriteID: 041ab95ca667928498b05c77668b2507
+      internalID: 863610185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bilal_Idle_2
+      name: bilal_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1499
+        width: 2000
+        height: 1499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b064646c47975ae4ca0d772fff5faa39
+      internalID: 395074696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bilal_Idle_4
       rect:
         serializedVersion: 2
         x: 0
@@ -179,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e02a04f54ad344f478dc72a3e32a5b64
-      internalID: -1052306633
+      spriteID: c5e7ae099ec61444a87b83e1f52947e9
+      internalID: 1934281168
       vertices: []
       indices: 
       edges: []
@@ -196,9 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bilal_Idle_0: -1122538117
-      bilal_Idle_1: 1838581389
-      bilal_Idle_2: -1052306633
+      bilal_Idle_0: -1600875376
+      bilal_Idle_1: -1229210805
+      bilal_Idle_2: 863610185
+      bilal_Idle_3: 395074696
+      bilal_Idle_4: 1934281168
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
