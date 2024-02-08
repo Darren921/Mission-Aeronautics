@@ -42,4 +42,9 @@ public class LevelPick : MonoBehaviour
         LevelChossen = 5;
         SceneManager.LoadScene("MainGame");
     }
+
+    public int Level()
+    {
+        return LevelChossen;
+    }
 }
