@@ -90,7 +90,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""b8ec45fa-9e99-44b3-a770-ef69ff428215"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -101,7 +101,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""4a244544-feb1-4b31-8cfc-eb7cd528c9af"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -134,7 +134,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""58239aae-1b11-41eb-aa9e-8ff0c2fae1ed"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/equals"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

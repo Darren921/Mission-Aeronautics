@@ -6,25 +6,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Vector2 _moveDir;
-    private int moveNumber;
-    private static bool _isAttacking;
     [SerializeField] private float _moveSpeed;
-    private Vector3 EndPosA;
-    private Vector3 EndPosBoost;
-    private Animator animator;
-    private Rigidbody2D rb;
+    private Vector2 _moveDir;
+    private Vector2 _smoothedMoveDir;
+    private Vector2 _smoothedMoveVelocity;
     private bool GravActive;
     private bool FirstMove;
 
+    private int moveNumber;
+    private static bool _isAttacking;
     public static bool performed;
     public static bool isColliding;
+
+    private Vector3 EndPosA;
+    private Vector3 EndPosBoost;
+
+    private Animator animator;
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField]private AnimatorOverrideController[] animatorOverrideControllers;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         GravActive = true;
         PlayerAssigment playerAssigment = GameObject.Find("PlayerAssigment").GetComponent<PlayerAssigment>();
         animator = GetComponent<Animator>();
@@ -57,13 +60,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (animator.GetBool("IsMoving") == false)
+        {
+            StartCoroutine(IsIdle());
+        }
         if (FirstMove == true)
         {
             FirstMove = true;
         }
         if (FirstMove == true)
         {
-            Gravity();
+            //Gravity();
         }
         if (_moveDir == new Vector2(0, 0))
         {
@@ -78,7 +85,8 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2 (_moveDir.x * _moveSpeed ,_moveDir.y);
+        _smoothedMoveDir = Vector2.SmoothDamp(_smoothedMoveDir, _moveDir, ref _smoothedMoveVelocity, 0.1f);
+        rb.velocity = _smoothedMoveDir * _moveSpeed;
     }
 
 
@@ -86,6 +94,7 @@ public class Player : MonoBehaviour
     {
         _moveDir = newDir;
         animator.SetBool("IsMoving", true);
+        animator.SetBool("isIdle", false);
         FirstMove = true;
     }
     public void Attacking()
@@ -106,7 +115,6 @@ public class Player : MonoBehaviour
     {
         performed = true;
         _isAttacking = true;
-
         animator.SetBool("IsAttacking", true);
 
 
@@ -160,8 +168,13 @@ public class Player : MonoBehaviour
     {
         FirstMove = true;
         StartCoroutine(Boosting());
-    } 
+    }
 
+    IEnumerator IsIdle()
+    {
+        yield return new WaitForSeconds(3f); 
+        animator.SetBool("isIdle", true);
+    }
     IEnumerator Boosting()
     {
         GravActive = false;
