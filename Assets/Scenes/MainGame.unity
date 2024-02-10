@@ -11820,7 +11820,7 @@ Animator:
   m_GameObject: {fileID: 975061892}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ba2d07d622fe8e14d9f9dada3decc5f4, type: 2}
+  m_Controller: {fileID: 22100000, guid: 36f27acf62c72d84ba274d34dad3951c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11843,6 +11843,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3100c8859f5664dbe2b51d13f877d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 648541891}
+  speed: 5
+  enemySprites: []
+  playerHealth: 100
+  playerHealthBarSlider: {fileID: 638108673}
 --- !u!1 &1192052064
 GameObject:
   m_ObjectHideFlags: 0
