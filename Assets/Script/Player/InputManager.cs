@@ -55,7 +55,10 @@ public class InputManager : MonoBehaviour
         {
             _player1.Boost();
 
-
+        };
+        _controls.InGame.PlayerShoot.performed += _ =>
+        {
+            _player1.Shoot();
         };
     }
 

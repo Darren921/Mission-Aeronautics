@@ -71,6 +71,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PlayerShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""05e42008-5f20-4dc9-a1a6-6b3bcd3d0f25"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,6 +225,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Player1SpecialAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c261af0f-ef75-48b6-8c6b-8ccdec001d59"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +249,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_InGame_Player1SpecialAttack = m_InGame.FindAction("Player1SpecialAttack", throwIfNotFound: true);
         m_InGame_Player1Boost = m_InGame.FindAction("Player1Boost", throwIfNotFound: true);
         m_InGame_Player2Movement = m_InGame.FindAction("Player2Movement", throwIfNotFound: true);
+        m_InGame_PlayerShoot = m_InGame.FindAction("PlayerShoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +316,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Player1SpecialAttack;
     private readonly InputAction m_InGame_Player1Boost;
     private readonly InputAction m_InGame_Player2Movement;
+    private readonly InputAction m_InGame_PlayerShoot;
     public struct InGameActions
     {
         private @Controls m_Wrapper;
@@ -304,6 +326,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Player1SpecialAttack => m_Wrapper.m_InGame_Player1SpecialAttack;
         public InputAction @Player1Boost => m_Wrapper.m_InGame_Player1Boost;
         public InputAction @Player2Movement => m_Wrapper.m_InGame_Player2Movement;
+        public InputAction @PlayerShoot => m_Wrapper.m_InGame_PlayerShoot;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -328,6 +351,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player2Movement.started += instance.OnPlayer2Movement;
             @Player2Movement.performed += instance.OnPlayer2Movement;
             @Player2Movement.canceled += instance.OnPlayer2Movement;
+            @PlayerShoot.started += instance.OnPlayerShoot;
+            @PlayerShoot.performed += instance.OnPlayerShoot;
+            @PlayerShoot.canceled += instance.OnPlayerShoot;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -347,6 +373,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player2Movement.started -= instance.OnPlayer2Movement;
             @Player2Movement.performed -= instance.OnPlayer2Movement;
             @Player2Movement.canceled -= instance.OnPlayer2Movement;
+            @PlayerShoot.started -= instance.OnPlayerShoot;
+            @PlayerShoot.performed -= instance.OnPlayerShoot;
+            @PlayerShoot.canceled -= instance.OnPlayerShoot;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -371,5 +400,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPlayer1SpecialAttack(InputAction.CallbackContext context);
         void OnPlayer1Boost(InputAction.CallbackContext context);
         void OnPlayer2Movement(InputAction.CallbackContext context);
+        void OnPlayerShoot(InputAction.CallbackContext context);
     }
 }

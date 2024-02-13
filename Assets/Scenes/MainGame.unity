@@ -447,7 +447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000022888184, y: 1.8000002}
+  m_AnchoredPosition: {x: 0.000022888184, y: 1.7999878}
   m_SizeDelta: {x: -0.000061035, y: -7.452}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513050297
@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 648541901}
   - component: {fileID: 648541900}
   - component: {fileID: 648541902}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1184,6 +1184,10 @@ MonoBehaviour:
   animator: {fileID: 648541902}
   _health: {fileID: 0}
   rb: {fileID: 648541896}
+  projectiles:
+  - {fileID: 2712784884091217242, guid: e76e9b9cc7c340f42bfee1e7151364ee, type: 3}
+  - {fileID: 444435371786391993, guid: 7a56eb14c24e80142918b85e51742249, type: 3}
+  - {fileID: 9140975430971546188, guid: 5620f2306dc7df140aa8dcda60088e20, type: 3}
   animatorOverrideControllers:
   - {fileID: 22100000, guid: 15213395f4130b040b9f873ea840207d, type: 2}
   - {fileID: 22100000, guid: 36f27acf62c72d84ba274d34dad3951c, type: 2}

@@ -20,18 +20,24 @@ public class Player : MonoBehaviour
     public static bool isColliding;
     private static bool isSpecialAtk;
 
+    private bool isShooting;
+
     private Vector3 EndPosA;
     private Vector3 EndPosBoost;
 
     [SerializeField] private Animator animator;
     [SerializeField] private Health _health;
     [SerializeField] private Rigidbody2D rb;
+
+    [SerializeField] private GameObject[] projectiles;
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
+
+    private GameObject bullet;
+    private float bulletDestroy = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        print("WOrks");
         GravActive = true;
         animator = GetComponent<Animator>();
         //_health = GameObject.Find("PlayerHealthBar").GetComponent<Health>(); (disabled because the below code didnt work)
@@ -39,13 +45,15 @@ public class Player : MonoBehaviour
         {
             case 1:
                 animator.runtimeAnimatorController = animatorOverrideControllers[0];
-                print("WOrks");
+                bullet = projectiles[0];
                 break;
             case 2:
                 animator.runtimeAnimatorController = animatorOverrideControllers[1];
+                bullet = projectiles[1];
                 break;
             case 3:
                 animator.runtimeAnimatorController = animatorOverrideControllers[2];
+                bullet = projectiles[2];
                 break;
             case 4:
                 break;
@@ -53,7 +61,6 @@ public class Player : MonoBehaviour
         }
 
 
-        print("WOrks");
 
         //Activating the InputManager and Controls
         // InputManager.InitM(this, this);
@@ -65,6 +72,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (animator.GetBool("IsMoving") == false)
         {
             StartCoroutine(IsIdle());
@@ -253,5 +261,10 @@ public class Player : MonoBehaviour
         StopCoroutine(Boosting());
     }
 
-   
+    public void Shoot()
+    {
+        GameObject bul =  Instantiate(bullet);
+        bul.transform.position = (transform.position + new Vector3(2.5f, 2.5f, 0));
+    }
+
 }
