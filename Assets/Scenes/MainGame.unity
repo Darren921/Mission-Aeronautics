@@ -11625,7 +11625,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975061892}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -12049,11 +12049,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  rb: {fileID: 0}
   animatorOverrideControllers:
   - {fileID: 22100000, guid: 7e22292bbd2f1ae4b90129beb8b6d11e, type: 2}
   - {fileID: 22100000, guid: ee8204b9ab7d2744fa3359d0f7621036, type: 2}
   - {fileID: 22100000, guid: bd02c7c1861512a4a90c05babec89d88, type: 2}
+  player: {fileID: 648541891}
 --- !u!1 &1192052064
 GameObject:
   m_ObjectHideFlags: 0
