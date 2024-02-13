@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Zhinc_attack2
+  m_Name: Biofuse_special
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 361977640, guid: 1184aed53ffcfe644937d7212c739c44, type: 3}
-    - time: 0.33333334
-      value: {fileID: 361977640, guid: 1184aed53ffcfe644937d7212c739c44, type: 3}
-    - time: 0.6666667
-      value: {fileID: 361977640, guid: 1184aed53ffcfe644937d7212c739c44, type: 3}
+      value: {fileID: -1866601551, guid: d24d7a2c2f1bfd04a8eee72b04f561d3, type: 3}
+    - time: 1
+      value: {fileID: 1286258621, guid: d24d7a2c2f1bfd04a8eee72b04f561d3, type: 3}
+    - time: 1.6666666
+      value: {fileID: 1286258621, guid: d24d7a2c2f1bfd04a8eee72b04f561d3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,15 +48,15 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 361977640, guid: 1184aed53ffcfe644937d7212c739c44, type: 3}
-    - {fileID: 361977640, guid: 1184aed53ffcfe644937d7212c739c44, type: 3}
-    - {fileID: 361977640, guid: 1184aed53ffcfe644937d7212c739c44, type: 3}
+    - {fileID: -1866601551, guid: d24d7a2c2f1bfd04a8eee72b04f561d3, type: 3}
+    - {fileID: 1286258621, guid: d24d7a2c2f1bfd04a8eee72b04f561d3, type: 3}
+    - {fileID: 1286258621, guid: d24d7a2c2f1bfd04a8eee72b04f561d3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

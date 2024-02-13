@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    
     [SerializeField] private Slider playerHealthBarSlider;
     [SerializeField] private Slider enemyHealthBarSlider;
     public float playerHealth;
     public float enemyHealth;
 
     [SerializeField] private TextMeshProUGUI comboCounter;
-    private int combo = 0;
+    private int combo;
 
     
 
@@ -41,9 +43,19 @@ public class Health : MonoBehaviour
             {
                 if (canAttack)
                 {
-                    combo += 1;
-                    enemyHealth -= 10;
-                    canAttack = false;
+                    if (!player.SpecialAtk() == true)
+                    {
+                        combo += 1;
+                        enemyHealth -= 10;
+                        canAttack = false;
+                    }
+                    else
+                    {
+                        combo = 0;
+                        enemyHealth -= 10;
+                        canAttack = false;
+                    }
+                  
                 }
             }
         }
@@ -55,4 +67,9 @@ public class Health : MonoBehaviour
         playerHealthBarSlider.value = playerHealth;
         enemyHealthBarSlider.value = enemyHealth;
     }
+    public int GetCombo()
+    {
+        return combo;
+    }
+
 }
