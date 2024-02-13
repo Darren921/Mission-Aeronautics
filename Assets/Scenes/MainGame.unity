@@ -439,7 +439,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.215553
+  orthographic size: 7.2176204
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1143,8 +1143,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 648541893}
-  - component: {fileID: 648541892}
   - component: {fileID: 648541894}
+  - component: {fileID: 648541892}
   - component: {fileID: 648541896}
   - component: {fileID: 648541901}
   - component: {fileID: 648541900}
@@ -13472,8 +13472,12 @@ GameObject:
   - component: {fileID: 975061903}
   - component: {fileID: 975061893}
   - component: {fileID: 975061897}
-  - component: {fileID: 975061900}
   - component: {fileID: 975061902}
+  - component: {fileID: 975061904}
+  - component: {fileID: 975061900}
+  - component: {fileID: 975061905}
+  - component: {fileID: 975061907}
+  - component: {fileID: 975061906}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Player
@@ -13556,7 +13560,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975061892}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -13573,8 +13577,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 6
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!95 &975061900
 Animator:
   serializedVersion: 5
@@ -13603,9 +13607,9 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975061892}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0688296c1482eaa418ff5998173d4705, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -13961,11 +13965,6 @@ PolygonCollider2D:
       - {x: -2.2422755, y: 1.6252735}
       - {x: -2.1519823, y: 1.5199317}
       - {x: -2.1218848, y: 1.5048828}
-    - - {x: -2.1218848, y: 3.7321093}
-      - {x: -2.0767384, y: 3.747158}
-      - {x: -2.0767384, y: 3.7923048}
-      - {x: -2.1218848, y: 3.8073535}
-      - {x: -2.1519823, y: 3.7772558}
   m_UseDelaunayMesh: 0
 --- !u!114 &975061903
 MonoBehaviour:
@@ -13974,17 +13973,598 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975061892}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a3100c8859f5664dbe2b51d13f877d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   animatorOverrideControllers:
   - {fileID: 22100000, guid: 7e22292bbd2f1ae4b90129beb8b6d11e, type: 2}
   - {fileID: 22100000, guid: ee8204b9ab7d2744fa3359d0f7621036, type: 2}
   - {fileID: 22100000, guid: bd02c7c1861512a4a90c05babec89d88, type: 2}
+--- !u!114 &975061904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975061892}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c55c83d4c4dd1145ad5fbbab3c3df36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlphaTolerance: 32
+  DistanceThreshold: 2
+  Scale: 1
+  Decompose: 0
+  RunInPlayMode: 1
+  UseCache: 1
+  lastAlphaTolerance: 32
+  lastScale: 1
+  lastDistanceThreshold: 2
+  lastDecompose: 0
+  lastSprite: {fileID: 395955594, guid: 325358d05a8ed204e822b66fc3d3af1e, type: 3}
+  lastRect:
+    serializedVersion: 2
+    x: 0
+    y: 1024
+    width: 1366
+    height: 1024
+  lastOffset: {x: 683, y: 512}
+  lastPixelsPerUnit: 66.450356
+  lastFlipX: 0
+  lastFlipY: 0
+  editorCache:
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+  - Key:
+      Texture: {fileID: 0}
+      Rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    Value:
+      List: []
+--- !u!114 &975061905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975061892}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cff3bdef54f1554e8d34dc2f224260d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   player: {fileID: 648541891}
+  speed: 7
+  enemyState: Idle
+--- !u!114 &975061906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975061892}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f58db8f4983ad438baa38f32d521e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &975061907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975061892}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df724751d0e3d03438dfbd5e1b3889a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1192052064
 GameObject:
   m_ObjectHideFlags: 0
