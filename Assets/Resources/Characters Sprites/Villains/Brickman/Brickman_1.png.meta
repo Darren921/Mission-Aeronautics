@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 325358d05a8ed204e822b66fc3d3af1e
+guid: 3d889594f34362640bd93628698db4b0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,49 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Brickman_0
+      name: Brickman_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3082
+        width: 2055
+        height: 1541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d77a100d51967f4d87f4ddbe5c5517d
+      internalID: -1981931959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brickman_1_1
+      rect:
+        serializedVersion: 2
+        x: 2055
+        y: 3082
+        width: 2055
+        height: 1541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97bf29ee84b3093478451953cae03dae
+      internalID: -330378470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brickman_1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +179,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f5ac80ef9ef2684bbd8d236e36fb6a5
-      internalID: 395955594
+      spriteID: a7a2cde5d70fbff4a8b18fd1593f83ac
+      internalID: -414750624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brickman_1
+      name: Brickman_1_3
+      rect:
+        serializedVersion: 2
+        x: 2055
+        y: 1541
+        width: 2055
+        height: 1541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 001fc2561a969b84c8cff9efd8edaffd
+      internalID: -1623073120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brickman_1_4
       rect:
         serializedVersion: 2
         x: 0
@@ -158,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2506a24c8c004c3429cdbb8105acf9ce
-      internalID: -400180584
+      spriteID: e042d1c203be8f740a787d2017b848d2
+      internalID: -1863070745
       vertices: []
       indices: 
       edges: []
@@ -175,8 +238,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Brickman_0: 395955594
-      Brickman_1: -400180584
+      Brickman_1_0: -1981931959
+      Brickman_1_1: -330378470
+      Brickman_1_2: -414750624
+      Brickman_1_3: -1623073120
+      Brickman_1_4: -1863070745
+      Brickman_1_5: -422992868
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

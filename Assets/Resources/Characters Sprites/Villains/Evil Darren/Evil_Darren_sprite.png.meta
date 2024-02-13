@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 325358d05a8ed204e822b66fc3d3af1e
+guid: cd7ff09f67be80b4fa1257079ec6bcfa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,49 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Brickman_0
+      name: Evil_Darren_sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3082
+        width: 2055
+        height: 1541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec1bf2432f6b61a4f913231e948d4ba0
+      internalID: 950791654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_Darren_sprite_1
+      rect:
+        serializedVersion: 2
+        x: 2055
+        y: 3082
+        width: 2055
+        height: 1541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7675c7b3536bddb47b47ba8a71ec2b11
+      internalID: 1509456410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_Darren_sprite_2
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +179,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f5ac80ef9ef2684bbd8d236e36fb6a5
-      internalID: 395955594
+      spriteID: c71ea9cdb8b61684f987421b33b49905
+      internalID: 160871175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brickman_1
+      name: Evil_Darren_sprite_3
+      rect:
+        serializedVersion: 2
+        x: 2055
+        y: 1541
+        width: 2055
+        height: 1541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ad62f6cbdb50ce4d9c368e332ca4acf
+      internalID: 2013092004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_Darren_sprite_4
       rect:
         serializedVersion: 2
         x: 0
@@ -158,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2506a24c8c004c3429cdbb8105acf9ce
-      internalID: -400180584
+      spriteID: 00a31fb8146c4c14e9e1051737ad4432
+      internalID: 303383748
       vertices: []
       indices: 
       edges: []
@@ -175,8 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Brickman_0: 395955594
-      Brickman_1: -400180584
+      Evil_Darren_sprite_0: 950791654
+      Evil_Darren_sprite_1: 1509456410
+      Evil_Darren_sprite_2: 160871175
+      Evil_Darren_sprite_3: 2013092004
+      Evil_Darren_sprite_4: 303383748
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

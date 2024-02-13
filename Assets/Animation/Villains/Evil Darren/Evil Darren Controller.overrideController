@@ -6,6 +6,6 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Brick Man
-  m_Controller: {fileID: 9100000, guid: 5decd54768c348b4f96a70e653ec11ef, type: 2}
+  m_Name: Evil Darren Controller
+  m_Controller: {fileID: 9100000, guid: 5fa84585f480da84290151a0aa1391c3, type: 2}
   m_Clips: []

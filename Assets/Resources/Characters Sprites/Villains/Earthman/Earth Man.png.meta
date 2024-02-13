@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 325358d05a8ed204e822b66fc3d3af1e
+guid: e44ea8ca76634b64bbd6d63fc4158c1a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,49 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Brickman_0
+      name: Earth Man_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3082
+        width: 2055
+        height: 1541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 938f57e8b90c08b4bbf71c708cf617b8
+      internalID: 812921329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Earth Man_1
+      rect:
+        serializedVersion: 2
+        x: 2055
+        y: 3082
+        width: 2055
+        height: 1541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb83155438f847549a0a3705ee84fa0b
+      internalID: 923574735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Earth Man_2
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +179,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f5ac80ef9ef2684bbd8d236e36fb6a5
-      internalID: 395955594
+      spriteID: f59d96704000e734c810d6f4e2cd5558
+      internalID: -1861415275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brickman_1
+      name: Earth Man_3
+      rect:
+        serializedVersion: 2
+        x: 2055
+        y: 1541
+        width: 2055
+        height: 1541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fb333f09f180714788486b81a526c15
+      internalID: -1995848335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Earth Man_4
       rect:
         serializedVersion: 2
         x: 0
@@ -158,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2506a24c8c004c3429cdbb8105acf9ce
-      internalID: -400180584
+      spriteID: beb7f860bb647f1488024cf6fc445420
+      internalID: 523564563
       vertices: []
       indices: 
       edges: []
@@ -175,8 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Brickman_0: 395955594
-      Brickman_1: -400180584
+      Earth Man_0: 812921329
+      Earth Man_1: 923574735
+      Earth Man_2: -1861415275
+      Earth Man_3: -1995848335
+      Earth Man_4: 523564563
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
