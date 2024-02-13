@@ -15,9 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Player1Attack",
+                    "name": "Player1NormalAttack",
                     "type": "Button",
                     "id": "0ae4048c-0dd4-46ee-8528-7f3e4f3435b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Player1SpecialAttack",
+                    "type": "Button",
+                    "id": "f2a4d227-5e47-458b-a6d1-04f0cbe67d55",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -50,7 +59,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Player1Attack",
+                    "action": "Player1NormalAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -174,6 +183,17 @@
                     "action": "Player2Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "39359921-bffa-4cc1-9c44-c7c0317197f2",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player1SpecialAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

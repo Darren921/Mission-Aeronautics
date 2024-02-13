@@ -37,9 +37,18 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Player1Attack"",
+                    ""name"": ""Player1NormalAttack"",
                     ""type"": ""Button"",
                     ""id"": ""0ae4048c-0dd4-46ee-8528-7f3e4f3435b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Player1SpecialAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""f2a4d227-5e47-458b-a6d1-04f0cbe67d55"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -72,7 +81,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player1Attack"",
+                    ""action"": ""Player1NormalAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -196,6 +205,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Player2Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""39359921-bffa-4cc1-9c44-c7c0317197f2"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -205,7 +225,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // InGame
         m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
         m_InGame_Player1Movement = m_InGame.FindAction("Player1Movement", throwIfNotFound: true);
-        m_InGame_Player1Attack = m_InGame.FindAction("Player1Attack", throwIfNotFound: true);
+        m_InGame_Player1NormalAttack = m_InGame.FindAction("Player1NormalAttack", throwIfNotFound: true);
+        m_InGame_Player1SpecialAttack = m_InGame.FindAction("Player1SpecialAttack", throwIfNotFound: true);
         m_InGame_Player1Boost = m_InGame.FindAction("Player1Boost", throwIfNotFound: true);
         m_InGame_Player2Movement = m_InGame.FindAction("Player2Movement", throwIfNotFound: true);
     }
@@ -270,7 +291,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InGame;
     private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
     private readonly InputAction m_InGame_Player1Movement;
-    private readonly InputAction m_InGame_Player1Attack;
+    private readonly InputAction m_InGame_Player1NormalAttack;
+    private readonly InputAction m_InGame_Player1SpecialAttack;
     private readonly InputAction m_InGame_Player1Boost;
     private readonly InputAction m_InGame_Player2Movement;
     public struct InGameActions
@@ -278,7 +300,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         private @Controls m_Wrapper;
         public InGameActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Player1Movement => m_Wrapper.m_InGame_Player1Movement;
-        public InputAction @Player1Attack => m_Wrapper.m_InGame_Player1Attack;
+        public InputAction @Player1NormalAttack => m_Wrapper.m_InGame_Player1NormalAttack;
+        public InputAction @Player1SpecialAttack => m_Wrapper.m_InGame_Player1SpecialAttack;
         public InputAction @Player1Boost => m_Wrapper.m_InGame_Player1Boost;
         public InputAction @Player2Movement => m_Wrapper.m_InGame_Player2Movement;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
@@ -293,9 +316,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1Movement.started += instance.OnPlayer1Movement;
             @Player1Movement.performed += instance.OnPlayer1Movement;
             @Player1Movement.canceled += instance.OnPlayer1Movement;
-            @Player1Attack.started += instance.OnPlayer1Attack;
-            @Player1Attack.performed += instance.OnPlayer1Attack;
-            @Player1Attack.canceled += instance.OnPlayer1Attack;
+            @Player1NormalAttack.started += instance.OnPlayer1NormalAttack;
+            @Player1NormalAttack.performed += instance.OnPlayer1NormalAttack;
+            @Player1NormalAttack.canceled += instance.OnPlayer1NormalAttack;
+            @Player1SpecialAttack.started += instance.OnPlayer1SpecialAttack;
+            @Player1SpecialAttack.performed += instance.OnPlayer1SpecialAttack;
+            @Player1SpecialAttack.canceled += instance.OnPlayer1SpecialAttack;
             @Player1Boost.started += instance.OnPlayer1Boost;
             @Player1Boost.performed += instance.OnPlayer1Boost;
             @Player1Boost.canceled += instance.OnPlayer1Boost;
@@ -309,9 +335,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1Movement.started -= instance.OnPlayer1Movement;
             @Player1Movement.performed -= instance.OnPlayer1Movement;
             @Player1Movement.canceled -= instance.OnPlayer1Movement;
-            @Player1Attack.started -= instance.OnPlayer1Attack;
-            @Player1Attack.performed -= instance.OnPlayer1Attack;
-            @Player1Attack.canceled -= instance.OnPlayer1Attack;
+            @Player1NormalAttack.started -= instance.OnPlayer1NormalAttack;
+            @Player1NormalAttack.performed -= instance.OnPlayer1NormalAttack;
+            @Player1NormalAttack.canceled -= instance.OnPlayer1NormalAttack;
+            @Player1SpecialAttack.started -= instance.OnPlayer1SpecialAttack;
+            @Player1SpecialAttack.performed -= instance.OnPlayer1SpecialAttack;
+            @Player1SpecialAttack.canceled -= instance.OnPlayer1SpecialAttack;
             @Player1Boost.started -= instance.OnPlayer1Boost;
             @Player1Boost.performed -= instance.OnPlayer1Boost;
             @Player1Boost.canceled -= instance.OnPlayer1Boost;
@@ -338,7 +367,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IInGameActions
     {
         void OnPlayer1Movement(InputAction.CallbackContext context);
-        void OnPlayer1Attack(InputAction.CallbackContext context);
+        void OnPlayer1NormalAttack(InputAction.CallbackContext context);
+        void OnPlayer1SpecialAttack(InputAction.CallbackContext context);
         void OnPlayer1Boost(InputAction.CallbackContext context);
         void OnPlayer2Movement(InputAction.CallbackContext context);
     }

@@ -1,4 +1,5 @@
 using Cinemachine.Utility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,11 +18,13 @@ public class Player : MonoBehaviour
     private static bool _isAttacking;
     public static bool performed;
     public static bool isColliding;
+    private static bool isSpecialAtk;
 
     private Vector3 EndPosA;
     private Vector3 EndPosBoost;
 
     private Animator animator;
+    private Health _health;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField]private AnimatorOverrideController[] animatorOverrideControllers;
 
@@ -29,8 +32,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         GravActive = true;
-        PlayerAssigment playerAssigment = GameObject.Find("PlayerAssigment").GetComponent<PlayerAssigment>();
         animator = GetComponent<Animator>();
+        _health = GameObject.Find("PlayerHealthBar").GetComponent<Health>();
         switch (Buttons.CharacterChossen)
         {
             case 1:
@@ -81,7 +84,11 @@ public class Player : MonoBehaviour
             Destroy(this);
             animator.enabled = false;
         }
-
+        if (isSpecialAtk == true)
+        {
+            performed = true;
+        }
+       
     }
     private void FixedUpdate()
     {
@@ -116,10 +123,7 @@ public class Player : MonoBehaviour
         performed = true;
         _isAttacking = true;
         animator.SetBool("IsAttacking", true);
-
-
-
-        switch (animator.GetInteger("MoveNumber")) 
+           switch (animator.GetInteger("MoveNumber")) 
         { 
             case 0:
                 EndPosA = transform.position + new Vector3(0.2f, 0, 0);
@@ -131,10 +135,30 @@ public class Player : MonoBehaviour
                 EndPosA = transform.position + new Vector3(0.2f, 0, 0);
                 transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
                 yield return new WaitForSeconds(0.6f);
-                animator.SetInteger("MoveNumber", 0);
-
+                animator.SetInteger("MoveNumber", 2);
                 break;
+            case 2:
+                EndPosA = transform.position + new Vector3(0.2f, 0, 0);
+                transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
+                yield return new WaitForSeconds(0.6f);
+                animator.SetInteger("MoveNumber", 0);
+                break;
+            case 3:
+                EndPosA = transform.position + new Vector3(0.2f, 0, 0);
+                transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
+                yield return new WaitForSeconds(0.6f);
+                animator.SetInteger("MoveNumber", 0);
+                break;
+            default:
+                break;
+
         }
+        if (isSpecialAtk == true)
+        {
+            yield return new WaitForSeconds(0.6f);
+            isSpecialAtk = false;
+        }
+
         _isAttacking = false;
         animator.SetBool("IsAttacking", false);
         performed = false;
@@ -143,6 +167,27 @@ public class Player : MonoBehaviour
         StopCoroutine(AttackCheck());
 
 
+    }
+
+    public void SpecialAttack()
+    {
+        
+        if (_health.GetCombo() >= 5)
+        {
+            animator.SetInteger("MoveNumber", 3);
+            isSpecialAtk = true;
+            Attacking();
+        }
+        else
+        {
+            return;
+        }
+        
+    }
+
+    public bool SpecialAtk()
+    {
+        return isSpecialAtk;
     }
 
     public bool Performing()
@@ -155,36 +200,15 @@ public class Player : MonoBehaviour
         return isColliding;
     }
 
-    public void Gravity ()
-    {
-        if (GravActive == true)
-        {
-            this.transform.position = new Vector2(transform.position.x, transform.position.y - 0.010f);
-        }
-        else return;
-    }
-
-    public void Boost()
-    {
-        FirstMove = true;
-        StartCoroutine(Boosting());
-    }
-
     IEnumerator IsIdle()
     {
         yield return new WaitForSeconds(3f); 
         animator.SetBool("isIdle", true);
     }
-    IEnumerator Boosting()
-    {
-        GravActive = false;
-        yield return null;
-        EndPosBoost = transform.position + new Vector3(0, 3f, 0);
-        transform.position = Vector3.Lerp(transform.position, EndPosBoost, 2);
-        yield return new WaitForSeconds(0.5f);
-        GravActive = true;
-        StopCoroutine(Boosting());
-    }
+
+   
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -201,5 +225,31 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Gravity()
+    {
+        if (GravActive == true)
+        {
+            this.transform.position = new Vector2(transform.position.x, transform.position.y - 0.010f);
+        }
+        else return;
+    }
 
+    public void Boost()
+    {
+        FirstMove = true;
+        StartCoroutine(Boosting());
+    }
+
+    IEnumerator Boosting()
+    {
+        GravActive = false;
+        yield return null;
+        EndPosBoost = transform.position + new Vector3(0, 3f, 0);
+        transform.position = Vector3.Lerp(transform.position, EndPosBoost, 2);
+        yield return new WaitForSeconds(0.5f);
+        GravActive = true;
+        StopCoroutine(Boosting());
+    }
+
+   
 }

@@ -42,10 +42,15 @@ public class InputManager : MonoBehaviour
         {
             _player1.SetMoveDirection(_.ReadValue<Vector2>());
         };
-        _controls.InGame.Player1Attack.performed += _ =>
+        _controls.InGame.Player1NormalAttack.performed += _ =>
         {
             _player1.Attacking();
         };
+        _controls.InGame.Player1SpecialAttack.performed += _ =>
+        {
+            _player1.SpecialAttack();
+        };
+
         _controls.InGame.Player1Boost.performed += _ =>
         {
             _player1.Boost();
