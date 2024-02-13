@@ -23,21 +23,23 @@ public class Player : MonoBehaviour
     private Vector3 EndPosA;
     private Vector3 EndPosBoost;
 
-    private Animator animator;
-    private Health _health;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Health _health;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField]private AnimatorOverrideController[] animatorOverrideControllers;
+    [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
 
     // Start is called before the first frame update
     void Start()
     {
+        print("WOrks");
         GravActive = true;
         animator = GetComponent<Animator>();
-        _health = GameObject.Find("PlayerHealthBar").GetComponent<Health>();
+        //_health = GameObject.Find("PlayerHealthBar").GetComponent<Health>(); (disabled because the below code didnt work)
         switch (Buttons.CharacterChossen)
         {
             case 1:
                 animator.runtimeAnimatorController = animatorOverrideControllers[0];
+                print("WOrks");
                 break;
             case 2:
                 animator.runtimeAnimatorController = animatorOverrideControllers[1];
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour
         }
 
 
-
+        print("WOrks");
 
         //Activating the InputManager and Controls
         // InputManager.InitM(this, this);
