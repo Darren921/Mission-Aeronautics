@@ -264,7 +264,7 @@ public class Player : MonoBehaviour
     public void Shoot()
     {
         GameObject bul =  Instantiate(bullet);
-        bul.transform.position = (transform.position + new Vector3(2.5f, 2.5f, 0));
+        bul.transform.position = (transform.position + new Vector3(2f, 2.5f, 0));
     }
 
 }

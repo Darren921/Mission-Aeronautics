@@ -8,17 +8,15 @@ public class Enemy : MonoBehaviour
 {
     
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
+    [SerializeField] private bool enemyActive;
 
     
-
 
     private LevelPick levelPick;
     private Rigidbody2D rb;
 
     private Animator animator;
     private int level;
-
-    private GameObject brickManScript;
     
 
 
@@ -39,22 +37,32 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (level == 1)
+        if (enemyActive)
         {
-            this.gameObject.GetComponent<BrickManAI>().enabled = true;
-        }
-        else if (level == 2)
-        {
-            this.gameObject.GetComponent<EvilDarrenAI>().enabled = true;
-        }
-        else if (level == 3)
-        {
+            if (level == 1)
+            {
+                this.gameObject.GetComponent<BrickManAI>().enabled = true;
+            }
+            else if (level == 2)
+            {
+                this.gameObject.GetComponent<EvilDarrenAI>().enabled = true;
+            }
+            else if (level == 3)
+            {
 
+            }
+            else
+            {
+
+            }
         }
         else
         {
+            this.gameObject.GetComponent<BrickManAI>().enabled = false;
+            this.gameObject.GetComponent<EvilDarrenAI>().enabled = false;
 
         }
+        
 
     }
 
