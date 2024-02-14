@@ -47,13 +47,11 @@ public class Buttons : MonoBehaviour
         CharacterChossen = 4;
         SceneManager.LoadScene("Levels");
     }
-
-
-
+   
     /*
-    public void loadMultiPlayer()
-    {
-        SceneManager.LoadScene("ChooseCharacter");
-    }
-    */
+public void loadMultiPlayer()
+{
+SceneManager.LoadScene("ChooseCharacter");
+}
+*/
 }
