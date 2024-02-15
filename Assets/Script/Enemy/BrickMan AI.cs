@@ -26,6 +26,7 @@ public class BrickManAI : MonoBehaviour
     public static bool stunned;
 
     private static Health health;
+    private static Enemy enemy;
     
     private float debounce = 0f;
     private float stunDebounce = 0f;
@@ -35,6 +36,7 @@ public class BrickManAI : MonoBehaviour
     void Start()
     {
         health = new Health();
+        enemy = new Enemy();
         animator = GetComponent<Animator>();
         enemyState = "Moving";
         canAttack = true;
@@ -89,7 +91,8 @@ public class BrickManAI : MonoBehaviour
 
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
 
-                if (distance <= 3)
+
+                if (distance <= 3 && distance >= -3)
                 {
                     int roll = Random.Range(0, 5);
 
@@ -110,7 +113,7 @@ public class BrickManAI : MonoBehaviour
                 animator.SetBool("Attack 1", true);
                 animator.SetBool("Attack 2", false);
 
-                if (distance >= 3f)
+                if (distance >= 1.5 && distance <= -1.5)
                 {
                     transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
                 }
@@ -148,13 +151,21 @@ public class BrickManAI : MonoBehaviour
                 animator.SetBool("Attack 1", false);
                 animator.SetBool("Attack 2", false);
 
-                if (distance <= 4.5)
+                if (distance <= 4.5 && distance >= -4.5)
                 {
-                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 5, this.transform.position.y), speed * Time.deltaTime);
+                    if (distance >= 0)
+                    {
+                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 5, this.transform.position.y), speed * Time.deltaTime);
+                    }
+                    else
+                    {
+                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, this.transform.position.y), speed * Time.deltaTime);
+                    }
+                    
                 }
 
                 debounce += 1 * Time.deltaTime;
-                if (debounce >= 2)
+                if (debounce >= .8)
                 {
                     enemyState = "Moving";
                     debounce = 0;
@@ -164,7 +175,7 @@ public class BrickManAI : MonoBehaviour
     }
         
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -172,7 +183,7 @@ public class BrickManAI : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -193,6 +204,7 @@ public class BrickManAI : MonoBehaviour
         }
     }
 
+    
     public bool Stun()
     {
         return stunned;
