@@ -9,9 +9,9 @@ public class BrickManAI : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private float speed;
 
-    [SerializeField] public Slider playerSlider;
+  //  [SerializeField] public Slider playerSlider;
 
-    [SerializeField] public int playerHealth = 100;
+  //  [SerializeField] public int playerHealth = 100;
 
     private Animator animator;
 
@@ -176,8 +176,8 @@ public class BrickManAI : MonoBehaviour
         {
             if (canAttack)
             {
-                playerHealth -= damage;
-                playerSlider.value = playerHealth;
+                //playerHealth -= damage;
+                //playerSlider.value = playerHealth;
                 canAttack = false;
             }   
         }

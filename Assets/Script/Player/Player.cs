@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
             isColliding = false;
         }
     }
-
+    /*
     public void Gravity()
     {
         if (GravActive == true)
@@ -249,6 +249,7 @@ public class Player : MonoBehaviour
         FirstMove = true;
         StartCoroutine(Boosting());
     }
+    */
 
     IEnumerator Boosting()
     {
@@ -260,7 +261,7 @@ public class Player : MonoBehaviour
         GravActive = true;
         StopCoroutine(Boosting());
     }
-
+    
     public void Shoot()
     {
         GameObject bul =  Instantiate(bullet);
