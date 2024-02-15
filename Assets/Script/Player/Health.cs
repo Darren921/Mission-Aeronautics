@@ -52,7 +52,7 @@ public class Health : MonoBehaviour
                     else
                     {
                         combo = 0;
-                        enemyHealth -= 25;
+                        enemyHealth -= 10;
                         canAttack = false;
                     }
                   

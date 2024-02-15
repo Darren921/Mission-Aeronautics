@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private Vector3 EndPosBoost;
 
     [SerializeField] private Animator animator;
-    [SerializeField]private Health _health;
+    [SerializeField] private Health _health;
     [SerializeField] private Rigidbody2D rb;
 
     [SerializeField] private GameObject[] projectiles;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     {
         GravActive = true;
         animator = GetComponent<Animator>();
-      
+        //_health = GameObject.Find("PlayerHealthBar").GetComponent<Health>(); (disabled because the below code didnt work)
         switch (Buttons.CharacterChossen)
         {
             case 1:
@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
             isColliding = false;
         }
     }
-    /*
+
     public void Gravity()
     {
         if (GravActive == true)
@@ -260,7 +260,6 @@ public class Player : MonoBehaviour
         GravActive = true;
         StopCoroutine(Boosting());
     }
-    */
 
     public void Shoot()
     {
