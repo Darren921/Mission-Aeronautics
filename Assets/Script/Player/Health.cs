@@ -7,13 +7,11 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    
-    [SerializeField] private Slider playerHealthBarSlider;
     [SerializeField] private Slider enemyHealthBarSlider;
     public float playerHealth;
     public float enemyHealth;
 
-    [SerializeField] private TextMeshProUGUI comboCounter;
+    [SerializeField] private Slider comboSlider;
     private int combo;
 
     
@@ -21,21 +19,28 @@ public class Health : MonoBehaviour
     [SerializeField] private GameObject playerChar;
     [SerializeField] private GameObject enemyChar;
 
+    public static bool enemyStunned;
+
     private bool canAttack;
 
     private static Player player;
+
+    private static BrickManAI brickManAI;
     void Start()
     {
         canAttack = true;
         playerHealth = 100;
         enemyHealth = 100;
         player = GameObject.Find("Player").GetComponent<Player>();
+        brickManAI = new BrickManAI();
     }
 
 
     void Update()
     {
-        comboCounter.text = "Combo: " + combo.ToString();
+        //comboCounter.text = "Combo: " + combo.ToString();
+
+        comboSlider.value = combo;
 
         if (player.Performing())
         {
@@ -45,14 +50,18 @@ public class Health : MonoBehaviour
                 {
                     if (!player.SpecialAtk() == true)
                     {
-                        combo += 1;
+                        if(combo <= 5)
+                        {
+                            combo += 1;
+                        }
+                        enemyStunned = true;
                         enemyHealth -= 10;
                         canAttack = false;
                     }
                     else
                     {
                         combo = 0;
-                        enemyHealth -= 10;
+                        enemyHealth -= 30;
                         canAttack = false;
                     }
                   
@@ -64,12 +73,20 @@ public class Health : MonoBehaviour
             canAttack = true;
         }
             
-        playerHealthBarSlider.value = playerHealth;
         enemyHealthBarSlider.value = enemyHealth;
+
+        if (brickManAI.Stun() == false)
+        {
+            enemyStunned = false;
+        }
     }
     public int GetCombo()
     {
         return combo;
     }
 
+    public bool GetStunned()
+    {
+        return enemyStunned;
+    }
 }
