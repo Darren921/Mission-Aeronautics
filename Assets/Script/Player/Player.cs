@@ -250,8 +250,6 @@ public class Player : MonoBehaviour
         FirstMove = true;
         StartCoroutine(Boosting());
     }
-    */
-
     IEnumerator Boosting()
     {
         GravActive = false;
@@ -262,7 +260,10 @@ public class Player : MonoBehaviour
         GravActive = true;
         StopCoroutine(Boosting());
     }
-    
+    */
+
+
+
     public void Shoot()
     {
         GameObject bul =  Instantiate(bullet);
