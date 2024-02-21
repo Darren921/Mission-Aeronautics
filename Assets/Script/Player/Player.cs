@@ -28,10 +28,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Health _health;
     [SerializeField] private Rigidbody2D rb;
-
     [SerializeField] private GameObject[] projectiles;
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
-
+    [SerializeField] private AudioClip[] AttackEffects;
+    [SerializeField] private AudioSource source;
     private GameObject bullet;
     private float bulletDestroy = 0;
 
@@ -40,22 +40,25 @@ public class Player : MonoBehaviour
     {
         GravActive = true;
         animator = GetComponent<Animator>();
-        //_health = GameObject.Find("PlayerHealthBar").GetComponent<Health>(); (disabled because the below code didnt work)
         switch (Buttons.CharacterChossen)
         {
             case 1:
                 animator.runtimeAnimatorController = animatorOverrideControllers[0];
+                AttackEffects = Resources.LoadAll<AudioClip>("Characters Sprites/Player/Zhinc/Attack sounds");
                 bullet = projectiles[0];
                 break;
             case 2:
                 animator.runtimeAnimatorController = animatorOverrideControllers[1];
+                AttackEffects = Resources.LoadAll<AudioClip>("Characters Sprites/Player/Tabor/Attack sounds");
                 bullet = projectiles[1];
                 break;
             case 3:
                 animator.runtimeAnimatorController = animatorOverrideControllers[2];
                 bullet = projectiles[2];
+                AttackEffects = Resources.LoadAll<AudioClip>("Characters Sprites/Player/Biofuse/Attack sounds");
                 break;
             case 4:
+                AttackEffects = Resources.LoadAll<AudioClip>("Characters Sprites/Player/Hammer/Attack sounds");
                 break;
 
         }
@@ -89,11 +92,13 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("IsMoving", false);
         }
-        if(transform.position.y < -15.8)
+        
+        if(transform.position.y < -20.35547 || transform.position.x < -38.63747 || transform.position.y > 20.35547 || transform.position.x > 38.63747)
         {
-            Destroy(this);
+            Destroy(GameObject.Find("Player"));
             animator.enabled = false;
         }
+        
         if (isSpecialAtk == true)
         {
             performed = true;
@@ -121,7 +126,6 @@ public class Player : MonoBehaviour
 
         if ( _isAttacking == true)
         {
-            animator.SetBool("IsAttacking", false);
             return;
         }
         StartCoroutine(AttackCheck());
@@ -138,25 +142,29 @@ public class Player : MonoBehaviour
             case 0:
                 EndPosA = transform.position + new Vector3(0.2f, 0, 0);
                 transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
-                yield return new WaitForSeconds(0.6f);
+                source.PlayOneShot(AttackEffects[0]);
+                yield return new WaitForSeconds(1f);
                 animator.SetInteger("MoveNumber", 1);
                 break; 
             case 1:
                 EndPosA = transform.position + new Vector3(0.2f, 0, 0);
                 transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
-                yield return new WaitForSeconds(0.6f);
+                source.PlayOneShot(AttackEffects[1]);
+                yield return new WaitForSeconds(1f);
                 animator.SetInteger("MoveNumber", 2);
                 break;
             case 2:
                 EndPosA = transform.position + new Vector3(0.2f, 0, 0);
                 transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
-                yield return new WaitForSeconds(0.6f);
+                source.PlayOneShot(AttackEffects[2]);
+                yield return new WaitForSeconds(1f);
                 animator.SetInteger("MoveNumber", 0);
                 break;
             case 3:
                 EndPosA = transform.position + new Vector3(0.2f, 0, 0);
                 transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
-                yield return new WaitForSeconds(0.6f);
+                source.PlayOneShot(AttackEffects[3]);
+                yield return new WaitForSeconds(1f);
                 animator.SetInteger("MoveNumber", 0);
                 break;
             default:
