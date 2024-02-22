@@ -55,13 +55,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Player1Boost"",
+                    ""name"": ""Player1CollectPowerUp"",
                     ""type"": ""Button"",
                     ""id"": ""fe54aa6d-4f95-4012-9f0c-b04e840d6ea8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Player2Movement"",
@@ -87,6 +87,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""22d1273e-5bdc-439c-ad5e-09ca7993ecc3"",
                     ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1NormalAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f44f18c-f16b-45e2-acf3-0971e05ce8fb"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -152,11 +163,22 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""58239aae-1b11-41eb-aa9e-8ff0c2fae1ed"",
-                    ""path"": ""<Keyboard>/equals"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player1Boost"",
+                    ""action"": ""Player1CollectPowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc3ba983-0414-4b3b-b14e-68b569625335"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1CollectPowerUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -228,6 +250,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a3c22a6b-80d2-4ada-96c0-0e78dd80b090"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c261af0f-ef75-48b6-8c6b-8ccdec001d59"",
                     ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
@@ -247,7 +280,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_InGame_Player1Movement = m_InGame.FindAction("Player1Movement", throwIfNotFound: true);
         m_InGame_Player1NormalAttack = m_InGame.FindAction("Player1NormalAttack", throwIfNotFound: true);
         m_InGame_Player1SpecialAttack = m_InGame.FindAction("Player1SpecialAttack", throwIfNotFound: true);
-        m_InGame_Player1Boost = m_InGame.FindAction("Player1Boost", throwIfNotFound: true);
+        m_InGame_Player1CollectPowerUp = m_InGame.FindAction("Player1CollectPowerUp", throwIfNotFound: true);
         m_InGame_Player2Movement = m_InGame.FindAction("Player2Movement", throwIfNotFound: true);
         m_InGame_PlayerShoot = m_InGame.FindAction("PlayerShoot", throwIfNotFound: true);
     }
@@ -314,7 +347,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Player1Movement;
     private readonly InputAction m_InGame_Player1NormalAttack;
     private readonly InputAction m_InGame_Player1SpecialAttack;
-    private readonly InputAction m_InGame_Player1Boost;
+    private readonly InputAction m_InGame_Player1CollectPowerUp;
     private readonly InputAction m_InGame_Player2Movement;
     private readonly InputAction m_InGame_PlayerShoot;
     public struct InGameActions
@@ -324,7 +357,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Player1Movement => m_Wrapper.m_InGame_Player1Movement;
         public InputAction @Player1NormalAttack => m_Wrapper.m_InGame_Player1NormalAttack;
         public InputAction @Player1SpecialAttack => m_Wrapper.m_InGame_Player1SpecialAttack;
-        public InputAction @Player1Boost => m_Wrapper.m_InGame_Player1Boost;
+        public InputAction @Player1CollectPowerUp => m_Wrapper.m_InGame_Player1CollectPowerUp;
         public InputAction @Player2Movement => m_Wrapper.m_InGame_Player2Movement;
         public InputAction @PlayerShoot => m_Wrapper.m_InGame_PlayerShoot;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
@@ -345,9 +378,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1SpecialAttack.started += instance.OnPlayer1SpecialAttack;
             @Player1SpecialAttack.performed += instance.OnPlayer1SpecialAttack;
             @Player1SpecialAttack.canceled += instance.OnPlayer1SpecialAttack;
-            @Player1Boost.started += instance.OnPlayer1Boost;
-            @Player1Boost.performed += instance.OnPlayer1Boost;
-            @Player1Boost.canceled += instance.OnPlayer1Boost;
+            @Player1CollectPowerUp.started += instance.OnPlayer1CollectPowerUp;
+            @Player1CollectPowerUp.performed += instance.OnPlayer1CollectPowerUp;
+            @Player1CollectPowerUp.canceled += instance.OnPlayer1CollectPowerUp;
             @Player2Movement.started += instance.OnPlayer2Movement;
             @Player2Movement.performed += instance.OnPlayer2Movement;
             @Player2Movement.canceled += instance.OnPlayer2Movement;
@@ -367,9 +400,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1SpecialAttack.started -= instance.OnPlayer1SpecialAttack;
             @Player1SpecialAttack.performed -= instance.OnPlayer1SpecialAttack;
             @Player1SpecialAttack.canceled -= instance.OnPlayer1SpecialAttack;
-            @Player1Boost.started -= instance.OnPlayer1Boost;
-            @Player1Boost.performed -= instance.OnPlayer1Boost;
-            @Player1Boost.canceled -= instance.OnPlayer1Boost;
+            @Player1CollectPowerUp.started -= instance.OnPlayer1CollectPowerUp;
+            @Player1CollectPowerUp.performed -= instance.OnPlayer1CollectPowerUp;
+            @Player1CollectPowerUp.canceled -= instance.OnPlayer1CollectPowerUp;
             @Player2Movement.started -= instance.OnPlayer2Movement;
             @Player2Movement.performed -= instance.OnPlayer2Movement;
             @Player2Movement.canceled -= instance.OnPlayer2Movement;
@@ -398,7 +431,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPlayer1Movement(InputAction.CallbackContext context);
         void OnPlayer1NormalAttack(InputAction.CallbackContext context);
         void OnPlayer1SpecialAttack(InputAction.CallbackContext context);
-        void OnPlayer1Boost(InputAction.CallbackContext context);
+        void OnPlayer1CollectPowerUp(InputAction.CallbackContext context);
         void OnPlayer2Movement(InputAction.CallbackContext context);
         void OnPlayerShoot(InputAction.CallbackContext context);
     }

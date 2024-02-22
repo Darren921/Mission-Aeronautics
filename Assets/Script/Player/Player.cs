@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public static bool performed;
     public static bool isColliding;
     private static bool isSpecialAtk;
+    private static bool isCollecting;
 
     private bool isShooting;
 
@@ -110,8 +111,18 @@ public class Player : MonoBehaviour
         _smoothedMoveDir = Vector2.SmoothDamp(_smoothedMoveDir, _moveDir, ref _smoothedMoveVelocity, 0.1f);
         rb.velocity = _smoothedMoveDir * _moveSpeed;
     }
+    IEnumerator CollectingPowerUP()
+    {
+        isCollecting = true;
+        yield return new WaitForSeconds(1f);
+        isCollecting = false;
+       StopCoroutine(CollectingPowerUP());
+    }
 
-
+    public void CollectPowerUp()
+    {
+        StartCoroutine(CollectingPowerUP());
+    }
     public void SetMoveDirection(Vector2 newDir)
     {
         _moveDir = newDir;
@@ -186,7 +197,10 @@ public class Player : MonoBehaviour
 
 
     }
-
+    public bool ReturnFirstMove()
+    {
+        return FirstMove;
+    }
     public void SpecialAttack()
     {
         
@@ -213,6 +227,10 @@ public class Player : MonoBehaviour
         return performed;
     }
 
+   public bool IsCollecting()
+    {
+        return isCollecting;
+    }
     public bool Colliding()
     {
         return isColliding;

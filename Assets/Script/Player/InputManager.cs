@@ -51,9 +51,9 @@ public class InputManager : MonoBehaviour
             _player1.SpecialAttack();
         };
 
-        _controls.InGame.Player1Boost.performed += _ =>
+        _controls.InGame.Player1CollectPowerUp.performed += _ =>
         {
-            //_player1.Boost();
+           _player1.CollectPowerUp();
 
         };
         _controls.InGame.PlayerShoot.performed += _ =>
