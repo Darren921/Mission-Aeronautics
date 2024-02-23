@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     [SerializeField] private Slider enemyHealthBarSlider;
+    [SerializeField] private TextMeshProUGUI comboText;
     public float playerHealth;
     public float enemyHealth;
 
@@ -38,7 +39,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        //comboCounter.text = "Combo: " + combo.ToString();
+        comboText.text = combo.ToString();
 
         comboSlider.value = combo;
 
