@@ -407,7 +407,7 @@ Transform:
   m_GameObject: {fileID: 223360735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10000086, y: 1.2900007, z: -11.4}
+  m_LocalPosition: {x: 0.099999905, y: 1.2900006, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -667,7 +667,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.8750005
+  orthographic size: 7.875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -692,7 +692,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10000086, y: 1.2900007, z: -11.4}
+  m_LocalPosition: {x: 0.099999905, y: 1.2900006, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13113,10 +13113,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackGrounds:
-  - {fileID: 21300000, guid: a5f0217c1203edc4fa14553c9d7d1dc2, type: 3}
   - {fileID: 21300000, guid: 3845b48f0ea44664b964fd91232c507a, type: 3}
-  - {fileID: 21300000, guid: 34f695bf92b0e6946bcde048e8e18710, type: 3}
   - {fileID: 21300000, guid: c6de65250696e6b458a5720bff2fce7c, type: 3}
+  - {fileID: 21300000, guid: a5f0217c1203edc4fa14553c9d7d1dc2, type: 3}
+  - {fileID: 21300000, guid: 34f695bf92b0e6946bcde048e8e18710, type: 3}
+  - {fileID: 21300000, guid: 3923140402615b6479adcc49ec0e8373, type: 3}
   backGroundInScene: {fileID: 660111477}
 --- !u!212 &660111479
 SpriteRenderer:

@@ -21,6 +21,6 @@ public class BackgroundGenerator : MonoBehaviour
         level = levelPick.Level();
         
         int randBackground = Random.Range(0, BackGrounds.Length);
-        this.GetComponent<SpriteRenderer>().sprite = BackGrounds[level];
+        this.GetComponent<SpriteRenderer>().sprite = BackGrounds[level-1];
     }
 }
