@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using TMPro;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private Slider enemyHealthBarSlider;
     [SerializeField] private TextMeshProUGUI comboText;
-    public float playerHealth;
     public float enemyHealth;
-
+    public int damage;
     [SerializeField] private Slider comboSlider;
     private int combo;
 
@@ -30,7 +30,6 @@ public class Health : MonoBehaviour
     void Start()
     {
         canAttack = true;
-        playerHealth = 100;
         enemyHealth = 100;
         player = GameObject.Find("Player").GetComponent<Player>();
         brickManAI = new BrickManAI();
@@ -56,13 +55,15 @@ public class Health : MonoBehaviour
                             combo += 1;
                         }
                         enemyStunned = true;
-                        enemyHealth -= 10;
+                        damage = 10;
+                        enemyHealth -= damage;
                         canAttack = false;
                     }
                     else
                     {
                         combo = 0;
-                        enemyHealth -= 30;
+                        damage = 30;
+                        enemyHealth -= damage;
                         canAttack = false;
                     }
                   
@@ -90,4 +91,5 @@ public class Health : MonoBehaviour
     {
         return enemyStunned;
     }
+  
 }

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static PowerUps;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
     private Vector2 _smoothedMoveVelocity;
     private bool GravActive;
     private bool FirstMove;
+    private PowerUpType collectedPowerUp;
 
     private int moveNumber;
     private static bool _isAttacking;
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
+    [SerializeField] private BrickManAI aI;
+    [SerializeField] private PowerUps powerUps;
     private GameObject bullet;
     private float bulletDestroy = 0;
 
@@ -111,17 +115,21 @@ public class Player : MonoBehaviour
         _smoothedMoveDir = Vector2.SmoothDamp(_smoothedMoveDir, _moveDir, ref _smoothedMoveVelocity, 0.1f);
         rb.velocity = _smoothedMoveDir * _moveSpeed;
     }
-    IEnumerator CollectingPowerUP()
-    {
-        isCollecting = true;
-        yield return new WaitForSeconds(1f);
-        isCollecting = false;
-       StopCoroutine(CollectingPowerUP());
-    }
+   
 
     public void CollectPowerUp()
     {
+        isCollecting = true;
+        if (CollectingPowerUP() != null)
+        {
+            StopCoroutine(CollectingPowerUP());
+        }
         StartCoroutine(CollectingPowerUP());
+        IEnumerator CollectingPowerUP()
+        {
+            yield return new WaitForSeconds(2f);
+            isCollecting = false;
+        }
     }
     public void SetMoveDirection(Vector2 newDir)
     {
@@ -186,6 +194,7 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForSeconds(0.6f);
             isSpecialAtk = false;
+            _isAttacking = false;
         }
 
         _isAttacking = false;
@@ -216,6 +225,9 @@ public class Player : MonoBehaviour
         }
         
     }
+
+   
+
 
     public bool SpecialAtk()
     {
@@ -249,6 +261,30 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             isColliding = true;
+        }
+        if (collision.gameObject.CompareTag("PowerUp"))
+        {
+            switch (collectedPowerUp)
+            {
+                case PowerUpType.Health:
+                    if (aI.playerHealth <= 75)
+                    {
+                        aI.playerHealth += 20;
+                    }
+
+                    else if (aI.playerHealth >= 75)
+                    {
+                        aI.playerHealth = 75;
+                    }
+
+                    break;
+                case PowerUpType.Damage:
+                    _health.damage *= 2;
+                    break;
+                case PowerUpType.Shield:
+                    _health.damage = 0;
+                    break;
+            }
         }
     }
 

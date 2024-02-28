@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4969475782319952491}
   - component: {fileID: 1996457337440447676}
   - component: {fileID: 6985783215491427921}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Test
-  m_TagString: Untagged
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0ce47249441654199e3fcca10daf40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  powerup: {fileID: 0}
+  player: {fileID: 0}
+  powerUpType: 0
 --- !u!50 &1996457337440447676
 Rigidbody2D:
   serializedVersion: 4
