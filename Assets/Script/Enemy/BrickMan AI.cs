@@ -191,7 +191,7 @@ public class BrickManAI : MonoBehaviour
         }
     }
 
-    void Attack(int damage)
+     internal int Attack(int damage)
     {
         if (collidingWithPlayer)
         {
@@ -200,11 +200,12 @@ public class BrickManAI : MonoBehaviour
                 playerHealth -= damage;
                 playerSlider.value = playerHealth;
                 canAttack = false;
-            }   
+            }
         }
+        return damage;
     }
 
-    
+
     public bool Stun()
     {
         return stunned;

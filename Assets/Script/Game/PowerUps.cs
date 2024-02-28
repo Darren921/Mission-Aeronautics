@@ -11,12 +11,13 @@ public class PowerUps : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] GameObject powerup;
     [SerializeField] Player player;
-    LayerMask mask;
+    SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite[] PowerUpIcon;
     public enum PowerUpType
     {
-        Health = 1 ,
-        Damage = 2 ,
-        Shield = 3
+        Health ,  
+        Damage ,
+        Shield 
     }
     private string PowerUpTypeS;
 
@@ -39,8 +40,6 @@ public class PowerUps : MonoBehaviour
     }
     private void OnTriggerStay2D(UnityEngine.Collider2D collision)
     {
-        print(collision.gameObject.GetComponent<Player>().IsCollecting());
-        print(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().IsCollecting() == true)
         {
             Destroy(gameObject);
@@ -63,17 +62,21 @@ public class PowerUps : MonoBehaviour
             Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
             Vector3 spawnPoint = Vector3.Lerp(topLeft, topRight, UnityEngine.Random.value);
             GameObject Powerup = Instantiate(powerup, spawnPoint, Quaternion.identity);
+            var renderer = Powerup.GetComponent<SpriteRenderer>();
             RandomPowerup();
             switch (PowerUpTypeS)
             {
                 case "Health":
                     powerUpType = PowerUpType.Health;
+                    renderer.sprite = PowerUpIcon[0];
                     break;
                 case "Damage":
                     powerUpType = PowerUpType.Damage;
+                    renderer.sprite = PowerUpIcon[1];
                     break;
                 case "Shield":
                     powerUpType = PowerUpType.Shield;
+                    renderer.sprite = PowerUpIcon[2];
                     break;
                 default: 
                     break;
@@ -98,6 +101,11 @@ public class PowerUps : MonoBehaviour
         print(PowerUpTypeS);
         
     } 
+
+    public string ReturnPowerUpTypeS()
+    {
+        return PowerUpTypeS;
+    }
 
    
 }

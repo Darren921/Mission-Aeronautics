@@ -12,11 +12,9 @@ public class Player : MonoBehaviour
     private Vector2 _moveDir;
     private Vector2 _smoothedMoveDir;
     private Vector2 _smoothedMoveVelocity;
-    private bool GravActive;
+   
     private bool FirstMove;
-    private PowerUpType collectedPowerUp;
 
-    private int moveNumber;
     private static bool _isAttacking;
     public static bool performed;
     public static bool isColliding;
@@ -24,9 +22,16 @@ public class Player : MonoBehaviour
     private static bool isCollecting;
 
     private bool isShooting;
-
+   
     private Vector3 EndPosA;
+
+
+    /*
+    private int moveNumber;
     private Vector3 EndPosBoost;
+     private bool GravActive;
+    private PowerUpType collectedPowerUp;
+    */
 
     [SerializeField] private Animator animator;
     [SerializeField] private Health _health;
@@ -43,7 +48,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GravActive = true;
+        //GravActive = true;
         animator = GetComponent<Animator>();
         switch (Buttons.CharacterChossen)
         {
@@ -72,9 +77,10 @@ public class Player : MonoBehaviour
 
         //Activating the InputManager and Controls
         // InputManager.InitM(this, this);
+
+        // moveNumber = 0;
         InputManager.InitS(this);
         InputManager.EnableInGame();
-        moveNumber = 0;
     }
 
     // Update is called once per frame
@@ -264,25 +270,27 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("PowerUp"))
         {
-            switch (collectedPowerUp)
+            switch (powerUps.ReturnPowerUpTypeS())
             {
-                case PowerUpType.Health:
+                case "Health":
                     if (aI.playerHealth <= 75)
                     {
                         aI.playerHealth += 20;
+                        aI.playerSlider.value = aI.playerHealth;
                     }
-
                     else if (aI.playerHealth >= 75)
                     {
                         aI.playerHealth = 75;
+                        aI.playerSlider.value = aI.playerHealth;
                     }
-
                     break;
-                case PowerUpType.Damage:
+                case "Damage":
                     _health.damage *= 2;
                     break;
-                case PowerUpType.Shield:
-                    _health.damage = 0;
+                case "Shield":
+                    aI.playerHealth = aI.playerHealth += aI.Attack(0);
+                    break;
+                default:
                     break;
             }
         }
