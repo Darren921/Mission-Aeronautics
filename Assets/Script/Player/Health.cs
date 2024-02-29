@@ -27,12 +27,14 @@ public class Health : MonoBehaviour
     private static Player player;
 
     private static BrickManAI brickManAI;
+    private static EarthmanAI earthmanAI;
     void Start()
     {
         canAttack = true;
         enemyHealth = 100;
         player = GameObject.Find("Player").GetComponent<Player>();
         brickManAI = new BrickManAI();
+        earthmanAI = new EarthmanAI();
     }
 
 
@@ -77,7 +79,7 @@ public class Health : MonoBehaviour
             
         enemyHealthBarSlider.value = enemyHealth;
 
-        if (brickManAI.Stun() == false)
+        if (brickManAI.Stun() == false || earthmanAI.Stun() == false)
         {
             enemyStunned = false;
         }

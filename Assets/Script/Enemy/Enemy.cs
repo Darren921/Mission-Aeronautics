@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
 
         level = levelPick.Level();
 
+
         animator.runtimeAnimatorController = animatorOverrideControllers[level - 1];
 
         db1 = true;
@@ -53,7 +54,7 @@ public class Enemy : MonoBehaviour
        //     print(distance);
      //   }
 
-            if (enemyActive)
+        if (enemyActive)
         {
             if (level == 1)
             {
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour
             }
             else if (level == 2)
             {
-                this.gameObject.GetComponent<EvilDarrenAI>().enabled = true;
+                this.gameObject.GetComponent<EarthmanAI>().enabled = true;
             }
             else if (level == 3)
             {
@@ -76,7 +77,7 @@ public class Enemy : MonoBehaviour
         {
             this.gameObject.GetComponent<BrickManAI>().enabled = false;
             this.gameObject.GetComponent<EvilDarrenAI>().enabled = false;
-
+            this.gameObject.GetComponent<EarthmanAI>().enabled = false;
         }
 
         if (turnActive)

@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class BrickManAI : MonoBehaviour
+public class EarthmanAI : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private float speed;
@@ -27,7 +26,7 @@ public class BrickManAI : MonoBehaviour
 
     private static Health health;
     private static Enemy enemy;
-    
+
     private float debounce = 0f;
     private float stunDebounce = 0f;
 
@@ -164,7 +163,7 @@ public class BrickManAI : MonoBehaviour
                     {
                         transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, this.transform.position.y), speed * Time.deltaTime);
                     }
-                    
+
                 }
 
                 debounce += 1 * Time.deltaTime;
@@ -176,7 +175,7 @@ public class BrickManAI : MonoBehaviour
             }
         }
     }
-        
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -203,11 +202,11 @@ public class BrickManAI : MonoBehaviour
                 playerHealth -= damage;
                 playerSlider.value = playerHealth;
                 canAttack = false;
-            }   
+            }
         }
     }
 
-    
+
     public bool Stun()
     {
         return stunned;
