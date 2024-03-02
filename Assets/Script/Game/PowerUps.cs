@@ -11,16 +11,18 @@ public class PowerUps : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] GameObject powerup;
     [SerializeField] Player player;
-    LayerMask mask;
+    [SerializeField] Sprite[] PowerUpIcons;
+    [SerializeField]
+    SpriteRenderer powerupRenderer;
     public enum PowerUpType
     {
-        Health = 1 ,
-        Damage = 2 ,
-        Shield = 3
+        Health,
+        Damage,
+        Shield
     }
     private string PowerUpTypeS;
 
-
+     
     [SerializeField]PowerUpType powerUpType;
     
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
@@ -55,25 +57,30 @@ public class PowerUps : MonoBehaviour
 
     private IEnumerator SpawnPowerUp()
     {
-        
+         
         while (player != null)
         {
-
+            
             Vector3 topLeft = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.nearClipPlane));
             Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
             Vector3 spawnPoint = Vector3.Lerp(topLeft, topRight, UnityEngine.Random.value);
             GameObject Powerup = Instantiate(powerup, spawnPoint, Quaternion.identity);
+            powerupRenderer = powerup.GetComponent<SpriteRenderer>();
+
             RandomPowerup();
             switch (PowerUpTypeS)
             {
                 case "Health":
                     powerUpType = PowerUpType.Health;
+                    powerupRenderer.sprite = PowerUpIcons[0];
                     break;
                 case "Damage":
                     powerUpType = PowerUpType.Damage;
+                    powerupRenderer.sprite = PowerUpIcons[1];
                     break;
                 case "Shield":
                     powerUpType = PowerUpType.Shield;
+                    powerupRenderer.sprite = PowerUpIcons[2];
                     break;
                 default: 
                     break;

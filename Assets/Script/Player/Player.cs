@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     private Vector3 EndPosA;
     private Vector3 EndPosBoost;
 
-    [SerializeField] private Animator animator;
+    private Animator animator;
     [SerializeField] private Health _health;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject[] projectiles;
@@ -39,7 +39,10 @@ public class Player : MonoBehaviour
     [SerializeField] private PowerUps powerUps;
     private GameObject bullet;
     private float bulletDestroy = 0;
-
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -282,7 +285,7 @@ public class Player : MonoBehaviour
                     _health.damage *= 2;
                     break;
                 case PowerUpType.Shield:
-                    _health.damage = 0;
+                    aI.Attack(0);
                     break;
             }
         }

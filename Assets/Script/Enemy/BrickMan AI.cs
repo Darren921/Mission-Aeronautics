@@ -194,7 +194,7 @@ public class BrickManAI : MonoBehaviour
         }
     }
 
-    void Attack(int damage)
+   internal void Attack(int damage)
     {
         if (collidingWithPlayer)
         {
