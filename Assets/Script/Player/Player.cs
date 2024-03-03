@@ -22,6 +22,11 @@ public class Player : MonoBehaviour
     public static bool isColliding;
     private static bool isSpecialAtk;
     private static bool isCollecting;
+    private static bool isHit;
+    private static bool isStunned;
+    private static float stunCD;
+    private bool isBlocking;
+
 
     private bool isShooting;
 
@@ -39,13 +44,12 @@ public class Player : MonoBehaviour
     [SerializeField] private PowerUps powerUps;
     private GameObject bullet;
     private float bulletDestroy = 0;
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+
+    
     // Start is called before the first frame update
     void Start()
     {
+
         GravActive = true;
         animator = GetComponent<Animator>();
         switch (Buttons.CharacterChossen)
@@ -88,14 +92,6 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(IsIdle());
         }
-        if (FirstMove == true)
-        {
-            FirstMove = true;
-        }
-        if (FirstMove == true)
-        {
-            //Gravity();
-        }
         if (_moveDir == new Vector2(0, 0))
         {
             animator.SetBool("IsMoving", false);
@@ -103,7 +99,7 @@ public class Player : MonoBehaviour
         
         if(transform.position.y < -20.35547 || transform.position.x < -38.63747 || transform.position.y > 20.35547 || transform.position.x > 38.63747)
         {
-            Destroy(GameObject.Find("Player"));
+            gameObject.SetActive(false);
             animator.enabled = false;
         }
         
@@ -111,6 +107,8 @@ public class Player : MonoBehaviour
         {
             performed = true;
         }
+
+        
        
     }
     private void FixedUpdate()
@@ -209,6 +207,74 @@ public class Player : MonoBehaviour
 
 
     }
+
+    IEnumerator IsIdle()
+    {
+        yield return new WaitForSeconds(3f);
+        animator.SetBool("isIdle", true);
+    }
+    IEnumerator IsBlocking()
+    {
+        if (isBlocking == true)
+        {
+           StopCoroutine(IsBlocking());
+        }
+      isBlocking = true;
+        StartCoroutine(blockCheck());
+        yield return new WaitForSeconds(2f);
+      isBlocking = false;
+        StopCoroutine(IsBlocking());
+    }
+
+    public void hitCheck ()
+    {
+        if (isColliding == true && aI.ReturnplayerHit() == true) 
+        { 
+         isHit = true;
+        StartCoroutine(stunCheck());
+        }
+        if(isColliding == true && aI.ReturnplayerHit() == true && isBlocking == true)
+        {
+           StartCoroutine(blockCheck());
+        }
+    }
+
+    
+
+    public IEnumerator stunCheck()
+    {
+
+        if (isStunned == true )
+        {
+
+            StopCoroutine(stunCheck());
+
+        }
+        if (isBlocking  != true)
+        {
+            isStunned = true;
+            gameObject.GetComponent<Player>().enabled = false;
+            rb.velocity = new Vector2(0, 0);
+            yield return new WaitForSeconds(1f);
+            gameObject.GetComponent<Player>().enabled = true;
+            isStunned = false;
+            StopCoroutine(stunCheck());
+        }
+       
+    }
+
+    public IEnumerator blockCheck()
+    {
+        if(isColliding == true && isStunned == false )
+        {
+          
+        }
+        yield return new WaitForSeconds(2f);
+        
+
+    }
+
+
     public bool ReturnFirstMove()
     {
         return FirstMove;
@@ -251,11 +317,7 @@ public class Player : MonoBehaviour
         return isColliding;
     }
 
-    IEnumerator IsIdle()
-    {
-        yield return new WaitForSeconds(3f); 
-        animator.SetBool("isIdle", true);
-    }
+  
 
    
 
@@ -264,6 +326,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             isColliding = true;
+            hitCheck();
         }
         if (collision.gameObject.CompareTag("PowerUp"))
         {

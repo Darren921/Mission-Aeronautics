@@ -21,6 +21,8 @@ public class BrickManAI : MonoBehaviour
 
     private bool collidingWithPlayer;
 
+    private bool playerHit;
+
     private bool canAttack;
 
     public static bool stunned;
@@ -203,6 +205,7 @@ public class BrickManAI : MonoBehaviour
                 playerHealth -= damage;
                 playerSlider.value = playerHealth;
                 canAttack = false;
+                playerHit = true;
             }   
         }
     }
@@ -211,5 +214,10 @@ public class BrickManAI : MonoBehaviour
     public bool Stun()
     {
         return stunned;
+    }
+
+    public bool ReturnplayerHit()
+    {
+        return playerHit;
     }
 }
