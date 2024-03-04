@@ -58,14 +58,21 @@ public class Health : MonoBehaviour
                         }
                         enemyStunned = true;
                         damage = 10;
-                        enemyHealth -= damage;
+                        if (enemyHealth >= 0)
+                        {
+                            enemyHealth -= damage;
+                        }
+                        
                         canAttack = false;
                     }
                     else
                     {
                         combo = 0;
                         damage = 30;
-                        enemyHealth -= damage;
+                        if (enemyHealth >= 0)
+                        {
+                            enemyHealth -= damage;
+                        }
                         canAttack = false;
                     }
                   
