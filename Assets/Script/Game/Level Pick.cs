@@ -8,12 +8,50 @@ public class LevelPick : MonoBehaviour
 {
     public static int LevelChossen;
 
+    public bool levelTwoActive;
+    public bool levelThreeActive;
+    public bool levelFourActive;
+    public bool levelFiveActive;
+
+    public Image[] locks;
+
+    public Image[] levels;
+    public Sprite[] levelSprites;
+
+    [SerializeField] private AnimatorOverrideController animatorOverrideController;
+
+    private void Update()
+    {
+        if (levelTwoActive)
+        {
+            locks[0].GetComponent<Animator>().SetBool("locked", false);
+            levels[0].sprite = levelSprites[0];
+        }
+
+        if (levelThreeActive)
+        {
+            locks[1].GetComponent<Animator>().SetBool("locked", false);
+            levels[1].sprite = levelSprites[1];
+        }
+
+        if(levelFourActive)
+        {
+            locks[2].GetComponent<Animator>().SetBool("locked", false);
+            levels[2].sprite = levelSprites[2];
+        }
+
+        if(levelFiveActive)
+        {
+            locks[3].GetComponent<Animator>().SetBool("locked", false);
+            levels[3].sprite = levelSprites[3];
+        }
+    }
+
 
     public void BackToCharacter()
     {
         SceneManager.LoadScene("ChooseCharacter");
         Time.timeScale = 1.0f;
-
     }
 
     public void Level1()
@@ -23,24 +61,36 @@ public class LevelPick : MonoBehaviour
     }
     public void Level2()
     {
-        LevelChossen = 2;
-        SceneManager.LoadScene("MainGame");
+        if (levelTwoActive)
+        {
+            LevelChossen = 2;
+            SceneManager.LoadScene("MainGame");
+        }
     }
     public void Level3()
     {
-        LevelChossen = 3;
-        SceneManager.LoadScene("MainGame");
+        if (levelThreeActive)
+        {
+            LevelChossen = 3;
+            SceneManager.LoadScene("MainGame");
+        }
     }
     public void Level4()
     {
-        LevelChossen = 4;
-        SceneManager.LoadScene("MainGame");
+        if(levelFourActive)
+        {
+            LevelChossen = 4;
+            SceneManager.LoadScene("MainGame");
+        }
     }
 
     public void Level5()
     {
-        LevelChossen = 5;
-        SceneManager.LoadScene("MainGame");
+        if (levelFiveActive) 
+        {
+            LevelChossen = 5;
+            SceneManager.LoadScene("MainGame");
+        }
     }
 
     public int Level()
