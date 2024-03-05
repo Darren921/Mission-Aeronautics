@@ -64,15 +64,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Player2Movement"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""32b4ca53-fa64-41ed-a785-d6207d4ee586"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""PlayerShoot"",
                     ""type"": ""Button"",
                     ""id"": ""05e42008-5f20-4dc9-a1a6-6b3bcd3d0f25"",
@@ -80,6 +71,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerBlock"",
+                    ""type"": ""Button"",
+                    ""id"": ""01c6b505-61a5-4112-9045-d3957cbfd2fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -183,61 +183,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""40190f56-b161-4a99-9094-16462b0d8814"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Player2Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""57175133-5c6c-4031-91bc-6fbb8837dee7"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Player2Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""376223c0-7173-44b8-a832-e01ba921b8e6"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Player2Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""671b7d2f-bbd2-4a4d-93e5-c0596e6193b4"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Player2Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""f6ea2e72-9c8e-4521-af7c-ef4e01bcc6d4"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Player2Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""39359921-bffa-4cc1-9c44-c7c0317197f2"",
                     ""path"": ""<Keyboard>/y"",
@@ -269,6 +214,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""PlayerShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""079c623b-e6ea-4d14-844b-2016566af88b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerBlock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -281,8 +237,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_InGame_Player1NormalAttack = m_InGame.FindAction("Player1NormalAttack", throwIfNotFound: true);
         m_InGame_Player1SpecialAttack = m_InGame.FindAction("Player1SpecialAttack", throwIfNotFound: true);
         m_InGame_Player1CollectPowerUp = m_InGame.FindAction("Player1CollectPowerUp", throwIfNotFound: true);
-        m_InGame_Player2Movement = m_InGame.FindAction("Player2Movement", throwIfNotFound: true);
         m_InGame_PlayerShoot = m_InGame.FindAction("PlayerShoot", throwIfNotFound: true);
+        m_InGame_PlayerBlock = m_InGame.FindAction("PlayerBlock", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -348,8 +304,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Player1NormalAttack;
     private readonly InputAction m_InGame_Player1SpecialAttack;
     private readonly InputAction m_InGame_Player1CollectPowerUp;
-    private readonly InputAction m_InGame_Player2Movement;
     private readonly InputAction m_InGame_PlayerShoot;
+    private readonly InputAction m_InGame_PlayerBlock;
     public struct InGameActions
     {
         private @Controls m_Wrapper;
@@ -358,8 +314,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Player1NormalAttack => m_Wrapper.m_InGame_Player1NormalAttack;
         public InputAction @Player1SpecialAttack => m_Wrapper.m_InGame_Player1SpecialAttack;
         public InputAction @Player1CollectPowerUp => m_Wrapper.m_InGame_Player1CollectPowerUp;
-        public InputAction @Player2Movement => m_Wrapper.m_InGame_Player2Movement;
         public InputAction @PlayerShoot => m_Wrapper.m_InGame_PlayerShoot;
+        public InputAction @PlayerBlock => m_Wrapper.m_InGame_PlayerBlock;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -381,12 +337,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1CollectPowerUp.started += instance.OnPlayer1CollectPowerUp;
             @Player1CollectPowerUp.performed += instance.OnPlayer1CollectPowerUp;
             @Player1CollectPowerUp.canceled += instance.OnPlayer1CollectPowerUp;
-            @Player2Movement.started += instance.OnPlayer2Movement;
-            @Player2Movement.performed += instance.OnPlayer2Movement;
-            @Player2Movement.canceled += instance.OnPlayer2Movement;
             @PlayerShoot.started += instance.OnPlayerShoot;
             @PlayerShoot.performed += instance.OnPlayerShoot;
             @PlayerShoot.canceled += instance.OnPlayerShoot;
+            @PlayerBlock.started += instance.OnPlayerBlock;
+            @PlayerBlock.performed += instance.OnPlayerBlock;
+            @PlayerBlock.canceled += instance.OnPlayerBlock;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -403,12 +359,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Player1CollectPowerUp.started -= instance.OnPlayer1CollectPowerUp;
             @Player1CollectPowerUp.performed -= instance.OnPlayer1CollectPowerUp;
             @Player1CollectPowerUp.canceled -= instance.OnPlayer1CollectPowerUp;
-            @Player2Movement.started -= instance.OnPlayer2Movement;
-            @Player2Movement.performed -= instance.OnPlayer2Movement;
-            @Player2Movement.canceled -= instance.OnPlayer2Movement;
             @PlayerShoot.started -= instance.OnPlayerShoot;
             @PlayerShoot.performed -= instance.OnPlayerShoot;
             @PlayerShoot.canceled -= instance.OnPlayerShoot;
+            @PlayerBlock.started -= instance.OnPlayerBlock;
+            @PlayerBlock.performed -= instance.OnPlayerBlock;
+            @PlayerBlock.canceled -= instance.OnPlayerBlock;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -432,7 +388,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPlayer1NormalAttack(InputAction.CallbackContext context);
         void OnPlayer1SpecialAttack(InputAction.CallbackContext context);
         void OnPlayer1CollectPowerUp(InputAction.CallbackContext context);
-        void OnPlayer2Movement(InputAction.CallbackContext context);
         void OnPlayerShoot(InputAction.CallbackContext context);
+        void OnPlayerBlock(InputAction.CallbackContext context);
     }
 }

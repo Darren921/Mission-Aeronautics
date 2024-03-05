@@ -42,15 +42,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Player2Movement",
-                    "type": "PassThrough",
-                    "id": "32b4ca53-fa64-41ed-a785-d6207d4ee586",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "PlayerShoot",
                     "type": "Button",
                     "id": "05e42008-5f20-4dc9-a1a6-6b3bcd3d0f25",
@@ -58,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerBlock",
+                    "type": "Button",
+                    "id": "01c6b505-61a5-4112-9045-d3957cbfd2fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -161,61 +161,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "40190f56-b161-4a99-9094-16462b0d8814",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Player2Movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "57175133-5c6c-4031-91bc-6fbb8837dee7",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Player2Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "376223c0-7173-44b8-a832-e01ba921b8e6",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Player2Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "671b7d2f-bbd2-4a4d-93e5-c0596e6193b4",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Player2Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "f6ea2e72-9c8e-4521-af7c-ef4e01bcc6d4",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Player2Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "39359921-bffa-4cc1-9c44-c7c0317197f2",
                     "path": "<Keyboard>/y",
@@ -245,6 +190,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PlayerShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "079c623b-e6ea-4d14-844b-2016566af88b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerBlock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

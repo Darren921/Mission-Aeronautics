@@ -225,18 +225,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(3f);
         animator.SetBool("isIdle", true);
     }
-    IEnumerator IsBlocking()
+
+   
+    IEnumerator Delay(int Delay)
     {
-        if (isBlocking == true)
-        {
-           StopCoroutine(IsBlocking());
-        }
-      isBlocking = true;
-        StartCoroutine(blockCheck());
-        yield return new WaitForSeconds(2f);
-      isBlocking = false;
-        StopCoroutine(IsBlocking());
+        yield return new WaitForSeconds(Delay);
     }
+    
 
     public void hitCheck ()
     {
@@ -244,10 +239,7 @@ public class Player : MonoBehaviour
         { 
         StartCoroutine(stunCheck());
         }
-        if(aI.ReturnplayerHit() == true && isBlocking == true)
-        {
-           StartCoroutine(blockCheck());
-        }
+       
     }
 
     
@@ -282,13 +274,19 @@ public class Player : MonoBehaviour
 
     public IEnumerator blockCheck()
     {
+        if (isBlocking == true)
+        {
+            StopCoroutine (blockCheck());
+        }
         if(isColliding == true && isStunned == false )
         {
           isBlocking = true;
-            isStunned = false;
+            animator.SetBool("Guarding", true);
+          isStunned = false;
         }
         yield return new WaitForSeconds(2f);
          isBlocking = false;
+        animator.SetBool("Guarding", false);
     }
 
 
@@ -404,34 +402,6 @@ public class Player : MonoBehaviour
             hitCheck();
         }
     }
-
-
-    /*
-    public void Gravity()
-    {
-        if (GravActive == true)
-        {
-            this.transform.position = new Vector2(transform.position.x, transform.position.y - 0.010f);
-        }
-        else return;
-    }
-
-    public void Boost()
-    {
-        FirstMove = true;
-        StartCoroutine(Boosting());
-    }
-    IEnumerator Boosting()
-    {
-        GravActive = false;
-        yield return null;
-        EndPosBoost = transform.position + new Vector3(0, 3f, 0);
-        transform.position = Vector3.Lerp(transform.position, EndPosBoost, 2);
-        yield return new WaitForSeconds(0.5f);
-        GravActive = true;
-        StopCoroutine(Boosting());
-    }
-    */
 
 
 

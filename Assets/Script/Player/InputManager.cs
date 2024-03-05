@@ -60,6 +60,10 @@ public class InputManager : MonoBehaviour
         {
             _player1.Shoot();
         };
+        _controls.InGame.PlayerBlock.performed += _ =>
+        {
+            _player1.blockCheck();
+        };
     }
 
     //Activating the Controls
