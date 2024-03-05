@@ -12,19 +12,19 @@ public class PowerUps : MonoBehaviour
     [SerializeField] GameObject powerup;
     [SerializeField] Player player;
     [SerializeField] Sprite[] PowerUpIcons;
-    [SerializeField]
-    SpriteRenderer powerupRenderer;
+     SpriteRenderer powerupRenderer;
     public enum PowerUpType
     {
         Health,
         Damage,
         Shield
     }
-    private string PowerUpTypeS;
+    private static string PowerUpTypeS;
 
      
     [SerializeField]PowerUpType powerUpType;
-    
+    private static string Power;
+
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
         print(collision.gameObject.GetComponent<Player>().IsCollecting());
@@ -60,32 +60,37 @@ public class PowerUps : MonoBehaviour
          
         while (player != null)
         {
-            
+            RandomPowerup();
             Vector3 topLeft = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.nearClipPlane));
             Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
             Vector3 spawnPoint = Vector3.Lerp(topLeft, topRight, UnityEngine.Random.value);
+            
             GameObject Powerup = Instantiate(powerup, spawnPoint, Quaternion.identity);
-            powerupRenderer = powerup.GetComponent<SpriteRenderer>();
 
-            RandomPowerup();
+            print(PowerUpTypeS);
             switch (PowerUpTypeS)
             {
                 case "Health":
+                    powerupRenderer = powerup.GetComponent<SpriteRenderer>();
+                    print("Health");
                     powerUpType = PowerUpType.Health;
                     powerupRenderer.sprite = PowerUpIcons[0];
                     break;
                 case "Damage":
+                    powerupRenderer = powerup.GetComponent<SpriteRenderer>();
+                    print("Damage");
                     powerUpType = PowerUpType.Damage;
                     powerupRenderer.sprite = PowerUpIcons[1];
                     break;
                 case "Shield":
+                    powerupRenderer = powerup.GetComponent<SpriteRenderer>();
+                    print("Shield");
                     powerUpType = PowerUpType.Shield;
                     powerupRenderer.sprite = PowerUpIcons[2];
                     break;
-                default: 
-                    break;
+                
             }
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(20);
             Destroy(Powerup);
         }
 
@@ -94,17 +99,21 @@ public class PowerUps : MonoBehaviour
     }
     void Start()
     {
-        PowerUpTypeS = "";
         StartCoroutine(SpawnPowerUp());
     }
    
-   public void   RandomPowerup()
+   public string RandomPowerup()
     {
         var PowerUpList = Enum.GetNames(typeof(PowerUpType));
         PowerUpTypeS = PowerUpList[UnityEngine.Random.Range(0, PowerUpList.Length)];
-        print(PowerUpTypeS);
-        
+        print (PowerUpTypeS);
+        return PowerUpTypeS;
     } 
 
-   
+    public PowerUpType returnType()
+    {
+        return powerUpType;
+    }
+
+ 
 }

@@ -11,7 +11,7 @@ public class BrickManAI : MonoBehaviour
 
     [SerializeField] public Slider playerSlider;
 
-    [SerializeField] public int playerHealth = 100;
+    [SerializeField] public float playerHealth = 100;
 
     private Animator animator;
 
@@ -196,16 +196,27 @@ public class BrickManAI : MonoBehaviour
         }
     }
 
-   internal void Attack(int damage)
+   internal void Attack(float damage)
     {
         if (collidingWithPlayer)
         {
             if (canAttack)
             {
-                playerHealth -= damage;
-                playerSlider.value = playerHealth;
-                canAttack = false;
-                playerHit = true;
+                if(player.GetComponent<Player>().Blocking() != true) 
+                {
+                    playerHealth -= damage;
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = true;
+                }
+                else
+                {
+                    playerHealth -= (damage * 0.3f);
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = true;
+                }
+
             }   
         }
     }

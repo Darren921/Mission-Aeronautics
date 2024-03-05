@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private bool GravActive;
     private bool FirstMove;
     private PowerUpType collectedPowerUp;
+   
 
     private int moveNumber;
     private static bool _isAttacking;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     private static bool isHit;
     private static bool isStunned;
     private static float stunCD;
+    private static int Temphealth;
     private bool isBlocking;
 
 
@@ -141,12 +143,17 @@ public class Player : MonoBehaviour
     }
     public void Attacking()
     {
-        FirstMove = true;
-        animator.SetBool("IsAttacking", true);
-
-        if ( _isAttacking == true)
+        if(isBlocking == true || isStunned == true)
         {
             return;
+        }
+        if (animator.GetBool("IsAttacking") == true)
+        {
+            return;
+        }
+        else
+        {
+            animator.SetBool("IsAttacking", true);
         }
         StartCoroutine(AttackCheck());
     }
@@ -191,9 +198,14 @@ public class Player : MonoBehaviour
                 break;
 
         }
-        if (isSpecialAtk == true)
+        if (isSpecialAtk == true && isStunned != true)
         {
             yield return new WaitForSeconds(0.6f);
+            isSpecialAtk = false;
+        
+        }
+        else
+        {
             isSpecialAtk = false;
             _isAttacking = false;
         }
@@ -228,12 +240,11 @@ public class Player : MonoBehaviour
 
     public void hitCheck ()
     {
-        if (isColliding == true && aI.ReturnplayerHit() == true) 
+        if (aI.ReturnplayerHit() == true) 
         { 
-         isHit = true;
         StartCoroutine(stunCheck());
         }
-        if(isColliding == true && aI.ReturnplayerHit() == true && isBlocking == true)
+        if(aI.ReturnplayerHit() == true && isBlocking == true)
         {
            StartCoroutine(blockCheck());
         }
@@ -246,32 +257,38 @@ public class Player : MonoBehaviour
 
         if (isStunned == true )
         {
-
             StopCoroutine(stunCheck());
 
         }
         if (isBlocking  != true)
         {
             isStunned = true;
+            animator.SetBool("Stunned", true);
             gameObject.GetComponent<Player>().enabled = false;
             rb.velocity = new Vector2(0, 0);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<Player>().enabled = true;
+            animator.SetBool("Stunned", false);
             isStunned = false;
             StopCoroutine(stunCheck());
         }
-       
+        else
+        {
+            isStunned = false;
+            StopCoroutine(stunCheck());
+        }
+
     }
 
     public IEnumerator blockCheck()
     {
         if(isColliding == true && isStunned == false )
         {
-          
+          isBlocking = true;
+            isStunned = false;
         }
         yield return new WaitForSeconds(2f);
-        
-
+         isBlocking = false;
     }
 
 
@@ -316,7 +333,10 @@ public class Player : MonoBehaviour
     {
         return isColliding;
     }
-
+    public bool Blocking()
+    {
+        return isBlocking;
+    }
   
 
    
@@ -330,22 +350,34 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("PowerUp"))
         {
-            switch (collectedPowerUp)
+            collectedPowerUp = powerUps.returnType();
+            print(collectedPowerUp);
+            switch (collectedPowerUp )
             {
                 case PowerUpType.Health:
-                    if (aI.playerHealth <= 75)
+                    if (aI.playerHealth < 75)
                     {
+                        
                         aI.playerHealth += 20;
+                        aI.playerSlider.value = aI.playerHealth;
+                        print(aI.playerHealth);
                     }
 
                     else if (aI.playerHealth >= 75)
                     {
                         aI.playerHealth = 75;
+                        aI.playerSlider.value = aI.playerHealth;
+                        print(aI.playerHealth);
+                    }
+                    else if (aI.playerHealth > 75)
+                    { 
+                        aI.playerSlider.value = aI.playerHealth;
+                        print(aI.playerHealth);
                     }
 
                     break;
                 case PowerUpType.Damage:
-                    _health.damage *= 2;
+                    StartCoroutine(DamagePowerUP());
                     break;
                 case PowerUpType.Shield:
                     aI.Attack(0);
@@ -354,11 +386,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    private IEnumerator DamagePowerUP()
+    {
+        _health.damage *= 2;
+        
+        yield return new WaitForSeconds(10);
+        _health.damage /= 2 ;
+
+        StopCoroutine(DamagePowerUP());
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             isColliding = false;
+            hitCheck();
         }
     }
 
