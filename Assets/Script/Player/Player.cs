@@ -227,10 +227,6 @@ public class Player : MonoBehaviour
     }
 
    
-    IEnumerator Delay(int Delay)
-    {
-        yield return new WaitForSeconds(Delay);
-    }
     
 
     public void hitCheck ()
@@ -272,22 +268,30 @@ public class Player : MonoBehaviour
 
     }
 
+    public void Blocking()
+    {
+        if (isBlocking == true || isStunned == true)
+        {
+            return;
+        }
+        if (animator.GetBool("Guarding") == true)
+        {
+            return;
+        }
+
+        StartCoroutine(blockCheck());
+    }
     public IEnumerator blockCheck()
     {
-        if (isBlocking == true)
-        {
-            StopCoroutine (blockCheck());
-        }
-        if(isColliding == true && isStunned == false )
-        {
           isBlocking = true;
-            animator.SetBool("Guarding", true);
+          animator.SetBool("Guarding", true);
           isStunned = false;
-        }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1);
          isBlocking = false;
         animator.SetBool("Guarding", false);
+        yield break;
     }
+   
 
 
     public bool ReturnFirstMove()
@@ -331,7 +335,7 @@ public class Player : MonoBehaviour
     {
         return isColliding;
     }
-    public bool Blocking()
+    public bool returnisBlocking()
     {
         return isBlocking;
     }
