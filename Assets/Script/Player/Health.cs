@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 using TMPro;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -26,15 +27,13 @@ public class Health : MonoBehaviour
 
     private static Player player;
 
-    private static BrickManAI brickManAI;
-    private static EarthmanAI earthmanAI;
+    private static Enemy enemy;
     void Start()
     {
         canAttack = true;
         enemyHealth = 100;
         player = GameObject.Find("Player").GetComponent<Player>();
-        brickManAI = new BrickManAI();
-        earthmanAI = new EarthmanAI();
+        enemy = new Enemy();
     }
 
 
@@ -86,7 +85,13 @@ public class Health : MonoBehaviour
             
         enemyHealthBarSlider.value = enemyHealth;
 
-        if (brickManAI.Stun() == false || earthmanAI.Stun() == false)
+        if (enemyHealth <= 0)
+        {
+            Time.timeScale = 0;
+            SceneManager.LoadScene("ChooseCharacter");
+        }
+
+        if (enemy.Stun() == false)
         {
             enemyStunned = false;
         }

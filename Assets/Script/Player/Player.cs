@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
-    [SerializeField] private BrickManAI aI;
+    [SerializeField] private Enemy aI;
     [SerializeField] private PowerUps powerUps;
     private GameObject bullet;
     private float bulletDestroy = 0;

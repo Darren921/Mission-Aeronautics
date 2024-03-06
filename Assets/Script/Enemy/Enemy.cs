@@ -8,11 +8,11 @@ public class Enemy : MonoBehaviour
 {
     
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
-    [SerializeField] private bool enemyActive;
 
+    [SerializeField] private bool enemyActive;
     [SerializeField] private bool turnActive;
 
-    [SerializeField] private GameObject player;
+    [SerializeField] protected GameObject player;
 
 
     private LevelPick levelPick;
@@ -20,11 +20,36 @@ public class Enemy : MonoBehaviour
 
     private float time = 0f;
 
-    private Animator animator;
+    protected Animator animator;
     private int level;
 
     private bool db1;
     private bool db2;
+
+    [SerializeField] protected float speed;
+
+    [SerializeField] public Slider playerSlider;
+
+    [SerializeField] public float playerHealth = 100;
+
+
+    protected float distance;
+
+    public string enemyState = "Idle";
+
+    protected bool collidingWithPlayer;
+
+    protected bool playerHit;
+
+    protected bool canAttack;
+
+    protected static bool stunned;
+
+    protected static Health health;
+    protected static Enemy enemy;
+
+    protected float debounce = 0f;
+    protected float stunDebounce = 0f;
 
     void Start()
     {
@@ -117,4 +142,57 @@ public class Enemy : MonoBehaviour
         }
 
     }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collidingWithPlayer = true;
+        }
+    }
+
+    protected void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collidingWithPlayer = false;
+        }
+    }
+
+
+    public bool Stun()
+    {
+        return stunned;
+    }
+
+    public bool ReturnplayerHit()
+    {
+        return playerHit;
+    }
+
+    internal void Attack(float damage)
+    {
+        if (collidingWithPlayer)
+        {
+            if (canAttack)
+            {
+                if (player.GetComponent<Player>().Blocking() != true)
+                {
+                    playerHealth -= damage;
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = true;
+                }
+                else
+                {
+                    playerHealth -= (damage * 0.3f);
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = true;
+                }
+
+            }
+        }
+    }
+
 }

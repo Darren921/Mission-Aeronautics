@@ -4,34 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BrickManAI : MonoBehaviour
+public class BrickManAI : Enemy
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private float speed;
-
-    [SerializeField] public Slider playerSlider;
-
-    [SerializeField] public float playerHealth = 100;
-
-    private Animator animator;
-
-    private float distance;
-
-    public string enemyState = "Idle";
-
-    private bool collidingWithPlayer;
-
-    private bool playerHit;
-
-    private bool canAttack;
-
-    public static bool stunned;
-
-    private static Health health;
-    private static Enemy enemy;
     
-    private float debounce = 0f;
-    private float stunDebounce = 0f;
 
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
@@ -178,8 +153,8 @@ public class BrickManAI : MonoBehaviour
             }
         }
     }
-        
 
+<<<<<<< Updated upstream
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -220,15 +195,10 @@ public class BrickManAI : MonoBehaviour
             }   
         }
     }
+=======
+   
+>>>>>>> Stashed changes
 
     
-    public bool Stun()
-    {
-        return stunned;
-    }
-
-    public bool ReturnplayerHit()
-    {
-        return playerHit;
-    }
+    
 }

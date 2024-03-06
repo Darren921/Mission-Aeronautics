@@ -3,32 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class EarthmanAI : MonoBehaviour
+public class EarthmanAI : Enemy
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private float speed;
-
-    [SerializeField] public Slider playerSlider;
-
-    [SerializeField] public int playerHealth = 100;
-
-    private Animator animator;
-
-    private float distance;
-
-    public string enemyState = "Idle";
-
-    private bool collidingWithPlayer;
-
-    private bool canAttack;
-
-    public static bool stunned;
-
-    private static Health health;
-    private static Enemy enemy;
-
-    private float debounce = 0f;
-    private float stunDebounce = 0f;
 
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
@@ -174,41 +150,5 @@ public class EarthmanAI : MonoBehaviour
                 }
             }
         }
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            collidingWithPlayer = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            collidingWithPlayer = false;
-        }
-    }
-
-    void Attack(int damage)
-    {
-        if (collidingWithPlayer)
-        {
-            if (canAttack)
-            {
-                playerHealth -= damage;
-                playerSlider.value = playerHealth;
-                canAttack = false;
-            }
-        }
-    }
-
-
-    public bool Stun()
-    {
-        return stunned;
     }
 }
