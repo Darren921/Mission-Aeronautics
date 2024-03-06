@@ -62,7 +62,7 @@ public class InputManager : MonoBehaviour
         };
         _controls.InGame.PlayerBlock.performed += _ =>
         {
-            _player1.blockCheck();
+            _player1.Blocking();
         };
     }
 

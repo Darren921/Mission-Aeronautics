@@ -78,7 +78,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""01c6b505-61a5-4112-9045-d3957cbfd2fd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": true
                 }
             ],

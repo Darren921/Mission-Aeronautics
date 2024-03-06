@@ -270,28 +270,25 @@ public class Player : MonoBehaviour
 
     public void Blocking()
     {
-        if (isBlocking == true || isStunned == true)
+        if (isStunned == true)
         {
             return;
         }
-        if (animator.GetBool("Guarding") == true)
+        isBlocking = true;
+        while (isBlocking == true)
         {
-            return;
+            animator.SetBool("Guarding", true);
+            isStunned = false;
+            gameObject.GetComponent<Player>().enabled = false;
+            rb.velocity = Vector2.zero;
         }
-
-        StartCoroutine(blockCheck());
-    }
-    public IEnumerator blockCheck()
-    {
-          isBlocking = true;
-          animator.SetBool("Guarding", true);
-          isStunned = false;
-        yield return new WaitForSeconds(1);
-         isBlocking = false;
+        gameObject.GetComponent<Player>().enabled = true;
+        isBlocking = false;
         animator.SetBool("Guarding", false);
-        yield break;
+
     }
-   
+  
+
 
 
     public bool ReturnFirstMove()

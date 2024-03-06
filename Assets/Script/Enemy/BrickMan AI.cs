@@ -154,7 +154,7 @@ public class BrickManAI : Enemy
         }
     }
 
-<<<<<<< Updated upstream
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -195,9 +195,6 @@ public class BrickManAI : Enemy
             }   
         }
     }
-=======
-   
->>>>>>> Stashed changes
 
     
     

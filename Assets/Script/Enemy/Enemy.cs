@@ -176,7 +176,7 @@ public class Enemy : MonoBehaviour
         {
             if (canAttack)
             {
-                if (player.GetComponent<Player>().Blocking() != true)
+                if (player.GetComponent<Player>().returnisBlocking() != true)
                 {
                     playerHealth -= damage;
                     playerSlider.value = playerHealth;
