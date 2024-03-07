@@ -16,7 +16,12 @@ public class Health : MonoBehaviour
     [SerializeField] private Slider comboSlider;
     private int combo;
 
-    
+    public  int GetCombo
+    {
+       get { return combo; }
+       set { combo = value; }
+
+    }
 
     [SerializeField] private GameObject playerChar;
     [SerializeField] private GameObject enemyChar;
@@ -66,7 +71,6 @@ public class Health : MonoBehaviour
                     }
                     else
                     {
-                        combo = 0;
                         damage = 30;
                         if (enemyHealth >= 0)
                         {
@@ -96,10 +100,7 @@ public class Health : MonoBehaviour
             enemyStunned = false;
         }
     }
-    public int GetCombo()
-    {
-        return combo;
-    }
+   
 
     public bool GetStunned()
     {

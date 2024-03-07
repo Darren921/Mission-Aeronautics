@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static PowerUps;
 
 public class Player : MonoBehaviour
@@ -274,22 +275,32 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        StartCoroutine(Delay());
         isBlocking = true;
-        while (isBlocking == true)
-        {
-            animator.SetBool("Guarding", true);
-            isStunned = false;
-            gameObject.GetComponent<Player>().enabled = false;
-            rb.velocity = Vector2.zero;
-        }
+        animator.SetBool("Guarding", true);
+        isStunned = false;
+        gameObject.GetComponent<Player>().enabled = false;
+        rb.velocity = Vector2.zero;
+       
+       
+
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(2);
+        StopCoroutine(Delay());
+    }
+
+    public void BlockCanceled()
+    {
         gameObject.GetComponent<Player>().enabled = true;
         isBlocking = false;
         animator.SetBool("Guarding", false);
-
+        return;
     }
-  
 
-
+    
 
     public bool ReturnFirstMove()
     {
@@ -298,10 +309,18 @@ public class Player : MonoBehaviour
     public void SpecialAttack()
     {
         
-        if (_health.GetCombo() >= 5)
+        if (_health.GetCombo >= 5)
         {
             animator.SetInteger("MoveNumber", 3);
-            isSpecialAtk = true;
+            if(isStunned!= true)
+            {
+                isSpecialAtk = true;
+            }
+            else
+            {
+                isSpecialAtk = false;
+            }
+            _health.GetCombo = 0;
             Attacking();
         }
         else
@@ -347,7 +366,7 @@ public class Player : MonoBehaviour
             isColliding = true;
             hitCheck();
         }
-        if (collision.gameObject.CompareTag("PowerUp"))
+        if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true )
         {
             collectedPowerUp = powerUps.returnType();
             print(collectedPowerUp);

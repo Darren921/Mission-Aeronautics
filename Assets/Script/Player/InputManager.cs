@@ -64,6 +64,10 @@ public class InputManager : MonoBehaviour
         {
             _player1.Blocking();
         };
+        _controls.InGame.PlayerBlock.canceled += _ =>
+        {
+            _player1.BlockCanceled();
+        };
     }
 
     //Activating the Controls
