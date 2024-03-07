@@ -92,7 +92,8 @@ public class Health : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Time.timeScale = 0;
-            SceneManager.LoadScene("ChooseCharacter");
+            SceneManager.UnloadSceneAsync("MainGame");
+            SceneManager.LoadSceneAsync("ChooseCharacter");
         }
 
         if (enemy.Stun() == false)

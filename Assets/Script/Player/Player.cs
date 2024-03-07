@@ -47,11 +47,19 @@ public class Player : MonoBehaviour
     [SerializeField] private PowerUps powerUps;
     private GameObject bullet;
     private float bulletDestroy = 0;
+
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject.GetComponent<Animator>());
+        InputManager.InitS(this);
     }
-
+    private void OnEnable()
+    {
+        InputManager.EnableInGame();
+    }
+    private void OnDisable()
+    {
+        InputManager.DisableInGame();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -85,8 +93,7 @@ public class Player : MonoBehaviour
 
         //Activating the InputManager and Controls
         // InputManager.InitM(this, this);
-        InputManager.InitS(this);
-        InputManager.EnableInGame();
+     
         moveNumber = 0;
     }
 
@@ -142,7 +149,7 @@ public class Player : MonoBehaviour
     public void SetMoveDirection(Vector2 newDir)
     {
         _moveDir = newDir;
-        if (animator.runtimeAnimatorController != null)
+        if (animator.runtimeAnimatorController == null)
         {
             gameObject.TryGetComponent<Animator>(out Animator animator);
         }

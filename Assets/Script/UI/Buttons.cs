@@ -25,29 +25,39 @@ public class Buttons : MonoBehaviour
     public void LoadSinglePlayer()
     {
         SceneManager.LoadScene("ChooseCharacter");
+        Time.timeScale = 1.0f;
+
     }
 
     public void ChoosenCharacter1()
     {
         CharacterChossen = 1;
         SceneManager.LoadScene("Levels");
+        Time.timeScale = 1.0f;
+
     }
     public void ChoosenCharacter2()
     {
         CharacterChossen = 2;
         SceneManager.LoadScene("Levels");
+        Time.timeScale = 1.0f;
+
     }
     public void ChoosenCharacter3()
     {
         CharacterChossen = 3;
         SceneManager.LoadScene("Levels");
+        Time.timeScale = 1.0f;
+
     }
     public void ChoosenCharacter4()
     {
         CharacterChossen = 4;
         SceneManager.LoadScene("Levels");
+        Time.timeScale = 1.0f;
+
     }
-   
+
     /*
 public void loadMultiPlayer()
 {
