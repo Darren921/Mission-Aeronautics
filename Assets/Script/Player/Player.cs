@@ -47,8 +47,11 @@ public class Player : MonoBehaviour
     [SerializeField] private PowerUps powerUps;
     private GameObject bullet;
     private float bulletDestroy = 0;
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject.GetComponent<Animator>());
+    }
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +93,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         
         if (animator.GetBool("IsMoving") == false)
         {
@@ -138,6 +142,10 @@ public class Player : MonoBehaviour
     public void SetMoveDirection(Vector2 newDir)
     {
         _moveDir = newDir;
+        if (animator.runtimeAnimatorController != null)
+        {
+            gameObject.TryGetComponent<Animator>(out Animator animator);
+        }
         animator.SetBool("IsMoving", true);
         animator.SetBool("isIdle", false);
         FirstMove = true;
@@ -257,6 +265,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<Player>().enabled = true;
+            animator.speed = 1;
             animator.SetBool("Stunned", false);
             isStunned = false;
             StopCoroutine(stunCheck());
@@ -297,7 +306,13 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<Player>().enabled = true;
         isBlocking = false;
         animator.SetBool("Guarding", false);
+        animator.speed = 1;
         return;
+    }
+
+    public void StopAnimation()
+    {
+        animator.speed = 0;
     }
 
     

@@ -34,6 +34,10 @@ public class InputManager : MonoBehaviour
     public static void InitS(Player _player1)
     {
         _controls = new Controls();
+        if (_controls == null)
+        {
+            _controls = new Controls();
+        }
         PlayerAssigment PlayerAssigmentS = GameObject.Find("PlayerAssigment").GetComponent<PlayerAssigment>();
         _player1 = PlayerAssigmentS._players[0];
         
