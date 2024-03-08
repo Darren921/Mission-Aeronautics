@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     private float bulletDestroy = 0;
 
     private void Awake()
-    {
+    {   
         InputManager.InitS(this);
     }
     private void OnEnable()
@@ -80,10 +80,10 @@ public class Player : MonoBehaviour
                 break;
             case 3:
                 animator.runtimeAnimatorController = animatorOverrideControllers[2];
-                bullet = projectiles[2];
                 AttackEffects = Resources.LoadAll<AudioClip>("Characters Sprites/Player/Biofuse/Attack sounds");
                 break;
             case 4:
+                bullet = projectiles[2];
                 AttackEffects = Resources.LoadAll<AudioClip>("Characters Sprites/Player/Hammer/Attack sounds");
                 break;
 
@@ -216,6 +216,14 @@ public class Player : MonoBehaviour
         }
         if (isSpecialAtk == true && isStunned != true)
         {
+            if(Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
+            {
+                StartCoroutine(Shoot(1));
+            }
+            if (Buttons.CharacterChossen == 4) 
+            {
+                StartCoroutine(Shoot(3));
+            }   
             yield return new WaitForSeconds(0.6f);
             isSpecialAtk = false;
         
@@ -224,6 +232,7 @@ public class Player : MonoBehaviour
         {
             isSpecialAtk = false;
             _isAttacking = false;
+            _health.damage = 0;
         }
 
         _isAttacking = false;
@@ -388,6 +397,15 @@ public class Player : MonoBehaviour
             isColliding = true;
             hitCheck();
         }
+        if (collision.gameObject.CompareTag("Player Projectile"))
+        {
+            isColliding = true;
+            _health.damage = 5;
+            _health.GetEnemyHealth -= _health.damage;
+            _health.returnEnemyHealthBarSlider().value = _health.GetEnemyHealth;
+            print(_health.GetEnemyHealth);
+            print(_health.returnEnemyHealthBarSlider().value);
+        }
         if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true )
         {
             collectedPowerUp = powerUps.returnType();
@@ -447,10 +465,16 @@ public class Player : MonoBehaviour
 
 
 
-    public void Shoot()
+    public IEnumerator Shoot(int amount)
     {
-        GameObject bul =  Instantiate(bullet);
-        bul.transform.position = (transform.position + new Vector3(2f, 2.5f, 0));
+        for (int i = 0; i < amount; i++)
+        {
+            
+            GameObject bul = Instantiate(bullet);
+            bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+            yield return new WaitForSeconds(0.15f);
+        }
+        StopCoroutine(Shoot(amount));
     }
 
 }

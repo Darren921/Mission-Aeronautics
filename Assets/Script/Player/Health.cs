@@ -11,15 +11,16 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private Slider enemyHealthBarSlider;
     [SerializeField] private TextMeshProUGUI comboText;
-    public float enemyHealth;
+    private float enemyHealth;
     public int damage;
     [SerializeField] private Slider comboSlider;
     private int combo;
 
-    public GameObject gameOver;
-
-    private PlayerData playerData = new PlayerData();
-
+    public float GetEnemyHealth
+    {
+        get { return enemyHealth; }
+        set { enemyHealth = value;}
+    }
     public  int GetCombo
     {
        get { return combo; }
@@ -91,20 +92,14 @@ public class Health : MonoBehaviour
             canAttack = true;
         }
             
-        enemyHealthBarSlider.value = enemyHealth;
+        enemyHealthBarSlider.value = GetEnemyHealth;
 
         if (enemyHealth <= 0)
         {
             Time.timeScale = 0;
-            //SceneManager.UnloadSceneAsync("MainGame");
-            //SceneManager.LoadSceneAsync("ChooseCharacter");
-
-            gameOver.SetActive(true);
-            playerData.levelTwoActive = true;
-
-            string json = JsonUtility.ToJson(playerData);
-
-            System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+            SceneManager.UnloadSceneAsync("MainGame");
+            SceneManager.LoadSceneAsync("ChooseCharacter");
+            StopAllCoroutines();
         }
 
         if (enemy.Stun() == false)
@@ -118,5 +113,8 @@ public class Health : MonoBehaviour
     {
         return enemyStunned;
     }
-  
+    public Slider returnEnemyHealthBarSlider()
+    {
+        return enemyHealthBarSlider;
+    }
 }

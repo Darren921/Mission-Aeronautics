@@ -57,10 +57,12 @@ public class InputManager : MonoBehaviour
            _player1.CollectPowerUp();
 
         };
+        /*
         _controls.InGame.PlayerShoot.performed += _ =>
         {
-            _player1.Shoot();
+            _player1.Shoot(1);
         };
+        */
         _controls.InGame.PlayerBlock.performed += _ =>
         {
             _player1.Blocking();
@@ -74,10 +76,14 @@ public class InputManager : MonoBehaviour
     //Activating the Controls
     public static void EnableInGame()
     {
+
+
         _controls.InGame.Enable();
+
     }
     public static void DisableInGame()
     {
+
         _controls.InGame.Disable();
     }
 
