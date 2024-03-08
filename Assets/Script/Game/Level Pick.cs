@@ -8,17 +8,34 @@ public class LevelPick : MonoBehaviour
 {
     public static int LevelChossen;
 
-    public bool levelTwoActive;
-    public bool levelThreeActive;
-    public bool levelFourActive;
-    public bool levelFiveActive;
-
     public Image[] locks;
 
     public Image[] levels;
     public Sprite[] levelSprites;
 
     [SerializeField] private AnimatorOverrideController animatorOverrideController;
+
+    private PlayerData playerData;
+
+    private string json;
+
+    private PlayerData loadedData;
+
+    public bool levelTwoActive;
+    public bool levelThreeActive;
+    public bool levelFourActive;
+    public bool levelFiveActive;
+
+    private void Start()
+    {
+        playerData = new PlayerData();
+        json = System.IO.File.ReadAllText(Application.persistentDataPath + "/savefile.json");
+        loadedData = JsonUtility.FromJson<PlayerData>(json);
+        levelTwoActive = loadedData.levelTwoActive;
+        levelThreeActive = loadedData.levelThreeActive;
+        levelFourActive = loadedData.levelFourActive;
+        levelFiveActive = loadedData.levelFiveActive;
+    }
 
     private void Update()
     {

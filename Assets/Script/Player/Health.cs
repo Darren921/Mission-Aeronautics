@@ -16,6 +16,10 @@ public class Health : MonoBehaviour
     [SerializeField] private Slider comboSlider;
     private int combo;
 
+    public GameObject gameOver;
+
+    private PlayerData playerData = new PlayerData();
+
     public  int GetCombo
     {
        get { return combo; }
@@ -92,8 +96,15 @@ public class Health : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Time.timeScale = 0;
-            SceneManager.UnloadSceneAsync("MainGame");
-            SceneManager.LoadSceneAsync("ChooseCharacter");
+            //SceneManager.UnloadSceneAsync("MainGame");
+            //SceneManager.LoadSceneAsync("ChooseCharacter");
+
+            gameOver.SetActive(true);
+            playerData.levelTwoActive = true;
+
+            string json = JsonUtility.ToJson(playerData);
+
+            System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
         }
 
         if (enemy.Stun() == false)

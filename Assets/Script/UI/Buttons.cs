@@ -8,6 +8,8 @@ public class Buttons : MonoBehaviour
 {
     public static int CharacterChossen;
 
+    private PlayerData playerData = new PlayerData();
+
 
     public void BackToTitle()
     {
@@ -27,6 +29,14 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("ChooseCharacter");
         Time.timeScale = 1.0f;
 
+        playerData.levelTwoActive = false;
+        playerData.levelThreeActive = false;
+        playerData.levelFourActive = false;
+        playerData.levelFiveActive = false;
+
+        string json = JsonUtility.ToJson(playerData);
+
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
     public void ChoosenCharacter1()
