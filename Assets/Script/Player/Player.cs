@@ -61,6 +61,8 @@ public class Player : MonoBehaviour
         InputManager.DisableInGame();
     }
     // Start is called before the first frame update
+  
+
     void Start()
     {
         aI = FindObjectOfType<BrickManAI>();
@@ -219,11 +221,13 @@ public class Player : MonoBehaviour
             if(Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
             {
                 StartCoroutine(Shoot(1));
+                isSpecialAtk = false;
             }
             if (Buttons.CharacterChossen == 4) 
             {
                 StartCoroutine(Shoot(3));
-            }   
+                isSpecialAtk = false;
+            }
             yield return new WaitForSeconds(0.6f);
             isSpecialAtk = false;
         

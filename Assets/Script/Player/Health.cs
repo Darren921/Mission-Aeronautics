@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using TMPro;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -114,9 +115,9 @@ public class Health : MonoBehaviour
         {
             player.StopAllCoroutines();
             StopAllCoroutines();
-            player.ReturnAnimator().SetBool("Idle", true);
-            enemy.ReturnAnimator().SetBool("Stun", false);
             Time.timeScale = 0;
+
+
             //SceneManager.UnloadSceneAsync("MainGame");
             //SceneManager.LoadSceneAsync("ChooseCharacter");
 
