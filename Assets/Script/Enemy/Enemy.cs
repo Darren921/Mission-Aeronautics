@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -152,8 +153,11 @@ public class Enemy : MonoBehaviour
         }
         if (collision.gameObject.tag == ("PlayerProjectiles"))
         {
+            if (bulletHit == true)
+                return;
             bulletHit = true;
-          
+            StartCoroutine(Reset());
+
         }
     }
   
@@ -164,9 +168,14 @@ public class Enemy : MonoBehaviour
         {
             collidingWithPlayer = false;
         }
+
     }
 
-
+    IEnumerator Reset()
+    {
+        yield return new WaitForEndOfFrame();
+        bulletHit = false;
+    }
     public bool Stun()
     {
         return stunned;
@@ -214,4 +223,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    internal Animator ReturnAnimator()
+    {
+        return animator;
+    }
 }

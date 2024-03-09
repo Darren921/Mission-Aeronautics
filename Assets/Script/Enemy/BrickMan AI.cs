@@ -163,12 +163,20 @@ public class BrickManAI : Enemy
         }
         if (collision.gameObject.tag == ("PlayerProjectiles"))
         {
+            if (bulletHit == true)
+                return;
             bulletHit = true;
+            StartCoroutine(Reset());
 
         }
 
     }
 
+    IEnumerator Reset()
+    {
+        yield return new WaitForEndOfFrame();
+        bulletHit = false;
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -177,6 +185,10 @@ public class BrickManAI : Enemy
         }
     }
 
+    internal Animator ReturnAnimator()
+    {
+        return animator;
+    }
    internal void Attack(float damage)
     {
         if (collidingWithPlayer)

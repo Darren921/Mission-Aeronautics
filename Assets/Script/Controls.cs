@@ -78,7 +78,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""01c6b505-61a5-4112-9045-d3957cbfd2fd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.4)"",
                     ""initialStateCheck"": true
                 }
             ],
@@ -219,7 +219,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""079c623b-e6ea-4d14-844b-2016566af88b"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PlayerBlock"",

@@ -50,7 +50,7 @@ public class Health : MonoBehaviour
         canAttack = true;
         enemyHealth = 100;
         player = GameObject.Find("Player").GetComponent<Player>();
-        enemy = GameObject.FindObjectOfType<Enemy>();
+        enemy = FindObjectOfType<BrickManAI>();
     }
 
 
@@ -64,7 +64,6 @@ public class Health : MonoBehaviour
 
         if (enemy.ReturnBulletHit() == true)
         {
-            print(enemy.ReturnBulletHit());
             damage = 5;
             if (enemyHealth >= 0)
             {
@@ -113,8 +112,10 @@ public class Health : MonoBehaviour
         
         if (enemyHealth <= 0)
         {
+            player.StopAllCoroutines();
             StopAllCoroutines();
-
+            player.ReturnAnimator().SetBool("Idle", true);
+            enemy.ReturnAnimator().SetBool("Stun", false);
             Time.timeScale = 0;
             //SceneManager.UnloadSceneAsync("MainGame");
             //SceneManager.LoadSceneAsync("ChooseCharacter");

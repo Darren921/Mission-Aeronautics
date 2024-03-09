@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        aI = FindObjectOfType<Enemy>();
+        aI = FindObjectOfType<BrickManAI>();
         GravActive = true;
         animator = GetComponent<Animator>();
         switch (Buttons.CharacterChossen)
@@ -300,6 +300,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        print("blocking");
         StartCoroutine(Delay());
         isBlocking = true;
         animator.SetBool("Guarding", true);
@@ -314,11 +315,12 @@ public class Player : MonoBehaviour
     private IEnumerator Delay()
     {
         yield return new WaitForSeconds(2);
-        StopCoroutine(Delay());
+        
     }
 
     public void BlockCanceled()
     {
+        print("stop blocking");
         gameObject.GetComponent<Player>().enabled = true;
         isBlocking = false;
         animator.SetBool("Guarding", false);
@@ -455,7 +457,10 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    public   Animator ReturnAnimator()
+    {
+        return animator;
+    }
 
     public IEnumerator Shoot(int amount)
     {
@@ -481,7 +486,6 @@ public class Player : MonoBehaviour
 
             yield return new WaitForSeconds(0.15f);
         }
-        StopCoroutine(Shoot(0));
     }
 
 }
