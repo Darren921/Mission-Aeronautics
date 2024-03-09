@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -9,9 +10,9 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private Slider enemyHealthBarSlider;
+    [SerializeField] public Slider enemyHealthBarSlider;
     [SerializeField] private TextMeshProUGUI comboText;
-    private float enemyHealth;
+    private  float enemyHealth;
     public int damage;
     [SerializeField] private Slider comboSlider;
     private int combo;
@@ -42,21 +43,34 @@ public class Health : MonoBehaviour
     private static Enemy enemy;
 
     private PlayerData playerData = new PlayerData();
+    
+
     void Start()
     {
         canAttack = true;
         enemyHealth = 100;
         player = GameObject.Find("Player").GetComponent<Player>();
-        enemy = new Enemy();
+        enemy = GameObject.FindObjectOfType<Enemy>();
     }
 
 
     void Update()
     {
         comboText.text = combo.ToString();
-
+        enemyHealthBarSlider.value = enemyHealth;
+        print(enemyHealthBarSlider.value);
         comboSlider.value = combo;
 
+
+        if (enemy.ReturnBulletHit() == true)
+        {
+            print(enemy.ReturnBulletHit());
+            damage = 5;
+            if (enemyHealth >= 0)
+            {
+                enemyHealth  -= damage;
+            }
+        }
         if (player.Performing())
         {
             if (player.Colliding())
@@ -78,6 +92,7 @@ public class Health : MonoBehaviour
                         
                         canAttack = false;
                     }
+                    
                     else
                     {
                         damage = 30;
@@ -95,15 +110,14 @@ public class Health : MonoBehaviour
         {
             canAttack = true;
         }
-            
-        enemyHealthBarSlider.value = GetEnemyHealth;
-
+        
         if (enemyHealth <= 0)
         {
+            StopAllCoroutines();
+
             Time.timeScale = 0;
             //SceneManager.UnloadSceneAsync("MainGame");
             //SceneManager.LoadSceneAsync("ChooseCharacter");
-            StopAllCoroutines();
 
             playerData.levelTwoActive = true;
             string json = JsonUtility.ToJson(playerData);
@@ -123,8 +137,7 @@ public class Health : MonoBehaviour
     {
         return enemyStunned;
     }
-    public Slider returnEnemyHealthBarSlider()
-    {
-        return enemyHealthBarSlider;
-    }
+
+    
+   
 }

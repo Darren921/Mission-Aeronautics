@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 899480938752369994}
   - component: {fileID: 8904100675827879766}
   - component: {fileID: 6010999983622543409}
+  - component: {fileID: -7966753957769165461}
   m_Layer: 6
   m_Name: Hammar Projectile Prefab
-  m_TagString: Player Projectile
+  m_TagString: PlayerProjectiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +144,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -279,3 +280,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f63d71ad9474194058ef660ca0c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7966753957769165461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140975430971546188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c55c83d4c4dd1145ad5fbbab3c3df36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlphaTolerance: 20
+  DistanceThreshold: 8
+  Scale: 1
+  Decompose: 0
+  RunInPlayMode: 0
+  UseCache: 0
+  lastAlphaTolerance: 0
+  lastScale: 0
+  lastDistanceThreshold: 0
+  lastDecompose: 0
+  lastSprite: {fileID: 0}
+  lastRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  lastOffset: {x: -99999, y: -99999}
+  lastPixelsPerUnit: 0
+  lastFlipX: 0
+  lastFlipY: 0
+  editorCache: []

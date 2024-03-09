@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
-    [SerializeField] private Enemy aI;
+    private Enemy aI;
     [SerializeField] private PowerUps powerUps;
     private GameObject bullet;
     private float bulletDestroy = 0;
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        aI = FindObjectOfType<Enemy>();
         GravActive = true;
         animator = GetComponent<Animator>();
         switch (Buttons.CharacterChossen)
@@ -397,15 +397,7 @@ public class Player : MonoBehaviour
             isColliding = true;
             hitCheck();
         }
-        if (collision.gameObject.CompareTag("Player Projectile"))
-        {
-            isColliding = true;
-            _health.damage = 5;
-            _health.GetEnemyHealth -= _health.damage;
-            _health.returnEnemyHealthBarSlider().value = _health.GetEnemyHealth;
-            print(_health.GetEnemyHealth);
-            print(_health.returnEnemyHealthBarSlider().value);
-        }
+        
         if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true )
         {
             collectedPowerUp = powerUps.returnType();
@@ -471,10 +463,25 @@ public class Player : MonoBehaviour
         {
             
             GameObject bul = Instantiate(bullet);
-            bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+            if(aI.GetTurn1() == true )
+            {
+                bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+                
+            }
+            else if (aI.GetTurn2() == true)
+            {
+                bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+            }
+            else
+            {
+                bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+            }
+
+           
+
             yield return new WaitForSeconds(0.15f);
         }
-        StopCoroutine(Shoot(amount));
+        StopCoroutine(Shoot(0));
     }
 
 }

@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
 
     protected float debounce = 0f;
     protected float stunDebounce = 0f;
-
+    protected bool bulletHit;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour
        //     print(distance);
      //   }
 
+        //switch case maybe is preffered here
         if (enemyActive)
         {
             if (level == 1)
@@ -149,7 +150,13 @@ public class Enemy : MonoBehaviour
         {
             collidingWithPlayer = true;
         }
+        if (collision.gameObject.tag == ("PlayerProjectiles"))
+        {
+            bulletHit = true;
+          
+        }
     }
+  
 
     protected void OnTriggerExit2D(Collider2D collision)
     {
@@ -168,6 +175,18 @@ public class Enemy : MonoBehaviour
     public bool ReturnplayerHit()
     {
         return playerHit;
+    }
+    public bool ReturnBulletHit()
+    {
+        return bulletHit;
+    }
+    public bool GetTurn1()
+    {
+        return db1;
+    }
+    public bool GetTurn2()
+    {
+        return db2;
     }
 
     internal void Attack(float damage)

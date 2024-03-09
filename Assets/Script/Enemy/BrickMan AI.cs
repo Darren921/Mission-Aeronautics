@@ -161,6 +161,12 @@ public class BrickManAI : Enemy
         {
             collidingWithPlayer = true;
         }
+        if (collision.gameObject.tag == ("PlayerProjectiles"))
+        {
+            bulletHit = true;
+
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
