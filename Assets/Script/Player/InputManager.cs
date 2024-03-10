@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -63,14 +64,21 @@ public class InputManager : MonoBehaviour
             _player1.Shoot(1);
         };
         */
+        
         _controls.InGame.PlayerBlock.performed += _ =>
         {
             _player1.Blocking();
+
         };
         _controls.InGame.PlayerBlock.canceled += _ =>
         {
             _player1.BlockCanceled();
+
         };
+
+
+
+
     }
 
     //Activating the Controls

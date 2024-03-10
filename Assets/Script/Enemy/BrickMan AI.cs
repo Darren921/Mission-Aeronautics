@@ -22,13 +22,7 @@ public class BrickManAI : Enemy
         canAttack = true;
     }
 
-    private void OnEnable()
-    {
-        animator.SetBool("Move", false);
-        animator.SetBool("Stun", false);
-        animator.SetBool("Attack 1", false);
-        animator.SetBool("Attack 2", false);
-    }
+   
     // Update is called once per frame
     void Update()
     {

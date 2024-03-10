@@ -113,6 +113,7 @@ public class Health : MonoBehaviour
         
         if (enemyHealth <= 0)
         {
+            InputManager.DisableInGame();
             player.StopAllCoroutines();
             StopAllCoroutines();
             Time.timeScale = 0;

@@ -56,10 +56,7 @@ public class Player : MonoBehaviour
     {
         InputManager.EnableInGame();
     }
-    private void OnDisable()
-    {
-        InputManager.DisableInGame();
-    }
+  
     // Start is called before the first frame update
   
 
@@ -103,8 +100,8 @@ public class Player : MonoBehaviour
     void Update()
     {
       
-        
-        if (animator.GetBool("IsMoving") == false)
+      
+            if (animator.GetBool("IsMoving") == false)
         {
             StartCoroutine(IsIdle());
         }
@@ -277,7 +274,7 @@ public class Player : MonoBehaviour
             StopCoroutine(stunCheck());
 
         }
-        if (isBlocking  != true)
+        if (animator.GetBool("Guarding") ==  false)
         {
             isStunned = true;
             animator.SetBool("Stunned", true);
@@ -288,13 +285,14 @@ public class Player : MonoBehaviour
             animator.speed = 1;
             animator.SetBool("Stunned", false);
             isStunned = false;
-            StopCoroutine(stunCheck());
         }
-        else
+        else if (animator.GetBool("Guarding") == true) 
         {
             isStunned = false;
-            StopCoroutine(stunCheck());
+            animator.SetBool("Stunned", false);
         }
+
+
 
     }
 
@@ -309,11 +307,10 @@ public class Player : MonoBehaviour
         isBlocking = true;
         animator.SetBool("Guarding", true);
         isStunned = false;
-        gameObject.GetComponent<Player>().enabled = false;
         rb.velocity = Vector2.zero;
-       
-       
+        gameObject.GetComponent<Player>().enabled = false;
 
+       
     }
 
     private IEnumerator Delay()
