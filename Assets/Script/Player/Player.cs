@@ -324,6 +324,7 @@ public class Player : MonoBehaviour
 
     public void BlockCanceled()
     {
+
         print("stop blocking");
         gameObject.GetComponent<Player>().enabled = true;
         isBlocking = false;
