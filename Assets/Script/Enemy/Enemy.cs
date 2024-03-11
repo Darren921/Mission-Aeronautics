@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] protected float speed;
 
-    [SerializeField] public Slider playerSlider;
+    [SerializeField] internal  Slider playerSlider;
 
     [SerializeField] public float playerHealth = 100;
 
