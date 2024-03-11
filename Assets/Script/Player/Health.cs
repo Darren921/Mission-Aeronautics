@@ -62,61 +62,72 @@ public class Health : MonoBehaviour
         print(enemyHealthBarSlider.value);
         comboSlider.value = combo;
 
-
-        if (enemy.ReturnBulletHit() == true)
+        if(enemy != null)
         {
-            damage = 5;
-            if (enemyHealth >= 0)
+            if (enemy.ReturnBulletHit() == true)
             {
-                enemyHealth  -= damage;
-            }
-        }
-        if (player.Performing())
-        {
-            if (player.Colliding())
-            {
-                if (canAttack)
+                damage = 5;
+                if (enemyHealth >= 0)
                 {
-                    if (!player.SpecialAtk() == true)
-                    {
-                        if(combo <= 5)
-                        {
-                            combo += 1;
-                        }
-                        enemyStunned = true;
-                        damage = 10;
-                        if (enemyHealth >= 0)
-                        {
-                            enemyHealth -= damage;
-                        }
-                        
-                        canAttack = false;
-                    }
-                    
-                    else
-                    {
-                        damage = 30;
-                        if (enemyHealth >= 0)
-                        {
-                            enemyHealth -= damage;
-                        }
-                        canAttack = false;
-                    }
-                  
+                    enemyHealth -= damage;
                 }
             }
         }
-        else
+        if (enemy != null)
         {
-            canAttack = true;
+            if (player.Performing())
+            {
+                if (player.Colliding())
+                {
+                    if (canAttack)
+                    {
+                        if (!player.SpecialAtk() == true)
+                        {
+                            if (combo <= 5)
+                            {
+                                combo += 1;
+                            }
+                            enemyStunned = true;
+                            damage = 10;
+                            if (enemyHealth >= 0)
+                            {
+                                enemyHealth -= damage;
+                            }
+
+                            canAttack = false;
+                        }
+
+                        else
+                        {
+                            damage = 30;
+                            if (enemyHealth >= 0)
+                            {
+                                enemyHealth -= damage;
+                            }
+                            canAttack = false;
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                canAttack = true;
+            }
         }
         
         if (enemyHealth <= 0)
         {
+            
             InputManager.DisableInGame();
+            player.ReturnAnimator().SetBool("IsMoving",false);
+            player.ReturnAnimator().SetBool("Stunned", false);
+            player.ReturnAnimator().SetBool("IsAttacking", false);
+            player.GetStunned = false;
             player.StopAllCoroutines();
             StopAllCoroutines();
             Time.timeScale = 0;
+            
 
 
             //SceneManager.UnloadSceneAsync("MainGame");
@@ -128,11 +139,14 @@ public class Health : MonoBehaviour
 
             gameOverScreen.SetActive(true);
         }
-
-        if (enemy.Stun() == false)
+        if(enemy != null)
         {
-            enemyStunned = false;
+            if (enemy.Stun() == false)
+            {
+                enemyStunned = false;
+            }
         }
+        
     }
    
 

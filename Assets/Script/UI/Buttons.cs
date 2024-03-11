@@ -7,9 +7,8 @@ using UnityEngine.UI;
 public class Buttons : MonoBehaviour
 {
     public static int CharacterChossen;
-
+    private Tutorial tutorial  = new Tutorial();
     private PlayerData playerData = new PlayerData();
-
 
     public void BackToTitle()
     {
@@ -42,29 +41,62 @@ public class Buttons : MonoBehaviour
     public void ChoosenCharacter1()
     {
         CharacterChossen = 1;
-        SceneManager.LoadScene("Levels");
-        Time.timeScale = 1.0f;
+        if(Tutorial.tutFin != true)
+        {
+            SceneManager.LoadScene("Tut");
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            SceneManager.LoadScene("Levels");
+            Time.timeScale = 1.0f;
+        }
+       
 
     }
     public void ChoosenCharacter2()
     {
         CharacterChossen = 2;
-        SceneManager.LoadScene("Levels");
-        Time.timeScale = 1.0f;
-
+        if (Tutorial.tutFin != true)
+        {
+            SceneManager.LoadScene("Tut");
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            SceneManager.LoadScene("Levels");
+            Time.timeScale = 1.0f;
+        }
+       
     }
     public void ChoosenCharacter3()
     {
         CharacterChossen = 3;
-        SceneManager.LoadScene("Levels");
-        Time.timeScale = 1.0f;
+        if (Tutorial.tutFin != true)
+        {
+            SceneManager.LoadScene("Tut");
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            SceneManager.LoadScene("Levels");
+            Time.timeScale = 1.0f;
+        }
 
     }
     public void ChoosenCharacter4()
     {
         CharacterChossen = 4;
-        SceneManager.LoadScene("Levels");
-        Time.timeScale = 1.0f;
+        if (Tutorial.tutFin != true)
+        {
+            SceneManager.LoadScene("Tut");
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            SceneManager.LoadScene("Levels");
+            Time.timeScale = 1.0f;
+        }
 
     }
 

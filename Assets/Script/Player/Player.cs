@@ -1,10 +1,5 @@
-using Cinemachine.Utility;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using static PowerUps;
 
 public class Player : MonoBehaviour
@@ -37,6 +32,7 @@ public class Player : MonoBehaviour
     private Vector3 EndPosBoost;
     private Animator animator;
     [SerializeField] private Health _health;
+    private Tutorial tut;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject[] projectiles;
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
@@ -49,15 +45,31 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {   
-        InputManager.InitS(this);
+        tut = FindObjectOfType<Tutorial>();
+        if (Tutorial.tutFin != true)
+        {
+            InputManager.InitTut(this);
+            InputManager.EnableInGame();
+        }
+        else
+        {
+            InputManager.InitS(this);
+            InputManager.EnableInGame();
+            gameObject.GetComponent<Player>().enabled = false;
+            gameObject.GetComponent<Player>().enabled = true;
+
+        }
+
+
     }
-    private void OnEnable()
+   public bool GetStunned 
     {
-        InputManager.EnableInGame();
+        get { return isStunned; }
+        set { isStunned = value; }
     }
-  
+
     // Start is called before the first frame update
-  
+
 
     void Start()
     {
@@ -187,40 +199,48 @@ public class Player : MonoBehaviour
         performed = true;
         _isAttacking = true;
         animator.SetBool("IsAttacking", true);
-           switch (animator.GetInteger("MoveNumber")) 
-        { 
-            case 0:
-                EndPosA = transform.position + new Vector3(0.2f, 0, 0);
-                transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
-                source.PlayOneShot(AttackEffects[0]);
-                yield return new WaitForSeconds(1f);
-                animator.SetInteger("MoveNumber", 1);
-                break; 
-            case 1:
-                EndPosA = transform.position + new Vector3(0.2f, 0, 0);
-                transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
-                source.PlayOneShot(AttackEffects[1]);
-                yield return new WaitForSeconds(1f);
-                animator.SetInteger("MoveNumber", 2);
-                break;
-            case 2:
-                EndPosA = transform.position + new Vector3(0.2f, 0, 0);
-                transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
-                source.PlayOneShot(AttackEffects[2]);
-                yield return new WaitForSeconds(1f);
-                animator.SetInteger("MoveNumber", 0);
-                break;
-            case 3:
-                EndPosA = transform.position + new Vector3(0.2f, 0, 0);
-                transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
-                source.PlayOneShot(AttackEffects[3]);
-                yield return new WaitForSeconds(1f);
-                animator.SetInteger("MoveNumber", 0);
-                break;
-            default:
-                break;
+        if(isStunned !=  true)
+        {
+            switch (animator.GetInteger("MoveNumber"))
+            {
+                case 0:
+                    EndPosA = transform.position + new Vector3(0.2f, 0, 0);
+                    transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
+                    source.PlayOneShot(AttackEffects[0]);
+                    yield return new WaitForSeconds(1f);
+                    animator.SetInteger("MoveNumber", 1);
+                    break;
+                case 1:
+                    EndPosA = transform.position + new Vector3(0.2f, 0, 0);
+                    transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
+                    source.PlayOneShot(AttackEffects[1]);
+                    yield return new WaitForSeconds(1f);
+                    animator.SetInteger("MoveNumber", 2);
+                    break;
+                case 2:
+                    EndPosA = transform.position + new Vector3(0.2f, 0, 0);
+                    transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
+                    source.PlayOneShot(AttackEffects[2]);
+                    yield return new WaitForSeconds(1f);
+                    animator.SetInteger("MoveNumber", 0);
+                    break;
+                case 3:
+                    EndPosA = transform.position + new Vector3(0.2f, 0, 0);
+                    transform.position = Vector3.Lerp(transform.position, EndPosA, 1);
+                    source.PlayOneShot(AttackEffects[3]);
+                    yield return new WaitForSeconds(1f);
+                    animator.SetInteger("MoveNumber", 0);
+                    break;
+                default:
+                    break;
 
+            }
         }
+        else
+        {
+            yield break;
+        }
+          
         if (isSpecialAtk == true && isStunned != true)
         {
             if(Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
@@ -248,10 +268,6 @@ public class Player : MonoBehaviour
         animator.SetBool("IsAttacking", false);
         performed = false;
 
-       
-        StopCoroutine(AttackCheck());
-
-
     }
 
     IEnumerator IsIdle()
@@ -265,10 +281,11 @@ public class Player : MonoBehaviour
 
     public void hitCheck ()
     {
-        if (aI.ReturnplayerHit() == true) 
+        if (aI.ReturnplayerHit() == true  ) 
         { 
         StartCoroutine(stunCheck());
         }
+     
        
     }
 
@@ -489,7 +506,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+                bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
             }
 
            

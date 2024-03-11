@@ -11,13 +11,15 @@ public class BrickManAI : Enemy
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
         health = new Health();
         enemy = new Enemy();
         animator = GetComponent<Animator>();
+        stunned = false;
+        animator.SetBool("Stun", false);
         enemyState = "Moving";
         canAttack = true;
     }
@@ -209,9 +211,10 @@ public class BrickManAI : Enemy
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = true;
+
                 }
 
-            }   
+            }
         }
     }
 
