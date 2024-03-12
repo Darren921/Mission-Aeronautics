@@ -89,11 +89,11 @@ public class Enemy : MonoBehaviour
             }
             else if (level == 2)
             {
-                this.gameObject.GetComponent<EarthmanAI>().enabled = true;
+                this.gameObject.GetComponent<EvilDarrenAI>().enabled = true;
             }
             else if (level == 3)
             {
-
+                this.gameObject.GetComponent<EarthmanAI>().enabled = true;
             }
             else
             {
@@ -217,6 +217,7 @@ public class Enemy : MonoBehaviour
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = true;
+
                 }
 
             }

@@ -8,6 +8,7 @@ public class EarthmanAI : Enemy
 
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
+    [SerializeField] private GameObject fireBall;
 
 
     // Start is called before the first frame update
@@ -44,7 +45,6 @@ public class EarthmanAI : Enemy
         }
         else
         {
-            stunned = true;
             if (enemyState == "Idle")
             {
                 animator.SetBool("Move", false);
@@ -70,66 +70,19 @@ public class EarthmanAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
 
 
-                if (distance <= 3 && distance >= -3)
+                if (distance <= 5 && distance >= -5)
                 {
-                    int roll = Random.Range(0, 5);
-
-                    if (roll == 0)
-                    {
-                        enemyState = "Attack 2";
-                    }
-                    else
-                    {
-                        enemyState = "Attack 1";
-                    }
+                    enemyState = "Attack";
                 }
             }
-            else if (enemyState == "Attack 1")
-            {
-                animator.SetBool("Move", false);
-                animator.SetBool("Stun", false);
-                animator.SetBool("Attack 1", true);
-                animator.SetBool("Attack 2", false);
-
-                if (distance >= 1.5 && distance <= -1.5)
-                {
-                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
-                }
-
-                Attack(10);
-
-                debounce += 1 * Time.deltaTime;
-                if (debounce >= 1)
-                {
-                    enemyState = "Recovery";
-                    debounce = 0;
-                }
-            }
-            else if (enemyState == "Attack 2")
+            else if (enemyState == "Attack")
             {
                 animator.SetBool("Move", false);
                 animator.SetBool("Stun", false);
                 animator.SetBool("Attack 1", false);
-                animator.SetBool("Attack 2", true);
-
-                Attack(30);
-
-                debounce += 1 * Time.deltaTime;
-                if (debounce >= 1)
-                {
-                    enemyState = "Recovery";
-                    debounce = 0;
-                }
-            }
-            else if (enemyState == "Recovery")
-            {
-                canAttack = true;
-                animator.SetBool("Move", true);
-                animator.SetBool("Stun", false);
-                animator.SetBool("Attack 1", false);
                 animator.SetBool("Attack 2", false);
 
-                if (distance <= 4.5 && distance >= -4.5)
+                if (distance <= 5 && distance >= -5)
                 {
                     if (distance >= 0)
                     {
@@ -139,16 +92,35 @@ public class EarthmanAI : Enemy
                     {
                         transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, this.transform.position.y), speed * Time.deltaTime);
                     }
-
                 }
 
                 debounce += 1 * Time.deltaTime;
-                if (debounce >= .8)
+
+                if (debounce >= 1.5f)
                 {
-                    enemyState = "Moving";
+                    Shoot();
                     debounce = 0;
                 }
+
             }
+        }
+    }
+
+    public void Shoot()
+    {
+        GameObject bul = Instantiate(fireBall);
+        if (GetTurn1() == true)
+        {
+            bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+
+        }
+        else if (GetTurn2() == true)
+        {
+            bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+        }
+        else
+        {
+            bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
         }
     }
 }
