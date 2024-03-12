@@ -121,13 +121,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tut.refresh == true)
+        if(Tutorial.tutFin != true)
         {
-            InputManager.InitTut(this);
-            InputManager.DisableInGame();
-            InputManager.EnableInGame();
-            tut.refresh = false;
+            if (tut.refresh == true)
+            {
+                InputManager.InitTut(this);
+                InputManager.DisableInGame();
+                InputManager.EnableInGame();
+                tut.refresh = false;
+            }
         }
+       
 
         if (animator.GetBool("IsMoving") == false)
         {

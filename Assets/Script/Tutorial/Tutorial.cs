@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -30,10 +33,15 @@ public class Tutorial : MonoBehaviour
     }
 
     public void CheckIfTrue()
-    {
+    {   
         refresh = true;
     }
 
+    public void SkipTut()
+    {
+        tutFin = true;
+        SceneManager.LoadScene("Levels");
+    }
     // Update is called once per frame
     void Update()
     {

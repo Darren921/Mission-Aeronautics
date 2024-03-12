@@ -21,6 +21,8 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("ChooseCharacter");
     }
 
+   
+
 
     public void LoadSinglePlayer()
     {
