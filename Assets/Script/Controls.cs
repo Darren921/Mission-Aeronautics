@@ -80,6 +80,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""NextDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""33698928-c714-41b1-bc62-c0bca32d90e2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -163,7 +172,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""58239aae-1b11-41eb-aa9e-8ff0c2fae1ed"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -218,11 +227,22 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""079c623b-e6ea-4d14-844b-2016566af88b"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PlayerBlock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f947fbd2-e785-41b5-aa5f-8e25810d41b9"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -239,6 +259,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_InGame_Player1CollectPowerUp = m_InGame.FindAction("Player1CollectPowerUp", throwIfNotFound: true);
         m_InGame_PlayerShoot = m_InGame.FindAction("PlayerShoot", throwIfNotFound: true);
         m_InGame_PlayerBlock = m_InGame.FindAction("PlayerBlock", throwIfNotFound: true);
+        m_InGame_NextDialogue = m_InGame.FindAction("NextDialogue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,6 +327,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Player1CollectPowerUp;
     private readonly InputAction m_InGame_PlayerShoot;
     private readonly InputAction m_InGame_PlayerBlock;
+    private readonly InputAction m_InGame_NextDialogue;
     public struct InGameActions
     {
         private @Controls m_Wrapper;
@@ -316,6 +338,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Player1CollectPowerUp => m_Wrapper.m_InGame_Player1CollectPowerUp;
         public InputAction @PlayerShoot => m_Wrapper.m_InGame_PlayerShoot;
         public InputAction @PlayerBlock => m_Wrapper.m_InGame_PlayerBlock;
+        public InputAction @NextDialogue => m_Wrapper.m_InGame_NextDialogue;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -343,6 +366,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @PlayerBlock.started += instance.OnPlayerBlock;
             @PlayerBlock.performed += instance.OnPlayerBlock;
             @PlayerBlock.canceled += instance.OnPlayerBlock;
+            @NextDialogue.started += instance.OnNextDialogue;
+            @NextDialogue.performed += instance.OnNextDialogue;
+            @NextDialogue.canceled += instance.OnNextDialogue;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -365,6 +391,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @PlayerBlock.started -= instance.OnPlayerBlock;
             @PlayerBlock.performed -= instance.OnPlayerBlock;
             @PlayerBlock.canceled -= instance.OnPlayerBlock;
+            @NextDialogue.started -= instance.OnNextDialogue;
+            @NextDialogue.performed -= instance.OnNextDialogue;
+            @NextDialogue.canceled -= instance.OnNextDialogue;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -390,5 +419,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPlayer1CollectPowerUp(InputAction.CallbackContext context);
         void OnPlayerShoot(InputAction.CallbackContext context);
         void OnPlayerBlock(InputAction.CallbackContext context);
+        void OnNextDialogue(InputAction.CallbackContext context);
     }
 }

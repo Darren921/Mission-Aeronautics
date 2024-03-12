@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Buttons : MonoBehaviour
 {
     public static int CharacterChossen;
-    private Tutorial tutorial  = new Tutorial();
     private PlayerData playerData = new PlayerData();
 
     public void BackToTitle()

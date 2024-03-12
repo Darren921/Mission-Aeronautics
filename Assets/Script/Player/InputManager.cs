@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
 {
     private static Controls _controls;
     private static Tutorial tut;
+    private static TutTextManager manager;
     /*
      public static void InitM(Player _player1, Player _player2)
      {
@@ -76,6 +77,8 @@ public class InputManager : MonoBehaviour
 
         };
 
+      
+
 
 
 
@@ -84,32 +87,38 @@ public class InputManager : MonoBehaviour
     public static void InitTut(Player _player1)
     {
         _controls = new Controls();
-      tut = FindObjectOfType<Tutorial>();   
+      tut = FindObjectOfType<Tutorial>();
+        manager = FindObjectOfType<TutTextManager>();
     PlayerAssigment PlayerAssigmentS = FindObjectOfType<PlayerAssigment>();
         _player1 = PlayerAssigmentS._players[0];
-      
-            if(Tutorial.movement == true)
+
+        _controls.InGame.NextDialogue.performed += _ =>
+        {
+            manager.nextSentence();
+            print(tut.basicAtk);
+        };
+            if (tut.movement == true)
              {
             _controls.InGame.Player1Movement.performed += _ =>
             {
                 _player1.SetMoveDirection(_.ReadValue<Vector2>());
             };
 
-            if(Tutorial.basicAtk == true)
+            if(tut.basicAtk == true)
             {
                 _controls.InGame.Player1NormalAttack.performed += _ =>
                 {
                     _player1.Attacking();
                 };
             }
-            if(Tutorial.specialAtk == true) 
+            if(tut.specialAtk == true) 
             {
                 _controls.InGame.Player1SpecialAttack.performed += _ =>
                 {
                     _player1.SpecialAttack();
                 };
             }
-            if(Tutorial.block == true)
+            if(tut.block == true)
             {
                 _controls.InGame.PlayerBlock.performed += _ =>
                 {
@@ -123,7 +132,7 @@ public class InputManager : MonoBehaviour
                 };
             }
 
-            if(Tutorial.powerUps == true)
+            if(tut.powerUps == true)
             {
                 _controls.InGame.Player1CollectPowerUp.performed += _ =>
                 {

@@ -44,12 +44,13 @@ public class Player : MonoBehaviour
     private float bulletDestroy = 0;
 
     private void Awake()
-    {   
+    {
         tut = FindObjectOfType<Tutorial>();
         if (Tutorial.tutFin != true)
         {
             InputManager.InitTut(this);
             InputManager.EnableInGame();
+          
         }
         else
         {
@@ -59,9 +60,10 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<Player>().enabled = true;
 
         }
-
-
     }
+
+
+            
    public bool GetStunned 
     {
         get { return isStunned; }
@@ -119,9 +121,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
-      
-            if (animator.GetBool("IsMoving") == false)
+        if (tut.refresh == true)
+        {
+            InputManager.InitTut(this);
+            InputManager.DisableInGame();
+            InputManager.EnableInGame();
+            tut.refresh = false;
+        }
+
+        if (animator.GetBool("IsMoving") == false)
         {
             StartCoroutine(IsIdle());
         }
@@ -327,7 +335,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        print("blocking");
+      
         StartCoroutine(Delay());
         isBlocking = true;
         animator.SetBool("Guarding", true);
@@ -347,7 +355,7 @@ public class Player : MonoBehaviour
     public void BlockCanceled()
     {
 
-        print("stop blocking");
+      
         gameObject.GetComponent<Player>().enabled = true;
         isBlocking = false;
         animator.SetBool("Guarding", false);
@@ -430,7 +438,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true )
         {
             collectedPowerUp = powerUps.returnType();
-            print(collectedPowerUp);
+          
             switch (collectedPowerUp )
             {
                 case PowerUpType.Health:
@@ -439,19 +447,19 @@ public class Player : MonoBehaviour
                         
                         aI.playerHealth += 20;
                         aI.playerSlider.value = aI.playerHealth;
-                        print(aI.playerHealth);
+                    
                     }
 
                     else if (aI.playerHealth >= 75)
                     {
                         aI.playerHealth = 75;
                         aI.playerSlider.value = aI.playerHealth;
-                        print(aI.playerHealth);
+                        
                     }
                     else if (aI.playerHealth > 75)
                     { 
                         aI.playerSlider.value = aI.playerHealth;
-                        print(aI.playerHealth);
+                       
                     }
 
                     break;

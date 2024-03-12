@@ -59,7 +59,6 @@ public class Health : MonoBehaviour
     {
         comboText.text = combo.ToString();
         enemyHealthBarSlider.value = enemyHealth;
-        print(enemyHealthBarSlider.value);
         comboSlider.value = combo;
 
         if(enemy != null)
