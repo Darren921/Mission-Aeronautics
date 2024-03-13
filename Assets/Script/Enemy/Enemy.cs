@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject enemyHealthImage;
     
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
 
