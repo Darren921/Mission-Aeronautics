@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -223,6 +224,12 @@ public class BrickManAI : Enemy
         
     }
 
-    
-    
+    internal float GetPlayerHealth
+    {
+        get { return playerHealth; }
+        set { playerHealth = value; }
+    }
+
+
+
 }

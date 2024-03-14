@@ -46,12 +46,12 @@ public class Health : MonoBehaviour
 
     private static Enemy enemy;
 
-    private Enemy enemyScript = new Enemy();
-
     private PlayerData playerData = new PlayerData();
     private LevelPick levelPick = new LevelPick();
     
     public  bool nextSetennce;
+
+    public GameObject playerHealth;
 
     void Start()
     {
@@ -60,7 +60,7 @@ public class Health : MonoBehaviour
         canAttack = true;
         enemyHealth = 100;
         player = GameObject.Find("Player").GetComponent<Player>();
-        if (Tutorial.tutFin == false)
+        if (Tutorial.tutFin == true)
         {
             switch (LevelPick.LevelChossen)
             {
@@ -71,7 +71,7 @@ public class Health : MonoBehaviour
                     enemy = FindObjectOfType<BrickManAI>();
                     break;
                 case 2:
-                    enemy = FindObjectOfType<EarthmanAI>();
+                    enemy = FindObjectOfType<EvilDarrenAI>();
                     break;
 
             }
@@ -83,7 +83,6 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        //print(enemyScript.GetPlayerHealth());
         if(Tutorial.tutFin != true)
         {
             enemy = FindObjectOfType<TrainingDummy>();
@@ -186,7 +185,7 @@ public class Health : MonoBehaviour
             gameOverScreen.SetActive(true);
             winText.text = "You Win!";
         }
-        else if (enemyScript.GetPlayerHealth() <= 0  && Tutorial.tutFin == true)
+        else if (enemy.GetPlayerHealth <= 0  && Tutorial.tutFin == true)
         {
             InputManager.DisableInGame();
             player.ReturnAnimator().SetBool("IsMoving", false);
