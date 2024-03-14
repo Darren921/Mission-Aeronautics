@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         if (Tutorial.tutFin != true)
         {
             InputManager.InitTut(this);
+            InputManager.DisableInGame();
             InputManager.EnableInGame();
           
         }
@@ -134,12 +135,7 @@ public class Player : MonoBehaviour
         if (Tutorial.tutFin != true)
         {
 
-            if (enemy != null)
-            {
-                print(isBlocking);
-                print(tut.block);
-                print(enemy.ReturnplayerHit());
-            }
+
             if (tut.refresh == true)
             {
                 InputManager.InitTut(this);

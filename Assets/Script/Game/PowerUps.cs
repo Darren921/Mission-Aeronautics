@@ -11,8 +11,11 @@ public class PowerUps : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] GameObject powerup;
     [SerializeField] Player player;
+    Enemy enemy;
     [SerializeField] Sprite[] PowerUpIcons;
      SpriteRenderer powerupRenderer;
+    Tutorial tut;
+    private bool isSpawned;
     public enum PowerUpType
     {
         Health,
@@ -57,9 +60,9 @@ public class PowerUps : MonoBehaviour
 
     private IEnumerator SpawnPowerUp()
     {
-
-        while (player != null)
+        if (isSpawned == false)
         {
+
             if (Tutorial.tutFin == true)
             {
                 RandomPowerup();
@@ -70,11 +73,10 @@ public class PowerUps : MonoBehaviour
             Vector3 spawnPoint = Vector3.Lerp(topLeft, topRight, UnityEngine.Random.value);
 
             GameObject Powerup = Instantiate(powerup, spawnPoint, Quaternion.identity);
-
+            isSpawned = true;
             print(PowerUpTypeS);
 
-            if (Tutorial.tutFin == true)
-            {
+           
                 switch (PowerUpTypeS)
                 {
                     case "Health":
@@ -99,30 +101,35 @@ public class PowerUps : MonoBehaviour
                 }
                 yield return new WaitForSeconds(20);
                 Destroy(Powerup);
+                isSpawned = false;
             }
-            else
-            {
-                switch (PowerUpTypeS)
-                {
-                    case "Health":
-                        powerupRenderer = powerup.GetComponent<SpriteRenderer>();
-                        print("Health");
-                        powerUpType = PowerUpType.Health;
-                        powerupRenderer.sprite = PowerUpIcons[0];
-                        break;
-                }
-            }
-        }
 
 
+
+        
 
     }
     void Start()
     {
+        if(Tutorial.tutFin == false)
+        {
+            tut = FindObjectOfType<Tutorial>();
+            enemy = FindObjectOfType<TrainingDummy>();
+        }
         StartCoroutine(SpawnPowerUp());
     }
-   
-   public string RandomPowerup()
+
+    private void Update()
+    {
+         if(tut.powerUps == true && enemy.playerHealth <= 70 && isSpawned == false )
+        {
+            StartCoroutine(SpawnPowerUp());
+        }
+    }
+
+
+
+    public string RandomPowerup()
     {
         if (Tutorial.tutFin == true)
         {

@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Follow: {fileID: 72467268}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 17
+    OrthographicSize: 18.56
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -618,7 +618,7 @@ Transform:
   m_GameObject: {fileID: 223360735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0555558, y: 1.2800004, z: -11.4}
+  m_LocalPosition: {x: -0.5008893, y: 1.1761594, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1438,7 +1438,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0555558, y: 1.2800004, z: -11.4}
+  m_LocalPosition: {x: -0.5008893, y: 1.1761594, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15448,15 +15448,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.5
-  m_LookaheadSmoothing: 2.9
+  m_LookaheadTime: 0.568
+  m_LookaheadSmoothing: 5.9
   m_LookaheadIgnoreY: 0
   m_XDamping: 0.8
   m_YDamping: 0.8
   m_ZDamping: 0.8
   m_TargetMovementOnly: 1
   m_ScreenX: 0.4
-  m_ScreenY: 0.55
+  m_ScreenY: 0.543
   m_CameraDistance: 10
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
@@ -15720,6 +15720,7 @@ MonoBehaviour:
   animator: {fileID: 1882915262}
   enemy: {fileID: 975061892}
   enemyHealthbar: {fileID: 1374204787}
+  powerUpSpawner: {fileID: 1970502919}
 --- !u!1 &975061892
 GameObject:
   m_ObjectHideFlags: 0

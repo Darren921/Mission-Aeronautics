@@ -108,7 +108,7 @@ public class TrainingDummy : Enemy
                     transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
                 }
 
-                Attack(20);
+                Attack(40);
 
                 if (tut.block == true)
                 {
@@ -128,7 +128,7 @@ public class TrainingDummy : Enemy
                 animator.SetBool("Attack 1", false);
                 animator.SetBool("Attack 2", true);
 
-                Attack(20);
+                Attack(40);
 
                 if (tut.block == true)
                 {

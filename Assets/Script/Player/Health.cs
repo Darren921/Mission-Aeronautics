@@ -211,14 +211,17 @@ public class Health : MonoBehaviour
 
         }
        
-        if (player.ReturnAnimator().GetBool("Guarding") == true && tut.block == true && enemy.ReturnplayerHit() == true)
+
+        if(enemy != null)
         {
-            
-            tut.powerUps = true;
-            tut.CheckIfTrue();
+            if (enemy.playerHealth <= 80 && player.ReturnAnimator().GetBool("Guarding") == true && tut.block == true && enemy.ReturnplayerHit() == true)
+            {
 
-            tutTextManager.IsTalking = false;
+                tut.powerUps = true;
+                tut.CheckIfTrue();
+                tutTextManager.IsTalking = false;
 
+            }
         }
         if (enemy != null)
         {

@@ -11,8 +11,9 @@ public class Buttons : MonoBehaviour
 
     public void BackToTitle()
     {
-        SceneManager.LoadScene("TitleScreen");
         Time.timeScale = 1.0f;
+        StopAllCoroutines();
+        SceneManager.LoadScene("TitleScreen");
 
     }
 
@@ -44,6 +45,8 @@ public class Buttons : MonoBehaviour
         CharacterChossen = 1;
         if(Tutorial.tutFin != true)
         {
+     
+
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
             LevelPick.LevelChossen = 0;

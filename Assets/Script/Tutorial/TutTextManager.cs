@@ -44,7 +44,6 @@ public class TutTextManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        print(sentences.Count);
         switch (sentences.Count)
         {
             case 0:
@@ -55,14 +54,7 @@ public class TutTextManager : MonoBehaviour
                
                 break;
             case 2:
-                print(true);
-                tut.powerUps = true;
-                enemy.SetActive(false);
-                enemy.GetComponent<Enemy>().enabled = false;
-                enemy.GetComponent<TrainingDummy>().enabled = false;
-                enemyHealthbar.SetActive(false);
-                powerUpSpawner.SetActive (true);
-                isTalking = true;
+               
                 break;
             case 3:
                 tut.block = true;
@@ -133,7 +125,9 @@ public class TutTextManager : MonoBehaviour
 
     private void Update()
     {
-        if(isTalking == false && sentences.Count == 3)
+        print(sentences.Count);
+
+        if (isTalking == false && sentences.Count == 3)
         {
             typeSpeed = 0f;
             string sentence = sentences.Dequeue();
@@ -143,6 +137,14 @@ public class TutTextManager : MonoBehaviour
         print(tut.powerUps);
         if (isTalking == false && sentences.Count == 2 && tut.powerUps)
         {
+            print(true);
+            tut.powerUps = true;
+            enemy.SetActive(false);
+            enemy.GetComponent<Enemy>().enabled = false;
+            enemy.GetComponent<TrainingDummy>().enabled = false;
+            enemyHealthbar.SetActive(false);
+            powerUpSpawner.GetComponent<PowerUpSpawner>().enabled = true;
+            isTalking = true;
             typeSpeed = 0f;
             string sentence = sentences.Dequeue();
             StopAllCoroutines();
