@@ -21,6 +21,7 @@ public class Health : MonoBehaviour
     private int combo;
 
     public GameObject gameOverScreen;
+    public TextMeshProUGUI winText;
 
     public float GetEnemyHealth
     {
@@ -44,6 +45,8 @@ public class Health : MonoBehaviour
     private static Player player;
 
     private static Enemy enemy;
+
+    private Enemy enemyScript = new Enemy();
 
     private PlayerData playerData = new PlayerData();
     private LevelPick levelPick = new LevelPick();
@@ -80,7 +83,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-
+        //print(enemyScript.GetPlayerHealth());
         if(Tutorial.tutFin != true)
         {
             enemy = FindObjectOfType<TrainingDummy>();
@@ -181,7 +184,24 @@ public class Health : MonoBehaviour
             System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
 
             gameOverScreen.SetActive(true);
+            winText.text = "You Win!";
         }
+        else if (enemyScript.GetPlayerHealth() <= 0  && Tutorial.tutFin == true)
+        {
+            InputManager.DisableInGame();
+            player.ReturnAnimator().SetBool("IsMoving", false);
+            player.ReturnAnimator().SetBool("Stunned", false);
+            player.ReturnAnimator().SetBool("IsAttacking", false);
+            player.GetStunned = false;
+            player.StopAllCoroutines();
+            StopAllCoroutines();
+            Time.timeScale = 0;
+
+            gameOverScreen.SetActive(true);
+            winText.text = "You Lose!";
+        }
+
+
         if(enemyHealth <= 0 && tut.block != true)
         {  
                 

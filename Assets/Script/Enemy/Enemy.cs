@@ -80,6 +80,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        print(playerHealth);
+
        // float distance = transform.position.x - player.transform.position.x;
         //print(transform.position.x - player.transform.position.x);
 
@@ -204,6 +206,11 @@ public class Enemy : MonoBehaviour
     public bool GetTurn2()
     {
         return db2;
+    }
+
+    public float GetPlayerHealth()
+    {
+        return playerHealth;
     }
 
     internal void Attack(float damage)
