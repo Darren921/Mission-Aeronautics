@@ -44,6 +44,7 @@ public class Health : MonoBehaviour
     private static Enemy enemy;
 
     private PlayerData playerData = new PlayerData();
+    private LevelPick levelPick = new LevelPick();
     
 
     void Start()
@@ -132,7 +133,23 @@ public class Health : MonoBehaviour
             //SceneManager.UnloadSceneAsync("MainGame");
             //SceneManager.LoadSceneAsync("ChooseCharacter");
 
-            playerData.levelTwoActive = true;
+            if (levelPick.Level() == 1)
+            {
+                playerData.levelTwoActive = true;
+            }
+            else if (levelPick.Level() == 2)
+            {
+                playerData.levelThreeActive = true;
+            }
+            else if(levelPick.Level() == 3)
+            {
+                playerData.levelFourActive = true;
+            }
+            else if (levelPick.Level()== 4)
+            {
+                playerData.levelFiveActive = true;
+            }
+            
             string json = JsonUtility.ToJson(playerData);
             System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
 
