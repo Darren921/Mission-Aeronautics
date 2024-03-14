@@ -15,6 +15,8 @@ public class Health : MonoBehaviour
     [SerializeField] private TextMeshProUGUI comboText;
     private  float enemyHealth;
     public int damage;
+    private Tutorial tut;
+    private TutTextManager tutTextManager;
     [SerializeField] private Slider comboSlider;
     private int combo;
 
@@ -46,18 +48,43 @@ public class Health : MonoBehaviour
     private PlayerData playerData = new PlayerData();
     private LevelPick levelPick = new LevelPick();
     
+    public  bool nextSetennce;
 
     void Start()
     {
+        tut = FindObjectOfType<Tutorial>();
+        tutTextManager = FindObjectOfType<TutTextManager>();
         canAttack = true;
         enemyHealth = 100;
         player = GameObject.Find("Player").GetComponent<Player>();
-        enemy = FindObjectOfType<BrickManAI>();
+        if (Tutorial.tutFin == false)
+        {
+            switch (LevelPick.LevelChossen)
+            {
+                case 0:
+                    enemy = FindObjectOfType<TrainingDummy>();
+                    break;
+                case 1:
+                    enemy = FindObjectOfType<BrickManAI>();
+                    break;
+                case 2:
+                    enemy = FindObjectOfType<EarthmanAI>();
+                    break;
+
+            }
+
+        }
+     
     }
 
 
     void Update()
     {
+
+        if(Tutorial.tutFin != true)
+        {
+            enemy = FindObjectOfType<TrainingDummy>();
+        }
         comboText.text = combo.ToString();
         enemyHealthBarSlider.value = enemyHealth;
         comboSlider.value = combo;
@@ -116,7 +143,7 @@ public class Health : MonoBehaviour
             }
         }
         
-        if (enemyHealth <= 0)
+        if (enemyHealth <= 0 && Tutorial.tutFin == true)
         {
             
             InputManager.DisableInGame();
@@ -155,7 +182,25 @@ public class Health : MonoBehaviour
 
             gameOverScreen.SetActive(true);
         }
-        if(enemy != null)
+        if(enemyHealth <= 0 && tut.block != true)
+        {  
+                
+                tut.block = true;
+                tut.CheckIfTrue();
+            tutTextManager.IsTalking = false;
+
+
+        }
+       
+        if (Input.GetKeyDown(KeyCode.LeftShift) && tut.block == true && enemy.ReturnplayerHit() == true)
+        {
+            print(true);
+            tut.powerUps = true;
+            tut.CheckIfTrue();
+            tutTextManager.IsTalking = false;
+
+        }
+        if (enemy != null)
         {
             if (enemy.Stun() == false)
             {

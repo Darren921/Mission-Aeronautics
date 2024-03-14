@@ -13,21 +13,28 @@ public class TutTextManager : MonoBehaviour
     private Tutorial tut;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject enemyHealthbar;
+    [SerializeField] PowerUpSpawner powerUpSpawner;
     private float typeSpeed;
     private bool isTalking;
-     void Awake()
+    void Awake()
     {
         contText.enabled = false;
         sentences = new Queue<string>();
         tut = FindObjectOfType<Tutorial>();
 
     }
+
+    public bool IsTalking
+    {
+        get { return isTalking; }
+        set { isTalking = value; }
+    }
     internal void StartDialogue(Dialogue dialogue)
     {
         animator.SetBool("IsOpen", true);
-        
+
         sentences.Clear();
-        
+
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
@@ -37,23 +44,33 @@ public class TutTextManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-
+        print(sentences.Count);
         switch (sentences.Count)
         {
             case 0:
                 EndDialogue();
                 break;
             case 1:
+
                 break;
             case 2:
+                tut.powerUps = true;
+                enemy.SetActive(false);
+                enemy.GetComponent<Enemy>().enabled = false;
+                enemy.GetComponent<TrainingDummy>().enabled = false;
+                enemyHealthbar.SetActive(false);
+                powerUpSpawner.enabled = true;
                 break;
             case 3:
+                tut.block = true;
                 isTalking = true;
-                enemyHealthbar.SetActive(true);
-                enemy.SetActive(true);
                 break;
             case 4:
-               
+                enemy.SetActive(true);
+                enemy.GetComponent<Enemy>().enabled = true;
+                enemy.GetComponent<TrainingDummy>().enabled = true;
+                enemyHealthbar.SetActive(true);
+                isTalking = true;
                 break;
             case 5:
                 tut.specialAtk = true;
@@ -64,7 +81,7 @@ public class TutTextManager : MonoBehaviour
                 tut.CheckIfTrue();
                 break;
         }
-        typeSpeed = 0.01f;
+        typeSpeed = 0.05f;
         isTalking = true;
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
@@ -85,13 +102,19 @@ public class TutTextManager : MonoBehaviour
             yield return new WaitForSeconds(typeSpeed);
 
         }
-        contText.enabled = true;
-        isTalking = false;
-        if(sentences.Count == 3)
+        if (sentences.Count == 3 )
         {
             isTalking = true;
         }
+        else
+        {
+            contText.enabled = true;
+            isTalking = false;
+        }
+
     }
+
+    
    
 
     public void nextSentence()
@@ -107,6 +130,20 @@ public class TutTextManager : MonoBehaviour
 
     private void Update()
     {
-       
+        if(isTalking == false && sentences.Count == 3)
+        {
+            typeSpeed = 0f;
+            string sentence = sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+        }
+        print(tut.powerUps);
+        if (isTalking == false && sentences.Count == 2 && tut.powerUps)
+        {
+            typeSpeed = 0f;
+            string sentence = sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+        }
     }
 }

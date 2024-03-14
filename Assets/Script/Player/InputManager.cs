@@ -95,7 +95,6 @@ public class InputManager : MonoBehaviour
         _controls.InGame.NextDialogue.performed += _ =>
         {
             manager.nextSentence();
-            print(tut.basicAtk);
         };
             if (tut.movement == true)
              {

@@ -1,33 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class BrickManAI : Enemy
+public class TrainingDummy : Enemy
 {
-    
+    Tutorial tut;
 
-    [SerializeField] private AudioClip[] AttackEffects;
-    [SerializeField] private AudioSource source;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        tut = FindObjectOfType<Tutorial>();
         health = new Health();
         enemy = new Enemy();
         animator = GetComponent<Animator>();
         stunned = false;
         animator.SetBool("Stun", false);
-        enemyState = "Moving";
-        canAttack = true;
+        enemyState = "Idle";
+        canAttack = false;
     }
 
-   
+
     // Update is called once per frame
     void Update()
     {
-
         distance = (transform.position.x - player.transform.position.x);
 
         if (health.GetStunned())
@@ -41,8 +38,12 @@ public class BrickManAI : Enemy
             if (stunDebounce >= 1)
             {
                 stunned = false;
-                enemyState = "Recovery";
-                canAttack = true;
+                if(tut.block == true)
+                {
+                    enemyState = "Recovery";
+                    canAttack = true;
+
+                }
                 stunDebounce = 0;
                 debounce = 0;
             }
@@ -58,11 +59,15 @@ public class BrickManAI : Enemy
                 animator.SetBool("Attack 2", false);
 
                 debounce += 1 * Time.deltaTime;
-
-                if (debounce >= 1.5f)
+                if (tut.block == true)
                 {
-                    enemyState = "Moving";
-                    debounce = 0;
+                    if (debounce >= 1.5f)
+                    {
+
+                        enemyState = "Moving";
+                        debounce = 0;
+
+                    }
                 }
             }
             else if (enemyState == "Moving")
@@ -74,18 +79,20 @@ public class BrickManAI : Enemy
 
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
 
-
-                if (distance <= 3 && distance >= -3)
+                if (tut.block == true)
                 {
-                    int roll = Random.Range(0, 5);
+                    if (distance <= 3 && distance >= -3)
+                    {
+                        int roll = Random.Range(0, 5);
 
-                    if (roll == 0)
-                    {
-                        enemyState = "Attack 2";
-                    }
-                    else
-                    {
-                        enemyState = "Attack 1";
+                        if (roll == 0)
+                        {
+                            enemyState = "Attack 2";
+                        }
+                        else
+                        {
+                            enemyState = "Attack 1";
+                        }
                     }
                 }
             }
@@ -101,14 +108,18 @@ public class BrickManAI : Enemy
                     transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
                 }
 
-                Attack(10);
+                Attack(20);
 
-                debounce += 1 * Time.deltaTime;
-                if (debounce >= 1)
+                if (tut.block == true)
                 {
-                    enemyState = "Recovery";
-                    debounce = 0;
+                    debounce += 1 * Time.deltaTime;
+                    if (debounce >= 1)
+                    {
+                        enemyState = "Recovery";
+                        debounce = 0;
+                    }
                 }
+
             }
             else if (enemyState == "Attack 2")
             {
@@ -117,41 +128,50 @@ public class BrickManAI : Enemy
                 animator.SetBool("Attack 1", false);
                 animator.SetBool("Attack 2", true);
 
-                Attack(30);
+                Attack(20);
 
-                debounce += 1 * Time.deltaTime;
-                if (debounce >= 1)
+                if (tut.block == true)
                 {
-                    enemyState = "Recovery";
-                    debounce = 0;
+                    debounce += 1 * Time.deltaTime;
+                    if (debounce >= 1)
+                    {
+                        enemyState = "Recovery";
+                        debounce = 0;
+                    }
                 }
+
             }
+
             else if (enemyState == "Recovery")
             {
-                canAttack = true;
-                animator.SetBool("Move", true);
-                animator.SetBool("Stun", false);
-                animator.SetBool("Attack 1", false);
-                animator.SetBool("Attack 2", false);
-
-                if (distance <= 4.5 && distance >= -4.5)
+                if (tut.block == true)
                 {
-                    if (distance >= 0)
-                    {
-                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 5, this.transform.position.y), speed * Time.deltaTime);
-                    }
-                    else
-                    {
-                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, this.transform.position.y), speed * Time.deltaTime);
-                    }
-                    
-                }
 
-                debounce += 1 * Time.deltaTime;
-                if (debounce >= .8)
-                {
-                    enemyState = "Moving";
-                    debounce = 0;
+                    canAttack = true;
+                    animator.SetBool("Move", true);
+                    animator.SetBool("Stun", false);
+                    animator.SetBool("Attack 1", false);
+                    animator.SetBool("Attack 2", false);
+
+                    if (distance <= 4.5 && distance >= -4.5)
+                    {
+                        if (distance >= 0)
+                        {
+                            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 5, this.transform.position.y), speed * Time.deltaTime);
+                        }
+                        else
+                        {
+                            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, this.transform.position.y), speed * Time.deltaTime);
+                        }
+
+                    }
+
+                    debounce += 1 * Time.deltaTime;
+                    if (debounce >= .8)
+                    {
+                        enemyState = "Moving";
+                        debounce = 0;
+                    }
                 }
             }
         }
@@ -160,18 +180,18 @@ public class BrickManAI : Enemy
 
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
-     //   if (collision.gameObject.tag == "Player")
-       // {
-         //   collidingWithPlayer = true;
-        //}
-        //if (collision.gameObject.tag == ("PlayerProjectiles"))
-        //{
-         //   if (bulletHit == true)
-           //     return;
-            //bulletHit = true;
-            //StartCoroutine(Reset());
+    //   if (collision.gameObject.tag == "Player")
+    // {
+    //   collidingWithPlayer = true;
+    //}
+    //if (collision.gameObject.tag == ("PlayerProjectiles"))
+    //{
+    //   if (bulletHit == true)
+    //     return;
+    //bulletHit = true;
+    //StartCoroutine(Reset());
 
-        //}
+    //}
 
     //}
 
@@ -183,9 +203,9 @@ public class BrickManAI : Enemy
     //private void OnTriggerExit2D(Collider2D collision)
     //{
     //    if (collision.gameObject.tag == "Player")
-      //  {
-        //    collidingWithPlayer = false;
-        //}
+    //  {
+    //    collidingWithPlayer = false;
+    //}
     //}
 
     internal Animator ReturnAnimator()
@@ -194,7 +214,7 @@ public class BrickManAI : Enemy
     }
     internal void Attack(float damage)
     {
-        if (Tutorial.tutFin == true)
+        if (tut.block == true)
         {
             if (collidingWithPlayer)
             {
@@ -219,10 +239,12 @@ public class BrickManAI : Enemy
                 }
             }
         }
-       
-        
+
+
     }
 
-    
-    
+
+
 }
+
+

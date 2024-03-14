@@ -62,8 +62,15 @@ public class Enemy : MonoBehaviour
 
         level = levelPick.Level();
 
+        if(Tutorial.tutFin == true)
+        {
+            animator.runtimeAnimatorController = animatorOverrideControllers[level - 1];
 
-        animator.runtimeAnimatorController = animatorOverrideControllers[level - 1];
+        }
+        else
+        {
+            animator.runtimeAnimatorController = animatorOverrideControllers[0];
+        }
 
         db1 = true;
         db2 = false;

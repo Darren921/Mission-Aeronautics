@@ -41,6 +41,7 @@ public class Tutorial : MonoBehaviour
     {
         tutFin = true;
         SceneManager.LoadScene("Levels");
+        InputManager.DisableInGame();
     }
     // Update is called once per frame
     void Update()

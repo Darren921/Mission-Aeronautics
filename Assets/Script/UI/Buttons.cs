@@ -46,6 +46,8 @@ public class Buttons : MonoBehaviour
         {
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
+            LevelPick.LevelChossen = 0;
+
         }
         else
         {
@@ -62,6 +64,7 @@ public class Buttons : MonoBehaviour
         {
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
+            LevelPick.LevelChossen = 0;
         }
         else
         {
@@ -77,6 +80,8 @@ public class Buttons : MonoBehaviour
         {
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
+            LevelPick.LevelChossen = 0;
+
         }
         else
         {
@@ -92,6 +97,8 @@ public class Buttons : MonoBehaviour
         {
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
+            LevelPick.LevelChossen = 0;
+
         }
         else
         {

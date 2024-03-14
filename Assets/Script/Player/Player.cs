@@ -38,13 +38,15 @@ public class Player : MonoBehaviour
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
-    private Enemy aI;
+    private Enemy enemy;
     [SerializeField] private PowerUps powerUps;
     private GameObject bullet;
     private float bulletDestroy = 0;
+    private TutTextManager textManager;
 
     private void Awake()
     {
+        textManager = FindObjectOfType<TutTextManager>();
         tut = FindObjectOfType<Tutorial>();
         if (Tutorial.tutFin != true)
         {
@@ -75,14 +77,21 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        switch (LevelPick.LevelChossen) 
+        if (Tutorial.tutFin == true)
         {
-            case 1:
-                aI = FindObjectOfType<BrickManAI>();
-                break;
-            case 2:
-                aI = FindObjectOfType<EarthmanAI>();
-                break;
+            switch (LevelPick.LevelChossen)
+            {
+                case 1:
+                    enemy = FindObjectOfType<BrickManAI>();
+                    break;
+                case 2:
+                    enemy = FindObjectOfType<EarthmanAI>();
+                    break;
+            }
+        } 
+        else
+        {
+            enemy = FindObjectOfType<TrainingDummy>();
         }
 
         GravActive = true;
@@ -121,8 +130,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Tutorial.tutFin != true)
+      
+        if (Tutorial.tutFin != true)
         {
+
+            if (enemy != null)
+            {
+                print(isBlocking);
+                print(tut.block);
+                print(enemy.ReturnplayerHit());
+            }
             if (tut.refresh == true)
             {
                 InputManager.InitTut(this);
@@ -130,6 +147,9 @@ public class Player : MonoBehaviour
                 InputManager.EnableInGame();
                 tut.refresh = false;
             }
+           
+
+             
         }
        
 
@@ -292,13 +312,30 @@ public class Player : MonoBehaviour
     
 
     public void hitCheck ()
-    {
-        if (aI.ReturnplayerHit() == true  ) 
-        { 
-        StartCoroutine(stunCheck());
+    { 
+        
+        if (Tutorial.tutFin == true)
+        {
+            if (enemy.ReturnplayerHit() == true)
+            {
+                StartCoroutine(stunCheck());
+            }
         }
-     
-       
+        if(Tutorial.tutFin == false)
+        {
+            if (Tutorial.tutFin  && tut.block == true)
+            {
+                if (enemy.ReturnplayerHit() == true)
+                {
+                    StartCoroutine(stunCheck());
+                }
+            }
+        }
+        
+        
+
+
+
     }
 
     
@@ -446,23 +483,23 @@ public class Player : MonoBehaviour
             switch (collectedPowerUp )
             {
                 case PowerUpType.Health:
-                    if (aI.playerHealth < 75)
+                    if (enemy.playerHealth < 75)
                     {
-                        
-                        aI.playerHealth += 20;
-                        aI.playerSlider.value = aI.playerHealth;
+
+                        enemy.playerHealth += 20;
+                        enemy.playerSlider.value = enemy.playerHealth;
                     
                     }
 
-                    else if (aI.playerHealth >= 75)
+                    else if (enemy.playerHealth >= 75)
                     {
-                        aI.playerHealth = 75;
-                        aI.playerSlider.value = aI.playerHealth;
+                        enemy.playerHealth = 75;
+                        enemy.playerSlider.value = enemy.playerHealth;
                         
                     }
-                    else if (aI.playerHealth > 75)
-                    { 
-                        aI.playerSlider.value = aI.playerHealth;
+                    else if (enemy.playerHealth > 75)
+                    {
+                        enemy.playerSlider.value = enemy.playerHealth;
                        
                     }
 
@@ -471,7 +508,7 @@ public class Player : MonoBehaviour
                     StartCoroutine(DamagePowerUP());
                     break;
                 case PowerUpType.Shield:
-                    aI.Attack(0);
+                    enemy.Attack(0);
                     break;
             }
         }
@@ -507,12 +544,12 @@ public class Player : MonoBehaviour
         {
             
             GameObject bul = Instantiate(bullet);
-            if(aI.GetTurn1() == true )
+            if(enemy.GetTurn1() == true )
             {
                 bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
                 
             }
-            else if (aI.GetTurn2() == true)
+            else if (enemy.GetTurn2() == true)
             {
                 bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
             }
