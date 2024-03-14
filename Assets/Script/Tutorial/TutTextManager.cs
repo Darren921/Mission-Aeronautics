@@ -13,7 +13,7 @@ public class TutTextManager : MonoBehaviour
     private Tutorial tut;
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject enemyHealthbar;
-    [SerializeField] PowerUpSpawner powerUpSpawner;
+    [SerializeField] private GameObject powerUpSpawner;
     private float typeSpeed;
     private bool isTalking;
     void Awake()
@@ -52,14 +52,17 @@ public class TutTextManager : MonoBehaviour
                 break;
             case 1:
 
+               
                 break;
             case 2:
+                print(true);
                 tut.powerUps = true;
                 enemy.SetActive(false);
                 enemy.GetComponent<Enemy>().enabled = false;
                 enemy.GetComponent<TrainingDummy>().enabled = false;
                 enemyHealthbar.SetActive(false);
-                powerUpSpawner.enabled = true;
+                powerUpSpawner.SetActive (true);
+                isTalking = true;
                 break;
             case 3:
                 tut.block = true;
@@ -102,7 +105,7 @@ public class TutTextManager : MonoBehaviour
             yield return new WaitForSeconds(typeSpeed);
 
         }
-        if (sentences.Count == 3 )
+        if (sentences.Count == 3 || sentences.Count == 2)
         {
             isTalking = true;
         }

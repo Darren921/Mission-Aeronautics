@@ -192,11 +192,12 @@ public class Health : MonoBehaviour
 
         }
        
-        if (Input.GetKeyDown(KeyCode.LeftShift) && tut.block == true && enemy.ReturnplayerHit() == true)
+        if (player.ReturnAnimator().GetBool("Guarding") == true && tut.block == true && enemy.ReturnplayerHit() == true)
         {
-            print(true);
+            
             tut.powerUps = true;
             tut.CheckIfTrue();
+
             tutTextManager.IsTalking = false;
 
         }
