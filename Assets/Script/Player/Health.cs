@@ -87,7 +87,7 @@ public class Health : MonoBehaviour
         {
             enemy = FindObjectOfType<TrainingDummy>();
         }
-        comboText.text = combo.ToString();
+        comboText.text = "x" + combo.ToString();
         enemyHealthBarSlider.value = enemyHealth;
         comboSlider.value = combo;
 
