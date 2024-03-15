@@ -32,7 +32,7 @@ public class HealthBarScript : MonoBehaviour
             }
         if (Tutorial.tutFin == true)
         {
-            enemyHealthImage.sprite = enemyBars[levelPick.Level() - 1];
+            enemyHealthImage.sprite = enemyBars[levelPick.Level() - 1 ];
         }
 
         

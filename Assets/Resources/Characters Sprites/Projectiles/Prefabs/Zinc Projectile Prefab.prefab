@@ -565,8 +565,8 @@ MonoBehaviour:
   DistanceThreshold: 8
   Scale: 1
   Decompose: 0
-  RunInPlayMode: 0
-  UseCache: 0
+  RunInPlayMode: 1
+  UseCache: 1
   lastAlphaTolerance: 0
   lastScale: 0
   lastDistanceThreshold: 0

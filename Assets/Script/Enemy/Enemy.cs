@@ -160,6 +160,7 @@ public class Enemy : MonoBehaviour
         {
             collidingWithPlayer = true;
         }
+        print (collision.gameObject.tag);
         if (collision.gameObject.tag == ("PlayerProjectiles"))
         {
             if (bulletHit == true)
@@ -169,21 +170,18 @@ public class Enemy : MonoBehaviour
 
         }
     }
+
   
 
-    protected void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            collidingWithPlayer = false;
-        }
-
-    }
+   
+   
 
     IEnumerator Reset()
     {
         yield return new WaitForEndOfFrame();
         bulletHit = false;
+        print(bulletHit);
+
     }
     public bool Stun()
     {

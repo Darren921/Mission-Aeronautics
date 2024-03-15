@@ -134,7 +134,6 @@ public class TutTextManager : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(TypeSentence(sentence));
         }
-        print(tut.powerUps);
         if (isTalking == false && sentences.Count == 2 && tut.powerUps)
         {
             print(true);

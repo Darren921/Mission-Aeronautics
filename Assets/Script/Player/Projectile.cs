@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    Enemy enemy;
+    private static Enemy enemy;
     private Rigidbody2D rb;
     private float time = 0;
     void Start()
@@ -12,8 +12,9 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         time = 0;
         enemy = FindObjectOfType<Enemy>();
-    }
+      
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -33,8 +34,9 @@ public class Projectile : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
+        print(collision.gameObject.tag);
         if (collision.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject);
