@@ -185,32 +185,35 @@ public class Health : MonoBehaviour
             gameOverScreen.SetActive(true);
             winText.text = "You Win!";
         }
-        else if (enemy.GetPlayerHealth <= 0  && Tutorial.tutFin == true)
-        {
-            InputManager.DisableInGame();
-            player.ReturnAnimator().SetBool("IsMoving", false);
-            player.ReturnAnimator().SetBool("Stunned", false);
-            player.ReturnAnimator().SetBool("IsAttacking", false);
-            player.GetStunned = false;
-            player.StopAllCoroutines();
-            StopAllCoroutines();
-            Time.timeScale = 0;
+        if (enemy != null) {
+        if (enemy.GetPlayerHealth <= 0 && Tutorial.tutFin == true)
+            {
+                InputManager.DisableInGame();
+                player.ReturnAnimator().SetBool("IsMoving", false);
+                player.ReturnAnimator().SetBool("Stunned", false);
+                player.ReturnAnimator().SetBool("IsAttacking", false);
+                player.GetStunned = false;
+                player.StopAllCoroutines();
+                StopAllCoroutines();
+                Time.timeScale = 0;
 
-            gameOverScreen.SetActive(true);
-            winText.text = "You Lose!";
+                gameOverScreen.SetActive(true);
+                winText.text = "You Lose!";
+            }
         }
 
+        if (Tutorial.tutFin == false)
+        {
+            if (enemyHealth <= 0 && tut.block != true)
+            {
 
-        if(enemyHealth <= 0 && tut.block != true)
-        {  
-                
                 tut.block = true;
                 tut.CheckIfTrue();
-            tutTextManager.IsTalking = false;
+                tutTextManager.IsTalking = false;
 
 
+            }
         }
-       
 
         if(enemy != null)
         {

@@ -121,9 +121,12 @@ public class PowerUps : MonoBehaviour
 
     private void Update()
     {
-         if(tut.powerUps == true && enemy.playerHealth <= 70 && isSpawned == false )
+        if(Tutorial.tutFin == false)
         {
-            StartCoroutine(SpawnPowerUp());
+            if (tut.powerUps == true && enemy.playerHealth <= 70 && isSpawned == false)
+            {
+                StartCoroutine(SpawnPowerUp());
+            }
         }
     }
 

@@ -14,24 +14,28 @@ public class HealthBarScript : MonoBehaviour
     private LevelPick levelPick = new LevelPick();
     void Start()
     {
-        switch (Buttons.CharacterChossen)
+       
+            switch (Buttons.CharacterChossen)
+            {
+                case 1:
+                    playerHealthImage.sprite = bars[0];
+                    break;
+                case 2:
+                    playerHealthImage.sprite = bars[1];
+                    break;
+                case 3:
+                    playerHealthImage.sprite = bars[2];
+                    break;
+                case 4:
+                    playerHealthImage.sprite = bars[3];
+                    break;
+            }
+        if (Tutorial.tutFin == true)
         {
-            case 1:
-                playerHealthImage.sprite = bars[0];
-                break;
-            case 2:
-                playerHealthImage.sprite = bars[1];
-                break;
-            case 3:
-                playerHealthImage.sprite = bars[2];
-                break;
-            case 4:
-                playerHealthImage.sprite = bars[3];
-                break;
+            enemyHealthImage.sprite = enemyBars[levelPick.Level() - 1];
         }
 
-        enemyHealthImage.sprite = enemyBars[levelPick.Level() - 1];
-
+        
     }
 
     // Update is called once per frame

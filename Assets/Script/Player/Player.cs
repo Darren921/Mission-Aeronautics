@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
                     enemy = FindObjectOfType<BrickManAI>();
                     break;
                 case 2:
-                    enemy = FindObjectOfType<EarthmanAI>();
+                    enemy = FindObjectOfType<EvilDarrenAI>();
                     break;
             }
         } 
