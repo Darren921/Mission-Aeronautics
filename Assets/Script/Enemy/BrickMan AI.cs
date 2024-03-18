@@ -102,7 +102,7 @@ public class BrickManAI : Enemy
                     transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
                 }
 
-                Attack(10);
+                Attack(10, false);
 
                 debounce += 1 * Time.deltaTime;
                 if (debounce >= 1)
@@ -118,7 +118,7 @@ public class BrickManAI : Enemy
                 animator.SetBool("Attack 1", false);
                 animator.SetBool("Attack 2", true);
 
-                Attack(30);
+                Attack(30, false);
 
                 debounce += 1 * Time.deltaTime;
                 if (debounce >= 1)
@@ -193,7 +193,7 @@ public class BrickManAI : Enemy
     {
         return animator;
     }
-    internal void Attack(float damage)
+    /*internal void Attack(float damage)
     {
         if (Tutorial.tutFin == true)
         {
@@ -222,7 +222,7 @@ public class BrickManAI : Enemy
         }
        
         
-    }
+    }*/
 
     internal float GetPlayerHealth
     {

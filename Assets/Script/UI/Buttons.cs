@@ -30,7 +30,7 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("ChooseCharacter");
         Time.timeScale = 1.0f;
 
-        playerData.levelTwoActive = false;
+        playerData.levelTwoActive = true;
         playerData.levelThreeActive = false;
         playerData.levelFourActive = false;
         playerData.levelFiveActive = false;

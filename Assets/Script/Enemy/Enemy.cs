@@ -207,7 +207,7 @@ public class Enemy : MonoBehaviour
 
     
 
-    internal void Attack(float damage)
+    internal void Attack(float damage, bool isProj)
     {
         if (collidingWithPlayer)
         {
@@ -228,6 +228,24 @@ public class Enemy : MonoBehaviour
                     playerHit = true;
 
                 }
+
+            }
+        }
+        else if (isProj)
+        {
+            if (player.GetComponent<Player>().returnisBlocking() != true)
+            {
+                playerHealth -= damage;
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = true;
+            }
+            else
+            {
+                playerHealth -= (damage * 0.3f);
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = true;
 
             }
         }

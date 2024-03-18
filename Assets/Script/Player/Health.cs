@@ -11,6 +11,10 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private Sprite[] enemyBars;
+    [SerializeField] private Image enemyHealthImage;
+
+
     [SerializeField] public Slider enemyHealthBarSlider;
     [SerializeField] private TextMeshProUGUI comboText;
     [SerializeField] private float enemyHealth;
@@ -69,11 +73,16 @@ public class Health : MonoBehaviour
                     break;
                 case 1:
                     enemy = FindObjectOfType<BrickManAI>();
+                    enemyHealthImage.sprite = enemyBars[0];
                     break;
                 case 2:
                     enemy = FindObjectOfType<EvilDarrenAI>();
+                    enemyHealthImage.sprite = enemyBars[1];
                     break;
-
+                case 3:
+                    enemy = FindObjectOfType<EarthmanAI>();
+                    enemyHealthImage.sprite = enemyBars[2];
+                    break;
             }
 
         }

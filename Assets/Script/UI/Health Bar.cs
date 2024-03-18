@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class HealthBarScript : MonoBehaviour
 {
     [SerializeField] private Sprite[] bars;
-    [SerializeField] private Sprite[] enemyBars;
+    
 
     [SerializeField] private Image playerHealthImage;
-    [SerializeField] private Image enemyHealthImage;
+    
 
     private LevelPick levelPick = new LevelPick();
     void Start()
@@ -30,10 +30,6 @@ public class HealthBarScript : MonoBehaviour
                     playerHealthImage.sprite = bars[3];
                     break;
             }
-        if (Tutorial.tutFin == true)
-        {
-            enemyHealthImage.sprite = enemyBars[levelPick.Level() - 1 ];
-        }
 
         
     }

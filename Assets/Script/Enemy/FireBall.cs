@@ -5,13 +5,35 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     Enemy enemy;
+    Enemy enemy2;
     private Rigidbody2D rb;
     private float time = 0;
+
+    private float damage;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         time = 0;
         enemy = FindObjectOfType<Enemy>();
+
+        switch (LevelPick.LevelChossen)
+        {
+            case 0:
+                enemy2 = FindObjectOfType<TrainingDummy>();
+                break;
+            case 1:
+                enemy2 = FindObjectOfType<BrickManAI>();
+                break;
+            case 2:
+                enemy2 = FindObjectOfType<EvilDarrenAI>();
+                damage = 10;
+                break;
+            case 3:
+                enemy2 = FindObjectOfType<EarthmanAI>();
+                damage = 30;
+                break;
+
+        }
     }
 
     // Update is called once per frame
@@ -37,6 +59,7 @@ public class FireBall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            enemy2.Attack(damage, true);
             Destroy(this.gameObject);
         }
     }

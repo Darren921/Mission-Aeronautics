@@ -7,6 +7,9 @@ public class EvilDarrenAI : Enemy
 {
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
+    [SerializeField] private GameObject shootThing;
+
+    private bool canShoot = true;
 
 
     // Start is called before the first frame update
@@ -98,7 +101,7 @@ public class EvilDarrenAI : Enemy
                     transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
                 }
 
-                Attack(10);
+                Attack(10, false);
 
                 debounce += 1 * Time.deltaTime;
                 if (debounce >= 1)
@@ -114,7 +117,7 @@ public class EvilDarrenAI : Enemy
                 animator.SetBool("Attack 1", false);
                 animator.SetBool("Attack 2", true);
 
-                Attack(30);
+                Attack(30, false);
 
                 debounce += 1 * Time.deltaTime;
                 if (debounce >= 1)
@@ -125,13 +128,14 @@ public class EvilDarrenAI : Enemy
             }
             else if (enemyState == "Recovery")
             {
+                
                 canAttack = true;
                 animator.SetBool("Move", true);
                 animator.SetBool("Stun", false);
                 animator.SetBool("Attack 1", false);
                 animator.SetBool("Attack 2", false);
 
-                if (distance <= 4.5 && distance >= -4.5)
+                if (distance <= 6 && distance >= -6)
                 {
                     if (distance >= 0)
                     {
@@ -144,13 +148,55 @@ public class EvilDarrenAI : Enemy
 
                 }
 
+                if (distance >= 3 || distance <= -3)
+                {
+                    if (canShoot)
+                    {
+                        print("SHOT");
+                        canShoot = false;
+
+                        int roll = Random.Range(0, 3);
+
+                        if (roll == 0)
+                        {
+                            Shoot();
+                            print(roll);
+                        }
+                        else
+                        {
+                            print(roll);
+                        }
+
+                        
+                    }
+                }
+
                 debounce += 1 * Time.deltaTime;
                 if (debounce >= .8)
                 {
+                    canShoot = true;
                     enemyState = "Moving";
                     debounce = 0;
                 }
             }
+        }
+    }
+
+    public void Shoot()
+    {
+        GameObject bul = Instantiate(shootThing);
+        if (GetTurn1() == true)
+        {
+            bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+
+        }
+        else if (GetTurn2() == true)
+        {
+            bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+        }
+        else
+        {
+            bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
         }
     }
 }

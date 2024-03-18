@@ -504,7 +504,7 @@ public class Player : MonoBehaviour
                     StartCoroutine(DamagePowerUP());
                     break;
                 case PowerUpType.Shield:
-                    enemy.Attack(0);
+                    enemy.Attack(0, false);
                     break;
             }
         }
