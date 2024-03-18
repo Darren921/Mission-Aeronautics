@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] public Slider enemyHealthBarSlider;
     [SerializeField] private TextMeshProUGUI comboText;
-    private  float enemyHealth;
+    [SerializeField] private float enemyHealth;
     public int damage;
     private Tutorial tut;
     private TutTextManager tutTextManager;

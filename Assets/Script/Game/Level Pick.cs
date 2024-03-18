@@ -47,23 +47,57 @@ public class LevelPick : MonoBehaviour
 
         if (levelThreeActive)
         {
+            levelTwoActive = true;
+            locks[0].GetComponent<Animator>().SetBool("locked", false);
+            levels[0].sprite = levelSprites[0];
+
             locks[1].GetComponent<Animator>().SetBool("locked", false);
             levels[1].sprite = levelSprites[1];
         }
 
         if(levelFourActive)
         {
+            levelTwoActive = true;
+            locks[0].GetComponent<Animator>().SetBool("locked", false);
+            levels[0].sprite = levelSprites[0];
+
+            levelThreeActive = true;
+            locks[1].GetComponent<Animator>().SetBool("locked", false);
+            levels[1].sprite = levelSprites[1];
+
             locks[2].GetComponent<Animator>().SetBool("locked", false);
             levels[2].sprite = levelSprites[2];
         }
 
         if(levelFiveActive)
         {
+            levelTwoActive = true;
+            locks[0].GetComponent<Animator>().SetBool("locked", false);
+            levels[0].sprite = levelSprites[0];
+
+            levelThreeActive = true;
+            locks[1].GetComponent<Animator>().SetBool("locked", false);
+            levels[1].sprite = levelSprites[1];
+
+            levelFourActive = true;
+            locks[2].GetComponent<Animator>().SetBool("locked", false);
+            levels[2].sprite = levelSprites[2];
+
             locks[3].GetComponent<Animator>().SetBool("locked", false);
             levels[3].sprite = levelSprites[3];
         }
     }
 
+    public void Reset()
+    {
+        levelTwoActive = false;
+        levelThreeActive = false;
+        levelFourActive = false;
+        levelFiveActive = false;
+
+        string json = JsonUtility.ToJson(playerData);
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
 
     public void BackToCharacter()
     {
