@@ -92,6 +92,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        print(enemyHealth);
         if(Tutorial.tutFin != true)
         {
             enemy = FindObjectOfType<TrainingDummy>();

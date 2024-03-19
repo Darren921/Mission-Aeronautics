@@ -58,9 +58,9 @@ public class Player : MonoBehaviour
         else
         {
             InputManager.InitS(this);
+            InputManager.DisableInGame();
             InputManager.EnableInGame();
-            gameObject.GetComponent<Player>().enabled = false;
-            gameObject.GetComponent<Player>().enabled = true;
+            
 
         }
     }
@@ -90,10 +90,12 @@ public class Player : MonoBehaviour
                     break;
             }
         } 
+
         else
         {
             enemy = FindObjectOfType<TrainingDummy>();
         }
+        enemy.Attack(0, false);
 
         GravActive = true;
         animator = GetComponent<Animator>();
@@ -131,6 +133,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
       
         if (Tutorial.tutFin != true)
         {
@@ -290,6 +293,7 @@ public class Player : MonoBehaviour
             isSpecialAtk = false;
             _isAttacking = false;
             _health.damage = 0;
+            animator.SetInteger("MoveNumber", 0);
         }
 
         _isAttacking = false;
@@ -466,11 +470,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        print(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Enemy"))
         {
             isColliding = true;
             hitCheck();
         }
+        
         
         if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true )
         {
@@ -540,12 +546,12 @@ public class Player : MonoBehaviour
         {
             
             GameObject bul = Instantiate(bullet);
-            if(enemy.GetTurn1() == true )
+            if(enemy.Distance() >= 0 )
             {
                 bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
                 
             }
-            else if (enemy.GetTurn2() == true)
+            else if (enemy.Distance() <= -0)
             {
                 bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
             }

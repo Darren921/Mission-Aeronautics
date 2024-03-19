@@ -21,12 +21,12 @@ public class Projectile : MonoBehaviour
         if (enemy.GetTurn1() == true)
         {
             time += 1 * Time.deltaTime;
-            rb.AddForce(new Vector2(3000 * Time.deltaTime, 0));
+            rb.AddForce(new Vector2(800 * Time.deltaTime, 0));
         }
         if (enemy.GetTurn2() == true)
         {
             time += 1 * Time.deltaTime;
-            rb.AddForce(new Vector2(-3000 * Time.deltaTime, 0));
+            rb.AddForce(new Vector2(-800 * Time.deltaTime, 0));
         }
 
         if (time >= 1.5f)
@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         print(collision.gameObject.tag);
         if (collision.gameObject.tag == "Enemy")
