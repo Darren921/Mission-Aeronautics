@@ -52,13 +52,12 @@ public class Player : MonoBehaviour
         {
             InputManager.InitTut(this);
             InputManager.DisableInGame();
+
             InputManager.EnableInGame();
-          
         }
         else
         {
             InputManager.InitS(this);
-            InputManager.DisableInGame();
             InputManager.EnableInGame();
             
 
@@ -89,13 +88,14 @@ public class Player : MonoBehaviour
                     enemy = FindObjectOfType<EvilDarrenAI>();
                     break;
             }
-        } 
-
+            
+        }
         else
         {
-            enemy = FindObjectOfType<TrainingDummy>();
+             enemy = FindObjectOfType<TrainingDummy>();
         }
-        enemy.Attack(0, false);
+       
+
 
         GravActive = true;
         animator = GetComponent<Animator>();
@@ -232,6 +232,7 @@ public class Player : MonoBehaviour
         animator.SetBool("IsAttacking", true);
         if(isStunned !=  true)
         {
+            
             switch (animator.GetInteger("MoveNumber"))
             {
                 case 0:
@@ -271,30 +272,35 @@ public class Player : MonoBehaviour
         {
             yield break;
         }
-          
         if (isSpecialAtk == true && isStunned != true)
         {
-            if(Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
+            if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
             {
                 StartCoroutine(Shoot(1));
                 isSpecialAtk = false;
             }
-            if (Buttons.CharacterChossen == 4) 
+            if (Buttons.CharacterChossen == 4)
             {
                 StartCoroutine(Shoot(3));
                 isSpecialAtk = false;
             }
             yield return new WaitForSeconds(0.6f);
             isSpecialAtk = false;
-        
+
         }
-        else
+        else if (isStunned == true)
         {
-            isSpecialAtk = false;
-            _isAttacking = false;
-            _health.damage = 0;
-            animator.SetInteger("MoveNumber", 0);
+
+            {
+                isSpecialAtk = false;
+                _isAttacking = false;
+                _health.damage = 0;
+             
+
+            }
         }
+
+
 
         _isAttacking = false;
         animator.SetBool("IsAttacking", false);
@@ -470,7 +476,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.gameObject.name);
+        print(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Enemy"))
         {
             isColliding = true;
@@ -481,7 +487,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true )
         {
             collectedPowerUp = powerUps.returnType();
-          
+            print(true);  
             switch (collectedPowerUp )
             {
                 case PowerUpType.Health:

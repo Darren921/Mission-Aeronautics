@@ -161,14 +161,17 @@ public class Enemy : MonoBehaviour
             collidingWithPlayer = true;
         }
         print (collision.gameObject.tag);
-        if (collision.gameObject.tag == ("PlayerProjectiles"))
-        {
-            if (bulletHit == true)
-                return;
-            bulletHit = true;
-            StartCoroutine(Reset());
+       
+            if (collision.gameObject.tag == ("PlayerProjectiles"))
+            {
+                if (bulletHit == true)
+                    return;
+                bulletHit = true;
+                StartCoroutine(Reset());
 
-        }
+            }
+        
+        
     }
 
   
@@ -203,6 +206,10 @@ public class Enemy : MonoBehaviour
     public bool GetTurn2()
     {
         return db2;
+    }
+    public float Distance()
+    {
+        return distance;
     }
 
     

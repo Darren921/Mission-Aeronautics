@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private static Enemy enemy;
+    private  Enemy enemy;
     private Rigidbody2D rb;
     private float time = 0;
     void Start()
@@ -12,7 +12,8 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         time = 0;
         enemy = FindObjectOfType<Enemy>();
-      
+
+        
 
     }
     // Update is called once per frame

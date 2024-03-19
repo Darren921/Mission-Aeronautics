@@ -61,15 +61,10 @@ public class PowerUps : MonoBehaviour
     private IEnumerator SpawnPowerUp()
     {
         if (isSpawned == false)
-        {
-
-            if (Tutorial.tutFin == true)
-            {
+        { 
                 RandomPowerup();
-            }
-
-            Vector3 topLeft = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.nearClipPlane));
-            Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
+            Vector3 topLeft = cam.ViewportToWorldPoint(new Vector3(0, 1, 13));
+            Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, 13));
             Vector3 spawnPoint = Vector3.Lerp(topLeft, topRight, UnityEngine.Random.value);
 
             GameObject Powerup = Instantiate(powerup, spawnPoint, Quaternion.identity);
@@ -116,6 +111,7 @@ public class PowerUps : MonoBehaviour
             tut = FindObjectOfType<Tutorial>();
             enemy = FindObjectOfType<TrainingDummy>();
         }
+
         StartCoroutine(SpawnPowerUp());
     }
 

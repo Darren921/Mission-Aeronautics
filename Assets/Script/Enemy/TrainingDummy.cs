@@ -38,7 +38,7 @@ public class TrainingDummy : Enemy
             if (stunDebounce >= 1)
             {
                 stunned = false;
-                if(tut.block == true)
+                if (tut.block == true)
                 {
                     enemyState = "Recovery";
                     canAttack = true;
@@ -59,7 +59,7 @@ public class TrainingDummy : Enemy
                 animator.SetBool("Attack 2", false);
 
                 debounce += 1 * Time.deltaTime;
-                if (tut.block == true)
+                if (tut.block == true && tut.powerUps == false)
                 {
                     if (debounce >= 1.5f)
                     {

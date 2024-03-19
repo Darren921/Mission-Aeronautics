@@ -138,11 +138,10 @@ public class TutTextManager : MonoBehaviour
         {
             print(true);
             tut.powerUps = true;
-            enemy.SetActive(false);
-            enemy.GetComponent<Enemy>().enabled = false;
-            enemy.GetComponent<TrainingDummy>().enabled = false;
+            enemy.GetComponent<TrainingDummy>().enemyState = "Idle";      
             enemyHealthbar.SetActive(false);
             powerUpSpawner.GetComponent<PowerUpSpawner>().enabled = true;
+            tut.CheckIfTrue();
             isTalking = true;
             typeSpeed = 0f;
             string sentence = sentences.Dequeue();
