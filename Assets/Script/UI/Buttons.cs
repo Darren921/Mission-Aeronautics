@@ -31,7 +31,7 @@ public class Buttons : MonoBehaviour
         Time.timeScale = 1.0f;
 
         playerData.levelTwoActive = true;
-        playerData.levelThreeActive = false;
+        playerData.levelThreeActive = true;
         playerData.levelFourActive = false;
         playerData.levelFiveActive = false;
 

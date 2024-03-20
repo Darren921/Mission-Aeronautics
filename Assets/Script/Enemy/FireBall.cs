@@ -30,7 +30,7 @@ public class FireBall : MonoBehaviour
                 break;
             case 3:
                 enemy2 = FindObjectOfType<EarthmanAI>();
-                damage = 30;
+                damage = 40;
                 break;
 
         }

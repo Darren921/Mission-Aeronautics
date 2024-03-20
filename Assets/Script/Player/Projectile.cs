@@ -7,13 +7,15 @@ public class Projectile : MonoBehaviour
     private  Enemy enemy;
     private Rigidbody2D rb;
     private float time = 0;
+
+    private Health health;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         time = 0;
         enemy = FindObjectOfType<Enemy>();
 
-        
+        health = FindObjectOfType<Health>();
 
     }
     // Update is called once per frame

@@ -87,6 +87,9 @@ public class Player : MonoBehaviour
                 case 2:
                     enemy = FindObjectOfType<EvilDarrenAI>();
                     break;
+                case 3:
+                    enemy = FindObjectOfType<EarthmanAI>();
+                    break;
             }
             
         }
@@ -552,7 +555,7 @@ public class Player : MonoBehaviour
         {
             
             GameObject bul = Instantiate(bullet);
-            if(enemy.Distance() >= 0 )
+            if(enemy.Distance() >= 0)
             {
                 bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
                 

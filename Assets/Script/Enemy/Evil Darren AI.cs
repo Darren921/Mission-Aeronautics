@@ -101,7 +101,7 @@ public class EvilDarrenAI : Enemy
                     transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
                 }
 
-                Attack(10, false);
+                //Attack(10, false);
 
                 debounce += 1 * Time.deltaTime;
                 if (debounce >= 1)
@@ -117,7 +117,7 @@ public class EvilDarrenAI : Enemy
                 animator.SetBool("Attack 1", false);
                 animator.SetBool("Attack 2", true);
 
-                Attack(30, false);
+                //Attack(30, false);
 
                 debounce += 1 * Time.deltaTime;
                 if (debounce >= 1)
@@ -155,11 +155,11 @@ public class EvilDarrenAI : Enemy
                         print("SHOT");
                         canShoot = false;
 
-                        int roll = Random.Range(0, 3);
+                        int roll = Random.Range(0, 5);
 
                         if (roll == 0)
                         {
-                            Shoot();
+                            //Shoot();
                             print(roll);
                         }
                         else

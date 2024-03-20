@@ -10,6 +10,8 @@ public class EarthmanAI : Enemy
     [SerializeField] private AudioSource source;
     [SerializeField] private GameObject fireBall;
 
+    private int fireShot = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -80,28 +82,51 @@ public class EarthmanAI : Enemy
                 animator.SetBool("Move", false);
                 animator.SetBool("Stun", false);
                 animator.SetBool("Attack 1", false);
-                animator.SetBool("Attack 2", false);
+                animator.SetBool("Attack 2", true);
 
                 if (distance <= 5 && distance >= -5)
                 {
                     if (distance >= 0)
                     {
-                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 5, this.transform.position.y), speed * Time.deltaTime);
+                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 5, player.transform.position.y), speed * Time.deltaTime);
                     }
                     else
                     {
-                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, this.transform.position.y), speed * Time.deltaTime);
+                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, player.transform.position.y), speed * Time.deltaTime);
                     }
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
                 }
 
                 debounce += 1 * Time.deltaTime;
 
-                if (debounce >= 1.5f)
+                if (debounce >= 2f)
                 {
                     Shoot();
                     debounce = 0;
-                }
 
+                    fireShot += 1;
+                    if (fireShot >= 3)
+                    {
+                        debounce = 0;
+                        enemyState = "Recovery";
+                    }
+                }
+            }
+            else if(enemyState == "Recovery")
+            {
+                animator.SetBool("Move", false);
+                animator.SetBool("Stun", false);
+                animator.SetBool("Attack 1", false);
+                animator.SetBool("Attack 2", false);
+
+                debounce += 1 * Time.deltaTime;
+                if (debounce >= 5)
+                {
+                    enemyState = "Attack";
+                }
             }
         }
     }
