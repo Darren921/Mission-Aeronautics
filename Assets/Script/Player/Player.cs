@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public static bool isColliding;
     private static bool isSpecialAtk;
     private static bool isCollecting;
+    private static bool isCollected;
     private static bool isHit;
     private static bool isStunned;
     private static float stunCD;
@@ -488,16 +489,18 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true )
         {
             print("applied");
+
             collectedPowerUp = powerUpsSpawner.returnType();
             switch (collectedPowerUp )
             {
                 case PowerUpType.Health:
                     if (enemy.playerHealth < 75)
                     {
+                        isCollected = true;
 
                         enemy.playerHealth += 20;
                         enemy.playerSlider.value = enemy.playerHealth;
-                         if(Tutorial.tutFin != true)
+                         if(Tutorial.tutFin != true && isCollected == true)
                         {
                             textManager.IsTalking = false;
                         }
@@ -514,13 +517,14 @@ public class Player : MonoBehaviour
                         enemy.playerSlider.value = enemy.playerHealth;
                        
                     }
-
                     break;
                 case PowerUpType.Damage:
                     StartCoroutine(DamagePowerUP());
+                    isCollected = true;
                     break;
                 case PowerUpType.Shield:
                     enemy.Attack(0, false);
+                    isCollected = true;
                     break;
             }
         }
@@ -545,11 +549,11 @@ public class Player : MonoBehaviour
                 case PowerUpType.Health:
                     if (enemy.playerHealth < 75)
                     {
-
                         enemy.playerHealth += 20;
                         enemy.playerSlider.value = enemy.playerHealth;
-                        if (Tutorial.tutFin != true)
+                        if (Tutorial.tutFin != true && tut.powerUps == true)
                         {
+                            isCollected = true;
                             textManager.IsTalking = false;
                         }
                     }
@@ -608,7 +612,10 @@ public class Player : MonoBehaviour
     {
         return animator;
     }
-
+    public bool ReturnCollected()
+    {
+        return isCollected;
+    }
     public IEnumerator Shoot(int amount)
     {
         for (int i = 0; i < amount; i++)

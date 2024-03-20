@@ -9,7 +9,6 @@ using static PowerUps;
 public class PowerUps : MonoBehaviour
 {
     
-    
     private static string Power;
 
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
@@ -36,6 +35,8 @@ public class PowerUps : MonoBehaviour
             return;
         }
     }
+
+   
 
 
   

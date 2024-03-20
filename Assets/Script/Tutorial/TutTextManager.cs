@@ -15,6 +15,7 @@ public class TutTextManager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject enemyHealthbar;
     [SerializeField] private GameObject powerUpSpawner;
+    [SerializeField] Player player;
     private float typeSpeed;
     private bool isTalking;
     void Awake()
@@ -22,6 +23,7 @@ public class TutTextManager : MonoBehaviour
         contText.enabled = false;
         sentences = new Queue<string>();
         tut = FindObjectOfType<Tutorial>();
+        player = FindObjectOfType<Player>();
 
     }
 
@@ -51,11 +53,12 @@ public class TutTextManager : MonoBehaviour
                 EndDialogue();
                 break;
             case 1:
+                isTalking = true;
 
-               
                 break;
             case 2:
-               
+                isTalking = true;
+
                 break;
             case 3:
                 tut.block = true;
@@ -77,7 +80,7 @@ public class TutTextManager : MonoBehaviour
                 tut.CheckIfTrue();
                 break;
         }
-        typeSpeed = 0.05f;
+        typeSpeed = 0.03f;
         isTalking = true;
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
@@ -137,6 +140,7 @@ public class TutTextManager : MonoBehaviour
         }
         if (isTalking == false && sentences.Count == 2 && tut.powerUps)
         {
+
             tut.powerUps = true;
             tut.CheckIfTrue();
             enemy.GetComponent<TrainingDummy>().enemyState = "Idle";      
@@ -144,6 +148,14 @@ public class TutTextManager : MonoBehaviour
             powerUpSpawner.GetComponent<PowerUpSpawner>().enabled = true;
             isTalking = true;
             typeSpeed = 0f;
+            string sentence = sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+        }
+        if (isTalking == false && sentences.Count == 1 && player.ReturnCollected() == true)
+        {
+            isTalking = true;
+            typeSpeed = 0.1f;
             string sentence = sentences.Dequeue();
             StopAllCoroutines();
             StartCoroutine(TypeSentence(sentence));
