@@ -176,11 +176,7 @@ public class BrickManAI : Enemy
 
     //}
 
-    IEnumerator Reset()
-    {
-        yield return new WaitForEndOfFrame();
-        bulletHit = false;
-    }
+   
     //private void OnTriggerExit2D(Collider2D collision)
     //{
     //    if (collision.gameObject.tag == "Player")

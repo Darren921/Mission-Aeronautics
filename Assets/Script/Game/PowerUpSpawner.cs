@@ -6,11 +6,11 @@ using UnityEngine;
 using static PowerUps;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class PowerUpSpawner : PowerUps
+public class PowerUpSpawner : MonoBehaviour
 {
+    [SerializeField] internal Player player;
     [SerializeField] Camera cam;
     [SerializeField] GameObject powerup;
-    [SerializeField] Player player;
     Enemy enemy;
     [SerializeField] Sprite[] PowerUpIcons;
     SpriteRenderer powerupRenderer;
@@ -88,6 +88,13 @@ public class PowerUpSpawner : PowerUps
         if (Tutorial.tutFin == false)
         {
             if (tut.powerUps == true && enemy.playerHealth <= 70 && isSpawned == false)
+            {
+                StartCoroutine(SpawnPowerUp());
+            }
+        }
+        else
+        {
+           if(isSpawned  == false)
             {
                 StartCoroutine(SpawnPowerUp());
             }

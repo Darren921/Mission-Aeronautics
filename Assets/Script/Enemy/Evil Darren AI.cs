@@ -77,7 +77,7 @@ public class EvilDarrenAI : Enemy
 
                 if (distance <= 2 && distance >= -2)
                 {
-                    int roll = Random.Range(0, 2);
+                    int roll = Random.Range(0, 5);
 
                     if (roll == 0)
                     {
@@ -152,7 +152,7 @@ public class EvilDarrenAI : Enemy
                 {
                     if (canShoot)
                     {
-                        print("SHOT");
+                      //  print("SHOT");
                         canShoot = false;
 
                         int roll = Random.Range(0, 5);
@@ -160,11 +160,11 @@ public class EvilDarrenAI : Enemy
                         if (roll == 0)
                         {
                             //Shoot();
-                            print(roll);
+                          //  print(roll);
                         }
                         else
                         {
-                            print(roll);
+                          //  print(roll);
                         }
 
                         
@@ -179,8 +179,11 @@ public class EvilDarrenAI : Enemy
                     debounce = 0;
                 }
             }
+
         }
+
     }
+    
 
     public void Shoot()
     {

@@ -16,7 +16,7 @@ public class PowerUps : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().IsCollecting() == true)
         {
-            Destroy(gameObject,0.5f);
+            Destroy(gameObject);
             
         }
         else
@@ -28,7 +28,7 @@ public class PowerUps : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().IsCollecting() == true)
         {
-            Destroy(gameObject,  0.5f);
+            Destroy(gameObject);
 
         }   
         else

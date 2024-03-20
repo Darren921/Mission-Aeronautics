@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject tutEnemy;
     private Enemy enemy;
 
-    [SerializeField] private PowerUpSpawner powerUpsSpawner;
+    private PowerUpSpawner powerUpsSpawner;
     private GameObject bullet;
     private float bulletDestroy = 0;
     private TutTextManager textManager;
@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
     {
         if (Tutorial.tutFin == true)
         {
+            powerUpsSpawner = FindObjectOfType<PowerUpSpawner>();
             switch (LevelPick.LevelChossen)
             {
                 case 1:
@@ -99,6 +100,7 @@ public class Player : MonoBehaviour
         else
         {
              enemy = tutEnemy.GetComponent<TrainingDummy>();
+            powerUpsSpawner = FindObjectOfType<PowerUpSpawner>();
         }
        
 
@@ -140,7 +142,6 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        print(isCollecting);
         if (Tutorial.tutFin != true)
         {
 
@@ -190,17 +191,10 @@ public class Player : MonoBehaviour
 
     public void CollectPowerUp()
     {
+        if (isCollecting)
+            return;
         isCollecting = true;
-        if (CollectingPowerUP() != null)
-        {
-            StopCoroutine(CollectingPowerUP());
-        }
-        StartCoroutine(CollectingPowerUP());
-        IEnumerator CollectingPowerUP()
-        {
-            yield return new WaitForSeconds(2f);
-            isCollecting = false;
-        }
+        StartCoroutine(ResetP());
     }
     public void SetMoveDirection(Vector2 newDir)
     {
@@ -483,17 +477,18 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         print(collision.gameObject.tag);
+        print(isCollecting);
         if (collision.gameObject.CompareTag("Enemy"))
         {
             isColliding = true;
             hitCheck();
         }
         
-        
+
         if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true )
         {
+            print("applied");
             collectedPowerUp = powerUpsSpawner.returnType();
-            print(true);  
             switch (collectedPowerUp )
             {
                 case PowerUpType.Health:
@@ -502,7 +497,10 @@ public class Player : MonoBehaviour
 
                         enemy.playerHealth += 20;
                         enemy.playerSlider.value = enemy.playerHealth;
-                    
+                         if(Tutorial.tutFin != true)
+                        {
+                            textManager.IsTalking = false;
+                        }
                     }
 
                     else if (enemy.playerHealth >= 75)
@@ -527,6 +525,65 @@ public class Player : MonoBehaviour
             }
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        print(collision.gameObject.tag);
+        print(isCollecting);
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            isColliding = true;
+            hitCheck();
+        }
+
+
+        if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true)
+        {
+            print("applied");
+            collectedPowerUp = powerUpsSpawner.returnType();
+            switch (collectedPowerUp)
+            {
+                case PowerUpType.Health:
+                    if (enemy.playerHealth < 75)
+                    {
+
+                        enemy.playerHealth += 20;
+                        enemy.playerSlider.value = enemy.playerHealth;
+                        if (Tutorial.tutFin != true)
+                        {
+                            textManager.IsTalking = false;
+                        }
+                    }
+
+                    else if (enemy.playerHealth >= 75)
+                    {
+                        enemy.playerHealth = 75;
+                        enemy.playerSlider.value = enemy.playerHealth;
+
+                    }
+                    else if (enemy.playerHealth > 75)
+                    {
+                        enemy.playerSlider.value = enemy.playerHealth;
+
+                    }
+
+                    break;
+                case PowerUpType.Damage:
+                    StartCoroutine(DamagePowerUP());
+                    break;
+                case PowerUpType.Shield:
+                    enemy.Attack(0, false);
+                    break;
+            }
+        }
+    }
+
+    IEnumerator ResetP()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isCollecting = false;
+
+    }
+    
 
     private IEnumerator DamagePowerUP()
     {

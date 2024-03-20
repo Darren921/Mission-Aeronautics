@@ -62,7 +62,7 @@ public class Health : MonoBehaviour
         tut = FindObjectOfType<Tutorial>();
         tutTextManager = FindObjectOfType<TutTextManager>();
         canAttack = true;
-        enemyHealth = 200;
+        enemyHealth = 100;
         player = GameObject.Find("Player").GetComponent<Player>();
         if (Tutorial.tutFin == true)
         {

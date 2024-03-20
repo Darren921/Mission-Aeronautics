@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -97,7 +98,7 @@ public class TutTextManager : MonoBehaviour
             yield return new WaitForSeconds(typeSpeed);
 
         }
-        if (sentences.Count == 3 || sentences.Count == 2)
+        if (sentences.Count == 3 || sentences.Count == 2 || sentences.Count == 1)
         {
             isTalking = true;
         }
@@ -136,7 +137,6 @@ public class TutTextManager : MonoBehaviour
         }
         if (isTalking == false && sentences.Count == 2 && tut.powerUps)
         {
-            print(true);
             tut.powerUps = true;
             tut.CheckIfTrue();
             enemy.GetComponent<TrainingDummy>().enemyState = "Idle";      

@@ -23,12 +23,10 @@ public class Projectile : MonoBehaviour
     {
         if (enemy.GetTurn1() == true)
         {
-            time += 1 * Time.deltaTime;
             rb.AddForce(new Vector2(800 * Time.deltaTime, 0));
         }
         if (enemy.GetTurn2() == true)
         {
-            time += 1 * Time.deltaTime;
             rb.AddForce(new Vector2(-800 * Time.deltaTime, 0));
         }
 
