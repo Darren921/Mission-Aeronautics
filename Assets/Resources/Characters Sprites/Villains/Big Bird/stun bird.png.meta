@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc427c1816f1f3e468285f384f6a9682
+guid: a962003e787099a4fb9708a4502c5263
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BigBird Idle_0
+      name: stun bird_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1541
-        width: 2055
-        height: 1541
+        y: 3074
+        width: 2050
+        height: 1537
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6525990ff5c8e54aa52de6c4930821f
-      internalID: 686574758
+      spriteID: 50b450ef03045f044883df18a968eea4
+      internalID: -547290625
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigBird Idle_1
+      name: stun bird_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2055
-        height: 1541
+        y: 1537
+        width: 2050
+        height: 1537
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,8 +158,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afc80d9834f17634cb2d3c21883f400c
-      internalID: -598241531
+      spriteID: 7f05839c620661347957cb585fd3ef2a
+      internalID: -1679083725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stun bird_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2050
+        height: 1537
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83415508f3add2e4db8c115225af3112
+      internalID: 590798748
       vertices: []
       indices: 
       edges: []
@@ -175,8 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BigBird Idle_0: 686574758
-      BigBird Idle_1: -598241531
+      stun bird_0: -547290625
+      stun bird_1: -1679083725
+      stun bird_2: 590798748
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

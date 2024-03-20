@@ -104,9 +104,9 @@ public class Enemy : MonoBehaviour
             {
                 this.gameObject.GetComponent<EarthmanAI>().enabled = true;
             }
-            else
+            else if (level == 4)
             {
-
+                this.gameObject.GetComponent<BigBirdAI>().enabled = true;
             }
         }
         else

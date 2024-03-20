@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 
 public class EarthmanAI : Enemy
 {
-
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
     [SerializeField] private GameObject fireBall;
