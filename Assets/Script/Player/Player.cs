@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using static PowerUps;
+using static PowerUpSpawner;
 
 public class Player : MonoBehaviour
 {
@@ -38,8 +39,10 @@ public class Player : MonoBehaviour
     [SerializeField] private AnimatorOverrideController[] animatorOverrideControllers;
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
+    [SerializeField] private GameObject tutEnemy;
     private Enemy enemy;
-    [SerializeField] private PowerUps powerUps;
+
+    [SerializeField] private PowerUpSpawner powerUpsSpawner;
     private GameObject bullet;
     private float bulletDestroy = 0;
     private TutTextManager textManager;
@@ -95,7 +98,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-             enemy = FindObjectOfType<TrainingDummy>();
+             enemy = tutEnemy.GetComponent<TrainingDummy>();
         }
        
 
@@ -136,8 +139,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-      
+
+        print(isCollecting);
         if (Tutorial.tutFin != true)
         {
 
@@ -489,7 +492,7 @@ public class Player : MonoBehaviour
         
         if (collision.gameObject.CompareTag("PowerUp") && isCollecting == true )
         {
-            collectedPowerUp = powerUps.returnType();
+            collectedPowerUp = powerUpsSpawner.returnType();
             print(true);  
             switch (collectedPowerUp )
             {
@@ -555,18 +558,36 @@ public class Player : MonoBehaviour
         {
             
             GameObject bul = Instantiate(bullet);
-            if(enemy.Distance() >= 0)
+            if (Tutorial.tutFin != true)
             {
-                bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
-                
+                if (tutEnemy.GetComponent<Enemy>().Distance() >= 0)
+                {
+                    bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+
+                }
+                else if (tutEnemy.GetComponent<Enemy>().Distance() >= 0)
+                {
+                    bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+                }
+                else
+                {
+                    bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+                }
             }
-            else if (enemy.Distance() <= -0)
-            {
-                bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
-            }
-            else
-            {
-                bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+            else {
+                if (enemy.Distance() >= 0)
+                {
+                    bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+
+                }
+                else if (enemy.Distance() <= -0)
+                {
+                    bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+                }
+                else
+                {
+                    bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+                }
             }
 
            

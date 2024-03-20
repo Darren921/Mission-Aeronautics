@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4813319441686433171}
   - component: {fileID: 1996457337440447676}
   - component: {fileID: 6985783215491427921}
+  - component: {fileID: 8864059630421027772}
   m_Layer: 8
   m_Name: Test
   m_TagString: PowerUp
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: dabe9f7f3e6fd69428d0c0277e63e5d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aecbb21f21f674d48b14fc2797eaaa40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,7 +112,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &6985783215491427921
 CircleCollider2D:
@@ -148,3 +149,15 @@ CircleCollider2D:
   m_Offset: {x: -0.00087070465, y: 0.0008710623}
   serializedVersion: 2
   m_Radius: 0.5052265
+--- !u!114 &8864059630421027772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620772906427052181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0ce47249441654199e3fcca10daf40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -484,7 +484,7 @@ Transform:
   m_GameObject: {fileID: 223360735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.099999905, y: 1.2900006, z: -11.4}
+  m_LocalPosition: {x: 0.10000086, y: 1.2900007, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1279,7 +1279,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.875
+  orthographic size: 7.8750005
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1304,7 +1304,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.099999905, y: 1.2900006, z: -11.4}
+  m_LocalPosition: {x: 0.10000086, y: 1.2900007, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2125,7 +2125,8 @@ MonoBehaviour:
   - {fileID: 22100000, guid: a1e4481626d617f40a780ca8351f55b0, type: 2}
   AttackEffects: []
   source: {fileID: 648541903}
-  powerUps: {fileID: 1970502922}
+  tutEnemy: {fileID: 0}
+  powerUpsSpawner: {fileID: 1970502922}
 --- !u!50 &648541896
 Rigidbody2D:
   serializedVersion: 4

@@ -62,7 +62,7 @@ public class Health : MonoBehaviour
         tut = FindObjectOfType<Tutorial>();
         tutTextManager = FindObjectOfType<TutTextManager>();
         canAttack = true;
-        enemyHealth = 100;
+        enemyHealth = 200;
         player = GameObject.Find("Player").GetComponent<Player>();
         if (Tutorial.tutFin == true)
         {
@@ -223,17 +223,18 @@ public class Health : MonoBehaviour
 
 
             }
-        }
 
-        if(enemy != null)
-        {
-            if (enemy.playerHealth <= 80 && player.ReturnAnimator().GetBool("Guarding") == true && tut.block == true && enemy.ReturnplayerHit() == true)
+
+            if (enemy != null)
             {
+                if (enemy.playerHealth <= 70 && player.ReturnAnimator().GetBool("Guarding") == true && tut.block == true && enemy.ReturnplayerHit() == true)
+                {
 
-                tut.powerUps = true;
-                tut.CheckIfTrue();
-                tutTextManager.IsTalking = false;
+                    tut.powerUps = true;
+                    tut.CheckIfTrue();
+                    tutTextManager.IsTalking = false;
 
+                }
             }
         }
         if (enemy != null)
