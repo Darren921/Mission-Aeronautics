@@ -1311,7 +1311,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.78994435, g: 0.5720185, b: 0.9716981, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -15620,15 +15620,15 @@ MonoBehaviour:
   dialogue:
     sentences:
     - Welcome to the trainning grounds, where you will be learning the basics.
-    - First up is movement with  WASD, test it out or follow the prompt below.
-    - I just activated combat protocol, use t or j to perform your basic attack!
+    - First up is movement with 'WASD' , test it out or follow the prompt below.
+    - I just activated combat protocol, use 'T' or 'J' to perform your basic attack!
     - Special attacks are online, charge them using basic attacks on enemies and
       release them with y and l
     - 'I just spawned in a tranning dummy, use what you have learned to defeat them! '
-    - Nice job, but watch out! Their combat protocol just activated, use shift or
-      k to block it!
+    - Nice job, but watch out! Their combat protocol just activated, use 'Shift'
+      or 'K' to block it!
     - 'Ah, that''s not good! Powerups drop across the field, this one heals you,
-      grab it using e or i. '
+      grab it using ''E'' or ''I''. '
     - That's all for training, press the button below to begin your journey. I need
       to report this..incident
 --- !u!114 &920402443
@@ -18774,10 +18774,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'press Space to continue, hold to speed up '
+  m_text: 'Press ''Space'' to continue, Hold to speed up '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 52cc9c4e1af4e684f8631524296c9f6c, type: 2}
+  m_sharedMaterial: {fileID: -3762061768481340319, guid: 52cc9c4e1af4e684f8631524296c9f6c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21063,8 +21063,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hello
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 52cc9c4e1af4e684f8631524296c9f6c, type: 2}
+  m_sharedMaterial: {fileID: -3762061768481340319, guid: 52cc9c4e1af4e684f8631524296c9f6c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

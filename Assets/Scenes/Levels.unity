@@ -1428,10 +1428,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3d6fde72f75b05842a8beac74e8b1c4b, type: 3}
   - {fileID: 21300000, guid: a8bc2dd59ee69344ab7a520784398fe7, type: 3}
   animatorOverrideController: {fileID: 0}
-  levelTwoActive: 0
-  levelThreeActive: 0
-  levelFourActive: 0
-  levelFiveActive: 0
+  levelTwoActive: 1
+  levelThreeActive: 1
+  levelFourActive: 1
+  levelFiveActive: 1
 --- !u!1 &1037855378
 GameObject:
   m_ObjectHideFlags: 0

@@ -231,7 +231,7 @@ public class Player : MonoBehaviour
         performed = true;
         _isAttacking = true;
         animator.SetBool("IsAttacking", true);
-        if(isStunned !=  true)
+        if(isStunned !=  true )
         {
             
             switch (animator.GetInteger("MoveNumber"))
@@ -289,6 +289,7 @@ public class Player : MonoBehaviour
             isSpecialAtk = false;
 
         }
+        /*
         else if (isStunned == true)
         {
 
@@ -300,6 +301,7 @@ public class Player : MonoBehaviour
 
             }
         }
+        */
 
 
 

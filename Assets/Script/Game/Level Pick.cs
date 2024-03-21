@@ -109,6 +109,7 @@ public class LevelPick : MonoBehaviour
     {
         LevelChossen = 1;
         SceneManager.LoadScene("MainGame");
+        Time.timeScale = 1.0f;
         InputManager.DisableInGame();
     }
     public void Level2()
@@ -117,6 +118,7 @@ public class LevelPick : MonoBehaviour
         {
             LevelChossen = 2;
             SceneManager.LoadScene("MainGame");
+            Time.timeScale = 1.0f;
             InputManager.DisableInGame();
 
         }
@@ -127,6 +129,7 @@ public class LevelPick : MonoBehaviour
         {
             LevelChossen = 3;
             SceneManager.LoadScene("MainGame");
+            Time.timeScale = 1.0f;
             InputManager.DisableInGame();
 
         }
@@ -137,6 +140,7 @@ public class LevelPick : MonoBehaviour
         {
             LevelChossen = 4;
             SceneManager.LoadScene("MainGame");
+            Time.timeScale = 1.0f;
             InputManager.DisableInGame();
 
         }
@@ -148,6 +152,7 @@ public class LevelPick : MonoBehaviour
         {
             LevelChossen = 5;
             SceneManager.LoadScene("MainGame");
+            Time.timeScale = 1.0f;
             InputManager.DisableInGame();
 
         }
