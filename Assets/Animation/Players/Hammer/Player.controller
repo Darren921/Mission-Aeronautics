@@ -1959,6 +1959,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: MoveNumber
     m_EventTreshold: 3
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsMoving
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3153231673381987721}
   m_Solo: 0
@@ -1966,7 +1969,7 @@ AnimatorStateTransition:
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.24999988
-  m_TransitionOffset: 0.021295048
+  m_TransitionOffset: 0.087414294
   m_ExitTime: 0.6590909
   m_HasExitTime: 0
   m_HasFixedDuration: 1

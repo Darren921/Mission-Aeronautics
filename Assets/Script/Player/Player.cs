@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
         if(isStunned !=  true )
         {
             
-            switch (animator.GetInteger("MoveNumber"))
+            switch (animator.GetInteger("MoveNumber") )
             {
                 case 0:
                     EndPosA = transform.position + new Vector3(0.2f, 0, 0);
@@ -278,14 +278,12 @@ public class Player : MonoBehaviour
             if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
             {
                 StartCoroutine(Shoot(1));
-                isSpecialAtk = false;
             }
             if (Buttons.CharacterChossen == 4)
             {
                 StartCoroutine(Shoot(3));
-                isSpecialAtk = false;
             }
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(1f);
             isSpecialAtk = false;
 
         }
@@ -297,8 +295,6 @@ public class Player : MonoBehaviour
                 isSpecialAtk = false;
                 _isAttacking = false;
                 _health.damage = 0;
-             
-
             }
         }
         */
