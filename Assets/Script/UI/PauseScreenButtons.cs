@@ -55,16 +55,31 @@ public class PauseScreenButtons : MonoBehaviour
     }
     public void OpenPauseMenu()
     {
-        for (int i = 0; i < Assets.Length; i++)
+        for (int i = 0; i < Assets.Length - 1; i++)
         {
             Assets[i].SetActive(true);
             Time.timeScale = 0;
         }
     }
 
+    public void OpenControls()
+    {
+        ClosePauseMenu();
+        Time.timeScale = 0;
+        Assets[9].SetActive(true);
+        Assets[10].SetActive(true);
+    }
+
+    public void CloseControls()
+    {
+        OpenPauseMenu();
+        Time.timeScale = 0;
+        Assets[9].SetActive(true);
+        Assets[10].SetActive(false);
+    }
     public void ClosePauseMenu()
     {
-        for (int i = 0; i < Assets.Length; i++)
+        for (int i = 0; i < Assets.Length - 1; i++)
         {
             Assets[i].SetActive(false);
             Time.timeScale = 1;
