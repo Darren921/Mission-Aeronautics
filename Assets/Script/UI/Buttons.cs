@@ -14,12 +14,13 @@ public class Buttons : MonoBehaviour
         Time.timeScale = 1.0f;
         StopAllCoroutines();
         SceneManager.LoadScene("TitleScreen");
-
+        
     }
 
     public void BackToSelection() 
     {
         SceneManager.LoadScene("ChooseCharacter");
+       
     }
 
    
@@ -29,7 +30,7 @@ public class Buttons : MonoBehaviour
     {
         SceneManager.LoadScene("ChooseCharacter");
         Time.timeScale = 1.0f;
-
+      
         playerData.levelTwoActive = true;
         playerData.levelThreeActive = true;
         playerData.levelFourActive = false;
@@ -50,12 +51,13 @@ public class Buttons : MonoBehaviour
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
             LevelPick.LevelChossen = 0;
-
+           
         }
         else
         {
             SceneManager.LoadScene("Levels");
             Time.timeScale = 1.0f;
+           
         }
        
 
@@ -68,11 +70,13 @@ public class Buttons : MonoBehaviour
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
             LevelPick.LevelChossen = 0;
+            
         }
         else
         {
             SceneManager.LoadScene("Levels");
             Time.timeScale = 1.0f;
+           
         }
        
     }
@@ -84,12 +88,14 @@ public class Buttons : MonoBehaviour
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
             LevelPick.LevelChossen = 0;
+            
 
         }
         else
         {
             SceneManager.LoadScene("Levels");
             Time.timeScale = 1.0f;
+           
         }
 
     }
@@ -101,12 +107,14 @@ public class Buttons : MonoBehaviour
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
             LevelPick.LevelChossen = 0;
+           
 
         }
         else
         {
             SceneManager.LoadScene("Levels");
             Time.timeScale = 1.0f;
+           
         }
 
     }

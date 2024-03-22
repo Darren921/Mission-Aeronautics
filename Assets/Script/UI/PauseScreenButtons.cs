@@ -11,40 +11,43 @@ public class PauseScreenButtons : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Toggle[] toggles;
     [SerializeField] private GameObject[] Target;
     private UnityEngine.UI.Image image;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource[] audioSource;
 
     [SerializeField] private Sprite[] offOn;
     public void MusicToggle()
     {
-        audioSource = this.GetComponent<AudioSource>();
+       
         var Switch = toggles[0];
         image = Target[0].GetComponent<UnityEngine.UI.Image>();
        
         if (Switch.isOn == false)
         {
-            audioSource.enabled = false;
+            audioSource[0].enabled = false;
             image.sprite = offOn[0];
         }
         else
         {
-            audioSource.enabled = true;
-            audioSource.Play();
+            audioSource[0].enabled = true;
+            audioSource[0].Play();
             image.sprite = offOn[1];
         }
     }
     public void SFXToggle()
     {
-        audioSource = this.GetComponent<AudioSource>();
         var Switch = toggles[1];
         image = Target[1].GetComponent<UnityEngine.UI.Image>();
 
         if (Switch.isOn == false)
         {
             image.sprite = offOn[0];
+            audioSource[1].enabled = false;
+            audioSource[2].enabled = false;
+
         }
         else
         {
-
+            audioSource[1].enabled = true;
+            audioSource[2].enabled = true;
             image.sprite = offOn[1];
         }
 

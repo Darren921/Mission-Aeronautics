@@ -28,6 +28,7 @@ public class LevelPick : MonoBehaviour
 
     private void Start()
     {
+
         playerData = new PlayerData();
         json = System.IO.File.ReadAllText(Application.persistentDataPath + "/savefile.json");
         loadedData = JsonUtility.FromJson<PlayerData>(json);
