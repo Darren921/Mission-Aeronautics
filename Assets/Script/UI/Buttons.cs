@@ -33,8 +33,8 @@ public class Buttons : MonoBehaviour
       
         playerData.levelTwoActive = true;
         playerData.levelThreeActive = true;
-        playerData.levelFourActive = false;
-        playerData.levelFiveActive = false;
+        playerData.levelFourActive = true;
+        playerData.levelFiveActive = true;
 
         string json = JsonUtility.ToJson(playerData);
 
