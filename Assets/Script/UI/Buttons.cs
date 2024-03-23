@@ -14,13 +14,11 @@ public class Buttons : MonoBehaviour
         Time.timeScale = 1.0f;
         StopAllCoroutines();
         SceneManager.LoadScene("TitleScreen");
-        
     }
 
     public void BackToSelection() 
     {
         SceneManager.LoadScene("ChooseCharacter");
-       
     }
 
    
@@ -116,13 +114,5 @@ public class Buttons : MonoBehaviour
             Time.timeScale = 1.0f;
            
         }
-
     }
-
-    /*
-public void loadMultiPlayer()
-{
-SceneManager.LoadScene("ChooseCharacter");
-}
-*/
 }

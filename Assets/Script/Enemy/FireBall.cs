@@ -36,7 +36,6 @@ public class FireBall : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (enemy.GetTurn1() == true)

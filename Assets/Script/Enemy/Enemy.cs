@@ -80,15 +80,6 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-
-       // float distance = transform.position.x - player.transform.position.x;
-        //print(transform.position.x - player.transform.position.x);
-
-       // if ((distance <= 3 && distance >= -3))
-       // {
-       //     print(distance);
-     //   }
-
         //switch case maybe is preffered here
         if (enemyActive)
         {
@@ -160,18 +151,16 @@ public class Enemy : MonoBehaviour
         {
             collidingWithPlayer = true;
         }
-        print (collision.gameObject.tag);
-       
-            if (collision.gameObject.tag == ("PlayerProjectiles"))
-            {
-                if (bulletHit == true)
-                    return;
-                bulletHit = true;
-                StartCoroutine(Reset());
 
-            }
-        
-        
+        print (collision.gameObject.tag);
+
+        if (collision.gameObject.tag == ("PlayerProjectiles"))
+        {
+            if (bulletHit == true)
+            return;
+            bulletHit = true;
+            StartCoroutine(Reset());
+        }
     }
 
   

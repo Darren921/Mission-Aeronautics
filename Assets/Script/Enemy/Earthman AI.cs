@@ -12,23 +12,21 @@ public class EarthmanAI : Enemy
     private int fireShot = 0;
 
 
-    // Start is called before the first frame update
     void Start()
     {
-        health = new Health();
-        enemy = new Enemy();
+        health = FindObjectOfType<Health>();
         animator = GetComponent<Animator>();
         enemyState = "Idle";
         canAttack = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         distance = (transform.position.x - player.transform.position.x);
 
         if (health.GetStunned())
         {
+            print("STUNNED");
             animator.SetBool("Move", false);
             animator.SetBool("Stun", true);
             animator.SetBool("Attack 1", false);
@@ -133,6 +131,11 @@ public class EarthmanAI : Enemy
             }
             else if(enemyState == "Recovery")
             {
+                animator.SetBool("Move", true);
+                animator.SetBool("Stun", false);
+                animator.SetBool("Attack 1", false);
+                animator.SetBool("Attack 2", false);
+
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 10, this.transform.position.y), speed * Time.deltaTime);
                 if (distance > 8)
                 {

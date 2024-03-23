@@ -76,8 +76,6 @@ public class Player : MonoBehaviour
         set { isStunned = value; }
     }
 
-    // Start is called before the first frame update
-
 
     void Start()
     {

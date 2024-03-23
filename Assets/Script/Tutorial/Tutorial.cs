@@ -23,7 +23,7 @@ public class Tutorial : MonoBehaviour
     {
         movement = true;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         textManager = FindAnyObjectByType<TutTextManager>();
@@ -42,10 +42,5 @@ public class Tutorial : MonoBehaviour
         tutFin = true;
         SceneManager.LoadScene("Levels");
         InputManager.DisableInGame();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
