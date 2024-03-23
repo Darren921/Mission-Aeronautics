@@ -341,7 +341,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 576161784}
         m_TargetAssemblyTypeName: PauseScreenButtons, Assembly-CSharp
         m_MethodName: OpenControls
         m_Mode: 1
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 576161784}
         m_TargetAssemblyTypeName: PauseScreenButtons, Assembly-CSharp
         m_MethodName: CloseControls
         m_Mode: 1
@@ -1967,6 +1967,7 @@ GameObject:
   - component: {fileID: 576161784}
   - component: {fileID: 576161786}
   - component: {fileID: 576161787}
+  - component: {fileID: 576161788}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2078,19 +2079,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Assets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1174227724}
+  - {fileID: 1783627018}
+  - {fileID: 184509741}
+  - {fileID: 364345063}
+  - {fileID: 1483669113}
+  - {fileID: 981244417}
+  - {fileID: 1504374781}
+  - {fileID: 2075257922}
+  - {fileID: 68616728}
+  - {fileID: 533556949}
+  - {fileID: 526400458}
   toggles:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 981244419}
+  - {fileID: 1504374783}
   Target:
-  - {fileID: 0}
-  - {fileID: 0}
-  audioSource: []
+  - {fileID: 1704015509}
+  - {fileID: 1314634868}
+  audioSource:
+  - {fileID: 576161786}
+  - {fileID: 648541903}
+  - {fileID: 975061908}
   offOn:
   - {fileID: -1644883735, guid: 7ab8b4db4ce0e984ab9bde8bc2011c63, type: 3}
   - {fileID: 77822253, guid: 7ab8b4db4ce0e984ab9bde8bc2011c63, type: 3}
@@ -2219,6 +2228,23 @@ MonoBehaviour:
   specialAtk: 0
   block: 0
   powerUps: 0
+--- !u!114 &576161788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576161779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343d906d72ef5174987247c9b6b3fddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeAmount: 4
+  currentVolume: 0
+  volumeImage: {fileID: 0}
+  volumeSprites: []
+  volumeThing: {fileID: 576161786}
 --- !u!1 &617688862
 GameObject:
   m_ObjectHideFlags: 0
@@ -19549,6 +19575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeAmount: 4
+  currentVolume: 0
   volumeImage: {fileID: 1783627019}
   volumeSprites:
   - {fileID: 1024439668, guid: 8402eeca532842f40840619a3e22467f, type: 3}
@@ -19556,7 +19583,7 @@ MonoBehaviour:
   - {fileID: -445370333, guid: 8402eeca532842f40840619a3e22467f, type: 3}
   - {fileID: 1188488154, guid: 8402eeca532842f40840619a3e22467f, type: 3}
   - {fileID: 1060938677, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  volumeThing: {fileID: 0}
+  volumeThing: {fileID: 576161786}
 --- !u!114 &1174227726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20402,7 +20429,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 576161784}
         m_TargetAssemblyTypeName: PauseScreenButtons, Assembly-CSharp
         m_MethodName: ClosePauseMenu
         m_Mode: 1
@@ -22033,7 +22060,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 576161785}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
         m_MethodName: BackToTitle
         m_Mode: 1

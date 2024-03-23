@@ -25266,6 +25266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeAmount: 4
+  currentVolume: 0
   volumeImage: {fileID: 529909348}
   volumeSprites:
   - {fileID: 1024439668, guid: 8402eeca532842f40840619a3e22467f, type: 3}
