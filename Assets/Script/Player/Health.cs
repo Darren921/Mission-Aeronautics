@@ -11,6 +11,8 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    public static bool gameEnded;
+
     [SerializeField] private Sprite[] enemyBars;
     [SerializeField] private Image enemyHealthImage;
 
@@ -32,11 +34,16 @@ public class Health : MonoBehaviour
         get { return enemyHealth; }
         set { enemyHealth = value;}
     }
-    public  int GetCombo
+    public int GetCombo
     {
        get { return combo; }
        set { combo = value; }
+    }
 
+    public bool GetStunned
+    {
+        get { return enemyStunned; }
+        set { enemyStunned = value; }
     }
 
     [SerializeField] private GameObject playerChar;
@@ -59,6 +66,7 @@ public class Health : MonoBehaviour
 
     void Start()
     {
+
         tut = FindObjectOfType<Tutorial>();
         tutTextManager = FindObjectOfType<TutTextManager>();
         canAttack = true;
@@ -161,7 +169,8 @@ public class Health : MonoBehaviour
         
         if (enemyHealth <= 0 && Tutorial.tutFin == true)
         {
-            
+            gameEnded = true;
+
             InputManager.DisableInGame();
             player.ReturnAnimator().SetBool("IsMoving",false);
             player.ReturnAnimator().SetBool("Stunned", false);
@@ -202,6 +211,8 @@ public class Health : MonoBehaviour
         if (enemy != null) {
         if (enemy.GetPlayerHealth <= 0 && Tutorial.tutFin == true)
             {
+                gameEnded = true;
+
                 InputManager.DisableInGame();
                 player.ReturnAnimator().SetBool("IsMoving", false);
                 player.ReturnAnimator().SetBool("Stunned", false);
@@ -251,11 +262,7 @@ public class Health : MonoBehaviour
         
     }
    
-
-    public bool GetStunned()
-    {
-        return enemyStunned;
-    }
+    
 
     
    

@@ -318,11 +318,10 @@ public class Player : MonoBehaviour
     
 
     public void hitCheck ()
-    { 
-        
+    {
         if (Tutorial.tutFin == true)
         {
-            if (enemy.ReturnplayerHit() == true)
+            if (enemy.ReturnplayerHit() == true && Health.gameEnded == false)
             {
                 StartCoroutine(stunCheck());
             }
@@ -337,23 +336,18 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        
-        
-
-
-
     }
 
     
 
     public IEnumerator stunCheck()
     {
-
         if (isStunned == true )
         {
             StopCoroutine(stunCheck());
 
         }
+
         if (animator.GetBool("Guarding") ==  false)
         {
             isStunned = true;
@@ -371,9 +365,6 @@ public class Player : MonoBehaviour
             isStunned = false;
             animator.SetBool("Stunned", false);
         }
-
-
-
     }
 
     public void Blocking()
@@ -396,13 +387,10 @@ public class Player : MonoBehaviour
     private IEnumerator Delay()
     {
         yield return new WaitForSeconds(2);
-        
     }
 
     public void BlockCanceled()
     {
-
-      
         gameObject.GetComponent<Player>().enabled = true;
         isBlocking = false;
         animator.SetBool("Guarding", false);

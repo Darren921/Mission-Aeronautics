@@ -163,17 +163,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-  
-
-   
-   
-
     IEnumerator Reset()
     {
         yield return new WaitForEndOfFrame();
         bulletHit = false;
         print(bulletHit);
-
     }
     public bool Stun()
     {

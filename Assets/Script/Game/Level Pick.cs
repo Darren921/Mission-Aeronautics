@@ -21,6 +21,8 @@ public class LevelPick : MonoBehaviour
 
     private PlayerData loadedData;
 
+    private Health health;
+
     public bool levelTwoActive;
     public bool levelThreeActive;
     public bool levelFourActive;
@@ -28,7 +30,7 @@ public class LevelPick : MonoBehaviour
 
     private void Start()
     {
-
+        health = new Health();
         playerData = new PlayerData();
         json = System.IO.File.ReadAllText(Application.persistentDataPath + "/savefile.json");
         loadedData = JsonUtility.FromJson<PlayerData>(json);
@@ -108,6 +110,9 @@ public class LevelPick : MonoBehaviour
 
     public void Level1()
     {
+        Health.gameEnded = false;
+        health.GetStunned = false;
+        print(Health.gameEnded);
         LevelChossen = 1;
         SceneManager.LoadScene("MainGame");
         Time.timeScale = 1.0f;
@@ -115,6 +120,9 @@ public class LevelPick : MonoBehaviour
     }
     public void Level2()
     {
+        Health.gameEnded = false;
+        health.GetStunned = false;
+        print(Health.gameEnded);
         if (levelTwoActive)
         {
             LevelChossen = 2;
@@ -126,6 +134,9 @@ public class LevelPick : MonoBehaviour
     }
     public void Level3()
     {
+        Health.gameEnded = false;
+        health.GetStunned = false;
+        print(Health.gameEnded);
         if (levelThreeActive)
         {
             LevelChossen = 3;
@@ -137,7 +148,10 @@ public class LevelPick : MonoBehaviour
     }
     public void Level4()
     {
-        if(levelFourActive)
+        Health.gameEnded = false;
+        health.GetStunned = false;
+        print(Health.gameEnded);
+        if (levelFourActive)
         {
             LevelChossen = 4;
             SceneManager.LoadScene("MainGame");
@@ -149,6 +163,9 @@ public class LevelPick : MonoBehaviour
 
     public void Level5()
     {
+        Health.gameEnded = false;
+        health.GetStunned = false;
+        print(Health.gameEnded);
         if (levelFiveActive) 
         {
             LevelChossen = 5;
@@ -159,8 +176,5 @@ public class LevelPick : MonoBehaviour
         }
     }
 
-    public int Level()
-    {
-        return LevelChossen;
-    }
+    public int Level() { return LevelChossen; }
 }

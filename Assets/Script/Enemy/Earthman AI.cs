@@ -24,7 +24,7 @@ public class EarthmanAI : Enemy
     {
         distance = (transform.position.x - player.transform.position.x);
 
-        if (health.GetStunned())
+        if (health.GetStunned)
         {
             print("STUNNED");
             animator.SetBool("Move", false);

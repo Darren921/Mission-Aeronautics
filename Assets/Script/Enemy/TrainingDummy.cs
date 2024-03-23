@@ -27,7 +27,7 @@ public class TrainingDummy : Enemy
     {
         distance = (transform.position.x - player.transform.position.x);
 
-        if (health.GetStunned())
+        if (health.GetStunned)
         {
             animator.SetBool("Move", false);
             animator.SetBool("Stun", true);
