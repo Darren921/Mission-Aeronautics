@@ -12,8 +12,12 @@ public class PauseScreenButtons : MonoBehaviour
     [SerializeField] private GameObject[] Target;
     private UnityEngine.UI.Image image;
     [SerializeField] private AudioSource[] audioSource;
-
+    Volume volume;
     [SerializeField] private Sprite[] offOn;
+    private void Update()
+    {
+        volume = FindObjectOfType<Volume>();
+    }
     public void MusicToggle()
     {
        
@@ -24,11 +28,16 @@ public class PauseScreenButtons : MonoBehaviour
         {
             audioSource[0].enabled = false;
             image.sprite = offOn[0];
+            PlayerPrefs.SetFloat("VolumeBackground", volume.background.volume);
+            PlayerPrefs.Save();
         }
         else
         {
             audioSource[0].enabled = true;
             audioSource[0].Play();
+            PlayerPrefs.GetFloat("VolumeBackground", 0.75f);
+            PlayerPrefs.Save();
+
             image.sprite = offOn[1];
         }
     }
@@ -42,6 +51,10 @@ public class PauseScreenButtons : MonoBehaviour
             image.sprite = offOn[0];
             audioSource[1].enabled = false;
             audioSource[2].enabled = false;
+            PlayerPrefs.SetFloat("VolumeBackground", volume.background.volume);
+            PlayerPrefs.SetFloat("VolumeEffects", volume.soundEffects.volume);
+            PlayerPrefs.Save();
+
 
         }
         else
@@ -49,6 +62,9 @@ public class PauseScreenButtons : MonoBehaviour
             audioSource[1].enabled = true;
             audioSource[2].enabled = true;
             image.sprite = offOn[1];
+            PlayerPrefs.GetFloat("VolumeBackground", 0.75f );
+            PlayerPrefs.GetFloat("VolumeEffects", 0.75f);
+            PlayerPrefs.Save();
         }
 
 

@@ -2125,7 +2125,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cb8b2e8b0b303f4469dde0ef04d3b90a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 71eb1f7dec0bf744ca284b22590f91c6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.342
   m_Pitch: 1
@@ -2244,7 +2244,8 @@ MonoBehaviour:
   currentVolume: 0
   volumeImage: {fileID: 0}
   volumeSprites: []
-  volumeThing: {fileID: 576161786}
+  background: {fileID: 576161786}
+  soundEffects: {fileID: 648541903}
 --- !u!1 &617688862
 GameObject:
   m_ObjectHideFlags: 0
@@ -19583,7 +19584,8 @@ MonoBehaviour:
   - {fileID: -445370333, guid: 8402eeca532842f40840619a3e22467f, type: 3}
   - {fileID: 1188488154, guid: 8402eeca532842f40840619a3e22467f, type: 3}
   - {fileID: 1060938677, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  volumeThing: {fileID: 576161786}
+  background: {fileID: 576161786}
+  soundEffects: {fileID: 648541903}
 --- !u!114 &1174227726
 MonoBehaviour:
   m_ObjectHideFlags: 0

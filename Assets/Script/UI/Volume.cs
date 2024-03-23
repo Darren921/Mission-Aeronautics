@@ -11,28 +11,42 @@ public class Volume : MonoBehaviour
 
     public Sprite[] volumeSprites;
 
-    public AudioSource volumeThing;
+    public AudioSource background;
+    public AudioSource soundEffects;
+
 
 
     private void Start()
     {
-        if (!PlayerPrefs.HasKey("Volume"))
+        if (!PlayerPrefs.HasKey("VolumeBackground") && !PlayerPrefs.HasKey("VolumeEffects"))
         {
-            PlayerPrefs.SetFloat("Volume", 0.75f);
+            PlayerPrefs.SetFloat("VolumeBackground", 0.75f);
+            PlayerPrefs.SetFloat("VolumeEffects", 0.75f);
             PlayerPrefs.Save();
         }
-        volumeThing.volume = PlayerPrefs.GetFloat("Volume", 0.75f);
+        background.volume = PlayerPrefs.GetFloat("VolumeBackground", 0.75f);
+     
+        soundEffects.volume = PlayerPrefs.GetFloat("VolumeEffects", 0.75f);
         PlayerPrefs.Save();
 
-        print(volumeThing.volume);
+        print(soundEffects.volume);
+           
+
+        
+
+        print(background.volume);
 
     }
 
     private void OnDestroy()
     {
-        PlayerPrefs.SetFloat("Volume", volumeThing.volume);
+        PlayerPrefs.SetFloat("VolumeBackground", background.volume);
+        PlayerPrefs.SetFloat("VolumeEffects", soundEffects.volume);
+        
+
         PlayerPrefs.Save();
-        print(currentVolume);
+        print(background.volume);
+        print(soundEffects.volume);
     }
     private void Update()
     {
@@ -48,9 +62,12 @@ public class Volume : MonoBehaviour
         if(volumeSprites != null && volumeSprites.Length > 0 ) 
         {
             volumeImage.sprite = volumeSprites[volumeAmount];
-            volumeThing.volume = (float)volumeAmount / 4;
-            PlayerPrefs.SetFloat("Volume", volumeThing.volume);
-            print(PlayerPrefs.GetFloat("Volume"));
+            background.volume = (float)volumeAmount / 4;
+            soundEffects.volume = (float)volumeAmount / 4;
+            PlayerPrefs.SetFloat("VolumeBackground", background.volume);
+            PlayerPrefs.SetFloat("VolumeEffects", soundEffects.volume);
+            print(PlayerPrefs.GetFloat("VolumeBackground"));
+            print(PlayerPrefs.GetFloat("VolumeEffects"));
             PlayerPrefs.Save();
 
 

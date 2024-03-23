@@ -1449,7 +1449,8 @@ MonoBehaviour:
   currentVolume: 0
   volumeImage: {fileID: 0}
   volumeSprites: []
-  volumeThing: {fileID: 871005988}
+  background: {fileID: 871005988}
+  soundEffects: {fileID: 871005988}
 --- !u!1 &1037855378
 GameObject:
   m_ObjectHideFlags: 0

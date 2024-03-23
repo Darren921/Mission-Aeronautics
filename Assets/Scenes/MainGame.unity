@@ -25274,7 +25274,8 @@ MonoBehaviour:
   - {fileID: -445370333, guid: 8402eeca532842f40840619a3e22467f, type: 3}
   - {fileID: 1188488154, guid: 8402eeca532842f40840619a3e22467f, type: 3}
   - {fileID: 1060938677, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  volumeThing: {fileID: 576161786}
+  background: {fileID: 576161786}
+  soundEffects: {fileID: 648541903}
 --- !u!1 &1314611488
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,7 +47,10 @@ public class Player : MonoBehaviour
     private GameObject bullet;
     private float bulletDestroy = 0;
     private TutTextManager textManager;
-
+    private void OnDestroy()
+    {
+        InputManager.DisableInGame();
+    }
     private void Awake()
     {
         textManager = FindObjectOfType<TutTextManager>();
