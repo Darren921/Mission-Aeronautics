@@ -93,13 +93,10 @@ public class EarthmanAI : Enemy
         }
         else if (enemyState == "Pre Attack 2")
         {
-            Debug.Log("CHECK STUN INSIDE PRE ATTACK: " + health.GetStunned);
             if (health.GetStunnedFire)
             {
-                Debug.Log("CHECK STUN INSIDE PRE ATTACK AFTER CHECK STUN: " + health.GetStunnedFire);
                 debounce = 0;
                 enemyState = "Stunned";
-                Debug.Log("CHANGED STATE TO STUNNED");
             }
             else
             {

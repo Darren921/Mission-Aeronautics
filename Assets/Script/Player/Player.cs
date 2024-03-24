@@ -521,8 +521,8 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        print(collision.gameObject.tag);
-        print(isCollecting);
+        //print(collision.gameObject.tag);
+        //print(isCollecting);
         if (collision.gameObject.CompareTag("Enemy"))
         {
             isColliding = true;

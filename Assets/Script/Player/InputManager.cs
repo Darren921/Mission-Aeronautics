@@ -155,7 +155,6 @@ public class InputManager : MonoBehaviour
     }
     public static void DisableInGame()
     {
-
         _controls.InGame.Disable();
     }
 

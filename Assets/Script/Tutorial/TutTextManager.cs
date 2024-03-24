@@ -133,7 +133,7 @@ public class TutTextManager : MonoBehaviour
 
     private void Update()
     {
-        print(sentences.Count);
+        //print(sentences.Count);
 
         if (isTalking == false && sentences.Count == 3)
         {

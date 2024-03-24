@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour
             collidingWithPlayer = true;
         }
 
-        print (collision.gameObject.tag);
+        //print (collision.gameObject.tag);
 
         if (collision.gameObject.tag == ("PlayerProjectiles"))
         {

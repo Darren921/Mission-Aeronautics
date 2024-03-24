@@ -88,11 +88,11 @@ public class BigBirdAI : Enemy
         {
             if (enemy.GetTurn1())
             {
-                teleportLocation = new Vector3(player.transform.position.x + 3, player.transform.position.y, this.transform.position.z);
+                teleportLocation = new Vector3(player.transform.position.x - 2, player.transform.position.y, this.transform.position.z);
             }
             else
             {
-                teleportLocation = new Vector3(player.transform.position.x - 3, player.transform.position.y, this.transform.position.z);
+                teleportLocation = new Vector3(player.transform.position.x + 2, player.transform.position.y, this.transform.position.z);
             }
             
             enemyState = "Prepare Teleport";
@@ -129,11 +129,20 @@ public class BigBirdAI : Enemy
         }
         else if (enemyState == "After Teleport")
         {
+            if(distance > -5 && distance < 5)
+            {
+                BirbAttack(40, false);
+            }
+            else
+            {
+                enemyState = "Stunned";
+            }
+
             debounce += 1 * Time.deltaTime;
 
             if (debounce >= 2)
             {
-                enemyState = "Attack";
+                enemyState = "Recovery";
             }
         }
         else if (enemyState == "Stunned")
@@ -153,6 +162,23 @@ public class BigBirdAI : Enemy
                 stunDebounce = 0;
                 debounce = 0;
             }
+        }
+        else if(enemyState == "Recovery")
+        {
+            if (enemy.GetTurn1())
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 10, this.transform.position.y), speed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 10, this.transform.position.y), speed * Time.deltaTime);
+            }
+
+            if (distance > 8 || distance < -8)
+            {
+                enemyState = "Attack";
+            }
+
         }
     }
 
