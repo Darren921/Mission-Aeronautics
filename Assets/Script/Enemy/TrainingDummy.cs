@@ -38,7 +38,7 @@ public class TrainingDummy : Enemy
             if (stunDebounce >= 1)
             {
                 stunned = false;
-                if (tut.block == true)
+                if (tut.block == true && tut.powerUps != true)
                 {
                     enemyState = "Recovery";
                     canAttack = true;

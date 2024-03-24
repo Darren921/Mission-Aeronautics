@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,12 +19,14 @@ public class TutTextManager : MonoBehaviour
     [SerializeField] Player player;
     private float typeSpeed;
     private bool isTalking;
+    CinemachineFramingTransposer cam;
     void Awake()
     {
         contText.enabled = false;
         sentences = new Queue<string>();
         tut = FindObjectOfType<Tutorial>();
         player = FindObjectOfType<Player>();
+        cam = FindObjectOfType<CinemachineFramingTransposer>();
 
     }
 
@@ -70,6 +73,7 @@ public class TutTextManager : MonoBehaviour
                 enemy.GetComponent<TrainingDummy>().enabled = true;
                 enemyHealthbar.SetActive(true);
                 isTalking = true;
+                cam.m_ScreenX = 0.46f;
                 break;
             case 5:
                 tut.specialAtk = true;
@@ -140,7 +144,6 @@ public class TutTextManager : MonoBehaviour
         }
         if (isTalking == false && sentences.Count == 2 && tut.powerUps)
         {
-
             tut.powerUps = true;
             tut.CheckIfTrue();
             enemy.GetComponent<TrainingDummy>().enemyState = "Idle";      
