@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     Enemy enemy;
-    Enemy enemy2;
+    EarthmanAI emAI;
     private Rigidbody2D rb;
     private float time = 0;
 
@@ -13,26 +13,10 @@ public class FireBall : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        time = 0;
         enemy = FindObjectOfType<Enemy>();
 
-        switch (LevelPick.LevelChossen)
-        {
-            case 0:
-                enemy2 = FindObjectOfType<TrainingDummy>();
-                break;
-            case 1:
-                enemy2 = FindObjectOfType<BrickManAI>();
-                break;
-            case 2:
-                enemy2 = FindObjectOfType<EvilDarrenAI>();
-                damage = 10;
-                break;
-            case 3:
-                enemy2 = FindObjectOfType<EarthmanAI>();
-                damage = 40;
-                break;
-        }
+        emAI = FindObjectOfType<EarthmanAI>();
+        damage = 20;
     }
 
     void Update()
@@ -57,7 +41,7 @@ public class FireBall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            enemy2.Attack(damage, true);
+            emAI.IgAttack(damage, true);
             Destroy(this.gameObject);
         }
     }

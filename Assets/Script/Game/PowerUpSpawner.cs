@@ -44,19 +44,19 @@ public class PowerUpSpawner : MonoBehaviour
             {
                 case "Health":
                     powerupRenderer = powerup.GetComponent<SpriteRenderer>();
-                    print("Health");
+                    //print("Health");
                     powerUpType = PowerUpType.Health;
                     powerupRenderer.sprite = PowerUpIcons[0];
                     break;
                 case "Damage":
                     powerupRenderer = powerup.GetComponent<SpriteRenderer>();
-                    print("Damage");
+                    //print("Damage");
                     powerUpType = PowerUpType.Damage;
                     powerupRenderer.sprite = PowerUpIcons[1];
                     break;
                 case "Shield":
                     powerupRenderer = powerup.GetComponent<SpriteRenderer>();
-                    print("Shield");
+                    //print("Shield");
                     powerUpType = PowerUpType.Shield;
                     powerupRenderer.sprite = PowerUpIcons[2];
                     break;

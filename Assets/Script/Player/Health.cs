@@ -29,6 +29,9 @@ public class Health : MonoBehaviour
     public GameObject gameOverScreen;
     public TextMeshProUGUI winText;
 
+    public static bool enemyStunned;
+    public static bool enemyStunnedFire;
+
     public float GetEnemyHealth
     {
         get { return enemyHealth; }
@@ -46,10 +49,14 @@ public class Health : MonoBehaviour
         set { enemyStunned = value; }
     }
 
+    public bool GetStunnedFire
+    {
+        get { return enemyStunnedFire; }
+        set { enemyStunnedFire = value; }
+    }
+
     [SerializeField] private GameObject playerChar;
     [SerializeField] private GameObject enemyChar;
-
-    public static bool enemyStunned;
 
     private bool canAttack;
 
@@ -139,6 +146,7 @@ public class Health : MonoBehaviour
                                 combo += 1;
                             }
                             enemyStunned = true;
+                            enemyStunnedFire = true;
                             damage = 10;
                             if (enemyHealth >= 0)
                             {

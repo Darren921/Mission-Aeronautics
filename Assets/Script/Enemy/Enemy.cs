@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
     protected bool bulletHit;
     void Start()
     {
+        health = FindObjectOfType<Health>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -163,6 +164,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collidingWithPlayer = false;
+        }
+
+        print(collision.gameObject.tag);
+    }
+
     IEnumerator Reset()
     {
         yield return new WaitForEndOfFrame();
@@ -199,6 +210,8 @@ public class Enemy : MonoBehaviour
 
     internal void Attack(float damage, bool isProj)
     {
+        Debug.Log("ATTACK FIRED");
+
         if (collidingWithPlayer)
         {
             if (canAttack)

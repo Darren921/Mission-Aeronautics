@@ -41,12 +41,12 @@ public class Volume : MonoBehaviour
     private void OnDestroy()
     {
         PlayerPrefs.SetFloat("VolumeBackground", background.volume);
-        PlayerPrefs.SetFloat("VolumeEffects", soundEffects.volume);
+        //PlayerPrefs.SetFloat("VolumeEffects", soundEffects.volume); game say's its been destroyed and gave an error so i temporarily commented it
         
 
         PlayerPrefs.Save();
         print(background.volume);
-        print(soundEffects.volume);
+        //print(soundEffects.volume);
     }
     private void Update()
     {

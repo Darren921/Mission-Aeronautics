@@ -41,7 +41,7 @@ public class BrickManAI : Enemy
             stunDebounce += 1 * Time.deltaTime;
             if (stunDebounce >= 1)
             {
-                stunned = false;
+                health.GetStunned = false;
                 enemyState = "Recovery";
                 canAttack = true;
                 stunDebounce = 0;
