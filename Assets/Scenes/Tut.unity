@@ -1038,7 +1038,7 @@ Transform:
   m_GameObject: {fileID: 223360735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5008893, y: 1.1761594, z: -11.4}
+  m_LocalPosition: {x: -0.5051651, y: 1.1761594, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1760,7 +1760,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5008893, y: 1.1761594, z: -11.4}
+  m_LocalPosition: {x: -0.5051651, y: 1.1761594, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16089,14 +16089,14 @@ MonoBehaviour:
     sentences:
     - Welcome to the trainning grounds, where you will be learning the basics.
     - First up is movement with 'WASD' , test it out or follow the prompt below.
-    - I just activated combat protocol, use 'T' or 'J' to perform your basic attack!
+    - I just activated combat protocol, use 'J' to perform your basic attack!
     - Special attacks are online, charge them using basic attacks on enemies and
-      release them with y and l
+      release them with 'L'
     - 'I just spawned in a tranning dummy, use what you have learned to defeat them! '
-    - Nice job, but watch out! Their combat protocol just activated, use 'Shift'
-      or 'K' to block it!
+    - Nice job, but watch out! Their combat protocol just activated, use 'K' to block
+      it!
     - 'Ah, that''s not good! Powerups drop across the field, this one heals you,
-      grab it using ''E'' or ''I''. '
+      grab it using ''I''. '
     - That's all for training, press the button below to begin your journey. I need
       to report this..incident
 --- !u!114 &920402443
