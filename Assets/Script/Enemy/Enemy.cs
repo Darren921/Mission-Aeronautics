@@ -100,12 +100,18 @@ public class Enemy : MonoBehaviour
             {
                 this.gameObject.GetComponent<BigBirdAI>().enabled = true;
             }
+            else if (level == 5)
+            {
+                this.gameObject.GetComponent<XerosAI>().enabled = true;
+            }
         }
         else
         {
             this.gameObject.GetComponent<BrickManAI>().enabled = false;
             this.gameObject.GetComponent<EvilDarrenAI>().enabled = false;
             this.gameObject.GetComponent<EarthmanAI>().enabled = false;
+            this.gameObject.GetComponent<BigBirdAI>().enabled = false;
+            this.gameObject.GetComponent<XerosAI>().enabled = false;
         }
 
         if (turnActive)

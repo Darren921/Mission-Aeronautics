@@ -99,6 +99,9 @@ public class Player : MonoBehaviour
                 case 4:
                     enemy = FindObjectOfType<BigBirdAI>();
                     break;
+                case 5:
+                    enemy = FindObjectOfType<XerosAI>();
+                    break;
             }
             
         }
