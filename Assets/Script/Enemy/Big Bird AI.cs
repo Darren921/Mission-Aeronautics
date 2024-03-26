@@ -51,22 +51,21 @@ public class BigBirdAI : Enemy
             animator.SetBool("Attack 2", true);
             animator.SetBool("Invisible", false);
 
-            if (distance >= 0)
+            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
+
+            if (distance < 10 && distance > -10)
             {
-                if (distance < 5)
+                if (enemy.GetTurn1())
                 {
-                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 5, this.transform.position.y), speed * Time.deltaTime);
+                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 10, player.transform.position.y), speed * Time.deltaTime);
                 }
-                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
-            }
-            else
-            {
-                if (distance > -5)
+                else
                 {
-                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, this.transform.position.y), speed * Time.deltaTime);
+                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 10, player.transform.position.y), speed * Time.deltaTime);
                 }
-                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
+
             }
+
 
             debounce += 1 * Time.deltaTime;
 
@@ -129,7 +128,7 @@ public class BigBirdAI : Enemy
         }
         else if (enemyState == "After Teleport")
         {
-            if(distance > -5 && distance < 5)
+            if(distance > -10 && distance < 10)
             {
                 BirbAttack(40, false);
             }
@@ -165,16 +164,20 @@ public class BigBirdAI : Enemy
         }
         else if(enemyState == "Recovery")
         {
+            animator.SetBool("Move", false);
+            animator.SetBool("Stun", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
             if (enemy.GetTurn1())
             {
-                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 10, this.transform.position.y), speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 20, this.transform.position.y), speed * Time.deltaTime);
             }
             else
             {
-                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 10, this.transform.position.y), speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 20, this.transform.position.y), speed * Time.deltaTime);
             }
 
-            if (distance > 8 || distance < -8)
+            if (distance > 16 || distance < -16)
             {
                 enemyState = "Attack";
             }
