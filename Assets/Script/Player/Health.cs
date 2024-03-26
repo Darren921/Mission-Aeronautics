@@ -124,11 +124,22 @@ public class Health : MonoBehaviour
         enemyHealthBarSlider.value = enemyHealth;
         comboSlider.value = combo;
 
-        if(enemy != null)
+        if(enemy != null && Tutorial.tutFin == true)
         {
             if (enemy.ReturnBulletHit() == true)
             {
                 damage = 5;
+                if (enemyHealth >= 0)
+                {
+                    enemyHealth -= damage;
+                }
+            }
+        }
+        if(enemy != null && Tutorial.tutFin == false)
+        {
+            if (enemy.ReturnBulletHit() == true)
+            {
+                damage = 10;
                 if (enemyHealth >= 0)
                 {
                     enemyHealth -= damage;
