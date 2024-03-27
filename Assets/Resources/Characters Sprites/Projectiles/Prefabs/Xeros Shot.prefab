@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3672212400472472628
+--- !u!1 &6943802352993380304
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1268340924892108305}
-  - component: {fileID: 7652496963973460895}
-  - component: {fileID: 8058509626649421946}
-  - component: {fileID: 3515817977766806559}
-  - component: {fileID: 8696929497418143448}
-  - component: {fileID: 6276018335527377516}
+  - component: {fileID: 2768187692007668858}
+  - component: {fileID: 2257877303374888172}
+  - component: {fileID: 2642391288492165731}
+  - component: {fileID: 5725329155987031382}
+  - component: {fileID: 9069705972390622925}
+  - component: {fileID: 2389190130932321093}
   m_Layer: 9
   m_Name: Xeros Shot
   m_TagString: PlayerProjectiles
@@ -21,13 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1268340924892108305
+--- !u!4 &2768187692007668858
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672212400472472628}
+  m_GameObject: {fileID: 6943802352993380304}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -36,13 +36,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7652496963973460895
+--- !u!212 &2257877303374888172
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672212400472472628}
+  m_GameObject: {fileID: 6943802352993380304}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -88,14 +88,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &8058509626649421946
+--- !u!50 &2642391288492165731
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672212400472472628}
+  m_GameObject: {fileID: 6943802352993380304}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -115,13 +115,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!60 &3515817977766806559
+--- !u!60 &5725329155987031382
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672212400472472628}
+  m_GameObject: {fileID: 6943802352993380304}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -189,13 +189,13 @@ PolygonCollider2D:
       - {x: -2.995, y: -1.115}
       - {x: -2.115, y: -1.765}
   m_UseDelaunayMesh: 0
---- !u!114 &8696929497418143448
+--- !u!114 &9069705972390622925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672212400472472628}
+  m_GameObject: {fileID: 6943802352993380304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c55c83d4c4dd1145ad5fbbab3c3df36, type: 3}
@@ -424,15 +424,15 @@ MonoBehaviour:
         - {x: -2.975, y: -0.785}
         - {x: -2.995, y: -1.115}
         - {x: -2.115, y: -1.765}
---- !u!114 &6276018335527377516
+--- !u!114 &2389190130932321093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672212400472472628}
+  m_GameObject: {fileID: 6943802352993380304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae446e12f15cff44a8f694710e056ea5, type: 3}
+  m_Script: {fileID: 11500000, guid: 927788c93c85e9e41a70720681cd6ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

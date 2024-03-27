@@ -177,7 +177,7 @@ public class Enemy : MonoBehaviour
             collidingWithPlayer = false;
         }
 
-        print(collision.gameObject.tag);
+        //print(collision.gameObject.tag);
     }
 
     IEnumerator Reset()

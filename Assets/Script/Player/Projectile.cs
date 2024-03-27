@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     private float time = 0;
 
     private Health health;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

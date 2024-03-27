@@ -35,6 +35,7 @@ public class XerosAI : Enemy
             animator.SetBool("Projectile", false);
             animator.SetBool("Attack 1", false);
             animator.SetBool("Attack 2", false);
+            animator.SetBool("Stun", false);
 
             debounce += 1 * Time.deltaTime;
 
@@ -52,22 +53,38 @@ public class XerosAI : Enemy
             animator.SetBool("Projectile", false);
             animator.SetBool("Attack 1", false);
             animator.SetBool("Attack 2", false);
+            animator.SetBool("Stun", false);
 
             transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
 
 
             if (distance <= 3 && distance >= -3)
             {
-                int roll = Random.Range(0, 3);
+                enemyState = "Prepare Attack";
+                debounce = 0;
+            }
+        }
+        else if (enemyState == "Prepare Attack")
+        {
+            animator.SetBool("Move", false);
+            animator.SetBool("Teleport", false);
+            animator.SetBool("Projectile", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+            animator.SetBool("Stun", false);
 
-                if (roll == 0)
-                {
-                    enemyState = "Stab";
-                }
-                else
-                {
-                    enemyState = "Grab";
-                }
+            if (health.GetStunnedFire)
+            {
+                debounce = 0;
+                enemyState = "Stunned";
+            }
+
+            debounce += 1 * Time.deltaTime;
+            
+            if (debounce >= 0.3)
+            {
+                enemyState = "Grab";
+                debounce = 0;
             }
         }
         else if (enemyState == "Grab")
@@ -77,6 +94,7 @@ public class XerosAI : Enemy
             animator.SetBool("Projectile", false);
             animator.SetBool("Attack 1", true);
             animator.SetBool("Attack 2", false);
+            animator.SetBool("Stun", false);
 
             if (distance >= 1.5 && distance <= -1.5)
             {
@@ -92,23 +110,146 @@ public class XerosAI : Enemy
                 debounce = 0;
             }
         }
-        else if (enemyState == "Stab")
+        else if (enemyState == "Stunned")
+        {
+            animator.SetBool("Move", false);
+            animator.SetBool("Teleport", false);
+            animator.SetBool("Projectile", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+            animator.SetBool("Stun", true);
+
+            stunDebounce += 1 * Time.deltaTime;
+            if (stunDebounce >= 2)
+            {
+                health.GetStunnedFire = false;
+                enemyState = "Prepare Projectile";
+                canAttack = true;
+                stunDebounce = 0;
+                debounce = 0;
+            }
+        }
+        else if (enemyState == "Prepare Projectile")
+        {
+            animator.SetBool("Move", true);
+            animator.SetBool("Teleport", false);
+            animator.SetBool("Projectile", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+            animator.SetBool("Stun", false);
+
+            if (enemy.GetTurn1())
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 20, this.transform.position.y), speed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 20, this.transform.position.y), speed * Time.deltaTime);
+            }
+
+            if (distance > 16 || distance < -16)
+            {
+                enemyState = "Projectile Attack";
+            }
+        }
+        else if (enemyState == "Projectile Attack")
+        {
+            animator.SetBool("Move", false);
+            animator.SetBool("Teleport", false);
+            animator.SetBool("Projectile", true);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+            animator.SetBool("Stun", false);
+
+            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
+
+            if (distance < 10 && distance > -10)
+            {
+                if (enemy.GetTurn1())
+                {
+                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 10, player.transform.position.y), speed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 10, player.transform.position.y), speed * Time.deltaTime);
+                }
+            }
+
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 2f)
+            {
+                Shoot();
+                debounce = 0;
+
+                fireShot += 1;
+                if (fireShot >= 3)
+                {
+                    debounce = 0;
+                    enemyState = "Pre Teleport";
+                    fireShot = 0;
+                }
+            }
+        }
+        else if (enemyState == "Pre Teleport")
+        {
+            if (enemy.GetTurn1())
+            {
+                teleportLocation = new Vector3(player.transform.position.x - 2, player.transform.position.y, this.transform.position.z);
+            }
+            else
+            {
+                teleportLocation = new Vector3(player.transform.position.x + 2, player.transform.position.y, this.transform.position.z);
+            }
+
+            enemyState = "Prepare Teleport";
+            debounce = 0;
+        }
+        else if (enemyState == "Prepare Teleport")
+        {
+            animator.SetBool("Move", false);
+            animator.SetBool("Teleport", true);
+            animator.SetBool("Projectile", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+            animator.SetBool("Stun", false);
+
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 1.5)
+            {
+                enemyState = "Teleport";
+                debounce = 0;
+            }
+        }
+        else if (enemyState == "Teleport")
         {
             animator.SetBool("Move", false);
             animator.SetBool("Teleport", false);
             animator.SetBool("Projectile", false);
             animator.SetBool("Attack 1", false);
             animator.SetBool("Attack 2", true);
+            animator.SetBool("Stun", false);
 
-            if (distance >= 1.5 && distance <= -1.5)
+            this.transform.position = teleportLocation;
+
+            enemyState = "After Teleport";
+            debounce = 0;
+        }
+        else if (enemyState == "After Teleport")
+        {
+            if (distance > -10 && distance < 10)
             {
-                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
+                XerosAttack(50, false);
+            }
+            else
+            {
+                enemyState = "Move";
+                debounce = 0;
             }
 
-            XerosAttack(30, false);
-
             debounce += 1 * Time.deltaTime;
-            if (debounce >= 1)
+            if(debounce >= 0.7)
             {
                 enemyState = "Move";
                 debounce = 0;
@@ -131,13 +272,10 @@ public class XerosAI : Enemy
 
     internal void XerosAttack(float damage, bool isProj)
     {
-        print("Attack Fired");
         if (collidingWithPlayer)
         {
-            print("Collide Fired");
             if (canAttack)
             {
-                print("Can Attack Fired");
                 if (player.GetComponent<Player>().returnisBlocking() != true)
                 {
                     print("Return Fired");
@@ -154,7 +292,6 @@ public class XerosAI : Enemy
                     playerHit = true;
 
                 }
-
             }
         }
         else if (isProj)

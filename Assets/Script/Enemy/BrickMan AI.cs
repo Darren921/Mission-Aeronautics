@@ -75,6 +75,11 @@ public class BrickManAI : Enemy
 
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
 
+                if (health.GetStunnedFire)
+                {
+                    debounce = 0;
+                    enemyState = "Stunned";
+                }
 
                 if (distance <= 3 && distance >= -3)
                 {
