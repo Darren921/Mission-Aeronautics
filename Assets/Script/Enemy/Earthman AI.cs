@@ -115,7 +115,7 @@ public class EarthmanAI : Enemy
             animator.SetBool("Attack 1", true);
             animator.SetBool("Attack 2", false);
 
-            IgAttack(40, false);
+            IgAttack(30, false);
             debounce += 1 * Time.deltaTime;
             if (debounce >= 1)
             {

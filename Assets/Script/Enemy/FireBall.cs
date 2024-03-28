@@ -18,7 +18,7 @@ public class FireBall : MonoBehaviour
         enemy = FindObjectOfType<Enemy>();
 
         emAI = FindObjectOfType<EarthmanAI>();
-        damage = 20;
+        damage = 10;
     }
 
     void Update()

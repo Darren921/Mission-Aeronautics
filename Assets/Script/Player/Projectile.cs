@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         {
             if (enemy != null)
             {
-
+                print("PROJECTILE FIRED FROM PLAYER");
                 if (enemy.GetTurn1() == true)
                 {
                     rb.AddForce(new Vector2(3000 * Time.deltaTime, 0));
@@ -43,6 +43,21 @@ public class Projectile : MonoBehaviour
             {
                 rb.AddForce(new Vector2(3000 * Time.deltaTime, 0));
 
+            }
+        }
+        else
+        {
+            if (enemy != null)
+            {
+                print("PROJECTILE FIRED FROM PLAYER");
+                if (enemy.GetTurn1() == true)
+                {
+                    rb.AddForce(new Vector2(3000 * Time.deltaTime, 0));
+                }
+                if (enemy.GetTurn2() == true)
+                {
+                    rb.AddForce(new Vector2(-3000 * Time.deltaTime, 0));
+                }
             }
         }
        

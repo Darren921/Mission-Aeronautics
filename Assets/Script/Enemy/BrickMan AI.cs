@@ -13,6 +13,8 @@ public class BrickManAI : Enemy
     [SerializeField] private AudioSource source;
     private Vector3 teleportLocation;
 
+    private int punchCount = 0;
+
     void Start()
     {
         health = new Health();
@@ -92,7 +94,7 @@ public class BrickManAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
             }
 
-            BrickAttack(20, false);
+            BrickAttack(10, false);
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= .5)
@@ -140,7 +142,17 @@ public class BrickManAI : Enemy
 
             if (distance > 8 || distance < -8)
             {
-                enemyState = "Pre Teleport";
+                punchCount++;
+                if (punchCount >= 2)
+                {
+                    enemyState = "Pre Teleport";
+                    punchCount = 0;
+                }
+                else
+                {
+                    enemyState = "Move";
+                }
+                
             }
         }
         else if (enemyState == "Pre Teleport")
@@ -209,7 +221,7 @@ public class BrickManAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
             }
 
-            BrickAttack(50, false);
+            BrickAttack(20, false);
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= 1)

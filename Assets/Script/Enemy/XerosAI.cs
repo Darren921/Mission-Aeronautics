@@ -240,7 +240,7 @@ public class XerosAI : Enemy
         {
             if (distance > -10 && distance < 10)
             {
-                XerosAttack(50, false);
+                XerosAttack(30, false);
             }
             else
             {

@@ -125,7 +125,7 @@ public class BigBirdAI : Enemy
         }
         else if (enemyState == "After Teleport")
         {
-            if((distance > -10 && distance < 10) && fireShot <=2)
+            if(fireShot <=2)
             {
                 debounce += 1 * Time.deltaTime;
 
