@@ -16,7 +16,7 @@ public class BirdBall : MonoBehaviour
         enemy = FindObjectOfType<Enemy>();
 
         bbAi = FindObjectOfType<BigBirdAI>();
-        damage = 0;
+        damage = 10;
     }
 
     void Update()
@@ -24,12 +24,12 @@ public class BirdBall : MonoBehaviour
         if (enemy.GetTurn1() == true)
         {
             time += 1 * Time.deltaTime;
-            rb.AddForce(new Vector2(-3000 * Time.deltaTime, 0));
+            rb.AddForce(new Vector2(-4000 * Time.deltaTime, 0));
         }
         if (enemy.GetTurn2() == true)
         {
             time += 1 * Time.deltaTime;
-            rb.AddForce(new Vector2(3000 * Time.deltaTime, 0));
+            rb.AddForce(new Vector2(4000 * Time.deltaTime, 0));
         }
 
         if (time >= 1.5f)

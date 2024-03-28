@@ -7,5 +7,5 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Xeros Overide
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d2adfb4cebceca43adba5a85df84d6f, type: 2}
   m_Clips: []

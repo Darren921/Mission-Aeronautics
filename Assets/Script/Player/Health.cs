@@ -32,6 +32,8 @@ public class Health : MonoBehaviour
     public static bool enemyStunned;
     public static bool enemyStunnedFire;
 
+    private float debounce = 0;
+
     public float GetEnemyHealth
     {
         get { return enemyHealth; }
@@ -115,6 +117,18 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        if (enemyStunned)
+        {
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 3)
+            {
+                debounce = 0;
+                enemyStunnedFire = false;
+            }
+        }
+
+
         //print(enemyHealth);
         if(Tutorial.tutFin != true)
         {

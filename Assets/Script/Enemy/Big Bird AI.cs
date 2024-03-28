@@ -22,7 +22,6 @@ public class BigBirdAI : Enemy
         canAttack = true;
     }
 
-
     void Update()
     {
         distance = (transform.position.x - player.transform.position.x);
@@ -63,19 +62,17 @@ public class BigBirdAI : Enemy
                 {
                     transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 10, player.transform.position.y), speed * Time.deltaTime);
                 }
-
             }
-
 
             debounce += 1 * Time.deltaTime;
 
-            if (debounce >= 2f)
+            if (debounce >= .6f)
             {
                 Shoot();
                 debounce = 0;
 
                 fireShot += 1;
-                if (fireShot >= 3)
+                if (fireShot >= 5)
                 {
                     debounce = 0;
                     enemyState = "Pre Teleport";
@@ -107,7 +104,7 @@ public class BigBirdAI : Enemy
 
             debounce += 1 * Time.deltaTime;
 
-            if (debounce >= 2)
+            if (debounce >= 1)
             {
                 enemyState = "Teleport";
                 debounce = 0;
@@ -128,20 +125,40 @@ public class BigBirdAI : Enemy
         }
         else if (enemyState == "After Teleport")
         {
-            if(distance > -10 && distance < 10)
+            if((distance > -10 && distance < 10) && fireShot <=2)
             {
-                BirbAttack(40, false);
+                debounce += 1 * Time.deltaTime;
+
+                if (debounce >= .2f)
+                {
+                    Shoot();
+                    debounce = 0;
+
+                    fireShot += 1;
+                    if (fireShot >= 2)
+                    {
+                        debounce = 0;
+                    }
+                }
             }
-            else
+
+            if (health.GetStunnedFire)
             {
+                print(health.GetStunnedFire);
+                fireShot = 0;
+                debounce = 0;
+                stunDebounce = 0;
                 enemyState = "Stunned";
             }
 
-            debounce += 1 * Time.deltaTime;
+            stunDebounce += 1 * Time.deltaTime;
 
-            if (debounce >= 2)
+            if (stunDebounce >= 2.5)
             {
+                fireShot = 0;
                 enemyState = "Recovery";
+                debounce = 0;
+                stunDebounce = 0;
             }
         }
         else if (enemyState == "Stunned")
@@ -177,7 +194,7 @@ public class BigBirdAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 20, this.transform.position.y), speed * Time.deltaTime);
             }
 
-            if (distance > 16 || distance < -16)
+            if (distance > 13 || distance < -13)
             {
                 enemyState = "Attack";
             }

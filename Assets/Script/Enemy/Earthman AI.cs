@@ -13,6 +13,7 @@ public class EarthmanAI : Enemy
 
     void Start()
     {
+        enemy = FindObjectOfType<Enemy>();
         animator = GetComponent<Animator>();
         enemyState = "Idle";
         canAttack = true;
@@ -33,51 +34,34 @@ public class EarthmanAI : Enemy
 
             if (debounce >= .25f)
             {
-                enemyState = "Attack";
+                enemyState = "Fire Attack";
                 debounce = 0;
             }
         }
-        else if (enemyState == "Moving")
-        {
-            animator.SetBool("Move", true);
-            animator.SetBool("Stun", false);
-            animator.SetBool("Attack 1", false);
-            animator.SetBool("Attack 2", false);
-
-            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
-
-            if (distance <= 2 && distance >= -2)
-            {
-                enemyState = "Pre Attack 2";
-            }
-        }
-        else if (enemyState == "Attack")
+        else if (enemyState == "Fire Attack")
         {
             animator.SetBool("Move", false);
             animator.SetBool("Stun", false);
             animator.SetBool("Attack 1", false);
             animator.SetBool("Attack 2", true);
 
-            if (distance >= 0)
+            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
+
+            if (distance < 10 && distance > -10)
             {
-                if (distance < 5)
+                if (enemy.GetTurn1())
                 {
-                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 5, this.transform.position.y), speed * Time.deltaTime);
+                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 10, player.transform.position.y), speed * Time.deltaTime);
                 }
-                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
-            }
-            else
-            {
-                if (distance > -5)
+                else
                 {
-                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, this.transform.position.y), speed * Time.deltaTime);
+                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 10, player.transform.position.y), speed * Time.deltaTime);
                 }
-                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
             }
 
             debounce += 1 * Time.deltaTime;
 
-            if (debounce >= 2f)
+            if (debounce >= 1.5f)
             {
                 Shoot();
                 debounce = 0;
@@ -86,29 +70,45 @@ public class EarthmanAI : Enemy
                 if (fireShot >= 3)
                 {
                     debounce = 0;
-                    enemyState = "Moving";
+                    enemyState = "Move";
                     fireShot = 0;
                 }
             }
         }
-        else if (enemyState == "Pre Attack 2")
+        else if (enemyState == "Move")
+        {
+            animator.SetBool("Move", true);
+            animator.SetBool("Stun", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+
+            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
+
+
+            if (distance <= 2 && distance >= -2)
+            {
+                enemyState = "Prepare Kick";
+            }
+        }
+        else if (enemyState == "Prepare Kick")
         {
             if (health.GetStunnedFire)
             {
                 debounce = 0;
                 enemyState = "Stunned";
             }
+
             else
             {
                 debounce += 1 * Time.deltaTime;
-                if (debounce >= 1.5)
+                if (debounce >= .2)
                 {
-                    enemyState = "Attack 2";
+                    enemyState = "Kick";
                     debounce = 0;
                 }
             }
         }
-        else if (enemyState == "Attack 2")
+        else if (enemyState == "Kick")
         {
             animator.SetBool("Move", false);
             animator.SetBool("Stun", false);
@@ -119,23 +119,10 @@ public class EarthmanAI : Enemy
             debounce += 1 * Time.deltaTime;
             if (debounce >= 1)
             {
-                enemyState = "Recovery";
+                enemyState = "Move";
                 debounce = 0;
             }
 
-        }
-        else if (enemyState == "Recovery")
-        {
-            animator.SetBool("Move", true);
-            animator.SetBool("Stun", false);
-            animator.SetBool("Attack 1", false);
-            animator.SetBool("Attack 2", false);
-
-            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 10, this.transform.position.y), speed * Time.deltaTime);
-            if (distance > 8)
-            {
-                enemyState = "Attack";
-            }
         }
         else if(enemyState == "Stunned")
         {
@@ -146,13 +133,34 @@ public class EarthmanAI : Enemy
             animator.SetBool("Attack 2", false);
 
             stunDebounce += 1 * Time.deltaTime;
-            if (stunDebounce >= 3)
+            if (stunDebounce >= 2)
             {
                 health.GetStunnedFire = false;
                 enemyState = "Recovery";
                 canAttack = true;
                 stunDebounce = 0;
                 debounce = 0;
+            }
+        }
+        else if (enemyState == "Recovery")
+        {
+            animator.SetBool("Move", true);
+            animator.SetBool("Stun", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+
+            if (enemy.GetTurn1())
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 10, this.transform.position.y), speed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 10, this.transform.position.y), speed * Time.deltaTime);
+            }
+
+            if (distance > 8 || distance < -8)
+            {
+                enemyState = "Fire Attack";
             }
         }
     }

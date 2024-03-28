@@ -39,7 +39,7 @@ public class XerosAI : Enemy
 
             debounce += 1 * Time.deltaTime;
 
-            if (debounce >= .25f)
+            if (debounce >= .5f)
             {
                 enemyState = "Move";
                 debounce = 0;
@@ -81,7 +81,7 @@ public class XerosAI : Enemy
 
             debounce += 1 * Time.deltaTime;
             
-            if (debounce >= 0.3)
+            if (debounce >= 0.2)
             {
                 enemyState = "Grab";
                 debounce = 0;
@@ -104,7 +104,7 @@ public class XerosAI : Enemy
             XerosAttack(20, false);
 
             debounce += 1 * Time.deltaTime;
-            if (debounce >= 1)
+            if (debounce >= .5)
             {
                 enemyState = "Move";
                 debounce = 0;
@@ -120,7 +120,7 @@ public class XerosAI : Enemy
             animator.SetBool("Stun", true);
 
             stunDebounce += 1 * Time.deltaTime;
-            if (stunDebounce >= 2)
+            if (stunDebounce >= 1.5)
             {
                 health.GetStunnedFire = false;
                 enemyState = "Prepare Projectile";
@@ -177,7 +177,7 @@ public class XerosAI : Enemy
 
             debounce += 1 * Time.deltaTime;
 
-            if (debounce >= 2f)
+            if (debounce >= 1.5f)
             {
                 Shoot();
                 debounce = 0;
@@ -249,7 +249,7 @@ public class XerosAI : Enemy
             }
 
             debounce += 1 * Time.deltaTime;
-            if(debounce >= 0.7)
+            if(debounce >= 0.4)
             {
                 enemyState = "Move";
                 debounce = 0;

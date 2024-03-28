@@ -9,28 +9,92 @@ public class EvilDarrenAI : Enemy
     [SerializeField] private AudioSource source;
     [SerializeField] private GameObject shootThing;
 
+    private int bulShot = 0;
+
     private bool canShoot = true;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         health = new Health();
-        enemy = new Enemy();
+        enemy = FindObjectOfType<Enemy>();
         animator = GetComponent<Animator>();
-        stunned = false;
-        animator.SetBool("Stun", false);
-        enemyState = "Moving";
+        enemyState = "Idle";
         canAttack = true;
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         distance = (transform.position.x - player.transform.position.x);
 
-        if (health.GetStunned)
+        if (enemyState == "Idle")
+        {
+            animator.SetBool("Move", false);
+            animator.SetBool("Stun", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 1.5f)
+            {
+                enemyState = "Move";
+                debounce = 0;
+            }
+        }
+        else if (enemyState == "Move")
+        {
+            animator.SetBool("Move", true);
+            animator.SetBool("Stun", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+
+            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
+
+            if (distance <= 2 && distance >= -2)
+            {
+                enemyState = "Prepare Kick";
+            }
+        }
+        else if (enemyState == "Prepare Kick")
+        {
+            if (health.GetStunnedFire)
+            {
+                debounce = 0;
+                enemyState = "Stunned";
+            }
+
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 0.2)
+            {
+                enemyState = "Kick";
+                debounce = 0;
+            }
+        }
+        else if (enemyState == "Kick")
+        {
+            animator.SetBool("Move", false);
+            animator.SetBool("Stun", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", true);
+
+            if (distance >= 1.5 && distance <= -1.5)
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
+            }
+
+            NailAttack(20, false);
+
+            debounce += 1 * Time.deltaTime;
+            if (debounce >= .5)
+            {
+                enemyState = "Move";
+                debounce = 0;
+            }
+        }
+        else if (enemyState == "Stunned")
         {
             animator.SetBool("Move", false);
             animator.SetBool("Stun", true);
@@ -38,168 +102,130 @@ public class EvilDarrenAI : Enemy
             animator.SetBool("Attack 2", false);
 
             stunDebounce += 1 * Time.deltaTime;
-            if (stunDebounce >= 1)
+            if (stunDebounce >= 1.5)
             {
-                health.GetStunned = false;
-                enemyState = "Recovery";
+                health.GetStunnedFire = false;
+                enemyState = "Recover";
                 canAttack = true;
                 stunDebounce = 0;
                 debounce = 0;
             }
         }
-        else
+        else if (enemyState == "Recover")
         {
-            stunned = true;
-            if (enemyState == "Idle")
+            animator.SetBool("Move", true);
+            animator.SetBool("Stun", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", false);
+
+            if (enemy.GetTurn1())
             {
-                animator.SetBool("Move", false);
-                animator.SetBool("Stun", false);
-                animator.SetBool("Attack 1", false);
-                animator.SetBool("Attack 2", false);
-
-                debounce += 1 * Time.deltaTime;
-
-                if (debounce >= 1.5f)
-                {
-                    enemyState = "Moving";
-                    debounce = 0;
-                }
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 20, this.transform.position.y), speed * Time.deltaTime);
             }
-            else if (enemyState == "Moving")
+            else
             {
-                animator.SetBool("Move", true);
-                animator.SetBool("Stun", false);
-                animator.SetBool("Attack 1", false);
-                animator.SetBool("Attack 2", false);
-
-                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
-
-
-                if (distance <= 2 && distance >= -2)
-                {
-                    int roll = Random.Range(0, 5);
-
-                    if (roll == 0)
-                    {
-                        enemyState = "Attack 2";
-                    }
-                    else
-                    {
-                        enemyState = "Attack 1";
-                    }
-                }
-            }
-            else if (enemyState == "Attack 1")
-            {
-                animator.SetBool("Move", false);
-                animator.SetBool("Stun", false);
-                animator.SetBool("Attack 1", true);
-                animator.SetBool("Attack 2", false);
-
-                if (distance >= 1.5 && distance <= -1.5)
-                {
-                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
-                }
-
-                Attack(10, false);
-
-                debounce += 1 * Time.deltaTime;
-                if (debounce >= 1)
-                {
-                    enemyState = "Recovery";
-                    debounce = 0;
-                }
-            }
-            else if (enemyState == "Attack 2")
-            {
-                animator.SetBool("Move", false);
-                animator.SetBool("Stun", false);
-                animator.SetBool("Attack 1", false);
-                animator.SetBool("Attack 2", true);
-
-                Attack(30, false);
-
-                debounce += 1 * Time.deltaTime;
-                if (debounce >= 1)
-                {
-                    enemyState = "Recovery";
-                    debounce = 0;
-                }
-            }
-            else if (enemyState == "Recovery")
-            {
-                
-                canAttack = true;
-                animator.SetBool("Move", true);
-                animator.SetBool("Stun", false);
-                animator.SetBool("Attack 1", false);
-                animator.SetBool("Attack 2", false);
-
-                if (distance <= 6 && distance >= -6)
-                {
-                    if (distance >= 0)
-                    {
-                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 5, this.transform.position.y), speed * Time.deltaTime);
-                    }
-                    else
-                    {
-                        transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 5, this.transform.position.y), speed * Time.deltaTime);
-                    }
-
-                }
-
-                if (distance >= 3 || distance <= -3)
-                {
-                    if (canShoot)
-                    {
-                      //  print("SHOT");
-                        canShoot = false;
-
-                        int roll = Random.Range(0, 5);
-
-                        if (roll == 0)
-                        {
-                            Shoot();
-                          //  print(roll);
-                        }
-                        else
-                        {
-                          //  print(roll);
-                        }
-
-                        
-                    }
-                }
-
-                debounce += 1 * Time.deltaTime;
-                if (debounce >= .8)
-                {
-                    canShoot = true;
-                    enemyState = "Moving";
-                    debounce = 0;
-                }
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 20, this.transform.position.y), speed * Time.deltaTime);
             }
 
+            if (distance > 12 || distance < -12)
+            {
+                enemyState = "Projectile";
+            }
         }
+        else if (enemyState == "Projectile")
+        {
+            animator.SetBool("Move", false);
+            animator.SetBool("Stun", false);
+            animator.SetBool("Attack 1", true);
+            animator.SetBool("Attack 2", false);
 
+            transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
+
+            if (distance < 10 && distance > -10)
+            {
+                if (enemy.GetTurn1())
+                {
+                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x + 10, player.transform.position.y), speed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 10, player.transform.position.y), speed * Time.deltaTime);
+                }
+            }
+
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 1f)
+            {
+                Shoot();
+                debounce = 0;
+
+                bulShot += 1;
+                if (bulShot >= 1)
+                {
+                    debounce = 0;
+                    enemyState = "Move";
+                    bulShot = 0;
+                }
+            }
+        }
     }
-    
+
+    internal void NailAttack(float damage, bool isProj)
+    {
+        if (collidingWithPlayer)
+        {
+            if (canAttack)
+            {
+                if (player.GetComponent<Player>().returnisBlocking() != true)
+                {
+                    print("Return Fired");
+                    playerHealth -= damage;
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = true;
+                }
+                else
+                {
+                    playerHealth -= (damage * 0.3f);
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = true;
+
+                }
+            }
+        }
+        else if (isProj)
+        {
+            if (player.GetComponent<Player>().returnisBlocking() != true)
+            {
+                playerHealth -= damage;
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = true;
+            }
+            else
+            {
+                playerHealth -= (damage * 0.3f);
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = true;
+
+            }
+            canAttack = true;
+        }
+    }
 
     public void Shoot()
     {
         GameObject bul = Instantiate(shootThing);
-        if (GetTurn1() == true)
+        if (enemy.GetTurn1())
         {
-            bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
-
-        }
-        else if (GetTurn2() == true)
-        {
-            bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+            bul.transform.position = (transform.position + new Vector3(-4f, 1.5f, 0));
         }
         else
         {
-            bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+            bul.transform.position = (transform.position + new Vector3(4f, 1.5f, 0));
         }
     }
 }

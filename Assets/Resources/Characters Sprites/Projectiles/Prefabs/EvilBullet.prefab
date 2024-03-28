@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8458741991719963802}
   - component: {fileID: 4733079217037829868}
   - component: {fileID: 9166851148247376685}
-  - component: {fileID: 1949422943183195613}
+  - component: {fileID: 5300793794590985126}
   m_Layer: 9
   m_Name: EvilBullet
   m_TagString: PlayerProjectiles
@@ -237,7 +237,7 @@ MonoBehaviour:
         - {x: -0.87499994, y: -0.605}
         - {x: -1.465, y: -1.585}
         - {x: -0.98499995, y: -1.915}
---- !u!114 &1949422943183195613
+--- !u!114 &5300793794590985126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,6 +246,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6454314473790632399}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de774dd8b2b803e43ae00de3bff01d2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 967c156e671555d42a8e82fe1ca616f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
