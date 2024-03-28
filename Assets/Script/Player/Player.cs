@@ -285,7 +285,7 @@ public class Player : MonoBehaviour
         {
             yield break;
         }
-        if (isSpecialAtk == true && isStunned != true)
+        if (isSpecialAtk == true )
         {
             if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
             {
