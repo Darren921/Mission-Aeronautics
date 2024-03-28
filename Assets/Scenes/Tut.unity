@@ -16036,6 +16036,8 @@ MonoBehaviour:
   comboSlider: {fileID: 166580227}
   gameOverScreen: {fileID: 1501192852}
   winText: {fileID: 0}
+  winImages: []
+  winTextImage: {fileID: 0}
   playerChar: {fileID: 648541891}
   enemyChar: {fileID: 975061892}
   nextSetennce: 0
@@ -16087,18 +16089,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     sentences:
-    - Welcome to the trainning grounds, where you will be learning the basics.
+    - Welcome to the training grounds, where you will be learning the basics.
     - First up is movement with 'WASD' , test it out or follow the prompt below.
     - I just activated combat protocol, use 'J' to perform your basic attack!
     - Special attacks are online, charge them using basic attacks on enemies and
       release them with 'L'
-    - 'I just spawned in a tranning dummy, use what you have learned to defeat them! '
-    - Nice job, but watch out! Their combat protocol just activated, use 'K' to block
-      it!
+    - 'I just spawned in a training partner, use what you have learned to defeat
+      him! '
+    - Nice job, but watch out! Their combat protocol just activated, hold 'K' to
+      block it!
     - 'Ah, that''s not good! Powerups drop across the field, this one heals you,
       grab it using ''I''. '
-    - That's all for training, press the button below to begin your journey. I need
-      to report this..incident
+    - That's all for training, press the button below to begin your journey and protect
+      the galaxy.
 --- !u!114 &920402443
 MonoBehaviour:
   m_ObjectHideFlags: 0
