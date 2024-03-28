@@ -150,7 +150,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(_health.damage);
         if (Tutorial.tutFin != true)
         {
 
@@ -548,7 +547,14 @@ public class Player : MonoBehaviour
                 case PowerUpType.Health:
                     if (enemy.playerHealth < 75)
                     {
-                        enemy.playerHealth += 20;
+                        if(enemy.playerHealth + 20 <= 75)
+                        {
+                            enemy.playerHealth += 20;
+                        }
+                        else
+                        {
+                            enemy.playerHealth = 75;
+                        }
                         enemy.playerSlider.value = enemy.playerHealth;
                         if (Tutorial.tutFin != true && tut.powerUps == true)
                         {
@@ -559,15 +565,11 @@ public class Player : MonoBehaviour
 
                     else if (enemy.playerHealth >= 75)
                     {
-                        enemy.playerHealth = 75;
                         enemy.playerSlider.value = enemy.playerHealth;
 
                     }
-                    else if (enemy.playerHealth > 75)
-                    {
-                        enemy.playerSlider.value = enemy.playerHealth;
-
-                    }
+                    
+                  
 
                     break;
                 case PowerUpType.Damage:

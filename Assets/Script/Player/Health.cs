@@ -92,10 +92,7 @@ public class Health : MonoBehaviour
         {
             switch (LevelPick.LevelChossen)
             {
-                case 0:
-                    enemy = FindObjectOfType<TrainingDummy>();
-                    damage = 16;
-                    break;
+               
                 case 1:
                     enemy = FindObjectOfType<BrickManAI>();
                     enemyHealthImage.sprite = enemyBars[0];
@@ -123,6 +120,11 @@ public class Health : MonoBehaviour
                     break;
             }
 
+        }
+        else
+        {
+            enemy = FindObjectOfType<TrainingDummy>();
+            damage = 16;
         }
      
     }
