@@ -16090,7 +16090,7 @@ MonoBehaviour:
   dialogue:
     sentences:
     - Welcome to the training grounds, where you will be learning the basics.
-    - First up is movement with 'WASD' , test it out or follow the prompt below.
+    - First up is movement. Using 'WASD', test it out or follow the prompt below.
     - I just activated combat protocol, use 'J' to perform your basic attack!
     - Special attacks are online, charge them using basic attacks on enemies and
       release them with 'L'
