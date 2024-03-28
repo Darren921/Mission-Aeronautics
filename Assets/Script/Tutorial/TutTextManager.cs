@@ -16,10 +16,14 @@ public class TutTextManager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject enemyHealthbar;
     [SerializeField] private GameObject powerUpSpawner;
-    [SerializeField] Player player;
+    
+     Player player;
     private float typeSpeed;
+    [SerializeField] private Health _health;
     private bool isTalking;
     CinemachineFramingTransposer cam;
+    Camera mainCam;
+    CinemachineTargetGroup TargetGroup;
     void Awake()
     {
         contText.enabled = false;
@@ -27,7 +31,8 @@ public class TutTextManager : MonoBehaviour
         tut = FindObjectOfType<Tutorial>();
         player = FindObjectOfType<Player>();
         cam = FindObjectOfType<CinemachineFramingTransposer>();
-
+        TargetGroup = FindObjectOfType<CinemachineTargetGroup>();
+        mainCam = FindObjectOfType<Camera>();
     }
 
     public bool IsTalking
@@ -73,9 +78,13 @@ public class TutTextManager : MonoBehaviour
                 enemy.GetComponent<TrainingDummy>().enabled = true;
                 enemyHealthbar.SetActive(true);
                 isTalking = true;
+                TargetGroup.RemoveMember(GameObject.Find("Camera placeholder").transform);
+                TargetGroup.AddMember(enemy.transform,0.9f,4);
+                mainCam.GetComponent<CinemachineBrain>().enabled = true;
                 cam.m_ScreenX = 0.46f;
                 break;
             case 5:
+                _health.GetCombo = 5;
                 tut.specialAtk = true;
                 tut.CheckIfTrue();
                 break;
@@ -157,8 +166,8 @@ public class TutTextManager : MonoBehaviour
         }
         if (isTalking == false && sentences.Count == 1 && player.ReturnCollected() == true)
         {
+            typeSpeed = 0f;
             isTalking = true;
-            typeSpeed = 0.1f;
             string sentence = sentences.Dequeue();
             StopAllCoroutines();
             StartCoroutine(TypeSentence(sentence));

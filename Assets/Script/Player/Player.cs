@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
         _moveDir = newDir;
         if (animator.runtimeAnimatorController == null)
         {
-            gameObject.TryGetComponent<Animator>(out Animator animator);
+            gameObject.GetComponent<Animator>();
         }
         animator.SetBool("IsMoving", true);
         animator.SetBool("isIdle", false);

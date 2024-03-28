@@ -34,34 +34,35 @@ public class PowerUpSpawner : MonoBehaviour
             Vector3 topLeft = cam.ViewportToWorldPoint(new Vector3(0, 1, 13));
             Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, 13));
             Vector3 spawnPoint = Vector3.Lerp(topLeft, topRight, UnityEngine.Random.value);
-
             GameObject Powerup = Instantiate(powerup, spawnPoint, Quaternion.identity);
+
             isSpawned = true;
             print(PowerUpTypeS);
 
 
             switch (PowerUpTypeS)
             {
+
                 case "Health":
                     powerupRenderer = powerup.GetComponent<SpriteRenderer>();
                     //print("Health");
                     powerUpType = PowerUpType.Health;
-                    powerupRenderer.sprite = PowerUpIcons[0];
+                    Powerup.GetComponentInChildren<SpriteRenderer>().sprite = PowerUpIcons[0];
                     break;
                 case "Damage":
                     powerupRenderer = powerup.GetComponent<SpriteRenderer>();
                     //print("Damage");
                     powerUpType = PowerUpType.Damage;
-                    powerupRenderer.sprite = PowerUpIcons[1];
+                    Powerup.GetComponentInChildren<SpriteRenderer>().sprite = PowerUpIcons[1];
                     break;
                 case "Shield":
                     powerupRenderer = powerup.GetComponent<SpriteRenderer>();
                     //print("Shield");
                     powerUpType = PowerUpType.Shield;
-                    powerupRenderer.sprite = PowerUpIcons[2];
+                    Powerup.GetComponentInChildren<SpriteRenderer>().sprite = PowerUpIcons[2];
                     break;
 
-            }
+            }   
             yield return new WaitForSeconds(20);
             isSpawned = false;
             Destroy(Powerup);

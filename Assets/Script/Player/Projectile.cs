@@ -22,19 +22,31 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy.GetTurn1() == true)
+        if (Tutorial.tutFin != true)
         {
-            rb.AddForce(new Vector2(3000 * Time.deltaTime, 0));
-        }
-        if (enemy.GetTurn2() == true)
-        {
-            rb.AddForce(new Vector2(-3000 * Time.deltaTime, 0));
-        }
+            if (enemy != null)
+            {
 
-        if (time >= 1.5f)
-        {
-            Destroy(this.gameObject);
+                if (enemy.GetTurn1() == true)
+                {
+                    rb.AddForce(new Vector2(3000 * Time.deltaTime, 0));
+                }
+                if (enemy.GetTurn2() == true)
+                {
+                    rb.AddForce(new Vector2(-3000 * Time.deltaTime, 0));
+                }
+
+
+
+            }
+            else
+            {
+                rb.AddForce(new Vector2(3000 * Time.deltaTime, 0));
+
+            }
         }
+       
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

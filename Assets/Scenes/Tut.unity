@@ -16117,7 +16117,7 @@ MonoBehaviour:
   enemy: {fileID: 975061892}
   enemyHealthbar: {fileID: 1374204787}
   powerUpSpawner: {fileID: 1970502919}
-  player: {fileID: 0}
+  _health: {fileID: 916441828}
 --- !u!1 &975061892
 GameObject:
   m_ObjectHideFlags: 0

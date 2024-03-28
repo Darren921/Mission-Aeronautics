@@ -153,7 +153,7 @@ public class Health : MonoBehaviour
         {
             if (enemy.ReturnBulletHit() == true)
             {
-                damage = 10;
+                damage = 100;
                 if (enemyHealth >= 0)
                 {
                     enemyHealth -= damage;
