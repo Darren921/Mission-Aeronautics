@@ -239,7 +239,7 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    playerHealth -= (damage * 0.3f);
+                    playerHealth -= (damage * 0.15f);
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = true;
