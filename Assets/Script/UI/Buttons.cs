@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class Buttons : MonoBehaviour
 {
     public static int CharacterChossen;
-    private PlayerData playerData = new PlayerData();
+    private PlayerData playerData;
+    private PlayerData loadedData;
 
     public void BackToTitle()
     {
@@ -29,14 +30,14 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("ChooseCharacter");
         Time.timeScale = 1.0f;
         
-        //playerData.levelTwoActive = true;
-        //playerData.levelThreeActive = true;
-        //playerData.levelFourActive = true;
-        //playerData.levelFiveActive = true;
+        playerData.levelTwoActive = false;
+        playerData.levelThreeActive = false;
+        playerData.levelFourActive = false;
+        playerData.levelFiveActive = false;
 
-        //string json = JsonUtility.ToJson(playerData);
+        string json = JsonUtility.ToJson(playerData);
 
-        //System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
     public void ChoosenCharacter1()
@@ -44,8 +45,6 @@ public class Buttons : MonoBehaviour
         CharacterChossen = 1;
         if(Tutorial.tutFin != true)
         {
-     
-
             SceneManager.LoadScene("Tut");
             Time.timeScale = 1.0f;
             LevelPick.LevelChossen = 0;

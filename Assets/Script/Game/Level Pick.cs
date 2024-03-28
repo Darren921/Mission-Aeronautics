@@ -31,6 +31,11 @@ public class LevelPick : MonoBehaviour
     private void Start()
     {
         health = new Health();
+        
+    }
+
+    private void Update()
+    {
         playerData = new PlayerData();
         json = System.IO.File.ReadAllText(Application.persistentDataPath + "/savefile.json");
         loadedData = JsonUtility.FromJson<PlayerData>(json);
@@ -38,10 +43,7 @@ public class LevelPick : MonoBehaviour
         levelThreeActive = loadedData.levelThreeActive;
         levelFourActive = loadedData.levelFourActive;
         levelFiveActive = loadedData.levelFiveActive;
-    }
 
-    private void Update()
-    {
         if (levelTwoActive)
         {
             locks[0].GetComponent<Animator>().SetBool("locked", false);
