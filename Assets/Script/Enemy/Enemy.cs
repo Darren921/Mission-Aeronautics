@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,6 +54,13 @@ public class Enemy : MonoBehaviour
     protected float debounce = 0f;
     protected float stunDebounce = 0f;
     protected bool bulletHit;
+    public bool CanAttack
+    {
+        get { return canAttack; }
+        set { canAttack =  value; }
+        
+        
+    }
     void Start()
     {
         health = FindObjectOfType<Health>();

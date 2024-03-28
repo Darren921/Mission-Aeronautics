@@ -93,7 +93,7 @@ public class TutTextManager : MonoBehaviour
                 tut.CheckIfTrue();
                 break;
         }
-        typeSpeed = 0.03f;
+        typeSpeed = 0.05f;
         isTalking = true;
         string sentence = sentences.Dequeue();
         StopAllCoroutines();

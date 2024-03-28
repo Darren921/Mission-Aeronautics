@@ -94,6 +94,7 @@ public class Health : MonoBehaviour
             {
                 case 0:
                     enemy = FindObjectOfType<TrainingDummy>();
+                    damage = 16;
                     break;
                 case 1:
                     enemy = FindObjectOfType<BrickManAI>();
@@ -306,7 +307,7 @@ public class Health : MonoBehaviour
 
             if (enemy != null)
             {
-                if (enemy.playerHealth <= 70 && player.ReturnAnimator().GetBool("Guarding") == true && tut.block == true && enemy.ReturnplayerHit() == true)
+                if (enemy.playerHealth <= 75 && player.ReturnAnimator().GetBool("Guarding") == true && tut.block == true && enemy.ReturnplayerHit() == true)
                 {
 
                     tut.powerUps = true;

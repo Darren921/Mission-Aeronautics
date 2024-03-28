@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using static PowerUps;
@@ -149,7 +150,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        print(_health.damage);
         if (Tutorial.tutFin != true)
         {
 
@@ -521,7 +522,7 @@ public class Player : MonoBehaviour
                     isCollected = true;
                     break;
                 case PowerUpType.Shield:
-                    enemy.Attack(0, false);
+                    StartCoroutine(ShieldPowerUp());
                     isCollected = true;
                     break;
             }
@@ -571,12 +572,21 @@ public class Player : MonoBehaviour
                     break;
                 case PowerUpType.Damage:
                     StartCoroutine(DamagePowerUP());
+                    isCollected = true;
                     break;
                 case PowerUpType.Shield:
-                    enemy.Attack(0, false);
+                    StartCoroutine(ShieldPowerUp());
+                    isCollected = true;
                     break;
             }
         }
+    }
+
+    private IEnumerator ShieldPowerUp()
+    {
+      enemy.CanAttack = false;
+      yield return new WaitForSeconds(5f);
+        enemy.CanAttack = true;
     }
 
     IEnumerator ResetP()
@@ -593,8 +603,6 @@ public class Player : MonoBehaviour
         
         yield return new WaitForSeconds(10);
         _health.damage /= 2 ;
-
-        StopCoroutine(DamagePowerUP());
     }
 
     private void OnTriggerExit2D(Collider2D collision)
