@@ -111,7 +111,6 @@ public class LevelPick : MonoBehaviour
     public void Level1()
     {
         Health.gameEnded = false;
-        //health.GetStunned = false; FIX THIS
         print(Health.gameEnded);
         LevelChossen = 1;
         SceneManager.LoadScene("MainGame");
@@ -121,7 +120,6 @@ public class LevelPick : MonoBehaviour
     public void Level2()
     {
         Health.gameEnded = false;
-        // health.GetStunned = false; FIX THIS
         print(Health.gameEnded);
         if (levelTwoActive)
         {
@@ -135,7 +133,6 @@ public class LevelPick : MonoBehaviour
     public void Level3()
     {
         Health.gameEnded = false;
-        // health.GetStunned = false; FIX THIS
         print(Health.gameEnded);
         if (levelThreeActive)
         {
@@ -149,7 +146,6 @@ public class LevelPick : MonoBehaviour
     public void Level4()
     {
         Health.gameEnded = false;
-        // health.GetStunned = false; FIX THIS
         print(Health.gameEnded);
         if (levelFourActive)
         {
@@ -164,7 +160,6 @@ public class LevelPick : MonoBehaviour
     public void Level5()
     {
         Health.gameEnded = false;
-        // health.GetStunned = false; FIX THIS
         print(Health.gameEnded);
         if (levelFiveActive) 
         {

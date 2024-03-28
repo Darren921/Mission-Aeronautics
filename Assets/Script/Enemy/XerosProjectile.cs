@@ -19,7 +19,7 @@ public class XerosProjectile : MonoBehaviour
         enemy = FindObjectOfType<Enemy>();
 
         xeros = FindObjectOfType<XerosAI>();
-        damage = 20;
+        damage = 8;
     }
 
     void Update()

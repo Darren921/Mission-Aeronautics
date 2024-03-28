@@ -153,7 +153,7 @@ public class BigBirdAI : Enemy
 
             stunDebounce += 1 * Time.deltaTime;
 
-            if (stunDebounce >= 2.5)
+            if (stunDebounce >= 3)
             {
                 fireShot = 0;
                 enemyState = "Recovery";

@@ -126,7 +126,7 @@ public class EarthmanAI : Enemy
         }
         else if(enemyState == "Stunned")
         {
-            Debug.Log("STUNNED");
+            //Debug.Log("STUNNED");
             animator.SetBool("Move", false);
             animator.SetBool("Stun", true);
             animator.SetBool("Attack 1", false);

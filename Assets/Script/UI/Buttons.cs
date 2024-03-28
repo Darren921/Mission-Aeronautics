@@ -28,15 +28,15 @@ public class Buttons : MonoBehaviour
     {
         SceneManager.LoadScene("ChooseCharacter");
         Time.timeScale = 1.0f;
-      
-        playerData.levelTwoActive = true;
-        playerData.levelThreeActive = true;
-        playerData.levelFourActive = true;
-        playerData.levelFiveActive = true;
+        
+        //playerData.levelTwoActive = true;
+        //playerData.levelThreeActive = true;
+        //playerData.levelFourActive = true;
+        //playerData.levelFiveActive = true;
 
-        string json = JsonUtility.ToJson(playerData);
+        //string json = JsonUtility.ToJson(playerData);
 
-        System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        //System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
     public void ChoosenCharacter1()

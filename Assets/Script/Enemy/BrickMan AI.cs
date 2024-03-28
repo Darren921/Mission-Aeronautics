@@ -48,6 +48,7 @@ public class BrickManAI : Enemy
         }
         else if (enemyState == "Move")
         {
+            canAttack = true;
             animator.SetBool("Move", true);
             animator.SetBool("Stun", false);
             animator.SetBool("Attack 1", false);
@@ -124,11 +125,11 @@ public class BrickManAI : Enemy
         }
         else if (enemyState == "Recover")
         {
-            animator.SetBool("Move", false);
+            animator.SetBool("Move", true);
             animator.SetBool("Stun", false);
             animator.SetBool("Attack 1", false);
             animator.SetBool("Attack 2", false);
-            animator.SetBool("Recover", true);
+            animator.SetBool("Recover", false);
             animator.SetBool("Teleport", false);
 
             if (enemy.GetTurn1())
@@ -150,9 +151,20 @@ public class BrickManAI : Enemy
                 }
                 else
                 {
-                    enemyState = "Move";
+                    enemyState = "Post Recovery";
+                    debounce = 0;
                 }
                 
+            }
+        }
+        else if (enemyState == "Post Recovery")
+        {
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce > .5)
+            {
+                enemyState = "Move";
+                debounce = 0;
             }
         }
         else if (enemyState == "Pre Teleport")
@@ -187,7 +199,7 @@ public class BrickManAI : Enemy
 
             debounce += 1 * Time.deltaTime;
 
-            if (debounce >= 1.5)
+            if (debounce >= 2.5)
             {
                 enemyState = "Teleport";
                 debounce = 0;
@@ -212,14 +224,31 @@ public class BrickManAI : Enemy
             animator.SetBool("Move", false);
             animator.SetBool("Stun", false);
             animator.SetBool("Attack 1", false);
-            animator.SetBool("Attack 2", true);
+            animator.SetBool("Attack 2", false);
             animator.SetBool("Recover", false);
             animator.SetBool("Teleport", false);
 
-            if (distance >= 1.5 && distance <= -1.5)
+            if (distance >= 1.5 || distance <= -1.5)
             {
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
             }
+
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce > 0.5)
+            {
+                enemyState = "Finish Teleport";
+            }
+            
+        }
+        else if (enemyState == "Finish Teleport")
+        {
+            animator.SetBool("Move", false);
+            animator.SetBool("Stun", false);
+            animator.SetBool("Attack 1", false);
+            animator.SetBool("Attack 2", true);
+            animator.SetBool("Recover", false);
+            animator.SetBool("Teleport", false);
 
             BrickAttack(20, false);
 

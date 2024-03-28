@@ -249,7 +249,7 @@ public class XerosAI : Enemy
             }
 
             debounce += 1 * Time.deltaTime;
-            if(debounce >= 0.4)
+            if(debounce >= 1)
             {
                 enemyState = "Move";
                 debounce = 0;

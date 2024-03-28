@@ -12,6 +12,8 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public static bool gameEnded;
+    private float damageResistance;
+
 
     [SerializeField] private Sprite[] enemyBars;
     [SerializeField] private Image enemyHealthImage;
@@ -29,10 +31,15 @@ public class Health : MonoBehaviour
     public GameObject gameOverScreen;
     public TextMeshProUGUI winText;
 
+    public Sprite[] winImages;
+    public Image winTextImage;
+
     public static bool enemyStunned;
     public static bool enemyStunnedFire;
 
     private float debounce = 0;
+
+    private bool tempTestThing;
 
     public float GetEnemyHealth
     {
@@ -91,22 +98,27 @@ public class Health : MonoBehaviour
                 case 1:
                     enemy = FindObjectOfType<BrickManAI>();
                     enemyHealthImage.sprite = enemyBars[0];
+                    damage = 8;
                     break;
                 case 2:
                     enemy = FindObjectOfType<EvilDarrenAI>();
                     enemyHealthImage.sprite = enemyBars[1];
+                    damage = 8;
                     break;
                 case 3:
                     enemy = FindObjectOfType<EarthmanAI>();
                     enemyHealthImage.sprite = enemyBars[2];
+                    damage = 8;
                     break;
                 case 4:
                     enemy = FindObjectOfType<BigBirdAI>();
                     enemyHealthImage.sprite = enemyBars[3];
+                    damage = 8;
                     break;
                 case 5:
                     enemy = FindObjectOfType<XerosAI>();
                     enemyHealthImage.sprite = enemyBars[4];
+                    damage = 5;
                     break;
             }
 
@@ -117,6 +129,17 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        if (enemyStunnedFire == tempTestThing)
+        {
+
+        }
+        else
+        {
+            print("ENEMY STUN THING: " + enemyStunnedFire);
+            tempTestThing = enemyStunnedFire;
+        }
+        
+
         if (enemyStunned)
         {
             debounce += 1 * Time.deltaTime;
@@ -176,7 +199,8 @@ public class Health : MonoBehaviour
                             }
                             enemyStunned = true;
                             enemyStunnedFire = true;
-                            damage = 10;
+                            
+                            //damage = 10;
                             if (enemyHealth >= 0)
                             {
                                 enemyHealth -= damage;
@@ -187,12 +211,13 @@ public class Health : MonoBehaviour
 
                         else
                         {
-                            damage = 30;
+                            damage = damage * 5;
                             if (enemyHealth >= 0)
                             {
                                 enemyHealth -= damage;
                             }
                             canAttack = false;
+                            damage = damage / 5;
                         }
 
                     }
@@ -243,7 +268,8 @@ public class Health : MonoBehaviour
             System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
 
             gameOverScreen.SetActive(true);
-            winText.text = "You Win!";
+            //winText.text = "You Win!";
+            winTextImage.sprite = winImages[0];
         }
         if (enemy != null) {
         if (enemy.GetPlayerHealth <= 0 && Tutorial.tutFin == true)
@@ -260,7 +286,8 @@ public class Health : MonoBehaviour
                 Time.timeScale = 0;
 
                 gameOverScreen.SetActive(true);
-                winText.text = "You Lose!";
+                //winText.text = "You Lose!";
+                winTextImage.sprite = winImages[1];
             }
         }
 
