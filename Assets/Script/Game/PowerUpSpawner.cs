@@ -88,7 +88,7 @@ public class PowerUpSpawner : MonoBehaviour
     {
         if (Tutorial.tutFin == false)
         {
-            if (tut.powerUps == true && enemy.playerHealth <= 70 && isSpawned == false)
+            if (tut.powerUps == true &&  isSpawned == false)
             {
                 StartCoroutine(SpawnPowerUp());
             }
@@ -106,16 +106,9 @@ public class PowerUpSpawner : MonoBehaviour
 
     public string RandomPowerup()
     {
-        if (Tutorial.tutFin == true)
-        {
             var PowerUpList = Enum.GetNames(typeof(PowerUpType));
             PowerUpTypeS = PowerUpList[UnityEngine.Random.Range(0, PowerUpList.Length)];
-        }
-        else
-        {
-            var PowerUp = PowerUpType.Health.ToString();
-            PowerUpTypeS = PowerUp;
-        }
+      
         return PowerUpTypeS;
     }
 

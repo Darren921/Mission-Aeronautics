@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     private GameObject bullet;
     private float bulletDestroy = 0;
     private TutTextManager textManager;
+    private bool shieldPowerActive;
+
     private void OnDestroy()
     {
         InputManager.DisableInGame();
@@ -470,8 +472,12 @@ public class Player : MonoBehaviour
         return isBlocking;
     }
   
+    public bool returnShieldPowerActive()
+    {
+        return shieldPowerActive;
+    }
 
-   
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -498,10 +504,7 @@ public class Player : MonoBehaviour
 
                         enemy.playerHealth += 20;
                         enemy.playerSlider.value = enemy.playerHealth;
-                         if(Tutorial.tutFin != true && isCollected == true)
-                        {
-                            textManager.IsTalking = false;
-                        }
+                        
                     }
 
                     else if (enemy.playerHealth >= 75)
@@ -556,11 +559,7 @@ public class Player : MonoBehaviour
                             enemy.playerHealth = 75;
                         }
                         enemy.playerSlider.value = enemy.playerHealth;
-                        if (Tutorial.tutFin != true && tut.powerUps == true)
-                        {
-                            isCollected = true;
-                            textManager.IsTalking = false;
-                        }
+                      
                     }
 
                     else if (enemy.playerHealth >= 75)
@@ -586,9 +585,9 @@ public class Player : MonoBehaviour
 
     private IEnumerator ShieldPowerUp()
     {
-      enemy.CanAttack = false;
+        shieldPowerActive = true;
       yield return new WaitForSeconds(5f);
-        enemy.CanAttack = true;
+        shieldPowerActive = false;
     }
 
     IEnumerator ResetP()

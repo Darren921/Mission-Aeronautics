@@ -61,27 +61,32 @@ public class TutTextManager : MonoBehaviour
                 EndDialogue();
                 break;
             case 1:
-                isTalking = true;
-
+              
+            
                 break;
             case 2:
-                isTalking = true;
-
-                break;
-            case 3:
-                tut.block = true;
-                isTalking = true;
-                break;
-            case 4:
+                tut.CheckIfTrue();
+                tut.CheckIfTrue();
                 enemy.SetActive(true);
                 enemy.GetComponent<Enemy>().enabled = true;
                 enemy.GetComponent<TrainingDummy>().enabled = true;
                 enemyHealthbar.SetActive(true);
-                isTalking = true;
                 TargetGroup.RemoveMember(GameObject.Find("Camera placeholder").transform);
-                TargetGroup.AddMember(enemy.transform,0.9f,4);
+                TargetGroup.AddMember(enemy.transform, 0.9f, 4);
                 mainCam.GetComponent<CinemachineBrain>().enabled = true;
                 cam.m_ScreenX = 0.46f;
+                typeSpeed = 0f;
+                isTalking = true;
+                break;
+            case 3:
+                tut.powerUps = true;
+                tut.CheckIfTrue();
+                powerUpSpawner.GetComponent<PowerUpSpawner>().enabled = true;
+
+                break;
+            case 4:
+                tut.block = true;
+                tut.CheckIfTrue();
                 break;
             case 5:
                 _health.GetCombo = 5;
@@ -114,7 +119,7 @@ public class TutTextManager : MonoBehaviour
             yield return new WaitForSeconds(typeSpeed);
 
         }
-        if (sentences.Count == 3 || sentences.Count == 2 || sentences.Count == 1)
+        if (sentences.Count == 1)
         {
             isTalking = true;
         }
@@ -142,32 +147,13 @@ public class TutTextManager : MonoBehaviour
 
     private void Update()
     {
-        //print(sentences.Count);
+        print(sentences.Count);
 
-        if (isTalking == false && sentences.Count == 3)
+     
+    
+        if (isTalking == false && sentences.Count == 1 && tut.battleComplete == true)
         {
-            typeSpeed = 0f;
-            string sentence = sentences.Dequeue();
-            StopAllCoroutines();
-            StartCoroutine(TypeSentence(sentence));
-        }
-        if (isTalking == false && sentences.Count == 2 && tut.powerUps)
-        {
-            tut.powerUps = true;
-            tut.CheckIfTrue();
-            enemy.GetComponent<TrainingDummy>().enemyState = "Idle";      
-            enemyHealthbar.SetActive(false);
-            powerUpSpawner.GetComponent<PowerUpSpawner>().enabled = true;
-            isTalking = true;
-            typeSpeed = 0f;
-            string sentence = sentences.Dequeue();
-            StopAllCoroutines();
-            StartCoroutine(TypeSentence(sentence));
-        }
-        if (isTalking == false && sentences.Count == 1 && player.ReturnCollected() == true)
-        {
-            typeSpeed = 0f;
-            isTalking = true;
+            
             string sentence = sentences.Dequeue();
             StopAllCoroutines();
             StartCoroutine(TypeSentence(sentence));

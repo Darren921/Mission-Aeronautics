@@ -296,28 +296,15 @@ public class Health : MonoBehaviour
 
         if (Tutorial.tutFin == false)
         {
-            if (enemyHealth <= 0 && tut.block != true)
+            if (enemyHealth <= 0)
             {
 
-                tut.block = true;
-                tut.CheckIfTrue();
                 tutTextManager.IsTalking = false;
-
-
+                tut.battleComplete = true;
             }
 
 
-            if (enemy != null)
-            {
-                if (enemy.playerHealth <= 75 && player.ReturnAnimator().GetBool("Guarding") == true && tut.block == true && enemy.ReturnplayerHit() == true)
-                {
 
-                    tut.powerUps = true;
-                    tut.CheckIfTrue();
-                    tutTextManager.IsTalking = false;
-
-                }
-            }
         }
         if (enemy != null)
         {
@@ -328,7 +315,11 @@ public class Health : MonoBehaviour
         }
         
     }
-   
+    
+    public float returnEnemyHealth()
+    {
+        return enemyHealth;
+    }
     
 
     

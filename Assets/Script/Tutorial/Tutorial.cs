@@ -18,6 +18,7 @@ public class Tutorial : MonoBehaviour
     TutTextManager textManager;
     Tutorial tut;
     internal bool refresh;
+    internal bool battleComplete;
 
     private void Awake()
     {
