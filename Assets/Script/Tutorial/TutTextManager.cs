@@ -16,7 +16,7 @@ public class TutTextManager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject enemyHealthbar;
     [SerializeField] private GameObject powerUpSpawner;
-    
+    [SerializeField] private GameObject[] Barriers;
      Player player;
     private float typeSpeed;
     [SerializeField] private Health _health;
@@ -61,11 +61,9 @@ public class TutTextManager : MonoBehaviour
                 EndDialogue();
                 break;
             case 1:
-              
-            
                 break;
             case 2:
-                tut.CheckIfTrue();
+                tut.battleStart = true;
                 tut.CheckIfTrue();
                 enemy.SetActive(true);
                 enemy.GetComponent<Enemy>().enabled = true;
@@ -79,13 +77,14 @@ public class TutTextManager : MonoBehaviour
                 isTalking = true;
                 break;
             case 3:
+                contText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-38.421f, 50f);
                 tut.powerUps = true;
                 tut.CheckIfTrue();
                 powerUpSpawner.GetComponent<PowerUpSpawner>().enabled = true;
 
                 break;
             case 4:
-                tut.block = true;
+                tut.block = true;   
                 tut.CheckIfTrue();
                 break;
             case 5:

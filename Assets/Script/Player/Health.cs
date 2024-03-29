@@ -301,6 +301,7 @@ public class Health : MonoBehaviour
 
                 tutTextManager.IsTalking = false;
                 tut.battleComplete = true;
+                tut.battleStart = false;
             }
 
 

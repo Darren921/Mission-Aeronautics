@@ -38,7 +38,7 @@ public class TrainingDummy : Enemy
             if (stunDebounce >= 1)
             {
                 stunned = false;
-                if (tut.block == true && tut.powerUps != true)
+                if (tut.battleStart == true)
                 {
                     enemyState = "Recovery";
                     canAttack = true;
@@ -59,7 +59,7 @@ public class TrainingDummy : Enemy
                 animator.SetBool("Attack 2", false);
 
                 debounce += 1 * Time.deltaTime;
-                if (tut.block == true && tut.powerUps == false)
+                if (tut.battleStart == true)
                 {
                     if (debounce >= 1.5f)
                     {
@@ -79,7 +79,7 @@ public class TrainingDummy : Enemy
 
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, player.transform.position.y), speed * Time.deltaTime);
 
-                if (tut.block == true)
+                if (tut.battleStart == true)
                 {
                     if (distance <= 3 && distance >= -3)
                     {
@@ -110,7 +110,7 @@ public class TrainingDummy : Enemy
 
                 Attack(40);
 
-                if (tut.block == true)
+                if (tut.battleStart == true)
                 {
                     debounce += 1 * Time.deltaTime;
                     if (debounce >= 1)
@@ -130,7 +130,7 @@ public class TrainingDummy : Enemy
 
                 Attack(40);
 
-                if (tut.block == true)
+                if (tut.battleStart == true)
                 {
                     debounce += 1 * Time.deltaTime;
                     if (debounce >= 1)
@@ -144,7 +144,7 @@ public class TrainingDummy : Enemy
 
             else if (enemyState == "Recovery")
             {
-                if (tut.block == true)
+                if (tut.battleStart == true)
                 {
 
                     canAttack = true;
@@ -214,7 +214,7 @@ public class TrainingDummy : Enemy
     }
     internal void Attack(float damage)
     {
-        if (tut.block == true)
+        if (tut.battleStart == true)
         {
             if (collidingWithPlayer)
             {
