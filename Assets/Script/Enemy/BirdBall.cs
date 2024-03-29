@@ -16,7 +16,7 @@ public class BirdBall : MonoBehaviour
         enemy = FindObjectOfType<Enemy>();
 
         bbAi = FindObjectOfType<BigBirdAI>();
-        damage = 8;
+        damage = 4;
     }
 
     void Update()

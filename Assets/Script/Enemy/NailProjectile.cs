@@ -16,7 +16,7 @@ public class NailProjectile : MonoBehaviour
         enemy = FindObjectOfType<Enemy>();
 
         evAI = FindObjectOfType<EvilDarrenAI>();
-        damage = 20;
+        damage = 5;
     }
 
     void Update()

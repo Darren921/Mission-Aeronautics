@@ -101,7 +101,7 @@ public class XerosAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
             }
 
-            XerosAttack(20, false);
+            XerosAttack(10, false);
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= .5)
@@ -240,7 +240,7 @@ public class XerosAI : Enemy
         {
             if (distance > -10 && distance < 10)
             {
-                XerosAttack(30, false);
+                XerosAttack(15, false);
             }
             else
             {

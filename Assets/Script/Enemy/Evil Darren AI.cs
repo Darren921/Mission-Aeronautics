@@ -85,7 +85,7 @@ public class EvilDarrenAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
             }
 
-            NailAttack(20, false);
+            NailAttack(10, false);
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= .5)
@@ -155,13 +155,13 @@ public class EvilDarrenAI : Enemy
 
             debounce += 1 * Time.deltaTime;
 
-            if (debounce >= 1f)
+            if (debounce >= 1.5f)
             {
                 Shoot();
                 debounce = 0;
 
                 bulShot += 1;
-                if (bulShot >= 1)
+                if (bulShot >= 3)
                 {
                     debounce = 0;
                     enemyState = "Move";

@@ -95,7 +95,7 @@ public class BrickManAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
             }
 
-            BrickAttack(10, false);
+            BrickAttack(5, false);
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= .5)
@@ -250,7 +250,7 @@ public class BrickManAI : Enemy
             animator.SetBool("Recover", false);
             animator.SetBool("Teleport", false);
 
-            BrickAttack(20, false);
+            BrickAttack(15, false);
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= 1)
