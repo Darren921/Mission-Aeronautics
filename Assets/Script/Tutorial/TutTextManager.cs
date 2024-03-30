@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutTextManager : MonoBehaviour
 {
@@ -18,12 +19,15 @@ public class TutTextManager : MonoBehaviour
     [SerializeField] private GameObject powerUpSpawner;
     [SerializeField] private GameObject[] Barriers;
      Player player;
+    [SerializeField] GameObject skipTut;
+    [SerializeField] GameObject finishTut;
     private float typeSpeed;
     [SerializeField] private Health _health;
     private bool isTalking;
     CinemachineFramingTransposer cam;
     Camera mainCam;
     CinemachineTargetGroup TargetGroup;
+    
     void Awake()
     {
         contText.enabled = false;
@@ -58,11 +62,18 @@ public class TutTextManager : MonoBehaviour
         switch (sentences.Count)
         {
             case 0:
+                skipTut.SetActive(false);
+                finishTut.SetActive(true);
                 EndDialogue();
                 break;
             case 1:
                 break;
             case 2:
+                _health.GetCombo = 0;
+                for (int i = 0; i < Barriers.Length; i++)
+                {
+                    Barriers[i].SetActive(false);
+                }
                 tut.battleStart = true;
                 tut.CheckIfTrue();
                 enemy.SetActive(true);
@@ -156,6 +167,12 @@ public class TutTextManager : MonoBehaviour
             string sentence = sentences.Dequeue();
             StopAllCoroutines();
             StartCoroutine(TypeSentence(sentence));
+            enemy.SetActive(false);
+            enemyHealthbar.SetActive(false);
+            TargetGroup.RemoveMember(enemy.transform);
+            TargetGroup.AddMember(GameObject.Find("Camera placeholder").transform, 0.9f, 4);
+
+
         }
     }
 }

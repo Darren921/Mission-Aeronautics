@@ -45,4 +45,5 @@ public class Tutorial : MonoBehaviour
         SceneManager.LoadScene("Levels");
         InputManager.DisableInGame();
     }
+
 }
