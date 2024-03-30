@@ -633,32 +633,54 @@ public class Player : MonoBehaviour
             {
                 if (tutEnemy.GetComponent<Enemy>().Distance() >= 0)
                 {
-                    bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+                    if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
+                    {
+                        bul.transform.position = (transform.position + new Vector3(2f, 2.5f, 0));
+                    }
+                    else if(Buttons.CharacterChossen == 4)
+                    {
+                        bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+                    }
 
                 }
-                else if (tutEnemy.GetComponent<Enemy>().Distance() >= 0)
+                else if (tutEnemy.GetComponent<Enemy>().Distance() <= 0)
                 {
-                    bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+                    if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
+                    {
+                        bul.transform.position = (transform.position + new Vector3(-2f, 2.5f, 0));
+                    }
+                    else if (Buttons.CharacterChossen == 4)
+                    {
+                        bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+                    }
                 }
-                else
-                {
-                    bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
-                }
+              
             }
             else {
                 if (enemy.Distance() >= 0)
                 {
-                    bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+                    if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
+                    {
+                        bul.transform.position = (transform.position + new Vector3(2f, 2.5f, 0));
+                    }
+                    else if (Buttons.CharacterChossen == 4)
+                    {
+                        bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+                    }
 
                 }
                 else if (enemy.Distance() <= -0)
                 {
-                    bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+                    if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
+                    {
+                        bul.transform.position = (transform.position + new Vector3(-2f, 2.5f, 0));
+                    }
+                    else if (Buttons.CharacterChossen == 4)
+                    {
+                        bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+                    }
                 }
-                else
-                {
-                    bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
-                }
+           
             }
 
            
