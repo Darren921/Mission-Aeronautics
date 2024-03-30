@@ -41,6 +41,12 @@ public class Health : MonoBehaviour
 
     private bool tempTestThing;
 
+    // Levels
+    public int levelTwoState;
+    public int levelThreeState;
+    public int levelFourState;
+    public int levelFiveState;
+
     public float GetEnemyHealth
     {
         get { return enemyHealth; }
@@ -72,8 +78,6 @@ public class Health : MonoBehaviour
     private static Player player;
 
     private static Enemy enemy;
-
-    private PlayerData playerData = new PlayerData();
     private LevelPick levelPick = new LevelPick();
     
     public  bool nextSetennce;
@@ -126,7 +130,9 @@ public class Health : MonoBehaviour
             enemy = FindObjectOfType<TrainingDummy>();
             damage = 16;
         }
-     
+
+
+        damage = 50;
     }
 
 
@@ -155,7 +161,6 @@ public class Health : MonoBehaviour
         }
 
 
-        //print(enemyHealth);
         if(Tutorial.tutFin != true)
         {
             enemy = FindObjectOfType<TrainingDummy>();
@@ -203,7 +208,6 @@ public class Health : MonoBehaviour
                             enemyStunned = true;
                             enemyStunnedFire = true;
                             
-                            //damage = 10;
                             if (enemyHealth >= 0)
                             {
                                 enemyHealth -= damage;
@@ -252,26 +256,87 @@ public class Health : MonoBehaviour
 
             if (levelPick.Level() == 1)
             {
-                playerData.levelTwoActive = true;
+                PlayerData playerData = new PlayerData();
+                PlayerData savedData = SaveDataManager.LoadGameState();
+
+                if (savedData != null)
+                {
+                    levelTwoState = savedData.levelTwoState;
+                    levelThreeState = savedData.levelThreeState;
+                    levelFourState = savedData.levelFourState;
+                    levelFiveState = savedData.levelFiveState;
+                }
+
+                if (levelTwoState != 2) playerData.levelTwoState = 1;
+                playerData.levelThreeState = levelThreeState;
+                playerData.levelFourState = levelFourState;
+                playerData.levelFiveState = levelFiveState;
+
+                SaveDataManager.SaveLevelData(playerData);
+
             }
             else if (levelPick.Level() == 2)
             {
-                playerData.levelThreeActive = true;
+                PlayerData playerData = new PlayerData();
+                PlayerData savedData = SaveDataManager.LoadGameState();
+
+                if (savedData != null)
+                {
+                    levelTwoState = savedData.levelTwoState;
+                    levelThreeState = savedData.levelThreeState;
+                    levelFourState = savedData.levelFourState;
+                    levelFiveState = savedData.levelFiveState;
+                }
+
+                playerData.levelTwoState = levelTwoState;
+                if (levelThreeState != 2) playerData.levelThreeState = 1;
+                playerData.levelFourState = levelFourState;
+                playerData.levelFiveState = levelFiveState;
+
+                SaveDataManager.SaveLevelData(playerData);
             }
             else if(levelPick.Level() == 3)
             {
-                playerData.levelFourActive = true;
+                PlayerData playerData = new PlayerData();
+                PlayerData savedData = SaveDataManager.LoadGameState();
+
+                if (savedData != null)
+                {
+                    levelTwoState = savedData.levelTwoState;
+                    levelThreeState = savedData.levelThreeState;
+                    levelFourState = savedData.levelFourState;
+                    levelFiveState = savedData.levelFiveState;
+                }
+
+                playerData.levelTwoState = levelTwoState;
+                playerData.levelThreeState = levelThreeState;
+                if (levelFourState != 2) playerData.levelFourState = 1;
+                playerData.levelFiveState = levelFiveState;
+
+                SaveDataManager.SaveLevelData(playerData);
             }
             else if (levelPick.Level()== 4)
             {
-                playerData.levelFiveActive = true;
+                PlayerData playerData = new PlayerData();
+                PlayerData savedData = SaveDataManager.LoadGameState();
+
+                if (savedData != null)
+                {
+                    levelTwoState = savedData.levelTwoState;
+                    levelThreeState = savedData.levelThreeState;
+                    levelFourState = savedData.levelFourState;
+                    levelFiveState = savedData.levelFiveState;
+                }
+
+                playerData.levelTwoState = levelTwoState;
+                playerData.levelThreeState = levelThreeState;
+                playerData.levelFourState = levelFourState;
+                if (levelFiveState != 2) playerData.levelFiveState = 1;
+
+                SaveDataManager.SaveLevelData(playerData);
             }
-            
-            string json = JsonUtility.ToJson(playerData);
-            System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
 
             gameOverScreen.SetActive(true);
-            //winText.text = "You Win!";
             winTextImage.sprite = winImages[0];
         }
         if (enemy != null) {
@@ -289,7 +354,6 @@ public class Health : MonoBehaviour
                 Time.timeScale = 0;
 
                 gameOverScreen.SetActive(true);
-                //winText.text = "You Lose!";
                 winTextImage.sprite = winImages[1];
             }
         }
@@ -298,14 +362,10 @@ public class Health : MonoBehaviour
         {
             if (enemyHealth <= 0)
             {
-
                 tutTextManager.IsTalking = false;
                 tut.battleComplete = true;
                 tut.battleStart = false;
             }
-
-
-
         }
         if (enemy != null)
         {
