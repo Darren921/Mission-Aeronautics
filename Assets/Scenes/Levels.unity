@@ -1717,8 +1717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343d906d72ef5174987247c9b6b3fddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeAmount: 4
-  currentVolume: 0
   volumeImage: {fileID: 0}
   volumeSprites: []
   background: {fileID: 871005988}

@@ -545,7 +545,7 @@ Transform:
   m_GameObject: {fileID: 223360735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10000086, y: 1.2900007, z: -11.4}
+  m_LocalPosition: {x: 0.099999905, y: 1.2900006, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1340,7 +1340,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.8750005
+  orthographic size: 7.875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1365,7 +1365,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10000086, y: 1.2900007, z: -11.4}
+  m_LocalPosition: {x: 0.099999905, y: 1.2900006, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1706,6 +1706,7 @@ GameObject:
   - component: {fileID: 576161785}
   - component: {fileID: 576161784}
   - component: {fileID: 576161786}
+  - component: {fileID: 576161787}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1851,6 +1852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff9b0e7e24b5164a9a48c92a78faa7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelTwoState: 0
+  levelThreeState: 0
+  levelFourState: 0
+  levelFiveState: 0
 --- !u!82 &576161786
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1947,6 +1952,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &576161787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576161779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343d906d72ef5174987247c9b6b3fddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeImage: {fileID: 529909348}
+  volumeSprites:
+  - {fileID: 1024439668, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  - {fileID: -716652953, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  - {fileID: -445370333, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  - {fileID: 1188488154, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  - {fileID: 1060938677, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  background: {fileID: 576161786}
+  soundEffects: {fileID: 648541903}
 --- !u!1 &579715035
 GameObject:
   m_ObjectHideFlags: 0
@@ -16149,6 +16175,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c83be321420ac3a4db971adea16e22cf, type: 3}
   - {fileID: 21300000, guid: 1fe1cecb652ac724480a2d17f2d9df90, type: 3}
   winTextImage: {fileID: 2003766881}
+  levelTwoState: 0
+  levelThreeState: 0
+  levelFourState: 0
+  levelFiveState: 0
   playerChar: {fileID: 648541891}
   enemyChar: {fileID: 975061892}
   nextSetennce: 0
@@ -16236,7 +16266,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1297174324}
+      - m_Target: {fileID: 576161787}
         m_TargetAssemblyTypeName: Volume, Assembly-CSharp
         m_MethodName: VolumeUp
         m_Mode: 1
@@ -30112,7 +30142,6 @@ GameObject:
   - component: {fileID: 1297174321}
   - component: {fileID: 1297174323}
   - component: {fileID: 1297174322}
-  - component: {fileID: 1297174324}
   m_Layer: 0
   m_Name: PauseMenu Display
   m_TagString: Untagged
@@ -30177,29 +30206,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297174320}
   m_CullTransparentMesh: 1
---- !u!114 &1297174324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297174320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343d906d72ef5174987247c9b6b3fddf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeAmount: 4
-  currentVolume: 0
-  volumeImage: {fileID: 529909348}
-  volumeSprites:
-  - {fileID: 1024439668, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  - {fileID: -716652953, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  - {fileID: -445370333, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  - {fileID: 1188488154, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  - {fileID: 1060938677, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  background: {fileID: 576161786}
-  soundEffects: {fileID: 648541903}
 --- !u!1 &1316389624
 GameObject:
   m_ObjectHideFlags: 0
@@ -31101,7 +31107,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1297174324}
+      - m_Target: {fileID: 576161787}
         m_TargetAssemblyTypeName: Volume, Assembly-CSharp
         m_MethodName: VolumeDown
         m_Mode: 1

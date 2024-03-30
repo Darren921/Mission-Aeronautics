@@ -38,11 +38,6 @@ public class LevelPick : MonoBehaviour
             levelThreeState = playerData.levelThreeState;
             levelFourState = playerData.levelFourState;
             levelFiveState = playerData.levelFiveState;
-
-            print(levelTwoState);
-            print(levelThreeState);
-            print(levelFourState);
-            print(levelFiveState);
         }
     }
 

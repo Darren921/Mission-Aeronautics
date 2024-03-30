@@ -1714,6 +1714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff9b0e7e24b5164a9a48c92a78faa7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelTwoState: 0
+  levelThreeState: 0
+  levelFourState: 0
+  levelFiveState: 0
 --- !u!82 &576161786
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1839,8 +1843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343d906d72ef5174987247c9b6b3fddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeAmount: 4
-  currentVolume: 0
   volumeImage: {fileID: 0}
   volumeSprites: []
   background: {fileID: 576161786}
@@ -15974,6 +15976,10 @@ MonoBehaviour:
   winText: {fileID: 0}
   winImages: []
   winTextImage: {fileID: 0}
+  levelTwoState: 0
+  levelThreeState: 0
+  levelFourState: 0
+  levelFiveState: 0
   playerChar: {fileID: 648541891}
   enemyChar: {fileID: 975061892}
   nextSetennce: 0
@@ -19681,8 +19687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343d906d72ef5174987247c9b6b3fddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeAmount: 4
-  currentVolume: 0
   volumeImage: {fileID: 1783627019}
   volumeSprites:
   - {fileID: 1024439668, guid: 8402eeca532842f40840619a3e22467f, type: 3}

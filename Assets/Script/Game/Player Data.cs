@@ -10,6 +10,4 @@ public class PlayerData
     public int levelThreeState = 0;
     public int levelFourState = 0;
     public int levelFiveState = 0;
-
-    public int soundLevel = 5;
 }

@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 63003983}
   - component: {fileID: 63003984}
   - component: {fileID: 63003986}
+  - component: {fileID: 63003987}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -382,6 +383,27 @@ MonoBehaviour:
   offOn:
   - {fileID: -1644883735, guid: 7ab8b4db4ce0e984ab9bde8bc2011c63, type: 3}
   - {fileID: 77822253, guid: 7ab8b4db4ce0e984ab9bde8bc2011c63, type: 3}
+--- !u!114 &63003987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63003978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343d906d72ef5174987247c9b6b3fddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeImage: {fileID: 1561387711}
+  volumeSprites:
+  - {fileID: 1024439668, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  - {fileID: -716652953, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  - {fileID: -445370333, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  - {fileID: 1188488154, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  - {fileID: 1060938677, guid: 8402eeca532842f40840619a3e22467f, type: 3}
+  background: {fileID: 63003984}
+  soundEffects: {fileID: 63003984}
 --- !u!1 &75807937
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +829,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1088146626}
+      - m_Target: {fileID: 63003987}
         m_TargetAssemblyTypeName: Volume, Assembly-CSharp
         m_MethodName: VolumeUp
         m_Mode: 1
@@ -1511,7 +1533,6 @@ GameObject:
   - component: {fileID: 1088146629}
   - component: {fileID: 1088146628}
   - component: {fileID: 1088146627}
-  - component: {fileID: 1088146626}
   m_Layer: 0
   m_Name: PauseMenu Display
   m_TagString: Untagged
@@ -1519,29 +1540,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1088146626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088146625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343d906d72ef5174987247c9b6b3fddf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeAmount: 4
-  currentVolume: 0
-  volumeImage: {fileID: 1561387711}
-  volumeSprites:
-  - {fileID: 1024439668, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  - {fileID: -716652953, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  - {fileID: -445370333, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  - {fileID: 1188488154, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  - {fileID: 1060938677, guid: 8402eeca532842f40840619a3e22467f, type: 3}
-  background: {fileID: 63003984}
-  soundEffects: {fileID: 63003984}
 --- !u!114 &1088146627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2425,7 +2423,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1088146626}
+      - m_Target: {fileID: 63003987}
         m_TargetAssemblyTypeName: Volume, Assembly-CSharp
         m_MethodName: VolumeDown
         m_Mode: 1
