@@ -16158,8 +16158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBars:
-  - {fileID: 21300000, guid: a8ffdab092010dc458684c4050c0fadf, type: 3}
   - {fileID: 21300000, guid: edf5e5500f439c44580446e8e7f76b58, type: 3}
+  - {fileID: 21300000, guid: a8ffdab092010dc458684c4050c0fadf, type: 3}
   - {fileID: 21300000, guid: 74aca5264a894b842a04a6b37d99e7b9, type: 3}
   - {fileID: 21300000, guid: 7b5d9a2afb792e34e802603ee626f34a, type: 3}
   - {fileID: 21300000, guid: 14c3571b37b0dd84696d4349cd66183f, type: 3}
@@ -16753,8 +16753,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealthImage: {fileID: 1374204787}
   animatorOverrideControllers:
-  - {fileID: 22100000, guid: 7e22292bbd2f1ae4b90129beb8b6d11e, type: 2}
   - {fileID: 22100000, guid: bd02c7c1861512a4a90c05babec89d88, type: 2}
+  - {fileID: 22100000, guid: 7e22292bbd2f1ae4b90129beb8b6d11e, type: 2}
   - {fileID: 22100000, guid: ee8204b9ab7d2744fa3359d0f7621036, type: 2}
   - {fileID: 22100000, guid: 4b81b3221ba55724c8d7bc0c14294e08, type: 2}
   - {fileID: 22100000, guid: 249b9f9f17e268f4fa508c7edc94f3dc, type: 2}
@@ -29296,8 +29296,8 @@ MonoBehaviour:
   playerHealth: 100
   enemyState: Idle
   AttackEffects:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: f6a0244ba200853478847cc7a01f353e, type: 3}
+  - {fileID: 8300000, guid: c94d2455f6f94464eacd21dde0bce539, type: 3}
   source: {fileID: 975061908}
 --- !u!114 &975061906
 MonoBehaviour:
@@ -29320,7 +29320,9 @@ MonoBehaviour:
   playerSlider: {fileID: 2100008060}
   playerHealth: 100
   enemyState: Idle
-  AttackEffects: []
+  AttackEffects:
+  - {fileID: 8300000, guid: 66bedc2279e4d424a948c7bf3230a309, type: 3}
+  - {fileID: 8300000, guid: c94d2455f6f94464eacd21dde0bce539, type: 3}
   source: {fileID: 975061908}
   birdBall: {fileID: 5461993699497043304, guid: 35488886acb6d7e4db8158868cedfb84, type: 3}
 --- !u!114 &975061907
@@ -29344,7 +29346,9 @@ MonoBehaviour:
   playerSlider: {fileID: 2100008060}
   playerHealth: 100
   enemyState: Idle
-  AttackEffects: []
+  AttackEffects:
+  - {fileID: 8300000, guid: f6a0244ba200853478847cc7a01f353e, type: 3}
+  - {fileID: 8300000, guid: 46204730f6b953d4ab1bf6d9bfba1a72, type: 3}
   source: {fileID: 975061908}
   shootThing: {fileID: 6454314473790632399, guid: def4884f874b72b49a3ea233a285982a, type: 3}
 --- !u!82 &975061908
@@ -29464,7 +29468,9 @@ MonoBehaviour:
   playerSlider: {fileID: 2100008060}
   playerHealth: 100
   enemyState: Idle
-  AttackEffects: []
+  AttackEffects:
+  - {fileID: 8300000, guid: 7899b8dc815a86a46a5170fd173f20b6, type: 3}
+  - {fileID: 8300000, guid: 98258db51914a4f4c94854ad35db9fc4, type: 3}
   source: {fileID: 975061908}
   fireBall: {fileID: 716676572341609174, guid: afbc0e0cb72c5ea459772946e4d0e35c, type: 3}
 --- !u!114 &975061910
@@ -29488,7 +29494,10 @@ MonoBehaviour:
   playerSlider: {fileID: 2100008060}
   playerHealth: 100
   enemyState: Idle
-  AttackEffects: []
+  AttackEffects:
+  - {fileID: 8300000, guid: abf18e4f31a0c7a42a0523bb18efa90f, type: 3}
+  - {fileID: 8300000, guid: 02ac5a1e725a3894585cf9278892551d, type: 3}
+  - {fileID: 8300000, guid: c94d2455f6f94464eacd21dde0bce539, type: 3}
   source: {fileID: 975061908}
   xerosShot: {fileID: 6943802352993380304, guid: 357929d6b1be29f4f898ed20f7cd4ecf, type: 3}
 --- !u!1 &1039766172

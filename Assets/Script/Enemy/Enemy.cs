@@ -94,11 +94,11 @@ public class Enemy : MonoBehaviour
         {
             if (level == 1)
             {
-                this.gameObject.GetComponent<BrickManAI>().enabled = true;
+                this.gameObject.GetComponent<EvilDarrenAI>().enabled = true;
             }
             else if (level == 2)
             {
-                this.gameObject.GetComponent<EvilDarrenAI>().enabled = true;
+                this.gameObject.GetComponent<BrickManAI>().enabled = true;
             }
             else if (level == 3)
             {

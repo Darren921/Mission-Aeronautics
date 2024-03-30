@@ -83,6 +83,7 @@ public class XerosAI : Enemy
             
             if (debounce >= 0.2)
             {
+                source.PlayOneShot(AttackEffects[0]);
                 enemyState = "Grab";
                 debounce = 0;
             }
@@ -105,6 +106,16 @@ public class XerosAI : Enemy
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= .5)
+            {
+                enemyState = "After Punch";
+                debounce = 0;
+            }
+        }
+        else if (enemyState == "After Punch")
+        {
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 0.2)
             {
                 enemyState = "Move";
                 debounce = 0;
@@ -150,6 +161,18 @@ public class XerosAI : Enemy
             if (distance > 16 || distance < -16)
             {
                 enemyState = "Projectile Attack";
+                debounce = 0;
+            }
+
+            if (enemyState == "Prepare Projectile")
+            {
+                debounce += Time.deltaTime;
+
+                if (debounce >= 4)
+                {
+                    enemyState = "Projectile Attack";
+                    debounce = 0;
+                }
             }
         }
         else if (enemyState == "Projectile Attack")
@@ -179,6 +202,7 @@ public class XerosAI : Enemy
 
             if (debounce >= 1.5f)
             {
+                source.PlayOneShot(AttackEffects[2]);
                 Shoot();
                 debounce = 0;
 
@@ -233,6 +257,7 @@ public class XerosAI : Enemy
 
             this.transform.position = teleportLocation;
 
+            source.PlayOneShot(AttackEffects[1]);
             enemyState = "After Teleport";
             debounce = 0;
         }

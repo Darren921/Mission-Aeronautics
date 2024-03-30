@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class BrickManAI : Enemy
 {
-    
-
     [SerializeField] private AudioClip[] AttackEffects;
     [SerializeField] private AudioSource source;
     private Vector3 teleportLocation;
@@ -23,7 +21,6 @@ public class BrickManAI : Enemy
         enemyState = "Idle";
         canAttack = true;
     }
-
    
     void Update()
     {
@@ -77,6 +74,7 @@ public class BrickManAI : Enemy
 
             if (debounce >= 0.2)
             {
+                source.PlayOneShot(AttackEffects[0]);
                 enemyState = "Punch";
                 debounce = 0;
             }
@@ -99,6 +97,16 @@ public class BrickManAI : Enemy
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= .5)
+            {
+                enemyState = "After Punch";
+                debounce = 0;
+            }
+        }
+        else if (enemyState == "After Punch")
+        {
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 0.3)
             {
                 enemyState = "Move";
                 debounce = 0;
@@ -154,7 +162,27 @@ public class BrickManAI : Enemy
                     enemyState = "Post Recovery";
                     debounce = 0;
                 }
-                
+            }
+
+            if (enemyState == "Recover")
+            {
+                debounce += Time.deltaTime;
+
+                if (debounce >= 4)
+                {
+                    punchCount++;
+                    if (punchCount >= 2)
+                    {
+                        enemyState = "Pre Teleport";
+                        punchCount = 0;
+                    }
+                    else
+                    {
+                        enemyState = "Post Recovery";
+                        debounce = 0;
+                    }
+                    debounce = 0;
+                }
             }
         }
         else if (enemyState == "Post Recovery")
@@ -214,6 +242,8 @@ public class BrickManAI : Enemy
             animator.SetBool("Recover", false);
             animator.SetBool("Teleport", false);
 
+            source.PlayOneShot(AttackEffects[1]);
+
             this.transform.position = teleportLocation;
 
             enemyState = "After Teleport";
@@ -237,7 +267,9 @@ public class BrickManAI : Enemy
 
             if (debounce > 0.5)
             {
+                debounce = 0;
                 enemyState = "Finish Teleport";
+                source.PlayOneShot(AttackEffects[0]);
             }
             
         }

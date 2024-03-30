@@ -63,6 +63,7 @@ public class EarthmanAI : Enemy
 
             if (debounce >= 1.5f)
             {
+                source.PlayOneShot(AttackEffects[0]);
                 Shoot();
                 debounce = 0;
 
@@ -103,6 +104,7 @@ public class EarthmanAI : Enemy
                 debounce += 1 * Time.deltaTime;
                 if (debounce >= .2)
                 {
+                    source.PlayOneShot(AttackEffects[1]);
                     enemyState = "Kick";
                     debounce = 0;
                 }
@@ -119,14 +121,23 @@ public class EarthmanAI : Enemy
             debounce += 1 * Time.deltaTime;
             if (debounce >= 1)
             {
-                enemyState = "Move";
+                enemyState = "After Punch";
                 debounce = 0;
             }
 
         }
+        else if (enemyState == "After Punch")
+        {
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 0.3)
+            {
+                enemyState = "Move";
+                debounce = 0;
+            }
+        }
         else if(enemyState == "Stunned")
         {
-            //Debug.Log("STUNNED");
             animator.SetBool("Move", false);
             animator.SetBool("Stun", true);
             animator.SetBool("Attack 1", false);
@@ -161,6 +172,18 @@ public class EarthmanAI : Enemy
             if (distance > 8 || distance < -8)
             {
                 enemyState = "Fire Attack";
+                debounce = 0;
+            }
+
+            if (enemyState == "Recovery")
+            {
+                debounce += Time.deltaTime;
+
+                if (debounce >= 4)
+                {
+                    enemyState = "Fire Attack";
+                    debounce = 0;
+                }
             }
         }
     }

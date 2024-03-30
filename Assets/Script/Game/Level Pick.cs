@@ -16,8 +16,6 @@ public class LevelPick : MonoBehaviour
 
     [SerializeField] private AnimatorOverrideController animatorOverrideController;
 
-    private Health health;
-
     public int levelTwoState;
     public int levelThreeState;
     public int levelFourState;
@@ -25,7 +23,6 @@ public class LevelPick : MonoBehaviour
 
     private void Start()
     {
-        health = new Health();
         LoadData();
     }
 
@@ -57,7 +54,6 @@ public class LevelPick : MonoBehaviour
 
     private void Update()
     {
-
         if (levelTwoState == 1)
         {
             locks[0].GetComponent<Animator>().SetInteger("locked", 1);
@@ -194,6 +190,8 @@ public class LevelPick : MonoBehaviour
             locks[3].GetComponent<Animator>().SetInteger("locked", 0);
         }
     }
+
+
 
     public void BackToCharacter()
     {

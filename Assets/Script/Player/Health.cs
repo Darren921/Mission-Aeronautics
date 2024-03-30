@@ -130,9 +130,6 @@ public class Health : MonoBehaviour
             enemy = FindObjectOfType<TrainingDummy>();
             damage = 16;
         }
-
-
-        damage = 50;
     }
 
 
@@ -381,8 +378,4 @@ public class Health : MonoBehaviour
     {
         return enemyHealth;
     }
-    
-
-    
-   
 }

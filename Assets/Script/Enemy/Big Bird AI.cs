@@ -68,6 +68,7 @@ public class BigBirdAI : Enemy
 
             if (debounce >= .6f)
             {
+                source.PlayOneShot(AttackEffects[0]);
                 Shoot();
                 debounce = 0;
 
@@ -118,6 +119,8 @@ public class BigBirdAI : Enemy
             animator.SetBool("Attack 2", false);
             animator.SetBool("Invisible", false);
 
+            source.PlayOneShot(AttackEffects[1]);
+
             this.transform.position = teleportLocation;
 
             enemyState = "After Teleport";
@@ -125,26 +128,26 @@ public class BigBirdAI : Enemy
         }
         else if (enemyState == "After Teleport")
         {
-            if(fireShot <=2)
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= .2f)
             {
-                debounce += 1 * Time.deltaTime;
+                Shoot();
+                debounce = 0;
 
-                if (debounce >= .2f)
-                {
-                    Shoot();
-                    debounce = 0;
-
-                    fireShot += 1;
-                    if (fireShot >= 2)
-                    {
-                        debounce = 0;
-                    }
-                }
+                fireShot += 1;
             }
 
+            if (fireShot >= 2)
+            {
+                debounce = 0;
+                enemyState = "After Teleport Done";
+            }
+        }
+        else if (enemyState == "After Teleport Done")
+        {
             if (health.GetStunnedFire)
             {
-                print(health.GetStunnedFire);
                 fireShot = 0;
                 debounce = 0;
                 stunDebounce = 0;
@@ -181,6 +184,7 @@ public class BigBirdAI : Enemy
         }
         else if(enemyState == "Recovery")
         {
+            fireShot = 0;
             animator.SetBool("Move", false);
             animator.SetBool("Stun", false);
             animator.SetBool("Attack 1", false);
@@ -197,8 +201,19 @@ public class BigBirdAI : Enemy
             if (distance > 13 || distance < -13)
             {
                 enemyState = "Attack";
+                debounce = 0;
             }
 
+            if (enemyState == "Recovery")
+            {
+                debounce += Time.deltaTime;
+
+                if (debounce >= 4)
+                {
+                    enemyState = "Attack";
+                    debounce = 0;
+                }
+            }
         }
     }
 

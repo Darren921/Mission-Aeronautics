@@ -69,6 +69,7 @@ public class EvilDarrenAI : Enemy
 
             if (debounce >= 0.2)
             {
+                source.PlayOneShot(AttackEffects[0]);
                 enemyState = "Kick";
                 debounce = 0;
             }
@@ -89,6 +90,16 @@ public class EvilDarrenAI : Enemy
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= .5)
+            {
+                enemyState = "After Punch";
+                debounce = 0;
+            }
+        }
+        else if (enemyState == "After Punch")
+        {
+            debounce += 1 * Time.deltaTime;
+
+            if (debounce >= 0.3)
             {
                 enemyState = "Move";
                 debounce = 0;
@@ -130,6 +141,18 @@ public class EvilDarrenAI : Enemy
             if (distance > 12 || distance < -12)
             {
                 enemyState = "Projectile";
+                debounce = 0;
+            }
+
+            if (enemyState == "Recover")
+            {
+                debounce += Time.deltaTime;
+
+                if (debounce >= 4)
+                {
+                    enemyState = "Projectile";
+                    debounce = 0;
+                }
             }
         }
         else if (enemyState == "Projectile")
@@ -157,6 +180,7 @@ public class EvilDarrenAI : Enemy
 
             if (debounce >= 1.5f)
             {
+                source.PlayOneShot(AttackEffects[1]);
                 Shoot();
                 debounce = 0;
 
