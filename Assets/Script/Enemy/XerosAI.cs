@@ -13,6 +13,8 @@ public class XerosAI : Enemy
 
     private Vector3 teleportLocation;
 
+    private bool canMoveUp = false;
+
 
     void Start()
     {
@@ -138,6 +140,13 @@ public class XerosAI : Enemy
                 canAttack = true;
                 stunDebounce = 0;
                 debounce = 0;
+
+                int e = Random.Range(0, 3);
+
+                if (e == 2)
+                {
+                    canMoveUp = true;
+                }
             }
         }
         else if (enemyState == "Prepare Projectile")
@@ -158,14 +167,21 @@ public class XerosAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 20, this.transform.position.y), speed * Time.deltaTime);
             }
 
+            if (canMoveUp)
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, this.transform.position.y + 10), speed * Time.deltaTime);
+            }
+
             if (distance > 16 || distance < -16)
             {
                 enemyState = "Projectile Attack";
                 debounce = 0;
+                canMoveUp = false;
             }
 
             if (enemyState == "Prepare Projectile")
             {
+                canMoveUp = false;
                 debounce += Time.deltaTime;
 
                 if (debounce >= 4)

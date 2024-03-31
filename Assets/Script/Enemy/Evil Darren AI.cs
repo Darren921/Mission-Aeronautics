@@ -12,6 +12,9 @@ public class EvilDarrenAI : Enemy
     private int bulShot = 0;
 
     private bool canShoot = true;
+    private bool canMoveUp = false;
+
+    private Vector3 upLocation;
 
 
     void Start()
@@ -120,6 +123,13 @@ public class EvilDarrenAI : Enemy
                 canAttack = true;
                 stunDebounce = 0;
                 debounce = 0;
+
+                int e = Random.Range(0, 3);
+
+                if (e == 2)
+                {
+                    canMoveUp = true;
+                }
             }
         }
         else if (enemyState == "Recover")
@@ -138,20 +148,28 @@ public class EvilDarrenAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 20, this.transform.position.y), speed * Time.deltaTime);
             }
 
+            if (canMoveUp)
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, this.transform.position.y + 10), speed * Time.deltaTime);
+            }
+            
+
             if (distance > 12 || distance < -12)
             {
                 enemyState = "Projectile";
                 debounce = 0;
+                canMoveUp = false;
             }
 
             if (enemyState == "Recover")
             {
                 debounce += Time.deltaTime;
 
-                if (debounce >= 4)
+                if (debounce >= 3)
                 {
                     enemyState = "Projectile";
                     debounce = 0;
+                    canMoveUp = false;
                 }
             }
         }
@@ -185,7 +203,7 @@ public class EvilDarrenAI : Enemy
                 debounce = 0;
 
                 bulShot += 1;
-                if (bulShot >= 3)
+                if (bulShot >= 2)
                 {
                     debounce = 0;
                     enemyState = "Move";

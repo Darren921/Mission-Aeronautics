@@ -11,8 +11,9 @@ public class BigBirdAI : Enemy
     private int fireShot = 0;
 
     private Vector3 teleportLocation;
+    private bool canMoveUp = false;
 
- 
+
     void Start()
     {
         health = new Health();
@@ -180,6 +181,13 @@ public class BigBirdAI : Enemy
                 canAttack = true;
                 stunDebounce = 0;
                 debounce = 0;
+
+                int e = Random.Range(0, 3);
+
+                if (e == 2)
+                {
+                    canMoveUp = true;
+                }
             }
         }
         else if(enemyState == "Recovery")
@@ -204,8 +212,14 @@ public class BigBirdAI : Enemy
                 debounce = 0;
             }
 
+            if (canMoveUp)
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, this.transform.position.y + 10), speed * Time.deltaTime);
+            }
+
             if (enemyState == "Recovery")
             {
+                canMoveUp = false;
                 debounce += Time.deltaTime;
 
                 if (debounce >= 4)

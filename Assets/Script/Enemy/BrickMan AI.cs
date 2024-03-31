@@ -11,6 +11,8 @@ public class BrickManAI : Enemy
     [SerializeField] private AudioSource source;
     private Vector3 teleportLocation;
 
+    private bool canMoveUp = false;
+
     private int punchCount = 0;
 
     void Start()
@@ -129,6 +131,13 @@ public class BrickManAI : Enemy
                 canAttack = true;
                 stunDebounce = 0;
                 debounce = 0;
+
+                int e = Random.Range(0, 3);
+
+                if (e == 2)
+                {
+                    canMoveUp = true;
+                }
             }
         }
         else if (enemyState == "Recover")
@@ -149,8 +158,15 @@ public class BrickManAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x - 13, this.transform.position.y), speed * Time.deltaTime);
             }
 
+            if (canMoveUp)
+            {
+                transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.transform.position.x, this.transform.position.y + 10), speed * Time.deltaTime);
+            }
+
             if (distance > 8 || distance < -8)
             {
+                canMoveUp = false;
+
                 punchCount++;
                 if (punchCount >= 2)
                 {
