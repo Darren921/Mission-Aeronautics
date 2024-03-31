@@ -141,7 +141,6 @@ public class Health : MonoBehaviour
         }
         else
         {
-            print("ENEMY STUN THING: " + enemyStunnedFire);
             tempTestThing = enemyStunnedFire;
         }
         

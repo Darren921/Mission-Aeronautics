@@ -14,7 +14,6 @@ public class EvilDarrenAI : Enemy
     private bool canShoot = true;
     private bool canMoveUp = false;
 
-    private Vector3 upLocation;
 
 
     void Start()
