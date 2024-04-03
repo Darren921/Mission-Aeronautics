@@ -643,7 +643,7 @@ public class Player : MonoBehaviour
                     }
 
                 }
-                else if (tutEnemy.GetComponent<Enemy>().Distance() <= -0)
+                else if (tutEnemy.GetComponent<Enemy>().Distance() <= 0)
                 {
                     if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
                     {
