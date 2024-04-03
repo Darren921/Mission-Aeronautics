@@ -50,7 +50,7 @@ public class PauseScreenButtons : MonoBehaviour
         {
             image.sprite = offOn[0];
             audioSource[1].enabled = false;
-            audioSource[2].enabled = false;
+            //audioSource[2].enabled = false;
             PlayerPrefs.SetFloat("VolumeBackground", volume.background.volume);
             PlayerPrefs.SetFloat("VolumeEffects", volume.soundEffects.volume);
             PlayerPrefs.Save();
@@ -60,7 +60,7 @@ public class PauseScreenButtons : MonoBehaviour
         else
         {
             audioSource[1].enabled = true;
-            audioSource[2].enabled = true;
+            //audioSource[2].enabled = true;
             image.sprite = offOn[1];
             PlayerPrefs.GetFloat("VolumeBackground", 0.75f );
             PlayerPrefs.GetFloat("VolumeEffects", 0.75f);
