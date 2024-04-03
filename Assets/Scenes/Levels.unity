@@ -710,7 +710,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Planets
+  m_text: Galaxy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 52cc9c4e1af4e684f8631524296c9f6c, type: 2}
   m_sharedMaterial: {fileID: -3762061768481340319, guid: 52cc9c4e1af4e684f8631524296c9f6c, type: 2}

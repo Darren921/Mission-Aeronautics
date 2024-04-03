@@ -494,23 +494,18 @@ public class Player : MonoBehaviour
                     if (enemy.playerHealth < 75)
                     {
                         isCollected = true;
-
-                        enemy.playerHealth += 20;
+                        if(enemy.playerHealth + 20 >= 75)
+                        {
+                            enemy.playerSlider.value = enemy.playerHealth;
+                        }
+                        else
+                        {
+                            enemy.playerHealth += 20;
+                        }
                         enemy.playerSlider.value = enemy.playerHealth;
-                        
                     }
 
-                    else if (enemy.playerHealth >= 75)
-                    {
-                        enemy.playerHealth = 75;
-                        enemy.playerSlider.value = enemy.playerHealth;
-                        
-                    }
-                    else if (enemy.playerHealth > 75)
-                    {
-                        enemy.playerSlider.value = enemy.playerHealth;
-                       
-                    }
+                   
                     break;
                 case PowerUpType.Damage:
                     StartCoroutine(DamagePowerUP());
