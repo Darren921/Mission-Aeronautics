@@ -498,7 +498,7 @@ namespace DigitalRuby.AdvancedPolygonCollider
             }
             catch (Exception ex)
             {
-                Debug.LogError("Error creating collider: " + ex);
+                //Debug.LogError("Error creating collider: " + ex);
             }
         }
 
