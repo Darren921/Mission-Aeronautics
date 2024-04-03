@@ -47,6 +47,7 @@ public class EvilDarrenAI : Enemy
         }
         else if (enemyState == "Move")
         {
+            canAttack = true;
             animator.SetBool("Move", true);
             animator.SetBool("Stun", false);
             animator.SetBool("Attack 1", false);

@@ -313,6 +313,7 @@ public class BrickManAI : Enemy
     {
         if (collidingWithPlayer)
         {
+            print(collidingWithPlayer);
             if (canAttack)
             {
                 if (player.GetComponent<Player>().returnisBlocking() != true)

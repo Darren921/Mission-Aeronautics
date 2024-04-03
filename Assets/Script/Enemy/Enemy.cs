@@ -178,6 +178,24 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collidingWithPlayer = true;
+        }
+
+        //print (collision.gameObject.tag);
+
+        if (collision.gameObject.tag == ("PlayerProjectiles"))
+        {
+            if (bulletHit == true)
+                return;
+            bulletHit = true;
+            StartCoroutine(Reset());
+        }
+    }
+
     protected void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
