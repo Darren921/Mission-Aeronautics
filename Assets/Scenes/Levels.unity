@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -387.4, y: -161.6}
-  m_SizeDelta: {x: 93.9, y: 99.2}
+  m_AnchoredPosition: {x: -386.41, y: -160.8}
+  m_SizeDelta: {x: 97.5, y: 49.1654}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &60979359
 MonoBehaviour:
@@ -1053,8 +1053,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -384.5, y: -215.17674}
-  m_SizeDelta: {x: 177.4, y: 100.8465}
+  m_AnchoredPosition: {x: -384.6, y: -213.57932}
+  m_SizeDelta: {x: 101.12, y: 56.4014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &743808428
 MonoBehaviour:
@@ -1583,7 +1583,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeImage: {fileID: 0}
+  musicImage: {fileID: 0}
+  sfxImage: {fileID: 0}
   volumeSprites: []
+  musicSprites: []
+  sfxSprites: []
   background: {fileID: 871005988}
   soundEffects: {fileID: 871005988}
 --- !u!1 &1037855378

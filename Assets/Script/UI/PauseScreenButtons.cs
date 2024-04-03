@@ -83,6 +83,8 @@ public class PauseScreenButtons : MonoBehaviour
     {
         ClosePauseMenu();
         Time.timeScale = 0;
+        Assets[11].SetActive(true);
+        Assets[7].SetActive(true);
         Assets[9].SetActive(false);
         Assets[10].SetActive(true);
     }
