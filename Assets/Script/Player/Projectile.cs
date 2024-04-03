@@ -58,6 +58,7 @@ public class Projectile : MonoBehaviour
                 {
                     rb.AddForce(new Vector2(-3000 * Time.deltaTime, 0));
                 }
+                Destroy(this.gameObject, 5);
             }
         }
        
