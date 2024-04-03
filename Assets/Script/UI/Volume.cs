@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class Volume : MonoBehaviour
 {
     private int volumeAmount;
+    private bool musicOn;
+    private bool sfxOn;
+
+
     public Image volumeImage;
 
     public Sprite[] volumeSprites;
@@ -39,7 +43,18 @@ public class Volume : MonoBehaviour
         if (playerData != null)
         {
             volumeAmount = playerData.soundLevel;
+            musicOn = playerData.musicOn;
+            sfxOn = playerData.sfxOn;
         }
+    }
+
+    private void SaveSound()
+    {
+        PlayerSoundData playerData = new PlayerSoundData();
+        playerData.soundLevel = volumeAmount;
+        playerData.sfxOn = sfxOn;
+        playerData.musicOn = musicOn;
+        PlayerSoundManager.SaveLevelData(playerData);
     }
 
     private void OnDestroy()
@@ -77,9 +92,9 @@ public class Volume : MonoBehaviour
 
         PlayerSoundData playerData = new PlayerSoundData();
         playerData.soundLevel = volumeAmount;
+        playerData.sfxOn = sfxOn;
+        playerData.musicOn = musicOn;
         PlayerSoundManager.SaveLevelData(playerData);
-
-        print(playerData.soundLevel);
     }
 
     public void VolumeDown()
@@ -89,10 +104,6 @@ public class Volume : MonoBehaviour
             volumeAmount -= 1;
         }
 
-        PlayerSoundData playerData = new PlayerSoundData();
-        playerData.soundLevel = volumeAmount;
-        PlayerSoundManager.SaveLevelData(playerData);
-
-        print(playerData.soundLevel);
+        SaveSound();
     }
 }

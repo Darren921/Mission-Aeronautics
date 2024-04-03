@@ -7,68 +7,101 @@ using UnityEngine.UIElements;
 public class PauseScreenButtons : MonoBehaviour
 {
     [SerializeField] private GameObject[] Assets;
-    // Start is called before the first frame update
     [SerializeField] private UnityEngine.UI.Toggle[] toggles;
     [SerializeField] private GameObject[] Target;
     private UnityEngine.UI.Image image;
     [SerializeField] private AudioSource[] audioSource;
     Volume volume;
     [SerializeField] private Sprite[] offOn;
+
+    private bool musicOn = true;
+    private bool sfxOn = true;
+
+    private int volumeAmount;
+
+    private void Start()
+    {
+        LoadSound();
+    }
+
     private void Update()
     {
         volume = FindObjectOfType<Volume>();
+        MusicToggleCheck();
+        SfxToggleCheck();
     }
-    public void MusicToggle()
+    private void LoadSound()
+    {
+        PlayerSoundData playerData = PlayerSoundManager.LoadGameState();
+        if (playerData != null)
+        {
+            volumeAmount = playerData.soundLevel;
+            musicOn = playerData.musicOn;
+            sfxOn = playerData.sfxOn;
+        }
+    }
+
+    private void SaveSound()
+    {
+        PlayerSoundData playerData = new PlayerSoundData();
+        playerData.soundLevel = volumeAmount;
+        playerData.sfxOn = sfxOn;
+        playerData.musicOn = musicOn;
+        PlayerSoundManager.SaveLevelData(playerData);
+    }
+
+    public void ToggleMusic()
+    {
+        musicOn = !musicOn;
+        print(musicOn);
+        SaveSound();
+        print(musicOn);
+        
+    }
+
+    public void ToggleSfx()
+    {
+        sfxOn = !sfxOn;
+        SaveSound();
+    }
+
+    private void MusicToggleCheck()
     {
        
-        var Switch = toggles[0];
         image = Target[0].GetComponent<UnityEngine.UI.Image>();
-       
-        if (Switch.isOn == false)
-        {
-            audioSource[0].enabled = false;
-            image.sprite = offOn[0];
-            PlayerPrefs.SetFloat("VolumeBackground", volume.background.volume);
-            PlayerPrefs.Save();
-        }
-        else
+
+        if (musicOn)
         {
             audioSource[0].enabled = true;
             audioSource[0].Play();
-            PlayerPrefs.GetFloat("VolumeBackground", 0.75f);
-            PlayerPrefs.Save();
 
             image.sprite = offOn[1];
         }
+        else
+        {
+            audioSource[0].enabled = false;
+            image.sprite = offOn[0];
+        }
     }
-    public void SFXToggle()
+
+    private void SfxToggleCheck()
     {
-        var Switch = toggles[1];
         image = Target[1].GetComponent<UnityEngine.UI.Image>();
 
-        if (Switch.isOn == false)
-        {
-            image.sprite = offOn[0];
-            audioSource[1].enabled = false;
-            audioSource[2].enabled = false;
-            PlayerPrefs.SetFloat("VolumeBackground", volume.background.volume);
-            PlayerPrefs.SetFloat("VolumeEffects", volume.soundEffects.volume);
-            PlayerPrefs.Save();
-
-
-        }
-        else
+        if (sfxOn)
         {
             audioSource[1].enabled = true;
             audioSource[2].enabled = true;
             image.sprite = offOn[1];
-            PlayerPrefs.GetFloat("VolumeBackground", 0.75f );
-            PlayerPrefs.GetFloat("VolumeEffects", 0.75f);
-            PlayerPrefs.Save();
         }
-
-
+        else
+        {
+            image.sprite = offOn[0];
+            audioSource[1].enabled = false;
+            audioSource[2].enabled = false;
+        }
     }
+   
     public void OpenPauseMenu()
     {
         for (int i = 0; i < Assets.Length - 2; i++)
@@ -103,6 +136,4 @@ public class PauseScreenButtons : MonoBehaviour
         }
         Assets[11].SetActive(false);
     }
-    
-
 }
