@@ -26,6 +26,11 @@ public class LevelPick : MonoBehaviour
         LoadData();
     }
 
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     private void LoadData()
     {
         PlayerData playerData = SaveDataManager.LoadGameState();
@@ -54,140 +59,146 @@ public class LevelPick : MonoBehaviour
 
     private void Update()
     {
-        if (levelTwoState == 1)
+        print("Level 2: " + levelTwoState);
+        print(levelFiveState);
+        print(levelFourState);
+        if (Tutorial.tutFin)
         {
-            locks[0].GetComponent<Animator>().SetInteger("locked", 1);
-            levels[0].sprite = levelSprites[0];
-
-            PlayerData playerData = new PlayerData();
-            PlayerData savedData = SaveDataManager.LoadGameState();
-
-            if (savedData != null)
+            if (levelTwoState == 1)
             {
-                levelTwoState = savedData.levelTwoState;
-                levelThreeState = savedData.levelThreeState;
-                levelFourState = savedData.levelFourState;
-                levelFiveState = savedData.levelFiveState;
+                locks[0].GetComponent<Animator>().SetInteger("locked", 1);
+                levels[0].sprite = levelSprites[0];
+
+                PlayerData playerData = new PlayerData();
+                PlayerData savedData = SaveDataManager.LoadGameState();
+
+                if (savedData != null)
+                {
+                    levelTwoState = savedData.levelTwoState;
+                    levelThreeState = savedData.levelThreeState;
+                    levelFourState = savedData.levelFourState;
+                    levelFiveState = savedData.levelFiveState;
+                }
+
+                playerData.levelTwoState = 2;
+                playerData.levelThreeState = levelThreeState;
+                playerData.levelFourState = levelFourState;
+                playerData.levelFiveState = levelFiveState;
+
+                SaveDataManager.SaveLevelData(playerData);
+            }
+            else if (levelTwoState == 2)
+            {
+                levels[0].sprite = levelSprites[0];
+                locks[0].GetComponent<Animator>().SetInteger("locked", 2);
+            }
+            else if (levelTwoState == 0)
+            {
+                levels[0].sprite = darkSprites[0];
+                locks[0].GetComponent<Animator>().SetInteger("locked", 0);
             }
 
-            playerData.levelTwoState = 2;
-            playerData.levelThreeState = levelThreeState;
-            playerData.levelFourState = levelFourState;
-            playerData.levelFiveState = levelFiveState;
-
-            SaveDataManager.SaveLevelData(playerData);
-        }
-        else if (levelTwoState == 2)
-        {
-            levels[0].sprite = levelSprites[0];
-            locks[0].GetComponent<Animator>().SetInteger("locked", 2);
-        }
-        else if (levelTwoState == 0)
-        {
-            levels[0].sprite = darkSprites[0];
-            locks[0].GetComponent<Animator>().SetInteger("locked", 0);
-        }
-
-        if (levelThreeState == 1)
-        {
-            locks[1].GetComponent<Animator>().SetInteger("locked", 1);
-            levels[1].sprite = levelSprites[1];
-
-            PlayerData playerData = new PlayerData();
-            PlayerData savedData = SaveDataManager.LoadGameState();
-
-            if (savedData != null)
+            if (levelThreeState == 1)
             {
-                levelTwoState = savedData.levelTwoState;
-                levelThreeState = savedData.levelThreeState;
-                levelFourState = savedData.levelFourState;
-                levelFiveState = savedData.levelFiveState;
+                locks[1].GetComponent<Animator>().SetInteger("locked", 1);
+                levels[1].sprite = levelSprites[1];
+
+                PlayerData playerData = new PlayerData();
+                PlayerData savedData = SaveDataManager.LoadGameState();
+
+                if (savedData != null)
+                {
+                    levelTwoState = savedData.levelTwoState;
+                    levelThreeState = savedData.levelThreeState;
+                    levelFourState = savedData.levelFourState;
+                    levelFiveState = savedData.levelFiveState;
+                }
+
+                playerData.levelTwoState = levelTwoState;
+                playerData.levelThreeState = 2;
+                playerData.levelFourState = levelFourState;
+                playerData.levelFiveState = levelFiveState;
+
+                SaveDataManager.SaveLevelData(playerData);
+            }
+            else if (levelThreeState == 2)
+            {
+                levels[1].sprite = levelSprites[1];
+                locks[1].GetComponent<Animator>().SetInteger("locked", 2);
+            }
+            else if (levelThreeState == 0)
+            {
+                levels[1].sprite = darkSprites[1];
+                locks[1].GetComponent<Animator>().SetInteger("locked", 0);
             }
 
-            playerData.levelTwoState = levelTwoState;
-            playerData.levelThreeState = 2;
-            playerData.levelFourState = levelFourState;
-            playerData.levelFiveState = levelFiveState;
-
-            SaveDataManager.SaveLevelData(playerData);
-        }
-        else if (levelThreeState == 2)
-        {
-            levels[1].sprite = levelSprites[1];
-            locks[1].GetComponent<Animator>().SetInteger("locked", 2);
-        }
-        else if (levelThreeState == 0)
-        {
-            levels[1].sprite = darkSprites[1];
-            locks[1].GetComponent<Animator>().SetInteger("locked", 0);
-        }
-
-        if (levelFourState == 1)
-        {
-            locks[2].GetComponent<Animator>().SetInteger("locked", 1);
-            levels[2].sprite = levelSprites[2];
-
-            PlayerData playerData = new PlayerData();
-            PlayerData savedData = SaveDataManager.LoadGameState();
-
-            if (savedData != null)
+            if (levelFourState == 1)
             {
-                levelTwoState = savedData.levelTwoState;
-                levelThreeState = savedData.levelThreeState;
-                levelFourState = savedData.levelFourState;
-                levelFiveState = savedData.levelFiveState;
+                locks[2].GetComponent<Animator>().SetInteger("locked", 1);
+                levels[2].sprite = levelSprites[2];
+
+                PlayerData playerData = new PlayerData();
+                PlayerData savedData = SaveDataManager.LoadGameState();
+
+                if (savedData != null)
+                {
+                    levelTwoState = savedData.levelTwoState;
+                    levelThreeState = savedData.levelThreeState;
+                    levelFourState = savedData.levelFourState;
+                    levelFiveState = savedData.levelFiveState;
+                }
+
+                playerData.levelTwoState = levelTwoState;
+                playerData.levelThreeState = levelThreeState;
+                playerData.levelFourState = 2;
+                playerData.levelFiveState = levelFiveState;
+
+                SaveDataManager.SaveLevelData(playerData);
+            }
+            else if (levelFourState == 2)
+            {
+                levels[2].sprite = levelSprites[2];
+                locks[2].GetComponent<Animator>().SetInteger("locked", 2);
+            }
+            else if (levelFourState == 0)
+            {
+                levels[2].sprite = darkSprites[2];
+                locks[2].GetComponent<Animator>().SetInteger("locked", 0);
             }
 
-            playerData.levelTwoState = levelTwoState;
-            playerData.levelThreeState = levelThreeState;
-            playerData.levelFourState = 2;
-            playerData.levelFiveState = levelFiveState;
-
-            SaveDataManager.SaveLevelData(playerData);
-        }
-        else if (levelFourState == 2)
-        {
-            levels[2].sprite = levelSprites[2];
-            locks[2].GetComponent<Animator>().SetInteger("locked", 2);
-        }
-        else if (levelFourState == 0)
-        {
-            levels[2].sprite = darkSprites[2];
-            locks[2].GetComponent<Animator>().SetInteger("locked", 0);
-        }
-
-        if (levelFiveState == 1)
-        {
-            locks[3].GetComponent<Animator>().SetInteger("locked", 1);
-            levels[3].sprite = levelSprites[3];
-
-            PlayerData playerData = new PlayerData();
-            PlayerData savedData = SaveDataManager.LoadGameState();
-
-            if (savedData != null)
+            if (levelFiveState == 1)
             {
-                levelTwoState = savedData.levelTwoState;
-                levelThreeState = savedData.levelThreeState;
-                levelFourState = savedData.levelFourState;
-                levelFiveState = savedData.levelFiveState;
+                locks[3].GetComponent<Animator>().SetInteger("locked", 1);
+                levels[3].sprite = levelSprites[3];
+
+                PlayerData playerData = new PlayerData();
+                PlayerData savedData = SaveDataManager.LoadGameState();
+
+                if (savedData != null)
+                {
+                    levelTwoState = savedData.levelTwoState;
+                    levelThreeState = savedData.levelThreeState;
+                    levelFourState = savedData.levelFourState;
+                    levelFiveState = savedData.levelFiveState;
+                }
+
+                playerData.levelTwoState = levelTwoState;
+                playerData.levelThreeState = levelThreeState;
+                playerData.levelFourState = levelFourState;
+                playerData.levelFiveState = 2;
+
+                SaveDataManager.SaveLevelData(playerData);
             }
-
-            playerData.levelTwoState = levelTwoState;
-            playerData.levelThreeState = levelThreeState;
-            playerData.levelFourState = levelFourState;
-            playerData.levelFiveState = 2;
-
-            SaveDataManager.SaveLevelData(playerData);
-        }
-        else if (levelFiveState == 2)
-        {
-            levels[3].sprite = levelSprites[3];
-            locks[3].GetComponent<Animator>().SetInteger("locked", 2);
-        }
-        else if (levelFiveState == 0)
-        {
-            levels[3].sprite = darkSprites[3];
-            locks[3].GetComponent<Animator>().SetInteger("locked", 0);
+            else if (levelFiveState == 2)
+            {
+                levels[3].sprite = levelSprites[3];
+                locks[3].GetComponent<Animator>().SetInteger("locked", 2);
+            }
+            else if (levelFiveState == 0)
+            {
+                levels[3].sprite = darkSprites[3];
+                locks[3].GetComponent<Animator>().SetInteger("locked", 0);
+            }
         }
     }
 

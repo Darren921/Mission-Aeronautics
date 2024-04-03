@@ -128,7 +128,7 @@ public class Health : MonoBehaviour
         else
         {
             enemy = FindObjectOfType<TrainingDummy>();
-            damage = 16;
+            damage = 100;
         }
     }
 
@@ -331,9 +331,11 @@ public class Health : MonoBehaviour
 
                 SaveDataManager.SaveLevelData(playerData);
             }
-
-            gameOverScreen.SetActive(true);
-            winTextImage.sprite = winImages[0];
+            if (Tutorial.tutFin)
+            {
+                gameOverScreen.SetActive(true);
+                winTextImage.sprite = winImages[0];
+            }
         }
         if (enemy != null) {
         if (enemy.GetPlayerHealth <= 0 && Tutorial.tutFin == true)

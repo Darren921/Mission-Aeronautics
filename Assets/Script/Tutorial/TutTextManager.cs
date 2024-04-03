@@ -110,9 +110,12 @@ public class TutTextManager : MonoBehaviour
         }
         typeSpeed = 0.05f;
         isTalking = true;
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        if (sentences.Count > 0)
+        {
+            string sentence = sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+        }
     }
 
     private void EndDialogue()
