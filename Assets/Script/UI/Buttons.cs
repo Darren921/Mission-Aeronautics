@@ -24,7 +24,6 @@ public class Buttons : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-        EditorApplication.isPlaying = false;
     }
 
     public void BackToSelection() 
