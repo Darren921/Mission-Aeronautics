@@ -642,10 +642,13 @@ public class Player : MonoBehaviour
                     if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
                     {
                         bul.transform.position = (transform.position + new Vector3(-2f, 2.5f, 0));
+                        bul.transform.Rotate(0f, 180f, 0.0f, Space.World);
                     }
                     else if (Buttons.CharacterChossen == 4)
                     {
                         bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+                        bul.transform.Rotate(0f, 180f, 0.0f, Space.World);
+
                     }
                 }
               
@@ -668,10 +671,14 @@ public class Player : MonoBehaviour
                     if (Buttons.CharacterChossen == 1 || Buttons.CharacterChossen == 2)
                     {
                         bul.transform.position = (transform.position + new Vector3(-2f, 2.5f, 0));
+                        bul.transform.Rotate(0f, 180f, 0.0f, Space.World);
+
                     }
                     else if (Buttons.CharacterChossen == 4)
                     {
                         bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+                        bul.transform.Rotate(0f, 180f, 0.0f, Space.World);
+
                     }
                 }
            
