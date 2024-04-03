@@ -6,6 +6,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class TutTextManager : MonoBehaviour
 {
@@ -63,6 +64,7 @@ public class TutTextManager : MonoBehaviour
         {
             case 0:
                 skipTut.SetActive(false);
+                contText.enabled = false;
                 finishTut.SetActive(true);
                 EndDialogue();
                 break;
@@ -115,6 +117,10 @@ public class TutTextManager : MonoBehaviour
             string sentence = sentences.Dequeue();
             StopAllCoroutines();
             StartCoroutine(TypeSentence(sentence));
+        }
+        else
+        {
+            skipTut.SetActive(false);
         }
     }
 
