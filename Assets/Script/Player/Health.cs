@@ -339,22 +339,26 @@ public class Health : MonoBehaviour
             }
         }
         if (enemy != null) {
-            if ((enemy.GetPlayerHealth <= 0 && Tutorial.tutFin == true) || playerObject.transform.position.y < -20.35547 || playerObject.transform.position.x < -38.63747 || playerObject.transform.position.y > 20.35547 || playerObject.transform.position.x > 38.63747)
+            if(Tutorial.tutFin)
             {
-                gameEnded = true;
+                if ((enemy.GetPlayerHealth <= 0 && Tutorial.tutFin == true) || playerObject.transform.position.y < -20.35547 || playerObject.transform.position.x < -38.63747 || playerObject.transform.position.y > 20.35547 || playerObject.transform.position.x > 38.63747)
+                {
+                    gameEnded = true;
 
-                InputManager.DisableInGame();
-                player.ReturnAnimator().SetBool("IsMoving", false);
-                player.ReturnAnimator().SetBool("Stunned", false);
-                player.ReturnAnimator().SetBool("IsAttacking", false);
-                player.GetStunned = false;
-                player.StopAllCoroutines();
-                StopAllCoroutines();
-                Time.timeScale = 0;
+                    InputManager.DisableInGame();
+                    player.ReturnAnimator().SetBool("IsMoving", false);
+                    player.ReturnAnimator().SetBool("Stunned", false);
+                    player.ReturnAnimator().SetBool("IsAttacking", false);
+                    player.GetStunned = false;
+                    player.StopAllCoroutines();
+                    StopAllCoroutines();
+                    Time.timeScale = 0;
 
-                gameOverScreen.SetActive(true);
-                winTextImage.sprite = winImages[1];
+                    gameOverScreen.SetActive(true);
+                    winTextImage.sprite = winImages[1];
+                }
             }
+           
         }
 
         if (Tutorial.tutFin == false)
