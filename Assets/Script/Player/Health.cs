@@ -116,7 +116,7 @@ public class Health : MonoBehaviour
                 case 4:
                     enemy = FindObjectOfType<BigBirdAI>();
                     enemyHealthImage.sprite = enemyBars[3];
-                    damage = 8;
+                    damage = 14;
                     break;
                 case 5:
                     enemy = FindObjectOfType<XerosAI>();

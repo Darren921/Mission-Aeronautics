@@ -125,6 +125,7 @@ public class BigBirdAI : Enemy
             this.transform.position = teleportLocation;
 
             enemyState = "After Teleport";
+            fireShot = 0;
             debounce = 0;
         }
         else if (enemyState == "After Teleport")
@@ -139,7 +140,7 @@ public class BigBirdAI : Enemy
                 fireShot += 1;
             }
 
-            if (fireShot >= 2)
+            if (fireShot >= 1)
             {
                 debounce = 0;
                 enemyState = "After Teleport Done";
