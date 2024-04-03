@@ -553,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &164046236
 RectTransform:
   m_ObjectHideFlags: 0
@@ -570,7 +570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.02}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 24.8, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &164046237
@@ -620,8 +620,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7.02
-  m_fontSizeBase: 7.02
+  m_fontSize: 9.3
+  m_fontSizeBase: 9.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -782,7 +782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 51.95, y: -10.54}
+  m_AnchoredPosition: {x: 53.39, y: -10.6}
   m_SizeDelta: {x: 10.69, y: 10.3}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &295627996
@@ -1379,7 +1379,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 63003986}
         m_TargetAssemblyTypeName: PauseScreenButtons, Assembly-CSharp
-        m_MethodName: ToggleMusic
+        m_MethodName: MusicToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2148,7 +2148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 26.4, y: -17.7}
+  m_AnchoredPosition: {x: 25.6, y: -17.7}
   m_SizeDelta: {x: 77.5, y: 23.6}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1573328730
@@ -2329,7 +2329,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 63003986}
         m_TargetAssemblyTypeName: PauseScreenButtons, Assembly-CSharp
-        m_MethodName: ToggleSfx
+        m_MethodName: SFXToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2376,7 +2376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1.6, y: -10.86}
+  m_AnchoredPosition: {x: -1.3, y: -11.4}
   m_SizeDelta: {x: 10.69, y: 10.3}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1994482268

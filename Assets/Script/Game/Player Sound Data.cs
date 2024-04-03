@@ -6,7 +6,4 @@ using UnityEngine;
 public class PlayerSoundData
 {
     public int soundLevel = 4;
-
-    public bool musicOn = true;
-    public bool sfxOn = true;
 }
