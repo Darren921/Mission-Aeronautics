@@ -221,7 +221,7 @@ public class EvilDarrenAI : Enemy
             {
                 if (player.GetComponent<Player>().returnisBlocking() != true)
                 {
-                    playerHealth -= 1; //damage;
+                    playerHealth -= damage;
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = true;
