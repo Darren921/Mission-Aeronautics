@@ -91,10 +91,10 @@ public class Player : MonoBehaviour
             switch (LevelPick.LevelChossen)
             {
                 case 1:
-                    enemy = FindObjectOfType<BrickManAI>();
+                    enemy = FindObjectOfType<EvilDarrenAI>();
                     break;
                 case 2:
-                    enemy = FindObjectOfType<EvilDarrenAI>();
+                    enemy = FindObjectOfType<BrickManAI>();
                     break;
                 case 3:
                     enemy = FindObjectOfType<EarthmanAI>();
@@ -152,6 +152,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(enemy.ReturnplayerHit());
         if (Tutorial.tutFin != true)
         {
 
@@ -341,7 +342,7 @@ public class Player : MonoBehaviour
         }
         if(Tutorial.tutFin == false)
         {
-            if (Tutorial.tutFin  && tut.block == true)
+            if (Tutorial.tutFin !=  true && tut.block == true)
             {
                 if (enemy.ReturnplayerHit() == true)
                 {
