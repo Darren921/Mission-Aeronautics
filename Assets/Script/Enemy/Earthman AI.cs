@@ -83,6 +83,7 @@ public class EarthmanAI : Enemy
         }
         else if (enemyState == "Move")
         {
+            canAttack = true;
             animator.SetBool("Move", true);
             animator.SetBool("Stun", false);
             animator.SetBool("Attack 1", false);
@@ -226,7 +227,6 @@ public class EarthmanAI : Enemy
 
     internal void IgAttack(float damage, bool isProj)
     {
-
         if (collidingWithPlayer)
         {
             if (canAttack)
@@ -244,7 +244,6 @@ public class EarthmanAI : Enemy
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = true;
-
                 }
 
             }

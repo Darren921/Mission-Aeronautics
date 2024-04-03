@@ -89,16 +89,16 @@ public class EvilDarrenAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
             }
 
-            NailAttack(10, false);
+            NailAttack(50, false);
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= .5)
             {
-                enemyState = "After Punch";
+                enemyState = "After Kick";
                 debounce = 0;
             }
         }
-        else if (enemyState == "After Punch")
+        else if (enemyState == "After Kick")
         {
             debounce += 1 * Time.deltaTime;
 
@@ -221,7 +221,6 @@ public class EvilDarrenAI : Enemy
             {
                 if (player.GetComponent<Player>().returnisBlocking() != true)
                 {
-                    print("Return Fired");
                     playerHealth -= damage;
                     playerSlider.value = playerHealth;
                     canAttack = false;
@@ -233,7 +232,6 @@ public class EvilDarrenAI : Enemy
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = true;
-
                 }
             }
         }
