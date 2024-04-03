@@ -89,7 +89,7 @@ public class EvilDarrenAI : Enemy
                 transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(player.transform.position.x, this.transform.position.y), speed * Time.deltaTime);
             }
 
-            NailAttack(50, false);
+            NailAttack(10, false);
 
             debounce += 1 * Time.deltaTime;
             if (debounce >= .5)
@@ -221,7 +221,7 @@ public class EvilDarrenAI : Enemy
             {
                 if (player.GetComponent<Player>().returnisBlocking() != true)
                 {
-                    playerHealth -= damage;
+                    playerHealth -= 1; //damage;
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = true;
@@ -266,6 +266,7 @@ public class EvilDarrenAI : Enemy
         else
         {
             bul.transform.position = (transform.position + new Vector3(4f, 1.5f, 0));
+            bul.transform.Rotate(0f, 180f, 0.0f, Space.World);
         }
     }
 }

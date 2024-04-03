@@ -179,14 +179,7 @@ public class Player : MonoBehaviour
             animator.SetBool("IsMoving", false);
         }
         
-        if(Tutorial.tutFin == true) 
-        {
-            if (transform.position.y < -20.35547 || transform.position.x < -38.63747 || transform.position.y > 20.35547 || transform.position.x > 38.63747)
-            {
-                gameObject.SetActive(false);
-                animator.enabled = false;
-            }
-        }
+        
 
       
         

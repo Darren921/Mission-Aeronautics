@@ -76,6 +76,7 @@ public class Health : MonoBehaviour
     private bool canAttack;
 
     private static Player player;
+    public GameObject playerObject;
 
     private static Enemy enemy;
     private LevelPick levelPick = new LevelPick();
@@ -143,7 +144,7 @@ public class Health : MonoBehaviour
         {
             tempTestThing = enemyStunnedFire;
         }
-        
+
 
         if (enemyStunned)
         {
@@ -157,7 +158,7 @@ public class Health : MonoBehaviour
         }
 
 
-        if(Tutorial.tutFin != true)
+        if (Tutorial.tutFin != true)
         {
             enemy = FindObjectOfType<TrainingDummy>();
         }
@@ -165,7 +166,7 @@ public class Health : MonoBehaviour
         enemyHealthBarSlider.value = enemyHealth;
         comboSlider.value = combo;
 
-        if(enemy != null && Tutorial.tutFin == true)
+        if (enemy != null && Tutorial.tutFin == true)
         {
             if (enemy.ReturnBulletHit() == true)
             {
@@ -176,7 +177,7 @@ public class Health : MonoBehaviour
                 }
             }
         }
-        if(enemy != null && Tutorial.tutFin == false)
+        if (enemy != null && Tutorial.tutFin == false)
         {
             if (enemy.ReturnBulletHit() == true)
             {
@@ -203,7 +204,7 @@ public class Health : MonoBehaviour
                             }
                             enemyStunned = true;
                             enemyStunnedFire = true;
-                            
+
                             if (enemyHealth >= 0)
                             {
                                 enemyHealth -= damage;
@@ -231,20 +232,20 @@ public class Health : MonoBehaviour
                 canAttack = true;
             }
         }
-        
+
         if (enemyHealth <= 0 && Tutorial.tutFin == true)
         {
             gameEnded = true;
 
             InputManager.DisableInGame();
-            player.ReturnAnimator().SetBool("IsMoving",false);
+            player.ReturnAnimator().SetBool("IsMoving", false);
             player.ReturnAnimator().SetBool("Stunned", false);
             player.ReturnAnimator().SetBool("IsAttacking", false);
             player.GetStunned = false;
             player.StopAllCoroutines();
             StopAllCoroutines();
             Time.timeScale = 0;
-            
+
 
 
             //SceneManager.UnloadSceneAsync("MainGame");
@@ -291,7 +292,7 @@ public class Health : MonoBehaviour
 
                 SaveDataManager.SaveLevelData(playerData);
             }
-            else if(levelPick.Level() == 3)
+            else if (levelPick.Level() == 3)
             {
                 PlayerData playerData = new PlayerData();
                 PlayerData savedData = SaveDataManager.LoadGameState();
@@ -311,7 +312,7 @@ public class Health : MonoBehaviour
 
                 SaveDataManager.SaveLevelData(playerData);
             }
-            else if (levelPick.Level()== 4)
+            else if (levelPick.Level() == 4)
             {
                 PlayerData playerData = new PlayerData();
                 PlayerData savedData = SaveDataManager.LoadGameState();
@@ -338,7 +339,7 @@ public class Health : MonoBehaviour
             }
         }
         if (enemy != null) {
-        if (enemy.GetPlayerHealth <= 0 && Tutorial.tutFin == true)
+            if ((enemy.GetPlayerHealth <= 0 && Tutorial.tutFin == true) || playerObject.transform.position.y < -20.35547 || playerObject.transform.position.x < -38.63747 || playerObject.transform.position.y > 20.35547 || playerObject.transform.position.x > 38.63747)
             {
                 gameEnded = true;
 

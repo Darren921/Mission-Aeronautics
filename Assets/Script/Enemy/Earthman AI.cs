@@ -210,18 +210,14 @@ public class EarthmanAI : Enemy
     public void Shoot()
     {
         GameObject bul = Instantiate(fireBall);
-        if (GetTurn1() == true)
+        if (enemy.GetTurn1())
         {
-            bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
-
-        }
-        else if (GetTurn2() == true)
-        {
-            bul.transform.position = (transform.position + new Vector3(2f, 1.5f, 0));
+            bul.transform.position = (transform.position + new Vector3(-2.5f, 1.5f, 0));
         }
         else
         {
-            bul.transform.position = (transform.position + new Vector3(-2f, 1.5f, 0));
+            bul.transform.position = (transform.position + new Vector3(2.5f, 1.5f, 0));
+            //bul.transform.Rotate(0f, 180f, 0.0f, Space.World);
         }
     }
 
