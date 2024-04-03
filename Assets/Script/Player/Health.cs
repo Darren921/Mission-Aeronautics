@@ -98,12 +98,12 @@ public class Health : MonoBehaviour
             {
                
                 case 1:
-                    enemy = FindObjectOfType<BrickManAI>();
+                    enemy = FindObjectOfType<EvilDarrenAI>();
                     enemyHealthImage.sprite = enemyBars[0];
                     damage = 8;
                     break;
                 case 2:
-                    enemy = FindObjectOfType<EvilDarrenAI>();
+                    enemy = FindObjectOfType<BrickManAI>();
                     enemyHealthImage.sprite = enemyBars[1];
                     damage = 8;
                     break;
