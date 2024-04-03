@@ -129,7 +129,7 @@ public class Health : MonoBehaviour
         else
         {
             enemy = FindObjectOfType<TrainingDummy>();
-            damage = 10;
+            damage = 5;
         }
     }
 

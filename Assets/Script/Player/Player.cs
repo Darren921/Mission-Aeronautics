@@ -152,7 +152,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(enemy.ReturnplayerHit());
         if (Tutorial.tutFin != true)
         {
 
@@ -580,7 +579,7 @@ public class Player : MonoBehaviour
     private IEnumerator ShieldPowerUp()
     {
         shieldPowerActive = true;
-      yield return new WaitForSeconds(5f);
+      yield return new WaitForSeconds(20f);
         shieldPowerActive = false;
     }
 

@@ -160,7 +160,6 @@ public class TutTextManager : MonoBehaviour
 
     private void Update()
     {
-        print(sentences.Count);
 
      
     

@@ -8,13 +8,13 @@ public class BirdBall : MonoBehaviour
     BigBirdAI bbAi;
     private Rigidbody2D rb;
     private float time = 0;
-
+    Player player;
     private float damage;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         enemy = FindObjectOfType<Enemy>();
-
+        player = FindObjectOfType<Player>();
         bbAi = FindObjectOfType<BigBirdAI>();
         damage = 10;
     }
@@ -41,8 +41,16 @@ public class BirdBall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            bbAi.BirbAttack(damage, true);
-            Destroy(this.gameObject);
+            if(player.returnShieldPowerActive() != true)
+            {
+                bbAi.BirbAttack(damage, true);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                bbAi.BirbAttack(0, true);
+                Destroy(this.gameObject);
+            }
         }
     }
 }

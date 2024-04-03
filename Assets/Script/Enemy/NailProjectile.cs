@@ -8,13 +8,13 @@ public class NailProjectile : MonoBehaviour
     EvilDarrenAI evAI;
     private Rigidbody2D rb;
     private float time = 0;
-
+    Player player;
     private float damage;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         enemy = FindObjectOfType<Enemy>();
-
+        player = FindObjectOfType<Player>();
         evAI = FindObjectOfType<EvilDarrenAI>();
         damage = 5;
     }
@@ -41,8 +41,15 @@ public class NailProjectile : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            evAI.NailAttack(damage, true);
+            if (player.returnShieldPowerActive() != true)
+            {
+                evAI.NailAttack(damage, true);
+                Destroy(this.gameObject);
+            }
+            else
+            evAI.NailAttack(0, true);
             Destroy(this.gameObject);
+
         }
     }
 }

@@ -333,6 +333,14 @@ public class XerosAI : Enemy
                     playerHit = true;
 
                 }
+                if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+                {
+
+                    playerHealth -= (damage * 0);
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = false;
+                }
             }
         }
         else if (isProj)
@@ -351,6 +359,14 @@ public class XerosAI : Enemy
                 canAttack = false;
                 playerHit = true;
 
+            }
+            if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+            {
+
+                playerHealth -= (damage * 0);
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = false;
             }
             canAttack = true;
         }

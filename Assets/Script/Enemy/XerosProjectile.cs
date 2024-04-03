@@ -10,14 +10,14 @@ public class XerosProjectile : MonoBehaviour
     private Rigidbody2D rb;
     private float time = 0;
     private float damage;
-
+    private Player player;
     private bool rotated = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         enemy = FindObjectOfType<Enemy>();
-
+        player = FindObjectOfType<Player>();
         xeros = FindObjectOfType<XerosAI>();
         damage = 4;
     }
@@ -51,8 +51,17 @@ public class XerosProjectile : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            xeros.XerosAttack(damage, true);
-            Destroy(this.gameObject);
+            if(player.returnShieldPowerActive() != true)
+            {
+                xeros.XerosAttack(damage, true);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                xeros.XerosAttack(0, true);
+                Destroy(this.gameObject);
+            }
+            
         }
     }
 }

@@ -223,6 +223,7 @@ public class EarthmanAI : Enemy
 
     internal void IgAttack(float damage, bool isProj)
     {
+
         if (collidingWithPlayer)
         {
             if (canAttack)
@@ -241,7 +242,14 @@ public class EarthmanAI : Enemy
                     canAttack = false;
                     playerHit = true;
                 }
+                if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+                {
 
+                    playerHealth -= (damage * 0);
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = false;
+                }
             }
         }
         else if (isProj)
@@ -260,6 +268,14 @@ public class EarthmanAI : Enemy
                 canAttack = false;
                 playerHit = true;
 
+            }
+            if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+            {
+
+                playerHealth -= (damage * 0);
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = false;
             }
             canAttack = true;
         }

@@ -332,6 +332,14 @@ public class BrickManAI : Enemy
                     playerHit = true;
 
                 }
+                if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+                {
+
+                    playerHealth -= (damage * 0);
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = false;
+                }
             }
         }
         else if (isProj)
@@ -350,6 +358,14 @@ public class BrickManAI : Enemy
                 canAttack = false;
                 playerHit = true;
 
+            }
+            if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+            {
+
+                playerHealth -= (damage * 0);
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = false;
             }
             canAttack = true;
         }

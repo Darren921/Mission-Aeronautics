@@ -8,7 +8,7 @@ public class FireBall : MonoBehaviour
     EarthmanAI emAI;
     private Rigidbody2D rb;
     private float time = 0;
-
+    Player player;
     private float damage;
 
     private bool rotated = true;
@@ -16,7 +16,7 @@ public class FireBall : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         enemy = FindObjectOfType<Enemy>();
-
+        player = FindObjectOfType<Player>();
         emAI = FindObjectOfType<EarthmanAI>();
         damage = 10;
     }
@@ -50,8 +50,17 @@ public class FireBall : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            emAI.IgAttack(damage, true);
-            Destroy(this.gameObject);
+            if (player.returnShieldPowerActive() != true)
+            {
+                emAI.IgAttack(damage, true);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                emAI.IgAttack(0, true);
+                Destroy(this.gameObject);
+            }
+            
         }
     }
 }

@@ -215,16 +215,25 @@ public class EvilDarrenAI : Enemy
 
     internal void NailAttack(float damage, bool isProj)
     {
+        print(player.GetComponent<Player>().returnShieldPowerActive());
         if (collidingWithPlayer)
         {
             if (canAttack)
             {
-                if (player.GetComponent<Player>().returnisBlocking() != true)
+                if (player.GetComponent<Player>().returnisBlocking() != true && player.GetComponent<Player>().returnShieldPowerActive() != true)
                 {
                     playerHealth -= damage;
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = true;
+                }
+                else if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+                {
+                    print("invi");
+                    playerHealth -= damage * 0;
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = false;
                 }
                 else
                 {
@@ -233,6 +242,7 @@ public class EvilDarrenAI : Enemy
                     canAttack = false;
                     playerHit = true;
                 }
+           
             }
         }
         else if (isProj)
@@ -244,6 +254,14 @@ public class EvilDarrenAI : Enemy
                 canAttack = false;
                 playerHit = true;
             }
+            else if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+            {
+                print("invi");
+                playerHealth -= (damage * 0);
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = false;
+            }
             else
             {
                 playerHealth -= (damage * 0.3f);
@@ -252,6 +270,7 @@ public class EvilDarrenAI : Enemy
                 playerHit = true;
 
             }
+           
             canAttack = true;
         }
     }

@@ -247,7 +247,7 @@ public class BigBirdAI : Enemy
 
     internal void BirbAttack(float damage, bool isProj)
     {
-
+        print(player.GetComponent<Player>().returnShieldPowerActive());
         if (collidingWithPlayer)
         {
             if (canAttack)
@@ -266,6 +266,14 @@ public class BigBirdAI : Enemy
                     canAttack = false;
                     playerHit = true;
 
+                }
+                if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+                {
+
+                    playerHealth -= (damage * 0);
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = false;
                 }
 
             }
@@ -286,6 +294,14 @@ public class BigBirdAI : Enemy
                 canAttack = false;
                 playerHit = true;
 
+            }
+            if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+            {
+
+                playerHealth -= (damage * 0);
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = false;
             }
             canAttack = true;
         }

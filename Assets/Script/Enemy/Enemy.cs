@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+
         //switch case maybe is preffered here
         if (enemyActive)
         {
@@ -248,39 +249,48 @@ public class Enemy : MonoBehaviour
         {
             if (canAttack)
             {
-                if (player.GetComponent<Player>().returnisBlocking() != true)
+                if (player.GetComponent<Player>().returnisBlocking() != true && player.GetComponent<Player>().returnShieldPowerActive() != true)
                 {
                     playerHealth -= damage;
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = true;
                 }
-                else
+                else if (player.GetComponent<Player>().returnShieldPowerActive() == true)
                 {
-                    playerHealth -= (damage * 0.15f);
-                    playerSlider.value = playerHealth;
-                    canAttack = false;
-                    playerHit = true;
-
-                }
-                if(player.GetComponent<Player>().returnShieldPowerActive() == true)
-                {
-                    playerHealth -= (damage * 0);
+                    print("invi");
+                    playerHealth -= damage * 0;
                     playerSlider.value = playerHealth;
                     canAttack = false;
                     playerHit = false;
+                }
+                else
+                {
+                    playerHealth -= (damage * 0.3f);
+                    playerSlider.value = playerHealth;
+                    canAttack = false;
+                    playerHit = true;
                 }
 
             }
         }
         else if (isProj)
         {
-            if (player.GetComponent<Player>().returnisBlocking() != true)
+            print(player.GetComponent<Player>().returnShieldPowerActive() == true);
+            if (player.GetComponent<Player>().returnisBlocking() != true && player.GetComponent<Player>().returnShieldPowerActive() != true)
             {
                 playerHealth -= damage;
                 playerSlider.value = playerHealth;
                 canAttack = false;
                 playerHit = true;
+            }
+            else if (player.GetComponent<Player>().returnShieldPowerActive() == true)
+            {
+                print("invi");
+                playerHealth -= damage * 0;
+                playerSlider.value = playerHealth;
+                canAttack = false;
+                playerHit = false;
             }
             else
             {
@@ -288,7 +298,6 @@ public class Enemy : MonoBehaviour
                 playerSlider.value = playerHealth;
                 canAttack = false;
                 playerHit = true;
-
             }
         }
     }
