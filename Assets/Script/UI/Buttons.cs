@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +19,12 @@ public class Buttons : MonoBehaviour
         Time.timeScale = 1.0f;
         StopAllCoroutines();
         SceneManager.LoadScene("TitleScreen");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        EditorApplication.isPlaying = false;
     }
 
     public void BackToSelection() 
