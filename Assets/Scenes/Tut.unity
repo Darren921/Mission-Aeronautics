@@ -14438,7 +14438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -361.54, y: 274.98}
+  m_AnchoredPosition: {x: -376, y: 310.6}
   m_SizeDelta: {x: 136.5669, y: 106.3192}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &667785502
@@ -14519,7 +14519,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -684726366, guid: c7a06e9a2dd007749a1402016edd1fb7, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -19716,7 +19716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0045191, y: 208.46}
+  m_AnchoredPosition: {x: 0.0045191, y: 200.1}
   m_SizeDelta: {x: 168.2192, y: 66.635}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1912990537
@@ -20713,7 +20713,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 576161788}
         m_TargetAssemblyTypeName: Volume, Assembly-CSharp
         m_MethodName: VolumeDown
         m_Mode: 1
@@ -22052,7 +22052,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 576161788}
         m_TargetAssemblyTypeName: Volume, Assembly-CSharp
         m_MethodName: VolumeUp
         m_Mode: 1

@@ -101,27 +101,27 @@ public class Health : MonoBehaviour
                 case 1:
                     enemy = FindObjectOfType<EvilDarrenAI>();
                     enemyHealthImage.sprite = enemyBars[0];
-                    damage = 8;
+                    damage = 25;
                     break;
                 case 2:
                     enemy = FindObjectOfType<BrickManAI>();
                     enemyHealthImage.sprite = enemyBars[1];
-                    damage = 8;
+                    damage = 20;
                     break;
                 case 3:
                     enemy = FindObjectOfType<EarthmanAI>();
                     enemyHealthImage.sprite = enemyBars[2];
-                    damage = 8;
+                    damage = 20;
                     break;
                 case 4:
                     enemy = FindObjectOfType<BigBirdAI>();
                     enemyHealthImage.sprite = enemyBars[3];
-                    damage = 14;
+                    damage = 20;
                     break;
                 case 5:
                     enemy = FindObjectOfType<XerosAI>();
                     enemyHealthImage.sprite = enemyBars[4];
-                    damage = 5;
+                    damage = 15;
                     break;
             }
 
