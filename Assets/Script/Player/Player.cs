@@ -496,11 +496,11 @@ public class Player : MonoBehaviour
                         isCollected = true;
                         if(enemy.playerHealth + 20 >= 75)
                         {
-                            enemy.playerSlider.value = enemy.playerHealth;
+                            enemy.playerHealth += 20;
                         }
                         else
                         {
-                            enemy.playerHealth += 20;
+                            enemy.playerHealth = 75;
                         }
                         enemy.playerSlider.value = enemy.playerHealth;
                     }
